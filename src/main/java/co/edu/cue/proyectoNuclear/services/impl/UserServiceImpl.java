@@ -1,7 +1,7 @@
 package co.edu.cue.proyectoNuclear.services.impl;
 
 import co.edu.cue.proyectoNuclear.domain.entities.Usuario;
-import co.edu.cue.proyectoNuclear.infrastructure.dao.UsuarioDAO;
+import co.edu.cue.proyectoNuclear.infrastructure.dao.GeneralDAO;
 import co.edu.cue.proyectoNuclear.mapping.mappers.UserMapper;
 import co.edu.cue.proyectoNuclear.services.UserService;
 import lombok.AllArgsConstructor;
@@ -12,13 +12,13 @@ import java.util.List;
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private final UsuarioDAO userDAO;
+    private final GeneralDAO userDAO;
 
     private final UserMapper mapper;
     /*@Override
     public List<Usuario> getAllUsers() {
 
-        System.out.println(userDAO.getUsuarios().parallelStream()
+        System.out.println(userDAO.getStudents().parallelStream()
                 .map(e->mapper.mapFrom(e))
                 .toList());
 
