@@ -15,7 +15,7 @@ public class UserServiceImpl implements UserService {
     private final UsuarioDAO userDAO;
 
     private final UserMapper mapper;
-    @Override
+    /*@Override
     public List<Usuario> getAllUsers() {
 
         System.out.println(userDAO.getUsuarios().parallelStream()
@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
 
         return userDAO.getUsuarios();
        // return new ArrayList<String>(List.of("Monica", "Paula", "Andres"));
-    }
+    }*/
 
     @Override
     public String getUserByName(String name) {
