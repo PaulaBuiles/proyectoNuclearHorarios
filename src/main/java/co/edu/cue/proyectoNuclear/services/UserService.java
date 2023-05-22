@@ -1,5 +1,6 @@
 package co.edu.cue.proyectoNuclear.services;
 
+import co.edu.cue.proyectoNuclear.domain.entities.User;
 import co.edu.cue.proyectoNuclear.domain.entities.Usuario;
 
 import java.util.List;

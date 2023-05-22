@@ -23,4 +23,14 @@ public class Teacher {
     @ManyToOne
     private Subject subject;
     private Boolean availability;
+
+    public Teacher(String id, String identification, String name, String email, String password, String role, Subject subject, Boolean availability) {
+        super(id, identification, name, email, password, role);
+        this.subject = subject;
+        this.availability = availability;
+    }
+
+    public Teacher() {
+
+    }
 }

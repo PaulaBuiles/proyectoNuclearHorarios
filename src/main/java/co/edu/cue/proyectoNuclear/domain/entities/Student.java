@@ -11,15 +11,8 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-@Builder
 @Entity
-public class Student {
-    private String name;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
-    private String email;
+public class Student extends User{
     private Semester semester;
     @OneToMany
     private List<Subject> subjectList;
