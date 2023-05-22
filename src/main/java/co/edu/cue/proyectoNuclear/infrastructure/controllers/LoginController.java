@@ -16,14 +16,20 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 @RestController
-@RequestMapping("/")
+@RequestMapping("/login")
 @AllArgsConstructor
 @Controller
 public class LoginController {
 
     private final UserService userService;
 
-    @GetMapping("/login")
+
+    @GetMapping("/")
+    public ModelAndView post(){
+        ModelAndView modelAndView = new ModelAndView(Pages.LOGIN);
+        return modelAndView;
+    }
+    @GetMapping("/start-login")
     public ModelAndView getData(@RequestParam("identification") String identification, @RequestParam("password") String password ) {
         ModelAndView modelAndView = null;
         String rol = null;

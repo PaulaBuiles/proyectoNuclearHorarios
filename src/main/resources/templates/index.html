@@ -1,36 +1,35 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Two Column Layout</title>
-    <style>
-        /* Estilos CSS para el diseño de dos columnas */
-        .container {
-            display: flex;
-        }
-
-        .column {
-            flex: 1;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" href="../static/css/bootstrap.css">
+    <script  th:src="@{/js/jquery.js}" src="../static/js/jquery.js"></script>
+    <script th:src="@{/js/bootstrap.js}" src="../static/js/bootstrap.js"></script>
+    <title>Login Gestion de Horarios</title>
 </head>
 <body>
-<div class="container">
-    <div class="column">
-        <!-- Columna Izquierda con el formulario -->
-        <h2>Formulario</h2>
-        <form method="get" action="/login">
-            <!-- Agrega aquí los campos del formulario -->
-            <label for="identification">Identificación:</label>
-            <input type="text" id="identification" name="identification" required>
-
-            <label for="password">Contraseña:</label>
-            <input type="password" id="password" name="password" required>
-
-            <input type="submit" value="Enviar">
-        </form>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="imgs/logoAVH.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+            Gestion de Horarios
+        </a>
     </div>
-    <div class="column">
-        <h2>Imagen</h2>
-        <img src="images/logo@2x.png">
+</nav>
+
+<div class="container">
+    <div class="abs-center">
+            <form th:action="@{/login/start-login}" method="get" class="border p-3 form">
+                <div class="mb-3">
+                    <label for="identification" class="form-label">Identificacion</label>
+                    <input type="text" class="form-control" id="identification" name="identification">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+                <button type="submit" value="Enviar" class="btn btn-primary">Login</button>
+            </form>
     </div>
 </div>
 </body>

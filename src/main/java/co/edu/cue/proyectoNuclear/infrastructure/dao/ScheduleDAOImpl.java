@@ -38,7 +38,7 @@ public class ScheduleDAOImpl implements GeneralDAO<Schedule> {
     }
 
     @Override
-    public void delete(Schedule entity) {
+    public void delete(Long id) {
 
     }
 }

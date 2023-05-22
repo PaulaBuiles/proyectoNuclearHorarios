@@ -37,7 +37,7 @@ public class CourseDAOImpl implements GeneralDAO<Course>{
     }
 
     @Override
-    public void delete(Course entity) {
+    public void delete(Long id) {
 
     }
 }

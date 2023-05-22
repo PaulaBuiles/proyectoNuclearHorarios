@@ -38,7 +38,7 @@ public class UserDAOImpl implements GeneralDAO<User>{
     }
 
     @Override
-    public void delete(User entity) {
+    public void delete(Long id) {
 
     }
 }

@@ -38,7 +38,10 @@ public class TeacherDAOImpl implements GeneralDAO<Teacher> {
     }
 
     @Override
-    public void delete(Teacher entity) {
-
+    public void delete(Long id) {
+        Teacher teacher = entityManager.find(Teacher.class, id);
+        if (teacher != null) {
+            entityManager.remove(teacher);
+        }
     }
 }

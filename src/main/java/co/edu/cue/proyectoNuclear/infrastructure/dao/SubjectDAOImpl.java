@@ -38,7 +38,7 @@ public class SubjectDAOImpl implements GeneralDAO<Subject>{
     }
 
     @Override
-    public void delete(Subject entity) {
+    public void delete(Long id) {
 
     }
 }
