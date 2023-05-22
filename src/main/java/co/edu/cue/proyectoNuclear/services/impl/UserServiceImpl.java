@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
-    ArrayList<User> user1 = new ArrayList<User>();
+    private static User user1 = new User();
     private final GeneralDAO<User> userService;
 
 
@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
         for (User user: userList) {
             if (identification.equals(user.getIdentification()) && password.equals(user.getPassword())) {
                 band = true;
-                user1.add(user);
+                user1 = user;
                 break;
             }
         }
@@ -36,7 +36,8 @@ public class UserServiceImpl implements UserService {
 
 
     public User getUser() {
-        return user1.get(0);
+        System.out.printf(user1.toString());
+        return user1;
     }
 
     @Override
