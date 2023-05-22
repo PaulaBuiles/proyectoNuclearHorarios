@@ -1,7 +1,7 @@
 package co.edu.cue.proyectoNuclear.infrastructure.dao;
 
-import co.edu.cue.proyectoNuclear.domain.entities.Course;
-import co.edu.cue.proyectoNuclear.domain.entities.Teacher;
+import co.edu.cue.proyectoNuclear.domain.entities.Schedule;
+import co.edu.cue.proyectoNuclear.domain.entities.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
@@ -11,34 +11,34 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class TeacherDAOImpl implements GeneralDAO<Teacher> {
+public class UserDAOImpl implements GeneralDAO<User>{
 
     @PersistenceContext
     EntityManager entityManager;
 
     @Override
-    public List<Teacher> getTableList(){
-        String query = "FROM Teacher";
+    public List<User> getTableList(){
+        String query = "FROM User";
         return entityManager.createQuery(query).getResultList();
     }
 
     @Override
-    public Teacher findById(String id) {
+    public User findById(String id) {
         return null;
     }
 
     @Override
-    public void save(Teacher entity) {
+    public void save(User entity) {
 
     }
 
     @Override
-    public void update(Teacher entity) {
+    public void update(User entity) {
 
     }
 
     @Override
-    public void delete(Teacher entity) {
+    public void delete(User entity) {
 
     }
 }

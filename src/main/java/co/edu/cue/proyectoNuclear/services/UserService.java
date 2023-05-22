@@ -6,8 +6,6 @@ import co.edu.cue.proyectoNuclear.domain.entities.Usuario;
 import java.util.List;
 
 public interface UserService {
-
-   /* List<Usuario> getAllUsers();*/
-    String getUserByName(String name);
-
+    Boolean validateUser(String user, String password);
+    User getUser();
 }

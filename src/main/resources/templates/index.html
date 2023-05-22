@@ -1,0 +1,37 @@
+<html>
+<head>
+    <title>Two Column Layout</title>
+    <style>
+        /* Estilos CSS para el diseño de dos columnas */
+        .container {
+            display: flex;
+        }
+
+        .column {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="column">
+        <!-- Columna Izquierda con el formulario -->
+        <h2>Formulario</h2>
+        <form method="get" action="/login">
+            <!-- Agrega aquí los campos del formulario -->
+            <label for="identification">Identificación:</label>
+            <input type="text" id="identification" name="identification" required>
+
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" required>
+
+            <input type="submit" value="Enviar">
+        </form>
+    </div>
+    <div class="column">
+        <h2>Imagen</h2>
+        <img src="images/logo@2x.png">
+    </div>
+</div>
+</body>
+</html>

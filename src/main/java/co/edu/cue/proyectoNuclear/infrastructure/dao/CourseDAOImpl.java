@@ -20,4 +20,24 @@ public class CourseDAOImpl implements GeneralDAO<Course>{
         String query = "FROM Course";
         return entityManager.createQuery(query).getResultList();
     }
+
+    @Override
+    public Course findById(String id) {
+        return null;
+    }
+
+    @Override
+    public void save(Course entity) {
+
+    }
+
+    @Override
+    public void update(Course entity) {
+
+    }
+
+    @Override
+    public void delete(Course entity) {
+
+    }
 }

@@ -21,4 +21,24 @@ public class SubjectDAOImpl implements GeneralDAO<Subject>{
         String query = "FROM Subject";
         return entityManager.createQuery(query).getResultList();
     }
+
+    @Override
+    public Subject findById(String id) {
+        return null;
+    }
+
+    @Override
+    public void save(Subject entity) {
+
+    }
+
+    @Override
+    public void update(Subject entity) {
+
+    }
+
+    @Override
+    public void delete(Subject entity) {
+
+    }
 }

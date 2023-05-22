@@ -21,4 +21,24 @@ public class ScheduleDAOImpl implements GeneralDAO<Schedule> {
         String query = "FROM Schedule";
         return entityManager.createQuery(query).getResultList();
     }
+
+    @Override
+    public Schedule findById(String id) {
+        return null;
+    }
+
+    @Override
+    public void save(Schedule entity) {
+
+    }
+
+    @Override
+    public void update(Schedule entity) {
+
+    }
+
+    @Override
+    public void delete(Schedule entity) {
+
+    }
 }

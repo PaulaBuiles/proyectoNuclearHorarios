@@ -6,20 +6,13 @@ import java.util.List;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @ToString
-@Builder
 @Entity
-public class Teacher {
-    private String name;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
-    private String email;
+public class Teacher extends User{
     @ManyToOne
     private Subject subject;
     private Boolean availability;

@@ -21,4 +21,24 @@ public class ClassroomDAOImpl implements GeneralDAO<Classroom>{
         String query = "FROM Classroom ";
         return entityManager.createQuery(query).getResultList();
     }
+
+    @Override
+    public Classroom findById(String id) {
+        return null;
+    }
+
+    @Override
+    public void save(Classroom entity) {
+
+    }
+
+    @Override
+    public void update(Classroom entity) {
+
+    }
+
+    @Override
+    public void delete(Classroom entity) {
+
+    }
 }

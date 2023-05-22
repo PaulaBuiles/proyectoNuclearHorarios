@@ -20,4 +20,24 @@ public class StudentDAOImpl implements GeneralDAO<Student>{
         String query = "FROM Student";
         return entityManager.createQuery(query).getResultList();
     }
+
+    @Override
+    public Student findById(String id) {
+        return null;
+    }
+
+    @Override
+    public void save(Student entity) {
+
+    }
+
+    @Override
+    public void update(Student entity) {
+
+    }
+
+    @Override
+    public void delete(Student entity) {
+
+    }
 }

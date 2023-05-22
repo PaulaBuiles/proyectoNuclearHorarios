@@ -8,15 +8,8 @@ import lombok.*;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 @ToString
 @Builder
-@Entity
-
 public class Administrative {
-    private String name;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
-    private String email;
+    //private String position;
 }
