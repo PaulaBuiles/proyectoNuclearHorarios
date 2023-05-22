@@ -3,33 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <link th:href="@{/css/bootstrap.css}" rel="stylesheet" href="../static/css/bootstrap.css">
-    <script  th:src="@{/js/jquery.js}" src="../static/js/jquery.js"></script>
+    <script th:src="@{/js/jquery.js}" src="../static/js/jquery.js"></script>
     <script th:src="@{/js/bootstrap.js}" src="../static/js/bootstrap.js"></script>
-    <title>Login Gestion de Horarios</title>
+    <title>Login Gestión de Horarios</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: linear-gradient(to left top, #6F00FC 40%, #002F69 60%);
+        }
+        .izq {
+            width: 240px;
+            height: 242px;
+            background: white;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin: 0 auto;
+        }
+        h2 {
+            font-size: 50px;
+        }
+
+    </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <img src="imgs/logoAVH.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-            Gestion de Horarios
+        <a class="navbar-brand" href="#" style="color: white;  font-family: 'Lobster Two', cursive">
+            <img src="imgs/logoAVH.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top" >
+            Gestión de Horarios
         </a>
     </div>
 </nav>
 
 <div class="container">
-    <div class="abs-center">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="col order-5">
+            <br>
+            <br>
+            <h2 class="text-center" style="color: white;  font-family: 'Lobster Two', cursive" >Corporación Universitaria Alexander Von Humboldt</h2><br>
+            <p class="text-center"  style="color: white;  font-family: 'Lobster Two', cursive; font-size: 30px;" >Exigente, Práctica, Diferente</p>
+            <br>
+            <br>
+            <div class="izq" style="align-content: center">
             <form th:action="@{/login/start-login}" method="get" class="border p-3 form">
                 <div class="mb-3">
-                    <label for="identification" class="form-label">Identificacion</label>
+                    <label for="identification" class="form-label" style="font-family: 'Nunito', sans-serif;">Identificación</label>
                     <input type="text" class="form-control" id="identification" name="identification">
                 </div>
                 <div class="mb-3">
-                    <label for="password" class="form-label">Contraseña</label>
+                    <label for="password" class="form-label" style="font-family: 'Nunito', sans-serif;">Contraseña</label>
                     <input type="password" class="form-control" id="password" name="password">
                 </div>
                 <button type="submit" value="Enviar" class="btn btn-primary">Login</button>
             </form>
+            </div>
+            </div>
+        </div>
+        <div class="col-md-6" style="align-items: center; justify-content: center; text-align: center;">
+            <br><br><br>
+            <img src="imgs/logoAVH.png" alt="Imagen" width="600px" height="600px">
+        </div>
     </div>
 </div>
 </body>
