@@ -12,7 +12,12 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name ="students")
 public class Student extends User{
+
+    @OneToOne
+    @JoinColumn(name = "usuario_id")
+    private User user;
     private Semester semester;
     @OneToMany
     private List<Subject> subjectList;

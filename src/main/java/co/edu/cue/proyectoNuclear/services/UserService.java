@@ -8,4 +8,6 @@ import java.util.List;
 public interface UserService {
     Boolean validateUser(String user, String password);
     User getUser();
+
+    List<User> generateUsers();
 }

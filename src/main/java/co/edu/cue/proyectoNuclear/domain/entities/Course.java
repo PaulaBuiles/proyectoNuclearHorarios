@@ -12,6 +12,7 @@ import lombok.*;
 @ToString
 @Builder
 @Entity
+@Table(schema = "courses")
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

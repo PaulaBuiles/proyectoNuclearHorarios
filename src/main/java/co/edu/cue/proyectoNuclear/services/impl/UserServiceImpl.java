@@ -22,8 +22,26 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Boolean validateUser(String identification, String password) {
-        List<User> userList = new ArrayList<>();
+        List<User> userList = generateUsers();
+        Boolean band = false;
+        for (User user: userList) {
+            if (identification.equals(user.getIdentification()) && password.equals(user.getPassword())) {
+                band = true;
+                user1.add(user);
+                break;
+            }
+        }
+        return band;
+    }
 
+
+    public User getUser() {
+        return user1.get(0);
+    }
+
+    @Override
+    public List<User> generateUsers(){
+        List<User> userList = new ArrayList<>();
         String[] roles = {"Student", "Teacher", "Administrative"};
         int roleIndex = 0;
 
@@ -42,21 +60,7 @@ public class UserServiceImpl implements UserService {
             // Cambiar el índice del rol para que vaya variando en cada iteración
             roleIndex = (roleIndex + 1) % roles.length;
         }
-        Boolean band = false;
-        for (User user: userList) {
-            if (identification.equals(user.getIdentification()) && password.equals(user.getPassword())) {
-                band = true;
-                user1.add(user);
-                break;
-            }
-        }
-        return band;
+        return userList;
     }
-
-
-    public User getUser() {
-        return user1.get(0);
-    }
-
 
 }

@@ -28,8 +28,9 @@ public class SubjectDAOImpl implements GeneralDAO<Subject>{
     }
 
     @Override
-    public void save(Subject entity) {
+    public Course save(Subject entity) {
 
+        return null;
     }
 
     @Override

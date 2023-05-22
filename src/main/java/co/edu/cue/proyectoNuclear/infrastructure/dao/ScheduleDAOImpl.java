@@ -28,8 +28,9 @@ public class ScheduleDAOImpl implements GeneralDAO<Schedule> {
     }
 
     @Override
-    public void save(Schedule entity) {
+    public Course save(Schedule entity) {
 
+        return null;
     }
 
     @Override

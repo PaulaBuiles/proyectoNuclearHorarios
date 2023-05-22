@@ -11,7 +11,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
-      <img src="imgs/logoAVH.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+      <img src="/img/logoAVH.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
       Gestion de Horarios
     </a>
   </div>
@@ -28,19 +28,12 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-      <td>Usuario 1</td>
-      <td>123456789</td>
-      <td>usuario1@example.com</td>
-      <td>Administrador</td>
+    <tr th:each="user : ${users}">
+      <td th:text="${user.name}">Usuario 1</td>
+      <td th:text="${user.identification}">123456789</td>
+      <td th:text="${user.email}">usuario1@example.com</td>
+      <td th:text="${user.role}">Administrador</td>
     </tr>
-    <tr>
-      <td>Usuario 2</td>
-      <td>987654321</td>
-      <td>usuario2@example.com</td>
-      <td>Usuario Regular</td>
-    </tr>
-    <!-- Agrega más filas según sea necesario -->
     </tbody>
   </table>
 </div>

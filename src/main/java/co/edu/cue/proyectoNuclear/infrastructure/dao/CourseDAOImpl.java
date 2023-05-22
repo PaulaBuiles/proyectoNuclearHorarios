@@ -27,8 +27,9 @@ public class CourseDAOImpl implements GeneralDAO<Course>{
     }
 
     @Override
-    public void save(Course entity) {
+    public Course save(Course entity) {
 
+        return entity;
     }
 
     @Override

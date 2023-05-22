@@ -1,6 +1,6 @@
 package co.edu.cue.proyectoNuclear.infrastructure.dao;
 
-import co.edu.cue.proyectoNuclear.domain.entities.Schedule;
+import co.edu.cue.proyectoNuclear.domain.entities.Course;
 import co.edu.cue.proyectoNuclear.domain.entities.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -28,8 +28,9 @@ public class UserDAOImpl implements GeneralDAO<User>{
     }
 
     @Override
-    public void save(User entity) {
+    public Course save(User entity) {
 
+        return null;
     }
 
     @Override
