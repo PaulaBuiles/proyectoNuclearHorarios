@@ -1,5 +1,6 @@
 package co.edu.cue.proyectoNuclear.services.impl;
 
+import co.edu.cue.proyectoNuclear.domain.entities.Teacher;
 import co.edu.cue.proyectoNuclear.domain.entities.User;
 import co.edu.cue.proyectoNuclear.domain.entities.Usuario;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.GeneralDAO;
@@ -37,6 +38,8 @@ public class UserServiceImpl implements UserService {
 
     public User getUser() {
         System.out.printf(user1.toString());
+        User user = new User();
+        Teacher teacher = new Teacher();
         return user1;
     }
 

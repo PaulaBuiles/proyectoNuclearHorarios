@@ -23,5 +23,4 @@ public class User {
     private String email;
     private String password;
     private String role;
-//Could not autowire. No beans of 'String' type found.
 }

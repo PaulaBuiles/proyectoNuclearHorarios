@@ -14,17 +14,17 @@ public class NavigationController {
 
     @GetMapping("/home")
     public ModelAndView home(){
-        ModelAndView modelAndView = new ModelAndView(Pages.HOME);
+        ModelAndView modelAndView = new ModelAndView(Pages.STUDENTHOME);
         return modelAndView;
     }
     @GetMapping("/info")
     public ModelAndView info(){
-        ModelAndView modelAndView = new ModelAndView(Pages.HOME);
+        ModelAndView modelAndView = new ModelAndView(Pages.STUDENTHOME);
         return modelAndView;
     }
     @GetMapping("/schedule")
     public ModelAndView schedule(){
-        ModelAndView modelAndView = new ModelAndView(Pages.HOME);
+        ModelAndView modelAndView = new ModelAndView(Pages.STUDENTHOME);
         return modelAndView;
     }
 

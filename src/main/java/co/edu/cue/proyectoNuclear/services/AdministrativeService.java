@@ -15,5 +15,4 @@ public interface AdministrativeService {
 
     //Course
     Course createCourse(Course course);
-
 }

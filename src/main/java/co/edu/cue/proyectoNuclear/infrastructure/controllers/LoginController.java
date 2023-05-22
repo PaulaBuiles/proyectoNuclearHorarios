@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
 @RestController
 @RequestMapping("/login")
 @AllArgsConstructor
@@ -29,15 +28,15 @@ public class LoginController {
         if(userService.validateUser(identification,password)) {
             switch (userService.getUser().getRole()) {
                 case "Student" -> {
-                    modelAndView = new ModelAndView(Pages.HOME);
+                    modelAndView = new ModelAndView(Pages.STUDENTHOME);
                     rol = "Student";
                 }
                 case "Teacher" -> {
-                    modelAndView = new ModelAndView(Pages.HOME);
+                    modelAndView = new ModelAndView(Pages.STUDENTHOME);
                     rol = "Teacher";
                 }
                 case "Administrative" -> {
-                    modelAndView = new ModelAndView(Pages.HOME);
+                    modelAndView = new ModelAndView(Pages.STUDENTHOME);
                     rol = "Administrative";
                 }
             }
