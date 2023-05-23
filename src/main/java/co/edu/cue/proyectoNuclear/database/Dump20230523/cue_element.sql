@@ -25,7 +25,8 @@ DROP TABLE IF EXISTS `element`;
 CREATE TABLE `element` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  CONSTRAINT `FK1mdpjk3fjt6ht73ubb4tatabg` FOREIGN KEY (`id`) REFERENCES `characteristic` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -47,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-23 11:29:48
+-- Dump completed on 2023-05-23 18:53:33

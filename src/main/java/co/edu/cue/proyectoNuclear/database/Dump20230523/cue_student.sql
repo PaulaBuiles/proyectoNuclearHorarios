@@ -26,11 +26,12 @@ CREATE TABLE `student` (
   `id` int NOT NULL AUTO_INCREMENT,
   `career` varchar(45) NOT NULL,
   `semester` int NOT NULL,
-  `name_user` varchar(45) NOT NULL,
+  `id_user` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `idx_student_name_user` (`name_user`),
-  CONSTRAINT `student_ibfk_1` FOREIGN KEY (`name_user`) REFERENCES `user` (`name`),
-  CONSTRAINT `student_ibfk_2` FOREIGN KEY (`name_user`) REFERENCES `user` (`name`)
+  KEY `idx_student_name_user` (`id_user`),
+  CONSTRAINT `FKi2729hmu0wdsyuxbvq5q2vxwu` FOREIGN KEY (`id`) REFERENCES `course` (`id`),
+  CONSTRAINT `student_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`name`),
+  CONSTRAINT `student_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -52,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-23 11:29:48
+-- Dump completed on 2023-05-23 18:53:33

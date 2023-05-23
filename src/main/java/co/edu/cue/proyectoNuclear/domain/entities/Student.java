@@ -14,10 +14,11 @@ import lombok.*;
 @Entity
 @Data
 @Table(name ="student")
-public class Student extends User{
+public class Student{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private int id;
 
     @Column(name = "career", nullable = false)
@@ -27,6 +28,6 @@ public class Student extends User{
     private int semester;
 
     @ManyToOne
-    @JoinColumn(name = "id_user", nullable = false)
+    @JoinColumn(name = "id_user", referencedColumnName = "id", nullable = false, insertable=false, updatable=false)
     private User user;
 }

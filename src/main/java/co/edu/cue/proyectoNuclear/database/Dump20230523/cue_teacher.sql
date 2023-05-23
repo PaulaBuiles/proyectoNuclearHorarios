@@ -25,11 +25,14 @@ DROP TABLE IF EXISTS `teacher`;
 CREATE TABLE `teacher` (
   `id` int NOT NULL AUTO_INCREMENT,
   `id_availability` int NOT NULL,
-  `name_user` varchar(10) NOT NULL,
+  `id_user` varchar(10) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `idx_teacher_name_user` (`name_user`),
-  CONSTRAINT `teacher_ibfk_1` FOREIGN KEY (`name_user`) REFERENCES `user` (`name`),
-  CONSTRAINT `teacher_ibfk_2` FOREIGN KEY (`name_user`) REFERENCES `user` (`name`)
+  KEY `idx_teacher_name_user` (`id_user`),
+  KEY `FKjlkrve9jak75upbcmdhyfpnhq` (`id_availability`),
+  CONSTRAINT `FK27bv7quos8nn0hee7y3a05yku` FOREIGN KEY (`id`) REFERENCES `history_teacher` (`id`),
+  CONSTRAINT `FKjlkrve9jak75upbcmdhyfpnhq` FOREIGN KEY (`id_availability`) REFERENCES `availability` (`id`),
+  CONSTRAINT `teacher_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`name`),
+  CONSTRAINT `teacher_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -51,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-23 11:29:47
+-- Dump completed on 2023-05-23 18:53:32

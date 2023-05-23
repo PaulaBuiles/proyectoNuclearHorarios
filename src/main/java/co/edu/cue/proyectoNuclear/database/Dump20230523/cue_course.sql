@@ -16,32 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `classroom`
+-- Table structure for table `course`
 --
 
-DROP TABLE IF EXISTS `classroom`;
+DROP TABLE IF EXISTS `course`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `classroom` (
+CREATE TABLE `course` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `number` varchar(45) NOT NULL,
-  `location` varchar(45) NOT NULL,
-  `capacity` varchar(3) NOT NULL,
-  `id_availability` int NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `id_student` int NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `idx_classroom_id_availability` (`id_availability`),
-  CONSTRAINT `classroom_ibfk_1` FOREIGN KEY (`id_availability`) REFERENCES `availability` (`id`),
-  CONSTRAINT `FK50277cvygnsysd0e67amn1nwr` FOREIGN KEY (`id`) REFERENCES `characteristic` (`id`)
+  KEY `FKsqpe0x9lliygi14ahcpdgylgp` (`id_student`),
+  CONSTRAINT `FK912eq58ybyqk6hxkok71oq801` FOREIGN KEY (`id`) REFERENCES `schedule` (`id`),
+  CONSTRAINT `FKsqpe0x9lliygi14ahcpdgylgp` FOREIGN KEY (`id_student`) REFERENCES `student` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `classroom`
+-- Dumping data for table `course`
 --
 
-LOCK TABLES `classroom` WRITE;
-/*!40000 ALTER TABLE `classroom` DISABLE KEYS */;
-/*!40000 ALTER TABLE `classroom` ENABLE KEYS */;
+LOCK TABLES `course` WRITE;
+/*!40000 ALTER TABLE `course` DISABLE KEYS */;
+/*!40000 ALTER TABLE `course` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-23 18:53:32
+-- Dump completed on 2023-05-23 18:53:31

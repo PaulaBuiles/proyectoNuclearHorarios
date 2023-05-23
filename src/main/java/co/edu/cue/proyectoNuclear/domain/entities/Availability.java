@@ -17,6 +17,7 @@ import java.time.LocalTime;
 public class Availability {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private int id;
 
     @Column(name = "dayOfWeek", nullable = false)

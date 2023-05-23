@@ -27,16 +27,15 @@ CREATE TABLE `schedule` (
   `name` varchar(45) NOT NULL,
   `id_availability` int NOT NULL,
   `id_classroom` int NOT NULL,
-  `name_classroom` varchar(10) NOT NULL,
-  `name_subject` varchar(45) NOT NULL,
-  `location_classroom` varchar(45) NOT NULL,
-  `capacity_classroom` varchar(45) NOT NULL,
-  `durability` time NOT NULL,
+  `id_subject` varchar(45) NOT NULL,
   `id_course` int NOT NULL,
+  `duration` time NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_schedule_id_availability` (`id_availability`),
   KEY `idx_schedule_id_classroom` (`id_classroom`),
-  KEY `idx_schedule_name_subject` (`name_subject`),
+  KEY `idx_schedule_name_subject` (`id_subject`),
+  KEY `FKrmvag562fnoc08wxh64bv58e5` (`id_course`),
+  CONSTRAINT `FKrmvag562fnoc08wxh64bv58e5` FOREIGN KEY (`id_course`) REFERENCES `course` (`id`),
   CONSTRAINT `schedule_ibfk_1` FOREIGN KEY (`id_availability`) REFERENCES `availability` (`id`),
   CONSTRAINT `schedule_ibfk_2` FOREIGN KEY (`id_classroom`) REFERENCES `classroom` (`id`),
   CONSTRAINT `schedule_ibfk_3` FOREIGN KEY (`id_availability`) REFERENCES `availability` (`id`),
@@ -62,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-23 11:29:47
+-- Dump completed on 2023-05-23 18:53:32

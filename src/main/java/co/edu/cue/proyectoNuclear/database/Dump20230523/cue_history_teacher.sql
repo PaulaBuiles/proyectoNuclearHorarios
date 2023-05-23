@@ -25,12 +25,11 @@ DROP TABLE IF EXISTS `history_teacher`;
 CREATE TABLE `history_teacher` (
   `id` int NOT NULL AUTO_INCREMENT,
   `id_teacher` int NOT NULL,
-  `name_teacher` varchar(10) NOT NULL,
   `id_subject` int NOT NULL,
-  `name_subject` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_history_teacher_id_teacher` (`id_teacher`),
   KEY `idx_history_teacher_id_subject` (`id_subject`),
+  CONSTRAINT `FKwhc99wg7akm9wmvnxldcugl2` FOREIGN KEY (`id_teacher`) REFERENCES `user` (`id`),
   CONSTRAINT `history_teacher_ibfk_1` FOREIGN KEY (`id_teacher`) REFERENCES `teacher` (`id`),
   CONSTRAINT `history_teacher_ibfk_2` FOREIGN KEY (`id_subject`) REFERENCES `subject` (`id`),
   CONSTRAINT `history_teacher_ibfk_3` FOREIGN KEY (`id_teacher`) REFERENCES `teacher` (`id`),
@@ -56,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-23 11:29:47
+-- Dump completed on 2023-05-23 18:53:32

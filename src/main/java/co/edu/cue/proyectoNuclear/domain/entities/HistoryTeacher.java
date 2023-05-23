@@ -11,17 +11,22 @@ import lombok.*;
 @Builder
 @Entity
 @Table(name = "history_teacher")
+@SecondaryTables({
+        @SecondaryTable(name = "teacher"),
+        @SecondaryTable(name = "subject")
+})
 public class HistoryTeacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "id_teacher", nullable = false)
+    @JoinColumn(name = "id_teacher", referencedColumnName = "id", nullable = false, insertable=false, updatable=false)
     private Teacher teacher;
 
     @ManyToOne
-    @JoinColumn(name = "id_subject", nullable = false)
+    @JoinColumn(name = "id_subject", referencedColumnName = "id", nullable = false, insertable=false, updatable=false)
     private Subject subject;
 
 }

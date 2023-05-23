@@ -24,13 +24,13 @@ DROP TABLE IF EXISTS `administrative`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `administrative` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name_user` varchar(45) NOT NULL,
+  `id_user` varchar(45) NOT NULL,
   `charge` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `idx_administrative_name_user` (`name_user`),
-  CONSTRAINT `administrative_ibfk_1` FOREIGN KEY (`name_user`) REFERENCES `user` (`name`),
-  CONSTRAINT `administrative_ibfk_2` FOREIGN KEY (`name_user`) REFERENCES `user` (`name`),
-  CONSTRAINT `administrative_ibfk_3` FOREIGN KEY (`name_user`) REFERENCES `user` (`name`)
+  KEY `idx_administrative_name_user` (`id_user`),
+  CONSTRAINT `administrative_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`name`),
+  CONSTRAINT `administrative_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`name`),
+  CONSTRAINT `administrative_ibfk_3` FOREIGN KEY (`id_user`) REFERENCES `user` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-23 11:29:46
+-- Dump completed on 2023-05-23 18:53:31

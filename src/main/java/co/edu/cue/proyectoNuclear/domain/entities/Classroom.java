@@ -11,9 +11,13 @@ import lombok.*;
 @Builder
 @Entity
 @Table(name ="classroom")
+@SecondaryTable(name = "availability")
 public class Classroom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private int id;
+
     @Column(name = "number", nullable = false)
     private String number;
 
@@ -24,6 +28,6 @@ public class Classroom {
     private String capacity;
 
     @ManyToOne
-    @JoinColumn(name = "id_availability", nullable = false)
+    @JoinColumn(name = "id_availability", referencedColumnName = "id", nullable = false, insertable=false, updatable=false)
     private Availability availability;
 }

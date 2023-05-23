@@ -25,9 +25,7 @@ DROP TABLE IF EXISTS `characteristic`;
 CREATE TABLE `characteristic` (
   `id` int NOT NULL AUTO_INCREMENT,
   `id_element` int NOT NULL,
-  `name_element` varchar(45) NOT NULL,
   `id_classroom` int NOT NULL,
-  `name_classroom` varchar(10) NOT NULL,
   `observation` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_characteristic_id_element` (`id_element`),
@@ -55,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-23 11:29:47
+-- Dump completed on 2023-05-23 18:53:32

@@ -25,15 +25,16 @@ DROP TABLE IF EXISTS `subject`;
 CREATE TABLE `subject` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(10) NOT NULL,
-  `name_teacher` varchar(10) NOT NULL,
+  `id_teacher` varchar(10) NOT NULL,
   `id_availability` int NOT NULL,
   `credit` int NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `idx_subject_name_teacher` (`name_teacher`),
+  KEY `idx_subject_name_teacher` (`id_teacher`),
   KEY `idx_subject_id_availability` (`id_availability`),
-  CONSTRAINT `subject_ibfk_1` FOREIGN KEY (`name_teacher`) REFERENCES `teacher` (`name_user`),
+  CONSTRAINT `FK6di1onw755099le6xv00o4avn` FOREIGN KEY (`id`) REFERENCES `history_student` (`id`),
+  CONSTRAINT `subject_ibfk_1` FOREIGN KEY (`id_teacher`) REFERENCES `teacher` (`id_user`),
   CONSTRAINT `subject_ibfk_2` FOREIGN KEY (`id_availability`) REFERENCES `availability` (`id`),
-  CONSTRAINT `subject_ibfk_3` FOREIGN KEY (`name_teacher`) REFERENCES `teacher` (`name_user`),
+  CONSTRAINT `subject_ibfk_3` FOREIGN KEY (`id_teacher`) REFERENCES `teacher` (`id_user`),
   CONSTRAINT `subject_ibfk_4` FOREIGN KEY (`id_availability`) REFERENCES `availability` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -56,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-23 11:29:47
+-- Dump completed on 2023-05-23 18:53:32

@@ -15,17 +15,19 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @Entity
 @Table(name ="teacher")
-public class Teacher extends User{
+@SecondaryTable(name = "availability")
+public class Teacher{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "id_availability", nullable = false)
+    @JoinColumn(name = "id_availability", referencedColumnName = "id", nullable = false, insertable=false, updatable=false)
     private Availability availability;
 
     @ManyToOne
-    @JoinColumn(name = "id_user", nullable = false)
+    @JoinColumn(name = "id_user", referencedColumnName = "id", nullable = false)
     private User user;
 }
