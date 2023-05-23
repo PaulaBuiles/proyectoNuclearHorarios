@@ -1,5 +1,6 @@
 package co.edu.cue.proyectoNuclear.domain.entities;
 
+import              co.edu.cue.proyectoNuclear.domain.enums.Campus;
 import co.edu.cue.proyectoNuclear.domain.enums.Propertie;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,6 +20,8 @@ public class Classroom {
     private String id;
     private String number;
     private Integer capacity;
+    private Campus campus;
+    @OneToMany
     private List<Propertie> propertieList;
     @OneToMany
     private List<Subject> subjectList;
