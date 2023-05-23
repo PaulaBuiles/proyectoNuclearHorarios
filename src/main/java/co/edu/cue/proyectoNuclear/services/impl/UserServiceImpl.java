@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
         // Crear 10 usuarios y agregarlos a la lista
         for (int i = 1; i <= 10; i++) {
             User user = new User();
-            user.setId(String.valueOf(i));
+            user.setId(i);
             user.setIdentification(String.valueOf(i));
             user.setName("User_" + i);
             user.setEmail("user" + i + "@example.com");

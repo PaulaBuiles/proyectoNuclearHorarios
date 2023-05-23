@@ -5,6 +5,12 @@ import co.edu.cue.proyectoNuclear.domain.entities.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collections;
@@ -14,7 +20,7 @@ import java.util.function.Function;
 
 @Repository
 @Transactional
-public class UserDAOImpl implements GeneralDAO<User>{
+public class UserDAOImpl implements GeneralDAO<User> {
 
     @PersistenceContext
     EntityManager entityManager;
@@ -26,23 +32,34 @@ public class UserDAOImpl implements GeneralDAO<User>{
         return entityManager.createQuery(query).getResultList();
     }
 
-    @Override
+    public void tryTableList(){
+        String query = "FROM User";
+        List<User> userList = entityManager.createQuery(query, User.class).getResultList();
+
+        if (!userList.isEmpty()) {
+            for (User user: userList) {
+                System.out.println(user.getName());
+            }
+        }
+    }
+
+    //@Override
     public User findById(String id) {
         return null;
     }
 
-    @Override
+    //@Override
     public Course save(User entity) {
 
         return null;
     }
 
-    @Override
+    //@Override
     public void update(User entity) {
 
     }
 
-    @Override
+    //@Override
     public void delete(Long id) {
 
     }

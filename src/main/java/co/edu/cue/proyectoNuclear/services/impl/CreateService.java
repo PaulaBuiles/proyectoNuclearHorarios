@@ -27,7 +27,7 @@ public class CreateService {
     public StudentService studentService;
 
     private final List<Classroom> classroomList = new ArrayList<>();
-    private final List<Propertie> propertieList = new ArrayList<>();
+    //private final List<Propertie> propertieList = new ArrayList<>();
     private final List<Subject> subjectList = new ArrayList<>();
     private final List<Teacher> teacherList = new ArrayList<>();
     private final List<Student> studentList = new ArrayList<>();
@@ -36,12 +36,11 @@ public class CreateService {
 
 
     public void classroomTest(){
-        propertieList.add(Propertie.CAMERA);
-        propertieList.add(Propertie.PROJECTOR);
-        propertieList.add(Propertie.VENTILATOR);
-        classroomList.add(new Classroom("1","202",25, Campus.PRINCIPAL,propertieList,subjectList.get(1)));
-        classroomList.add(new Classroom("2","104B",32, Campus.PRINCIPAL,propertieList,subjectList.get(2)));
-        classroomList.add(new Classroom("3","Sala de sistemas", 32, Campus.NOGAL, propertieList,subjectList.get(2)));
+        //propertieList.add(Propertie.CAMERA);
+        //propertieList.add(Propertie.PROJECTOR);
+        //propertieList.add(Propertie.VENTILATOR);
+        //classroomList.add(new Classroom("1","202",25, Campus.PRINCIPAL,propertieList,subjectList.get(1)));
+        //classroomList.add(new Classroom("3","Sala de sistemas", 32, Campus.NOGAL, propertieList,subjectList.get(2)));
     }
 
 
@@ -64,16 +63,16 @@ public class CreateService {
 
     //Subject
     public void generateSubjects(){
-        subjectList.add(new Subject("1","Analisis Numerico",teacherList.get(0).getName(),true,3,studentList.stream()
+        subjectList.add(new Subject(1,"Analisis Numerico",teacherList.get(0).getName(),true,3,studentList.stream()
                 .filter(student -> student.getSemester().equals("SEMESTER3"))
                 .collect(Collectors.toList())));
-        subjectList.add(new Subject("2","Programacion I",teacherList.get(1).getName(),true,4,studentList.stream()
+        subjectList.add(new Subject(2,"Programacion I",teacherList.get(1).getName(),true,4,studentList.stream()
                 .filter(student -> student.getSemester().equals("SEMESTER2"))
                 .collect(Collectors.toList())));
-        subjectList.add(new Subject("3","Algoritmos",teacherList.get(2).getName(),true,4,studentList.stream()
+        subjectList.add(new Subject(3,"Algoritmos",teacherList.get(2).getName(),true,4,studentList.stream()
                 .filter(student -> student.getSemester().equals("SEMESTER1"))
                 .collect(Collectors.toList())));
-        subjectList.add(new Subject("4","Programacion I",teacherList.get(3).getName(),true,4,studentList.stream()
+        subjectList.add(new Subject(4,"Programacion I",teacherList.get(3).getName(),true,4,studentList.stream()
                 .filter(student -> student.getSemester().equals("SEMESTER4"))
                 .collect(Collectors.toList())));
     }

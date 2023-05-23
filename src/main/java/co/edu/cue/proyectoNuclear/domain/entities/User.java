@@ -13,14 +13,24 @@ import org.springframework.stereotype.Component;
 @ToString
 @Builder
 @Entity
-@Table(name ="usuarios")
+@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private int id;
+
+    @Column(name = "identification", nullable = false)
     private String identification;
+
+    @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "email", nullable = false)
     private String email;
+
+    @Column(name = "password", nullable = false)
     private String password;
+
+    @Column(name = "role", nullable = false)
     private String role;
 }
