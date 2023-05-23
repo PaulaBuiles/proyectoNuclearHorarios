@@ -20,6 +20,7 @@ public class Subject {
     private String id;
     private String name;
     private String teacherName;
+
     private Boolean teacherAvailability;
     private Integer hourlyIntensity;
     @OneToMany

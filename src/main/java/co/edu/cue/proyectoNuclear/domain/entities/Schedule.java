@@ -5,6 +5,8 @@ import co.edu.cue.proyectoNuclear.domain.enums.DayOfWeek;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -17,7 +19,9 @@ public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
-    private DayOfWeek dayOfWeek;
+    private String name;
+    @OneToMany
+    private List<Availability> availabilityList;
     @ManyToOne
     private Classroom classroom;
 }

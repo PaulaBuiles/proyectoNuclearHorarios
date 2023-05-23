@@ -1,8 +1,5 @@
 package co.edu.cue.proyectoNuclear.domain.entities;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
@@ -10,6 +7,11 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 @Builder
+@Table(schema = "administrative")
 public class Administrative {
-    //private String position;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String id;
+    private String name;
+    private String position;
 }

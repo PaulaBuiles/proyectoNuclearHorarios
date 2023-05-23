@@ -23,7 +23,6 @@ public class Classroom {
     private Campus campus;
     @OneToMany
     private List<Propertie> propertieList;
-    @OneToMany
-    private List<Subject> subjectList;
-
+    @OneToOne
+    private Subject subject;
 }
