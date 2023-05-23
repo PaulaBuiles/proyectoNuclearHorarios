@@ -7,7 +7,10 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Function;
 
 @Repository
 @Transactional
@@ -19,6 +22,7 @@ public class UserDAOImpl implements GeneralDAO<User>{
     @Override
     public List<User> getTableList(){
         String query = "FROM User";
+        String data = entityManager.createQuery(query).getResultList().toString();
         return entityManager.createQuery(query).getResultList();
     }
 

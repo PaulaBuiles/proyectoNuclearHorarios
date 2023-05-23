@@ -18,7 +18,7 @@ import java.util.List;
 public class Classroom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private int id;
     private String number;
     private Integer capacity;
     private Campus campus;

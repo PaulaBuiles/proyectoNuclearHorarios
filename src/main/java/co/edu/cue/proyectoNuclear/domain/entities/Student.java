@@ -13,7 +13,7 @@ import lombok.*;
 @NoArgsConstructor
 @Entity
 @Data
-@Table(name ="students")
+@Table(name ="student")
 public class Student extends User{
 
     @OneToOne

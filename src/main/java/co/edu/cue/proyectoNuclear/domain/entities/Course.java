@@ -12,11 +12,11 @@ import lombok.*;
 @ToString
 @Builder
 @Entity
-@Table(schema = "courses")
+@Table(schema = "course")
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private int id;
     @ManyToOne
     private Teacher teacher;
     @ManyToOne

@@ -18,7 +18,7 @@ import java.util.List;
 public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private int id;
     private String name;
     @OneToMany
     private List<Availability> availabilityList;

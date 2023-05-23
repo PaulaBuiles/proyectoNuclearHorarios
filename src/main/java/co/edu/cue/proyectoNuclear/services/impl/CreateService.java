@@ -80,7 +80,7 @@ public class CreateService {
 
     //Availiability
     public void generateAvailiability(){
-        availabilityList.add(new Availability("1", DayOfWeek.MONDAY, LocalTime.of(4,0),LocalTime.of(8,0)));
+        availabilityList.add(new Availability(1, DayOfWeek.MONDAY, LocalTime.of(4,0),LocalTime.of(8,0)));
 
     }
     //Teacher
