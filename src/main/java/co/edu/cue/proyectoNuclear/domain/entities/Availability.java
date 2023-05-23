@@ -19,9 +19,13 @@ public class Availability {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false)
-    private DayOfWeek dayOfWeek;
-    private LocalTime startTime;
-    private LocalTime endTime;
+    @Column(name = "dayOfWeek", nullable = false)
+    private String dayOfWeek;
+
+    @Column(name = "start", nullable = false)
+    private LocalTime start;
+
+    @Column(name = "end", nullable = false)
+    private LocalTime end;
 
 }

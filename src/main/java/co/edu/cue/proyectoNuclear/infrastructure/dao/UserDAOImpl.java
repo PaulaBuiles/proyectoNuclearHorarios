@@ -4,6 +4,7 @@ import co.edu.cue.proyectoNuclear.domain.entities.Course;
 import co.edu.cue.proyectoNuclear.domain.entities.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -33,14 +34,9 @@ public class UserDAOImpl implements GeneralDAO<User> {
     }
 
     public void tryTableList(){
-        String query = "FROM User";
-        List<User> userList = entityManager.createQuery(query, User.class).getResultList();
-
-        if (!userList.isEmpty()) {
-            for (User user: userList) {
-                System.out.println(user.getName());
-            }
-        }
+        String jpql = "SELECT u FROM User u";
+        TypedQuery<User> query = entityManager.createQuery(jpql, User.class);
+        System.out.println(query.getResultList().toString());
     }
 
     //@Override

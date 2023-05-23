@@ -17,11 +17,15 @@ import lombok.experimental.SuperBuilder;
 @Table(name ="teacher")
 public class Teacher extends User{
 
-    @OneToOne
-    @JoinColumn(name = "usuario_id")
-    private User user;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
     @ManyToOne
-    private Subject subject;
-    @ManyToOne
+    @JoinColumn(name = "id_availability", nullable = false)
     private Availability availability;
+
+    @ManyToOne
+    @JoinColumn(name = "id_user", nullable = false)
+    private User user;
 }

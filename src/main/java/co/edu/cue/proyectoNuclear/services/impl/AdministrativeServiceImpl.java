@@ -37,7 +37,7 @@ public class AdministrativeServiceImpl implements AdministrativeService {
 
     @Override
     public void createStudent(User user, Student student) {
-        student.setUser(user);
+        //student.setUser(user);
         studentDAO.save(student);
     }
 
@@ -49,7 +49,7 @@ public class AdministrativeServiceImpl implements AdministrativeService {
 
     @Override
     public void editStudent(User user, Student student) {
-        student.setUser(user);
+        //student.setUser(user);
         studentDAO.update(student);
     }
 

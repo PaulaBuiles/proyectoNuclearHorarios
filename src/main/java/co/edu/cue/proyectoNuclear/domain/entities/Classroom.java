@@ -1,11 +1,7 @@
 package co.edu.cue.proyectoNuclear.domain.entities;
 
-import co.edu.cue.proyectoNuclear.domain.enums.Campus;
-import co.edu.cue.proyectoNuclear.domain.enums.Element;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.List;
 
 @Getter
 @Setter
@@ -18,12 +14,16 @@ import java.util.List;
 public class Classroom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "number", nullable = false)
     private String number;
-    private Integer capacity;
-    private Campus campus;
-    @OneToMany
-    private List<Property> propertyList;
-    @OneToOne
-    private Subject subject;
+
+    @Column(name = "location", nullable = false)
+    private String location;
+
+    @Column(name = "capacity", nullable = false)
+    private String capacity;
+
+    @ManyToOne
+    @JoinColumn(name = "id_availability", nullable = false)
+    private Availability availability;
 }

@@ -12,6 +12,11 @@ public class Administrative {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
-    private String position;
+
+    @ManyToOne
+    @JoinColumn(name = "id_user", nullable = false)
+    private User user;
+
+    @Column(name = "charge", nullable = false)
+    private String charge;
 }

@@ -1,7 +1,6 @@
 package co.edu.cue.proyectoNuclear.domain.entities;
 
 
-import co.edu.cue.proyectoNuclear.domain.enums.Element;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,10 +12,12 @@ import lombok.*;
 @Builder
 @Entity
 @Table(name ="element")
-public class Property {
+public class Element {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private Element element;
+
+    @Column(name = "name", nullable = false)
+    private String name;
 }

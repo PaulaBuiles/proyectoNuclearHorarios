@@ -1,7 +1,6 @@
 package co.edu.cue.proyectoNuclear.domain.entities;
 
 import java.util.List;
-
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,16 +11,18 @@ import lombok.*;
 @ToString
 @Builder
 @Entity
-@Table(schema = "course")
-public class Course {
+@Table(name = "history_student")
+public class HistoryStudent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
-
     @ManyToOne
     @JoinColumn(name = "id_student", nullable = false)
     private Student student;
+
+    @ManyToOne
+    @JoinColumn(name = "id_subject", nullable = false)
+    private Subject subject;
+
 }

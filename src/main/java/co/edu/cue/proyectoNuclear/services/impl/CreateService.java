@@ -1,15 +1,11 @@
 package co.edu.cue.proyectoNuclear.services.impl;
 
 import co.edu.cue.proyectoNuclear.domain.entities.*;
-import co.edu.cue.proyectoNuclear.domain.enums.Campus;
 import co.edu.cue.proyectoNuclear.domain.enums.DayOfWeek;
-import co.edu.cue.proyectoNuclear.domain.enums.Element;
-import co.edu.cue.proyectoNuclear.domain.enums.Semester;
 import co.edu.cue.proyectoNuclear.services.StudentService;
 import co.edu.cue.proyectoNuclear.services.SubjectService;
 import co.edu.cue.proyectoNuclear.services.TeacherService;
 import co.edu.cue.proyectoNuclear.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -62,7 +58,7 @@ public class CreateService {
     }
 
     //Subject
-    public void generateSubjects(){
+   /* public void generateSubjects(){
         subjectList.add(new Subject(1,"Analisis Numerico",teacherList.get(0).getName(),true,3,studentList.stream()
                 .filter(student -> student.getSemester().equals("SEMESTER3"))
                 .collect(Collectors.toList())));
@@ -75,17 +71,17 @@ public class CreateService {
         subjectList.add(new Subject(4,"Programacion I",teacherList.get(3).getName(),true,4,studentList.stream()
                 .filter(student -> student.getSemester().equals("SEMESTER4"))
                 .collect(Collectors.toList())));
-    }
+    }*/
 
     //Availiability
     public void generateAvailiability(){
-        availabilityList.add(new Availability(1, DayOfWeek.MONDAY, LocalTime.of(4,0),LocalTime.of(8,0)));
+       // availabilityList.add(new Availability(1, DayOfWeek.MONDAY, LocalTime.of(4,0),LocalTime.of(8,0)));
 
     }
     //Teacher
     public void generateTeachers(){
-        Teacher teacher = new Teacher(userList.get(1),subjectList.get(1),availabilityList.get(1));
+        /*Teacher teacher = new Teacher(userList.get(1),subjectList.get(1),availabilityList.get(1));
         Teacher teacher1 = new Teacher(userList.get(4),subjectList.get(2),availabilityList.get(4));
-        teacherList.add(teacher);
+        teacherList.add(teacher);*/
     }
 }

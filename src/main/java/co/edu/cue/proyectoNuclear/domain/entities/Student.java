@@ -16,10 +16,17 @@ import lombok.*;
 @Table(name ="student")
 public class Student extends User{
 
-    @OneToOne
-    @JoinColumn(name = "usuario_id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(name = "career", nullable = false)
+    private String career;
+
+    @Column(name = "semester", nullable = false)
+    private int semester;
+
+    @ManyToOne
+    @JoinColumn(name = "id_user", nullable = false)
     private User user;
-    private Semester semester;
-    @OneToMany
-    private List<Subject> subjectList;
 }
