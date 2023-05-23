@@ -1,20 +1,22 @@
 package co.edu.cue.proyectoNuclear.domain.entities;
 
+
+import co.edu.cue.proyectoNuclear.domain.enums.Element;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-@Table(name ="usuarios")
-public class Usuario {
+@ToString
+@Builder
+@Entity
+@Table(name ="element")
+public class Property {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
-    private String username;
-
-    private String password;
-
-    private String email;
+    private int id;
+    private Element element;
 }

@@ -10,4 +10,9 @@ public class ProyectoNuclearApplication {
 		SpringApplication.run(ProyectoNuclearApplication.class, args);
 	}
 
+	@Override
+	public void run(String... args) throws Exception {
+		userGeneralDAO.tryTableList();
+	}
+
 }

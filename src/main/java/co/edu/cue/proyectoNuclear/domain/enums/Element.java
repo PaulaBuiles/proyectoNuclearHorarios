@@ -1,6 +1,8 @@
 package co.edu.cue.proyectoNuclear.domain.enums;
 
-public enum Propertie {
+
+
+public enum Element {
     PROJECTOR,
     CAMERA,
     TELEVISION,

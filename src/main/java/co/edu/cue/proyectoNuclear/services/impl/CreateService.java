@@ -3,7 +3,7 @@ package co.edu.cue.proyectoNuclear.services.impl;
 import co.edu.cue.proyectoNuclear.domain.entities.*;
 import co.edu.cue.proyectoNuclear.domain.enums.Campus;
 import co.edu.cue.proyectoNuclear.domain.enums.DayOfWeek;
-import co.edu.cue.proyectoNuclear.domain.enums.Propertie;
+import co.edu.cue.proyectoNuclear.domain.enums.Element;
 import co.edu.cue.proyectoNuclear.domain.enums.Semester;
 import co.edu.cue.proyectoNuclear.services.StudentService;
 import co.edu.cue.proyectoNuclear.services.SubjectService;

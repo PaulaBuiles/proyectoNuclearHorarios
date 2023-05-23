@@ -17,7 +17,9 @@ import java.time.LocalTime;
 public class Availability {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private int id;
+
+    @Column(nullable = false)
     private DayOfWeek dayOfWeek;
     private LocalTime startTime;
     private LocalTime endTime;
