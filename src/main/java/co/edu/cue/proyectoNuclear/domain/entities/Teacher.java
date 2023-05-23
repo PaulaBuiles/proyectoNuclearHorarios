@@ -11,6 +11,8 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @Setter
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name ="teachers")
 public class Teacher extends User{
@@ -20,16 +22,6 @@ public class Teacher extends User{
     private User user;
     @ManyToOne
     private Subject subject;
-    private Boolean availability;
-
-    public Teacher(String id, String identification, String name, String email, String password, String role, User user, Subject subject, Boolean availability) {
-        super(id, identification, name, email, password, role);
-        this.user = user;
-        this.subject = subject;
-        this.availability = availability;
-    }
-
-    public Teacher() {
-
-    }
+    @ManyToOne
+    private Availability availability;
 }

@@ -5,4 +5,5 @@ public class Pages {
     public static String STUDENTHOME = "student/home";
     public static String ADMINHOME = "administrative/inicioAdmin";
     public static String ADMINTABLE ="administrative/administrativeTable";
+    public static String STUDENTINFORMATION="student/personalInformation";
 }
