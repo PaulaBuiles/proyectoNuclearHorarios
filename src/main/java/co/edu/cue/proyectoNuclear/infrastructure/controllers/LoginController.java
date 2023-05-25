@@ -26,7 +26,7 @@ public class LoginController {
         ModelAndView modelAndView = null;
         String rol = null;
         if(userService.validateUser(Long.valueOf(id),password)) {
-            switch (userService.getUser().getRole()) {
+            switch (userService.getUser().role()) {
                 case "Estudiante" -> {
                     modelAndView = new ModelAndView(Pages.STUDENTHOME);
                     rol = "Student";

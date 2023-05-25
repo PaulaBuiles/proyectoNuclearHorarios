@@ -12,7 +12,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class SubjectDAOImpl implements GeneralDAO<Subject>{
+public class SubjectDAOImpl implements GeneralDAO<SubjectDto>{
 
     @PersistenceContext
     EntityManager entityManager;

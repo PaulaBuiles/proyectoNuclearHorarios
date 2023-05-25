@@ -53,5 +53,8 @@ public class AdministrativeDAOImpl {
         if (administrative != null) {
             entityManager.remove(administrative);
         }
-    }
+    }*/
+
+
+
 }

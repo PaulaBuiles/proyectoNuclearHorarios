@@ -36,8 +36,8 @@ public class UserServiceImpl implements UserService {
         return band;
     }
 
-    public List<User> getUsers(){
-        List<User> userList = userGeneralDAO.getTableList();
+    public List<UserDto> getUsers(){
+        List<UserDto> userList = userGeneralDAO.getTableList();
         return userList;
     }
 

@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class ScheduleDAOImpl implements GeneralDAO<Schedule> {
+public class ScheduleDAOImpl implements GeneralDAO<ScheduleDto> {
 
     @PersistenceContext
     EntityManager entityManager;

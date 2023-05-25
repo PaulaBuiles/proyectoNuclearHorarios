@@ -24,7 +24,7 @@ public class Student {
     private String career;
 
     @Column(name = "semester", nullable = false)
-    private int semester;
+    private Semester semester;
 
     @OneToMany(mappedBy="student")
     private List<HistoryStudent> historyStudents;

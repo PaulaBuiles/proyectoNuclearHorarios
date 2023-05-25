@@ -4,6 +4,7 @@ import co.edu.cue.proyectoNuclear.domain.entities.Course;
 import co.edu.cue.proyectoNuclear.domain.entities.Teacher;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
@@ -11,10 +12,11 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class TeacherDAOImpl implements GeneralDAO<Teacher> {
+public class TeacherDAOImpl implements GeneralDAO<TeacherDto> {
 
     @PersistenceContext
     EntityManager entityManager;
+    TeacherMapper teacherMap;
 
     @Override
     public List<Teacher> getTableList(){
