@@ -5,6 +5,7 @@ import co.edu.cue.proyectoNuclear.domain.enums.DayOfWeek;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.sql.Time;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -12,37 +13,30 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
 @Entity
-@Table(name = "schedule")
-@SecondaryTables({
-        @SecondaryTable(name = "classroom"),
-        @SecondaryTable(name = "availability"),
-        @SecondaryTable(name = "course")
-})
+@Table (name ="schedule")
 public class Schedule {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue (strategy=GenerationType.IDENTITY)
+    @Column (name ="id")
     private int id;
 
-    @Column(name = "name", nullable = false)
+    @Column (name ="name", nullable=false)
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "id_availability", referencedColumnName = "id", nullable = false, insertable=false, updatable=false)
+    @JoinColumn (name ="id_availability")
     private Availability availability;
 
     @ManyToOne
-    @JoinColumn(name = "id_classroom", referencedColumnName = "id", nullable = false, insertable=false, updatable=false)
+    @JoinColumn (name ="id_classroom")
     private Classroom classroom;
 
-    @Column(name = "duration", nullable = false)
-    private LocalTime duration;
+    @Column (name ="durability", nullable=false)
+    private Time durability;
 
     @ManyToOne
-    @JoinColumn(name = "id_course", referencedColumnName = "id", nullable = false, insertable=false, updatable=false)
+    @JoinColumn (name ="id_course")
     private Course course;
-
 }

@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
         List<User> userList = generateUsers();
         Boolean band = false;
         for (User user: userList) {
-            if (identification.equals(user.getIdentification()) && password.equals(user.getPassword())) {
+            if (identification.equals(user.getId()) && password.equals(user.getPassword())) {
                 band = true;
                 user1 = user;
                 break;
@@ -47,8 +47,8 @@ public class UserServiceImpl implements UserService {
         // Crear 10 usuarios y agregarlos a la lista
         for (int i = 1; i <= 10; i++) {
             User user = new User();
-            user.setId(i);
-            user.setIdentification(String.valueOf(i));
+            user.setId((long) i);
+            user.setId((long) i);
             user.setName("User_" + i);
             user.setEmail("user" + i + "@example.com");
             user.setPassword(String.valueOf(i));

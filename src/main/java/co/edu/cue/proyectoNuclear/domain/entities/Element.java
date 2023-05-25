@@ -4,16 +4,16 @@ package co.edu.cue.proyectoNuclear.domain.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
 @Entity
-@Table(name ="element")
+@Table(name = "element")
 public class Element {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -21,4 +21,7 @@ public class Element {
 
     @Column(name = "name", nullable = false)
     private String name;
+
+    @OneToMany(mappedBy="element")
+    private List<Characteristic> characteristics;
 }

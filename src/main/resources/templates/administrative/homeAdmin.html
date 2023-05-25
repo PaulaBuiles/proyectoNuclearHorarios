@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" href="/static/css/bootstrap.css">
+    <script th:src="@{/js/jquery.js}" src="/static/js/jquery.js"></script>
+    <script th:src="@{/js/bootstrap.js}" src="/static/js/bootstrap.js"></script>
+    <title>Login Gestión de Horarios</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+        nav {
+            background-color: #0C0096;
+            padding: 10px;
+            height: 50px;
+        }
+        .btn-transparent {
+            background-color: transparent;
+            border: none;
+            color: #ffffff; /* Color del texto */
+            padding: 0; /* Opcional: ajusta el espaciado del botón */
+        }
+
+        .logo {
+            position: relative;
+            top: 30px;
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        h1 {
+            font-size: 50px; /* Tamaño del título */
+            margin: 10px 0; /* Espaciado del título */
+        }
+
+        .jumbotron {
+            width: 80%; /* Ancho del cuadro de información */
+            background-color: #F5F5F5; /* Color de fondo del cuadro de información */
+            padding: 20px; /* Espaciado interno del cuadro de información */
+
+        }
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg justify-content-start ">
+    <div class="container-fluid justify-content-start">
+        <img src="/img/logoAVH.png" alt="Logo" width="111" height="111" class="logo">
+        <div class="navbar-nav ml-3" style="color: white; font-family: 'Lobster Two', cursive;">
+            <a class="navbar-brand"><p></p></a>
+            <a class="navbar-brand">
+                <form th:action="@{/navigation/home}" class="btn btn-transparent">
+                    <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">               Inicio               </button>
+                </form>
+                <a class="navbar-brand"><p></p></a>
+            </a>
+            <a class="navbar-brand">
+                <form th:action="@{/navigation/info}" class="btn btn-transparent">
+                    <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">        Información general         </button>
+                </form>
+            </a>
+            <a class="navbar-brand"><p></p></a>
+            <a class="navbar-brand">
+                <form th:action="@{/navigation/management}" class="btn btn-transparent">
+                    <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">               Panel de gestión               </button>
+                </form>
+            </a>
+        </div>
+    </div>
+</nav>
+<br><br>
+<!--
+    En este div se pone el contenido de la página
+-->
+<div class="container" >
+    <img src="/img/moodle.jpeg" alt="logo" width="1234" height="145">
+    <h1 style="color: black; font-family: 'Lobster Two', cursive; font-size: 100px"> Bienvenido a la plataforma </h1>
+    <div class="jumbotron q10tron" style="text-align: justify">
+        <p style="margin:0px;font-size: 15px">
+            Nuestra MISIÓN:
+            Somos una Institución de Educación Superior comprometida con la calidad académica e institucional que propende por la generación de conocimiento y el desarrollo humano de la sociedad, posibilitando el aumento de la productividad y competitividad empresarial de la región y el país; respondiendo a las necesidades del medio a través de la creación de programas académicos con un modelo pedagógico innovador, con estándares de alta calidad, orientación internacional y un elevado nivel ocupacional para sus egresados.                                </p>
+    </div>
+    <br>
+    <img src="/img/community.jpeg" alt="logo" width="550" height="200" >
+</div>
+</body>
+</html>

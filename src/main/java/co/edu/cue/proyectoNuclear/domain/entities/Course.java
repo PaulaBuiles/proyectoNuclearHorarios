@@ -9,14 +9,11 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
 @Entity
-@Table(schema = "course")
-@SecondaryTable(name = "student")
+@Table(name = "course")
 public class Course {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private int id;
 
@@ -24,6 +21,6 @@ public class Course {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "id_student", referencedColumnName = "id", nullable = false, insertable=false, updatable=false)
+    @JoinColumn(name="id_student")
     private Student student;
 }

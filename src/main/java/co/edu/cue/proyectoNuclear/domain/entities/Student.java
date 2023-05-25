@@ -12,14 +12,13 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Data
-@Table(name ="student")
-public class Student{
+@Table(name = "student")
+public class Student {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private int id;
+    @OneToOne
+    @JoinColumn(name="id_user")
+    private User user;
 
     @Column(name = "career", nullable = false)
     private String career;
@@ -27,7 +26,10 @@ public class Student{
     @Column(name = "semester", nullable = false)
     private int semester;
 
+    @OneToMany(mappedBy="student")
+    private List<HistoryStudent> historyStudents;
+
     @ManyToOne
-    @JoinColumn(name = "id_user", referencedColumnName = "id", nullable = false, insertable=false, updatable=false)
-    private User user;
+    @JoinColumn(name="id_course")
+    private Course course;
 }

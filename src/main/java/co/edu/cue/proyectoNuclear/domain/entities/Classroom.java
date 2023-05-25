@@ -3,31 +3,37 @@ package co.edu.cue.proyectoNuclear.domain.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
 @Entity
-@Table(name ="classroom")
-@SecondaryTable(name = "availability")
+@Table (name ="classroom")
 public class Classroom {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue (strategy=GenerationType.IDENTITY)
+    @Column (name ="id")
     private int id;
 
-    @Column(name = "number", nullable = false)
+    @Column (name ="number", nullable=false)
     private String number;
 
-    @Column(name = "location", nullable = false)
+    @Column (name ="location", nullable=false)
     private String location;
 
-    @Column(name = "capacity", nullable = false)
+    @Column (name ="capacity", nullable=false)
     private String capacity;
 
     @ManyToOne
-    @JoinColumn(name = "id_availability", referencedColumnName = "id", nullable = false, insertable=false, updatable=false)
+    @JoinColumn (name ="id_availability")
     private Availability availability;
+
+    @OneToMany(mappedBy="classroom")
+    private List<Schedule> schedules;
+
+    @OneToMany(mappedBy="classroom")
+    private List<Characteristic> characteristics;
 }

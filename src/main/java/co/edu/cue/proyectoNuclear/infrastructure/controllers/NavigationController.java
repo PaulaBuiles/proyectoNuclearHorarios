@@ -27,5 +27,10 @@ public class NavigationController {
         ModelAndView modelAndView = new ModelAndView(Pages.STUDENTHOME);
         return modelAndView;
     }
+    @GetMapping("/management")
+    public ModelAndView management(){
+        ModelAndView modelAndView = new ModelAndView(Pages.ADMINHOME);
+        return modelAndView;
+    }
 
 }

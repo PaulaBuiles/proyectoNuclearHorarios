@@ -10,33 +10,32 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
 @Entity
-@Table(name = "subject")
-@SecondaryTables({
-        @SecondaryTable(name = "teacher"),
-        @SecondaryTable(name = "availability"),
-})
-public class Subject {
+@Table(name="subject")
+public class Subject{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="id")
     private int id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name="name", nullable=false)
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "id_teacher", referencedColumnName = "id", nullable = false, insertable=false, updatable=false)
+    @JoinColumn(name="id_teacher")
     private Teacher teacher;
 
     @ManyToOne
-    @JoinColumn(name = "id_availability", referencedColumnName = "id", nullable = false, insertable=false, updatable=false)
+    @JoinColumn(name="id_availability")
     private Availability availability;
 
-    @Column(name = "credit", nullable = false)
+    @Column(name="credit", nullable=false)
     private int credit;
 
+    @OneToMany(mappedBy="subject")
+    private List<HistoryStudent> historyStudents;
 
+    @OneToMany(mappedBy="subject")
+    private List<HistoryTeacher> historyTeachers;
 }

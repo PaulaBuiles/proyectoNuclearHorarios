@@ -23,7 +23,12 @@ public class ProyectoNuclearApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		userGeneralDAO.tryTableList();
+		List<User> userList = userGeneralDAO.getTableList();
+		for (User user : userList) {
+			System.out.println(user.getName());
+		}
+
+
 	}
 
 }

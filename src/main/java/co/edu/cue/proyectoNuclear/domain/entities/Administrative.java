@@ -5,17 +5,15 @@ import lombok.*;
 @Getter
 @Setter
 @AllArgsConstructor
-@ToString
+@NoArgsConstructor
 @Builder
-@Table(schema = "administrative")
+@Entity
+@Table(name = "administrative")
 public class Administrative {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "id_user", referencedColumnName = "id", nullable = false)
+    @Id
+    @OneToOne
+    @JoinColumn(name="user_id")
     private User user;
 
     @Column(name = "charge", nullable = false)

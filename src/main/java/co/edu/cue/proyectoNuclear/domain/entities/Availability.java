@@ -4,7 +4,9 @@ import co.edu.cue.proyectoNuclear.domain.enums.DayOfWeek;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.sql.Time;
 import java.time.LocalTime;
+import java.util.List;
 
 
 @Getter
@@ -12,21 +14,31 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Data
 @Table(name="availability")
-public class Availability {
+public class Availability{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="id")
     private int id;
 
-    @Column(name = "dayOfWeek", nullable = false)
+    @Column(name="dayOfWeek", nullable=false)
     private String dayOfWeek;
 
-    @Column(name = "start", nullable = false)
-    private LocalTime start;
+    @Column(name="start", nullable=false)
+    private Time start;
 
-    @Column(name = "end", nullable = false)
-    private LocalTime end;
+    @Column(name="end", nullable=false)
+    private Time end;
 
+    @OneToMany(mappedBy="availability")
+    private List<Teacher> teachers;
+
+    @OneToMany(mappedBy="availability")
+    private List<Subject> subjects;
+
+    @OneToMany(mappedBy="availability")
+    private List<Schedule> schedules;
+
+    @OneToMany(mappedBy="availability")
+    private List<Classroom> classrooms;
 }

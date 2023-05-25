@@ -10,18 +10,13 @@ import org.springframework.stereotype.Component;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
 @Entity
 @Table(name = "user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private int id;
-
-    @Column(name = "identification", nullable = false)
-    private String identification;
+    private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -34,4 +29,13 @@ public class User {
 
     @Column(name = "role", nullable = false)
     private String role;
+
+    @OneToOne(mappedBy = "user")
+    private Administrative administrative;
+
+    @OneToOne(mappedBy = "user")
+    private Student student;
+
+    @OneToOne(mappedBy = "user")
+    private Teacher teacher;
 }

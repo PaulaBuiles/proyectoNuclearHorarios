@@ -7,26 +7,20 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
 @Entity
-@Table(name = "history_teacher")
-@SecondaryTables({
-        @SecondaryTable(name = "teacher"),
-        @SecondaryTable(name = "subject")
-})
-public class HistoryTeacher {
+@Table(name="history_teacher")
+public class HistoryTeacher{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="id")
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "id_teacher", referencedColumnName = "id", nullable = false, insertable=false, updatable=false)
+    @JoinColumn(name="id_teacher")
     private Teacher teacher;
 
     @ManyToOne
-    @JoinColumn(name = "id_subject", referencedColumnName = "id", nullable = false, insertable=false, updatable=false)
+    @JoinColumn(name="id_subject")
     private Subject subject;
-
 }
