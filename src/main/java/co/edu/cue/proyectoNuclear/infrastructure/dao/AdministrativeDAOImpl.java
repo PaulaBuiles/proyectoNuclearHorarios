@@ -23,6 +23,7 @@ public class AdministrativeDAOImpl {
     @PersistenceContext
     EntityManager entityManager;
 
+    @Autowired
     private AdministrativeMapper adminMapper;
 /*
     @Override

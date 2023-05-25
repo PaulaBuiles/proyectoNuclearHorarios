@@ -4,14 +4,17 @@ import co.edu.cue.proyectoNuclear.domain.entities.Administrative;
 import co.edu.cue.proyectoNuclear.domain.entities.User;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.*;
 import co.edu.cue.proyectoNuclear.mapping.dtos.AdministrativeDto;
+import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.AdministrativeMapper;
+import co.edu.cue.proyectoNuclear.mapping.mappers.TeacherMapper;
+import co.edu.cue.proyectoNuclear.mapping.mappers.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 import java.util.List;
-
 @SpringBootApplication
 public class ProyectoNuclearApplication implements CommandLineRunner {
 
@@ -47,13 +50,23 @@ public class ProyectoNuclearApplication implements CommandLineRunner {
 		SpringApplication.run(ProyectoNuclearApplication.class, args);
 	}
 
-	public AdministrativeMapper administrativeMapper;
+	@Autowired
+	private AdministrativeMapper administrativeMapper;
+
+	@Autowired
+	private UserMapper userMapper;
+
+	@Autowired
+	public UserDAOImpl userDAO;
 
 	@Override
 	public void run(String... args) throws Exception {
-		Administrative administrative = new Administrative(new User(56L,"Samuel","sberrio@gmail.com","123","Administrativo"),"Holaaaaa");
-		
-		//administrativeDAO.save(administrativeDto);
+		Administrative administrative = new Administrative(new User(56L, "Samuel", "sberrio@gmail.com", "123", "Administrativo"), "Holaaaaa");
+		AdministrativeDto adminDto = administrativeMapper.mapAdministrative(administrative);
+		System.out.println(adminDto.user().getName());
+		UserDto userDto = userMapper.mapUser(adminDto.user());
+		userDAO.save(userDto);
+		administrativeDAO.save(adminDto);
 
 
 
