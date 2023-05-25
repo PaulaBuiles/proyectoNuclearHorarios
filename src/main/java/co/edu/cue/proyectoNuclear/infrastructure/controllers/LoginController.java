@@ -22,21 +22,21 @@ public class LoginController {
         return modelAndView;
     }
     @GetMapping("/start-login")
-    public ModelAndView getData(@RequestParam("identification") String identification, @RequestParam("password") String password ) {
+    public ModelAndView getData(@RequestParam("identification") String id, @RequestParam("password") String password ) {
         ModelAndView modelAndView = null;
         String rol = null;
-        if(userService.validateUser(identification,password)) {
+        if(userService.validateUser(Long.valueOf(id),password)) {
             switch (userService.getUser().getRole()) {
-                case "Student" -> {
+                case "Estudiante" -> {
                     modelAndView = new ModelAndView(Pages.STUDENTHOME);
                     rol = "Student";
                 }
-                case "Teacher" -> {
+                case "Profesor" -> {
                     modelAndView = new ModelAndView(Pages.STUDENTHOME);
                     rol = "Teacher";
                 }
-                case "Administrative" -> {
-                    modelAndView = new ModelAndView(Pages.STUDENTHOME);
+                case "Administrativo" -> {
+                    modelAndView = new ModelAndView(Pages.ADMINHOME);
                     rol = "Administrative";
                 }
             }

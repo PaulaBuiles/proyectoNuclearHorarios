@@ -46,12 +46,31 @@ public class ProyectoNuclearApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		List<User> userList = userGeneralDAO.getTableList();
-		for (User user : userList) {
-			System.out.println(user.getName());
-		}
-
-
+		/*userGeneralDAO.getTableList();
+		System.out.println("");
+		subjectDAO.getTableList();
+		System.out.println("");
+		teacherDAO.getTableList();
+		System.out.println("");
+		studentDAO.getTableList();
+		System.out.println("");
+		scheduleDAO.getTableList();
+		System.out.println("");
+		historyStudentDAO.getTableList();
+		System.out.println("");
+		historyTeacherDAO.getTableList();
+		System.out.println("");
+		elementDAO.getTableList();
+		System.out.println("");
+		courseDAO.getTableList();
+		System.out.println("");
+		classroomDAO.getTableList();
+		System.out.println("");
+		characteristicDAO.getTableList();
+		System.out.println("");
+		availabilityDAO.getTableList();
+		System.out.println("");
+		administrativeDAO.getTableList();*/
 	}
 
 }

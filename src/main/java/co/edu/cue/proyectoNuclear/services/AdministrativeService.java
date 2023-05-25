@@ -16,5 +16,8 @@ public interface AdministrativeService {
     void deleteStudentById(Long id);
 
     //Course
-    Course createCourse(Course course);
+    //Course createCourse(Course course);
+
+    //User
+    List<User> getUsers();
 }

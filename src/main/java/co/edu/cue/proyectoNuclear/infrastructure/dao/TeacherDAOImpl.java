@@ -28,9 +28,8 @@ public class TeacherDAOImpl implements GeneralDAO<Teacher> {
     }
 
     @Override
-    public Course save(Teacher entity) {
-
-        return null;
+    public void save(Teacher entity) {
+        entityManager.persist(entity);
     }
 
     @Override

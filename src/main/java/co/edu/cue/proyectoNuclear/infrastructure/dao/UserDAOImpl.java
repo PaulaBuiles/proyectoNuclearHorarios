@@ -26,30 +26,26 @@ public class UserDAOImpl implements GeneralDAO<User> {
         return query.getResultList();
     }
 
-    public void tryTableList(){
-        String jpql = "FROM Administrative ";
-        TypedQuery<Administrative> query = entityManager.createQuery(jpql, Administrative.class);
-        System.out.println(query.getResultList().toString());
+    @Override
+    public User findById(Long id) {
+        return entityManager.find(User.class, id);
     }
 
-    //@Override
-    public User findById(String id) {
-        return null;
+    @Override
+    public void save(User entity) {
+        entityManager.persist(entity);
     }
 
-    //@Override
-    public Course save(User entity) {
-
-        return null;
-    }
-
-    //@Override
+    @Override
     public void update(User entity) {
-
+        entityManager.merge(entity);
     }
 
-    //@Override
+    @Override
     public void delete(Long id) {
-
+        User entity = entityManager.find(User.class, id);
+        if (entity != null) {
+            entityManager.remove(entity);
+        }
     }
 }

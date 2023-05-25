@@ -8,8 +8,7 @@ import java.util.List;
 
 @Service
 public interface UserService {
-    Boolean validateUser(String user, String password);
+    Boolean validateUser(Long id, String password);
     User getUser();
-
-    List<User> generateUsers();
+    List<User> getUsers();
 }

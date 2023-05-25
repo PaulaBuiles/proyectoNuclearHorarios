@@ -5,10 +5,13 @@ import co.edu.cue.proyectoNuclear.domain.entities.Student;
 import co.edu.cue.proyectoNuclear.domain.entities.Teacher;
 import co.edu.cue.proyectoNuclear.domain.entities.User;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.GeneralDAO;
+import co.edu.cue.proyectoNuclear.infrastructure.dao.UserDAOImpl;
 import co.edu.cue.proyectoNuclear.services.AdministrativeService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @AllArgsConstructor
 @Service
@@ -19,6 +22,9 @@ public class AdministrativeServiceImpl implements AdministrativeService {
     private GeneralDAO<Student> studentDAO;
 
     private GeneralDAO<Course> courseDAO;
+
+    @Autowired
+    public UserDAOImpl userGeneralDAO;
 
 
     @Override
@@ -49,14 +55,21 @@ public class AdministrativeServiceImpl implements AdministrativeService {
 
     @Override
     public void editStudent(User user, Student student) {
-        //student.setUser(user);
         studentDAO.update(student);
     }
 
     //Courses
-    @Override
+    /*@Override
     public Course createCourse(Course course) {
-        return courseDAO.save(course);
+        return
+                courseDAO.save(course);
+    }*/
+
+    //User
+    @Override
+    public List<User> getUsers(){
+        List<User> userList = userGeneralDAO.getTableList();
+        return userList;
     }
 
 }

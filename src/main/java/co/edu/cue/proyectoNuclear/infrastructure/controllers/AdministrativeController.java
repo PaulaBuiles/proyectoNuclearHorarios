@@ -27,7 +27,7 @@ public class AdministrativeController {
     @GetMapping("/users-table")
     public ModelAndView post(){
         //Esta lista se llena desde la base de datos
-        List<User> userList = userService.generateUsers();
+        List<User> userList = administrativeService.getUsers();
         ModelAndView modelAndView = new ModelAndView(Pages.ADMINTABLE);
         modelAndView.addObject("users",userList);
         return modelAndView;
@@ -38,9 +38,9 @@ public class AdministrativeController {
         administrativeService.deleteTeacherById(id);
     }
 
-    @PostMapping
+    /*@PostMapping
     public ResponseEntity<Course> createCourse(@RequestBody Course course) {
         Course createdCourse = administrativeService.createCourse(course);
         return ResponseEntity.ok(createdCourse);
-    }
+    }*/
 }
