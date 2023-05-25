@@ -4,6 +4,7 @@ import co.edu.cue.proyectoNuclear.domain.enums.Semester;
 
 import java.util.List;
 
+import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;

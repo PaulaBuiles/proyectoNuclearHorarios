@@ -27,7 +27,7 @@ public class AdministrativeController {
     @GetMapping("/users-table")
     public ModelAndView post(){
         //Esta lista se llena desde la base de datos
-        List<User> userList = administrativeService.getUsers();
+        List<UserDto> userList = administrativeService.getUsers();
         ModelAndView modelAndView = new ModelAndView(Pages.ADMINTABLE);
         modelAndView.addObject("users",userList);
         return modelAndView;

@@ -4,8 +4,11 @@ import co.edu.cue.proyectoNuclear.domain.entities.Course;
 import co.edu.cue.proyectoNuclear.domain.entities.Student;
 import co.edu.cue.proyectoNuclear.domain.entities.Teacher;
 import co.edu.cue.proyectoNuclear.domain.entities.User;
-import co.edu.cue.proyectoNuclear.infrastructure.dao.GeneralDAO;
-import co.edu.cue.proyectoNuclear.infrastructure.dao.UserDAOImpl;
+import co.edu.cue.proyectoNuclear.infrastructure.dao.*;
+import co.edu.cue.proyectoNuclear.mapping.dtos.CourseDto;
+import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
+import co.edu.cue.proyectoNuclear.mapping.dtos.TeacherDto;
+import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
 import co.edu.cue.proyectoNuclear.services.AdministrativeService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,13 +51,12 @@ public class AdministrativeServiceImpl implements AdministrativeService {
     }
 
     @Override
-    public void editTeacher(User user, Teacher teacher) {
-        teacher.setUser(user);
+    public void editTeacher(UserDto user, TeacherDto teacher) {
         teacherDAO.update(teacher);
     }
 
     @Override
-    public void editStudent(User user, Student student) {
+    public void editStudent(UserDto user, StudentDto student) {
         studentDAO.update(student);
     }
 
@@ -67,9 +69,8 @@ public class AdministrativeServiceImpl implements AdministrativeService {
 
     //User
     @Override
-    public List<User> getUsers(){
-        List<User> userList = userGeneralDAO.getTableList();
-        return userList;
+    public List<UserDto> getUsers(){
+        return userGeneralDAO.getTableList();
     }
 
 }

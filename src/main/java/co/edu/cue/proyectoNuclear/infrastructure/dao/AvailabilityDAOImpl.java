@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class AvailabilityDAOImpl implements GeneralDAO<Availability> {
+public class AvailabilityDAOImpl implements GeneralDAO<AvailabilityDto> {
 
     @PersistenceContext
     private EntityManager entityManager;

@@ -1,6 +1,7 @@
 package co.edu.cue.proyectoNuclear.mapping.mappers;
 
 
+import co.edu.cue.proyectoNuclear.domain.entities.Administrative;
 import co.edu.cue.proyectoNuclear.domain.entities.User;
 import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
 import org.mapstruct.Mapper;

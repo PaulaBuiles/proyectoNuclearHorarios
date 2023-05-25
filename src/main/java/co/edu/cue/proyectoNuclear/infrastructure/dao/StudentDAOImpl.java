@@ -14,27 +14,33 @@ import java.util.Scanner;
 public class StudentDAOImpl implements GeneralDAO<Student>{
 
     @PersistenceContext
-    EntityManager entityManager;
+    private EntityManager entityManager;
+
+
+    private StudentMapper studentMapper;
 
     @Override
-    public List<Student> getTableList() {
-        String query = "FROM Student";
-        return entityManager.createQuery(query).getResultList();
+    public List<StudentDto> getTableList() {
+        TypedQuery<Student> query = entityManager.createQuery("SELECT s FROM Student s", Student.class);
+        List<Student> studentList = query.getResultList();
+        return studentMapper.mapList(studentList);
     }
 
     @Override
-    public Student findById(Long id) {return entityManager.find(Student.class,id);}
-
-    @Override
-    public void save(Student entity) {
-        entityManager.persist(entity);
-
+    public StudentDto findById(Long id) {
+        Student student = entityManager.find(Student.class, id);
+        return studentMapper.mapStudent(student);
     }
 
     @Override
-    public void update(Student entity) {
-        entityManager.merge(entity);
+    public void save(StudentDto entity) {
+        Student student = studentMapper.mapToEntity(entity);
+        entityManager.persist(student);
+    }
 
+    @Override
+    public void update(StudentDto entity) {
+            entityManager.merge(entity);
     }
 
     @Override
@@ -44,4 +50,5 @@ public class StudentDAOImpl implements GeneralDAO<Student>{
             entityManager.remove(student);
         }
     }
+
 }

@@ -13,9 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 @AllArgsConstructor
 @Service
+
 public class UserServiceImpl implements UserService {
 
-    private static User user1 = new User();
+    private static UserDto user1;
     @Autowired
     public UserDAOImpl userGeneralDAO;
     private final List<User> userService;
@@ -25,8 +26,8 @@ public class UserServiceImpl implements UserService {
     public Boolean validateUser(Long id, String password) {
         List<User> userList = userGeneralDAO.getTableList();
         Boolean band = false;
-        for (User user: userList) {
-            if (id.equals(user.getId()) && password.equals(user.getPassword())) {
+        for (UserDto user: userList) {
+            if (id.equals(user.id()) && password.equals(user.password())) {
                 band = true;
                 user1 = user;
                 break;

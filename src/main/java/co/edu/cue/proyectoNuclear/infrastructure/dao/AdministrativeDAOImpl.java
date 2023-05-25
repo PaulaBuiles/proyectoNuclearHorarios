@@ -15,14 +15,19 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class AdministrativeDAOImpl implements GeneralDAO<Administrative> {
+@AllArgsConstructor
+public class AdministrativeDAOImpl {
 
     @PersistenceContext
     EntityManager entityManager;
+
+    private AdministrativeMapper adminMapper;
+/*
     @Override
-    public List<Administrative> getTableList() {
+    public List<AdministrativeDto> getTableList() {
         TypedQuery<Administrative> query = entityManager.createQuery("SELECT u FROM Administrative u", Administrative.class);
-        return query.getResultList();
+
+        return adminMapper.maplist(query.getResultList());
     }
 
     @Override
@@ -30,13 +35,15 @@ public class AdministrativeDAOImpl implements GeneralDAO<Administrative> {
         return entityManager.find(Administrative.class, id);
     }
 
-    @Override
-    public void save(Administrative entity) {
-        entityManager.persist(entity);
+
+    public void save(AdministrativeDto entity) {
+        entityManager.persist(adminMapper.mapToEntity(entity));
     }
 
-    @Override
-    public void update(Administrative entity) {
+    /*@Override
+    public void update(AdministrativeDto entity) {
+        //find by id
+        //tomar la entidad y settear todos los campos que vienen en el dto
         entityManager.merge(entity);
     }
 

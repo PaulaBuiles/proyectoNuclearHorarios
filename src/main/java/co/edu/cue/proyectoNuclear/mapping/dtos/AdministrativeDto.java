@@ -1,8 +1,9 @@
 package co.edu.cue.proyectoNuclear.mapping.dtos;
 
-public record AdministrativeDto(String name,
-                                String id,
-                                String email
+import co.edu.cue.proyectoNuclear.domain.entities.User;
+
+public record AdministrativeDto(User user,
+                                String charge
                                 ) {
 
 

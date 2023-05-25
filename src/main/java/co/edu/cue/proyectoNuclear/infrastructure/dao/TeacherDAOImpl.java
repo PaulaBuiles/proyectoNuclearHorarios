@@ -23,17 +23,17 @@ public class TeacherDAOImpl implements GeneralDAO<Teacher> {
     }
 
     @Override
-    public Teacher findById(Long id) {
-        return entityManager.find(Teacher.class, id);
+    public TeacherDto findById(Long id) {
+        return teacherMap.mapTeacher(entityManager.find(Teacher.class, id));
     }
 
     @Override
-    public void save(Teacher entity) {
-        entityManager.persist(entity);
+    public void save(TeacherDto entity) {
+        entityManager.persist(teacherMap.mapToEntity(entity));
     }
 
     @Override
-    public void update(Teacher entity) {
+    public void update(TeacherDto entity) {
         entityManager.merge(entity);
     }
 

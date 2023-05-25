@@ -22,17 +22,17 @@ public class ElementDAOImpl implements GeneralDAO<Element> {
     }
 
     @Override
-    public Element findById(Long id) {
-        return entityManager.find(Element.class, id);
+    public ElementDto findById(Long id) {
+        return mapper.mapElement(entityManager.find(Element.class, id));
     }
 
     @Override
-    public void save(Element entity) {
-        entityManager.persist(entity);
+    public void save(ElementDto entity) {
+        entityManager.persist(mapper.mapToEntity(entity));
     }
 
     @Override
-    public void update(Element entity) {
+    public void update(ElementDto entity) {
         entityManager.merge(entity);
     }
 

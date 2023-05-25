@@ -14,26 +14,32 @@ import java.util.List;
 public class CourseDAOImpl implements GeneralDAO<Course>{
 
     @PersistenceContext
-    EntityManager entityManager;
+    private EntityManager entityManager;
+
+
+    private CourseMapper courseMapper;
 
     @Override
-    public List<Course> getTableList(){
-        String query = "FROM Course";
-        return entityManager.createQuery(query).getResultList();
+    public List<CourseDto> getTableList() {
+        TypedQuery<Course> query = entityManager.createQuery("SELECT c FROM Course c", Course.class);
+        List<Course> courseList = query.getResultList();
+        return courseMapper.mapList(courseList);
     }
 
     @Override
-    public Course findById(Long id) {
-        return entityManager.find(Course.class, id);
+    public CourseDto findById(Long id) {
+        Course course = entityManager.find(Course.class, id);
+        return courseMapper.mapCourse(course);
     }
 
     @Override
-    public void save(Course entity) {
-        entityManager.persist(entity);
+    public void save(CourseDto entity) {
+        Course course = courseMapper.mapToEntity(entity);
+        entityManager.persist(course);
     }
 
     @Override
-    public void update(Course entity) {
+    public void update(CourseDto entity) {
         entityManager.merge(entity);
     }
 
