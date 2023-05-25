@@ -23,23 +23,25 @@ public class ScheduleDAOImpl implements GeneralDAO<Schedule> {
     }
 
     @Override
-    public Schedule findById(String id) {
-        return null;
+    public Schedule findById(Long id) {
+        return entityManager.find(Schedule.class, id);
     }
 
     @Override
-    public Course save(Schedule entity) {
-
-        return null;
+    public void save(Schedule entity) {
+        entityManager.persist(entity);
     }
 
     @Override
     public void update(Schedule entity) {
-
+        entityManager.merge(entity);
     }
 
     @Override
     public void delete(Long id) {
-
+        Schedule entity = entityManager.find(Schedule.class, id);
+        if (entity != null) {
+            entityManager.remove(entity);
+        }
     }
 }

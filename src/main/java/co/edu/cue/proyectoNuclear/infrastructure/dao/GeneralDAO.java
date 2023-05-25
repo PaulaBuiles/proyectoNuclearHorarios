@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface GeneralDAO<T> {
     List<T> getTableList();
-    T findById(String id);
-    Course save(T entity);
+    T findById(Long id);
+    void save(T entity);
     void update(T entity);
     void delete(Long id);
 }

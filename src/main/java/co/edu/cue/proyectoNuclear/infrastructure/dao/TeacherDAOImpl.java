@@ -23,8 +23,8 @@ public class TeacherDAOImpl implements GeneralDAO<Teacher> {
     }
 
     @Override
-    public Teacher findById(String id) {
-        return null;
+    public Teacher findById(Long id) {
+        return entityManager.find(Teacher.class, id);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class TeacherDAOImpl implements GeneralDAO<Teacher> {
 
     @Override
     public void update(Teacher entity) {
-
+        entityManager.merge(entity);
     }
 
     @Override

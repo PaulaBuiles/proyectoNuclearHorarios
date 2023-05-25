@@ -2,6 +2,8 @@ package co.edu.cue.proyectoNuclear.services;
 
 import co.edu.cue.proyectoNuclear.domain.entities.*;
 
+import java.util.List;
+
 public interface AdministrativeService {
     //Teacher
     void deleteTeacherById(Long id);
