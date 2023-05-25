@@ -3,6 +3,7 @@ package co.edu.cue.proyectoNuclear.infrastructure.controllers;
 import co.edu.cue.proyectoNuclear.domain.configuration.Pages;
 import co.edu.cue.proyectoNuclear.domain.entities.Course;
 import co.edu.cue.proyectoNuclear.domain.entities.User;
+import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
 import co.edu.cue.proyectoNuclear.services.AdministrativeService;
 import co.edu.cue.proyectoNuclear.services.UserService;
 import lombok.AllArgsConstructor;

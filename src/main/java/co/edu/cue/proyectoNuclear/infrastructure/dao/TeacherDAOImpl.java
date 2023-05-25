@@ -1,7 +1,10 @@
 package co.edu.cue.proyectoNuclear.infrastructure.dao;
 
-import co.edu.cue.proyectoNuclear.domain.entities.Course;
+import co.edu.cue.proyectoNuclear.domain.entities.Classroom;
 import co.edu.cue.proyectoNuclear.domain.entities.Teacher;
+import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
+import co.edu.cue.proyectoNuclear.mapping.dtos.TeacherDto;
+import co.edu.cue.proyectoNuclear.mapping.mappers.TeacherMapper;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
@@ -19,9 +22,9 @@ public class TeacherDAOImpl implements GeneralDAO<TeacherDto> {
     TeacherMapper teacherMap;
 
     @Override
-    public List<Teacher> getTableList(){
-        String query = "FROM Teacher";
-        return entityManager.createQuery(query).getResultList();
+    public List<TeacherDto> getTableList(){
+        TypedQuery<Teacher> query = entityManager.createQuery("SELECT u FROM Teacher u", Teacher.class);
+        return teacherMap.mapList(query.getResultList());
     }
 
     @Override

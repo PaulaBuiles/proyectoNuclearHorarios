@@ -1,10 +1,12 @@
 package co.edu.cue.proyectoNuclear.infrastructure.dao;
 
-import co.edu.cue.proyectoNuclear.domain.entities.Course;
 import co.edu.cue.proyectoNuclear.domain.entities.Subject;
-import co.edu.cue.proyectoNuclear.domain.entities.Teacher;
+import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
+import co.edu.cue.proyectoNuclear.mapping.dtos.SubjectDto;
+import co.edu.cue.proyectoNuclear.mapping.mappers.SubjectMapper;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
@@ -15,28 +17,34 @@ import java.util.List;
 public class SubjectDAOImpl implements GeneralDAO<SubjectDto>{
 
     @PersistenceContext
-    EntityManager entityManager;
+    private EntityManager entityManager;
+
+
+    private SubjectMapper subjectMapper;
 
     @Override
-    public List<Subject> getTableList(){
-        String query = "FROM Subject";
-        List<Subject> subjectList = entityManager.createQuery(query).getResultList();
-        return entityManager.createQuery(query).getResultList();
+    public List<SubjectDto> getTableList() {
+        TypedQuery<Subject> query = entityManager.createQuery("SELECT s FROM Subject s", Subject.class);
+        List<Subject> subjectList = query.getResultList();
+        return subjectMapper.mapList(subjectList);
     }
 
     @Override
-    public Subject findById(Long id) {
-        return entityManager.find(Subject.class, id);
+    public SubjectDto findById(Long id) {
+        Subject subject = entityManager.find(Subject.class, id);
+        return subjectMapper.mapSubject(subject);
     }
 
     @Override
-    public void save(Subject entity) {
-        entityManager.persist(entity);
+    public void save(SubjectDto entity) {
+        Subject subject = subjectMapper.mapToEntity(entity);
+        entityManager.persist(subject);
     }
 
     @Override
-    public void update(Subject entity) {
-        entityManager.merge(entity);
+    public void update(SubjectDto entity) {
+            entityManager.merge(entity);
+
     }
 
     @Override
@@ -46,4 +54,5 @@ public class SubjectDAOImpl implements GeneralDAO<SubjectDto>{
             entityManager.remove(subject);
         }
     }
+
 }

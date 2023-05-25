@@ -1,8 +1,12 @@
 package co.edu.cue.proyectoNuclear.infrastructure.dao;
 
 import co.edu.cue.proyectoNuclear.domain.entities.Characteristic;
+import co.edu.cue.proyectoNuclear.mapping.dtos.CharacteristicDto;
+import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
+import co.edu.cue.proyectoNuclear.mapping.mappers.CharacteristicMapper;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
@@ -10,37 +14,42 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class CharacteristicDAOImpl implements GeneralDAO<Characteristic> {
-
+public class CharacteristicDAOImpl implements GeneralDAO<CharacteristicDto> {
     @PersistenceContext
     private EntityManager entityManager;
 
+    private CharacteristicMapper mapper;
+
     @Override
-    public List<Characteristic> getTableList() {
-        return entityManager.createQuery("SELECT c FROM Characteristic c", Characteristic.class)
-                .getResultList();
+    public List<CharacteristicDto> getTableList() {
+        TypedQuery<Characteristic> query = entityManager.createQuery("SELECT c FROM Characteristic c", Characteristic.class);
+        List<Characteristic> characteristicList = query.getResultList();
+        return mapper.mapList(characteristicList);
     }
 
     @Override
-    public Characteristic findById(Long id) {
-        return entityManager.find(Characteristic.class, id);
+    public CharacteristicDto findById(Long id) {
+        Characteristic characteristic = entityManager.find(Characteristic.class, id);
+        return mapper.mapCharacteristic(characteristic);
     }
 
     @Override
-    public void save(Characteristic entity) {
-        entityManager.persist(entity);
+    public void save(CharacteristicDto entity) {
+        Characteristic characteristic = mapper.mapToEntity(entity);
+        entityManager.persist(characteristic);
     }
 
     @Override
-    public void update(Characteristic entity) {
+    public void update(CharacteristicDto entity) {
         entityManager.merge(entity);
+
     }
 
     @Override
     public void delete(Long id) {
-        Characteristic entity = entityManager.find(Characteristic.class, id);
-        if (entity != null) {
-            entityManager.remove(entity);
+        Characteristic characteristic = entityManager.find(Characteristic.class, id);
+        if (characteristic != null) {
+            entityManager.remove(characteristic);
         }
     }
 }

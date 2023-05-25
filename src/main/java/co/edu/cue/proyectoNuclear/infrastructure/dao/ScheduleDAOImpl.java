@@ -1,9 +1,12 @@
 package co.edu.cue.proyectoNuclear.infrastructure.dao;
 
-import co.edu.cue.proyectoNuclear.domain.entities.Course;
 import co.edu.cue.proyectoNuclear.domain.entities.Schedule;
+import co.edu.cue.proyectoNuclear.mapping.dtos.ScheduleDto;
+import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
+import co.edu.cue.proyectoNuclear.mapping.mappers.ScheduleMapper;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
@@ -14,34 +17,41 @@ import java.util.List;
 public class ScheduleDAOImpl implements GeneralDAO<ScheduleDto> {
 
     @PersistenceContext
-    EntityManager entityManager;
+    private EntityManager entityManager;
+
+
+    private ScheduleMapper scheduleMapper;
 
     @Override
-    public List<Schedule> getTableList(){
-        String query = "FROM Schedule";
-        return entityManager.createQuery(query).getResultList();
+    public List<ScheduleDto> getTableList() {
+        TypedQuery<Schedule> query = entityManager.createQuery("SELECT s FROM Schedule s", Schedule.class);
+        List<Schedule> scheduleList = query.getResultList();
+        return scheduleMapper.mapList(scheduleList);
     }
 
     @Override
-    public Schedule findById(Long id) {
-        return entityManager.find(Schedule.class, id);
+    public ScheduleDto findById(Long id) {
+        Schedule schedule = entityManager.find(Schedule.class, id);
+        return scheduleMapper.mapSchedule(schedule);
     }
 
     @Override
-    public void save(Schedule entity) {
-        entityManager.persist(entity);
+    public void save(ScheduleDto entity) {
+        Schedule schedule = scheduleMapper.mapToEntity(entity);
+        entityManager.persist(schedule);
     }
 
     @Override
-    public void update(Schedule entity) {
-        entityManager.merge(entity);
+    public void update(ScheduleDto entity) {
+            entityManager.merge(entity);
     }
 
     @Override
     public void delete(Long id) {
-        Schedule entity = entityManager.find(Schedule.class, id);
-        if (entity != null) {
-            entityManager.remove(entity);
+        Schedule schedule = entityManager.find(Schedule.class, id);
+        if (schedule != null) {
+            entityManager.remove(schedule);
         }
     }
+
 }

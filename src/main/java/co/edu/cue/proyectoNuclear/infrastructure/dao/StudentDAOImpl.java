@@ -1,17 +1,19 @@
 package co.edu.cue.proyectoNuclear.infrastructure.dao;
 
 import co.edu.cue.proyectoNuclear.domain.entities.*;
+import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
+import co.edu.cue.proyectoNuclear.mapping.mappers.StudentMapper;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Scanner;
 
 @Repository
 @Transactional
-public class StudentDAOImpl implements GeneralDAO<Student>{
+public class StudentDAOImpl implements GeneralDAO<StudentDto>{
 
     @PersistenceContext
     private EntityManager entityManager;

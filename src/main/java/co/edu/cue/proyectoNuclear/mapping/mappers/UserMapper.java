@@ -7,8 +7,11 @@ import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface UserMapper {
-    /*@Mapping(target = "name", source = "username")
-    UserDto mapFrom(User source);*/
+    UserDto mapUser(User source);
+    User mapToEntity(UserDto source);
+    List<UserDto> mapList(List<User> source);
 }

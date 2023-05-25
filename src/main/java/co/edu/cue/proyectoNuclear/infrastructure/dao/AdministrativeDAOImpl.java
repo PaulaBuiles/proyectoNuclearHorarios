@@ -1,14 +1,16 @@
 package co.edu.cue.proyectoNuclear.infrastructure.dao;
 
 import co.edu.cue.proyectoNuclear.domain.entities.Administrative;
-import co.edu.cue.proyectoNuclear.domain.entities.Course;
-import co.edu.cue.proyectoNuclear.domain.entities.Teacher;
-import co.edu.cue.proyectoNuclear.domain.entities.User;
+import co.edu.cue.proyectoNuclear.mapping.dtos.AdministrativeDto;
+import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
+import co.edu.cue.proyectoNuclear.mapping.mappers.AdministrativeMapper;
+import co.edu.cue.proyectoNuclear.mapping.mappers.UserMapper;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
-import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -31,9 +33,9 @@ public class AdministrativeDAOImpl {
     }
 
     @Override
-    public Administrative findById(Long id) {
-        return entityManager.find(Administrative.class, id);
-    }
+    public AdministrativeDto findById(Long id) {
+        return adminMapper.mapAdministrative(entityManager.find(Administrative.class, id));
+    }*/
 
 
     public void save(AdministrativeDto entity) {

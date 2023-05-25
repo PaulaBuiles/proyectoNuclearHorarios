@@ -1,17 +1,21 @@
 package co.edu.cue.proyectoNuclear.infrastructure.dao;
 
-import co.edu.cue.proyectoNuclear.domain.entities.Administrative;
 import co.edu.cue.proyectoNuclear.domain.entities.Course;
+import co.edu.cue.proyectoNuclear.mapping.dtos.CourseDto;
+import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
+import co.edu.cue.proyectoNuclear.mapping.mappers.CourseMapper;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
 @Transactional
-public class CourseDAOImpl implements GeneralDAO<Course>{
+public class CourseDAOImpl implements GeneralDAO<CourseDto>{
 
     @PersistenceContext
     private EntityManager entityManager;

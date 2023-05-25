@@ -1,51 +1,57 @@
 package co.edu.cue.proyectoNuclear.infrastructure.dao;
 
 import co.edu.cue.proyectoNuclear.domain.entities.*;
+import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
+import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
+import co.edu.cue.proyectoNuclear.mapping.mappers.UserMapper;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
-import java.util.function.Function;
 
 @Repository
 @Transactional
-public class UserDAOImpl implements GeneralDAO<User> {
+public class UserDAOImpl implements GeneralDAO<UserDto> {
 
     @PersistenceContext
-    EntityManager entityManager;
+    private EntityManager entityManager;
+
+    private UserMapper userMapper;
 
     @Override
-    public List<User> getTableList(){
+    public List<UserDto> getTableList() {
         TypedQuery<User> query = entityManager.createQuery("SELECT u FROM User u", User.class);
-        return query.getResultList();
+        List<User> userList = query.getResultList();
+        return userMapper.mapList(userList);
     }
 
     @Override
-    public User findById(Long id) {
-        return entityManager.find(User.class, id);
+    public UserDto findById(Long id) {
+        User user = entityManager.find(User.class, id);
+        return userMapper.mapUser(user);
     }
 
     @Override
-    public void save(User entity) {
-        entityManager.persist(entity);
+    public void save(UserDto entity) {
+        User user = userMapper.mapToEntity(entity);
+        entityManager.persist(user);
     }
 
     @Override
-    public void update(User entity) {
-        entityManager.merge(entity);
+    public void update(UserDto entity) {
+            entityManager.merge(entity);
+
     }
 
     @Override
     public void delete(Long id) {
-        User entity = entityManager.find(User.class, id);
-        if (entity != null) {
-            entityManager.remove(entity);
+        User user = entityManager.find(User.class, id);
+        if (user != null) {
+            entityManager.remove(user);
         }
     }
+
 }

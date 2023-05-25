@@ -20,11 +20,15 @@ import java.util.List;
 @Service
 public class AdministrativeServiceImpl implements AdministrativeService {
 
-    private GeneralDAO<Teacher> teacherDAO;
+    @Autowired
+    private TeacherDAOImpl teacherDAO;
 
-    private GeneralDAO<Student> studentDAO;
+    @Autowired
+    private StudentDAOImpl studentDAO;
 
-    private GeneralDAO<Course> courseDAO;
+
+    @Autowired
+    private CourseDAOImpl courseDAO;
 
     @Autowired
     public UserDAOImpl userGeneralDAO;
@@ -38,14 +42,9 @@ public class AdministrativeServiceImpl implements AdministrativeService {
     @Override
     public void deleteStudentById(Long id) { studentDAO.delete(id); }
 
-    @Override
-    public void createTeacher(User user, Teacher teacher) {
-        teacher.setUser(user);
-        teacherDAO.save(teacher);
-    }
 
     @Override
-    public void createStudent(User user, Student student) {
+    public void createStudent(UserDto user, StudentDto student) {
         //student.setUser(user);
         studentDAO.save(student);
     }
@@ -53,6 +52,11 @@ public class AdministrativeServiceImpl implements AdministrativeService {
     @Override
     public void editTeacher(UserDto user, TeacherDto teacher) {
         teacherDAO.update(teacher);
+    }
+
+    @Override
+    public void createTeacher(UserDto user, TeacherDto teacher) {
+
     }
 
     @Override
