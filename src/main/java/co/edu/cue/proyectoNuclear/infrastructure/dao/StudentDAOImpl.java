@@ -7,6 +7,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Scanner;
 
 @Repository
 @Transactional
@@ -22,23 +23,25 @@ public class StudentDAOImpl implements GeneralDAO<Student>{
     }
 
     @Override
-    public Student findById(String id) {
-        return null;
-    }
+    public Student findById(Long id) {return entityManager.find(Student.class,id);}
 
     @Override
-    public Course save(Student entity) {
+    public void save(Student entity) {
+        entityManager.persist(entity);
 
-        return null;
     }
 
     @Override
     public void update(Student entity) {
+        entityManager.merge(entity);
 
     }
 
     @Override
     public void delete(Long id) {
-
+        Student student = entityManager.find(Student.class, id);
+        if (student != null) {
+            entityManager.remove(student);
+        }
     }
 }

@@ -19,4 +19,10 @@ public class StudentServiceImpl implements StudentService {
     public List<Student> generateStudent() {
         return null;
     }
+
+    @Override
+    public Boolean addSubject(){
+
+        return null;
+    }
 }

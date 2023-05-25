@@ -12,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
+
     private static User user1 = new User();
     private final GeneralDAO<User> userService;
 

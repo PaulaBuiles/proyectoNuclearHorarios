@@ -23,8 +23,8 @@ public class SubjectDAOImpl implements GeneralDAO<Subject>{
     }
 
     @Override
-    public Subject findById(String id) {
-        return null;
+    public Subject findById(Long id) {
+        return entityManager.find(Subject.class, id);
     }
 
     @Override

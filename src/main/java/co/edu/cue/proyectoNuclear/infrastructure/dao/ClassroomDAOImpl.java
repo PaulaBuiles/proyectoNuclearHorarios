@@ -23,23 +23,25 @@ public class ClassroomDAOImpl implements GeneralDAO<Classroom>{
     }
 
     @Override
-    public Classroom findById(String id) {
-        return null;
+    public Classroom findById(Long id) {
+        return entityManager.find(Classroom.class, id);
     }
 
     @Override
-    public Course save(Classroom entity) {
-
-        return null;
+    public void save(Classroom entity) {
+        entityManager.persist(entity);
     }
 
     @Override
     public void update(Classroom entity) {
-
+        entityManager.merge(entity);
     }
 
     @Override
     public void delete(Long id) {
-
+        Classroom classroom = entityManager.find(Classroom.class, id);
+        if (classroom != null) {
+            entityManager.remove(classroom);
+        }
     }
 }
