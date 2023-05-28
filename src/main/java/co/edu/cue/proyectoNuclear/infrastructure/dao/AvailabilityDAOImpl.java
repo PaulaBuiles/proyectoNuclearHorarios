@@ -20,6 +20,7 @@ public class AvailabilityDAOImpl implements GeneralDAO<AvailabilityDto> {
     private EntityManager entityManager;
 
 
+    @Autowired
     private AvailabilityMapper mapper;
 
     @Override

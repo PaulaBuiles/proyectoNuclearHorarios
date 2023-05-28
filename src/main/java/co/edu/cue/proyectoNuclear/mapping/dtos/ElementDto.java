@@ -6,7 +6,6 @@ import java.util.List;
 
 public record ElementDto(
         int id,
-        String name,
-        List<Characteristic> characteristics
+        String name
 ){
 }

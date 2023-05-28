@@ -61,12 +61,12 @@ public class ProyectoNuclearApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Administrative administrative = new Administrative(new User(56L, "Samuel", "sberrio@gmail.com", "123", "Administrativo"), "Holaaaaa");
+		/*Administrative administrative = new Administrative(new User(56L, "Samuel", "sberrio@gmail.com", "123", "Administrativo"), "Holaaaaa");
 		AdministrativeDto adminDto = administrativeMapper.mapAdministrative(administrative);
 		System.out.println(adminDto.user().getName());
 		UserDto userDto = userMapper.mapUser(adminDto.user());
 		userDAO.save(userDto);
-		administrativeDAO.save(adminDto);
+		administrativeDAO.save(adminDto);*/
 
 
 

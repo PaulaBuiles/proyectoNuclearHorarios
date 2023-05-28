@@ -17,8 +17,9 @@ public class Course {
     @Column(name = "id", nullable = false)
     private int id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @ManyToOne
+    @JoinColumn (name ="id_subject")
+    private Subject subject;
 
     @ManyToOne
     @JoinColumn(name="id_student")

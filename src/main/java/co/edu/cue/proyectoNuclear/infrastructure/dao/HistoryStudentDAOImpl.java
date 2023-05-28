@@ -4,10 +4,12 @@ import co.edu.cue.proyectoNuclear.domain.entities.HistoryStudent;
 import co.edu.cue.proyectoNuclear.mapping.dtos.HistoryStudentDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.HistoryStudentMapper;
+import jakarta.persistence.Access;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,7 +21,7 @@ public class HistoryStudentDAOImpl implements GeneralDAO<HistoryStudentDto>{
     @PersistenceContext
     private EntityManager entityManager;
 
-
+    @Autowired
     private HistoryStudentMapper historyStudentMapper;
 
     @Override
@@ -51,6 +53,14 @@ public class HistoryStudentDAOImpl implements GeneralDAO<HistoryStudentDto>{
         HistoryStudent historyStudent = entityManager.find(HistoryStudent.class, id);
         if (historyStudent != null) {
             entityManager.remove(historyStudent);
+        }
+    }
+    public void deleteStudent(Long id) {
+        List<HistoryStudentDto> historyStudentDtoList = getTableList();
+        for (HistoryStudentDto historyStudentDto : historyStudentDtoList){
+            if (historyStudentDto.student().getUser().getId().equals(id)){
+                delete((long) historyStudentDto.id());
+            }
         }
     }
 }

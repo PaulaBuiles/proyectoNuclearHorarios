@@ -27,13 +27,9 @@ public class Classroom {
     @Column (name ="capacity", nullable=false)
     private String capacity;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn (name ="id_availability")
     private Availability availability;
 
-    @OneToMany(mappedBy="classroom")
-    private List<Schedule> schedules;
 
-    @OneToMany(mappedBy="classroom")
-    private List<Characteristic> characteristics;
 }

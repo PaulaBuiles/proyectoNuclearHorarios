@@ -22,21 +22,14 @@ public class Schedule {
     @Column (name ="id")
     private int id;
 
-    @Column (name ="name", nullable=false)
-    private String name;
-
-    @ManyToOne
-    @JoinColumn (name ="id_availability")
-    private Availability availability;
-
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn (name ="id_classroom")
     private Classroom classroom;
 
     @Column (name ="durability", nullable=false)
     private Time durability;
 
-    @ManyToOne
-    @JoinColumn (name ="id_course")
-    private Course course;
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn (name ="id_subject")
+    private Subject subject;
 }

@@ -22,20 +22,13 @@ public class Subject{
     @Column(name="name", nullable=false)
     private String name;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="id_teacher")
     private Teacher teacher;
 
-    @ManyToOne
-    @JoinColumn(name="id_availability")
-    private Availability availability;
 
     @Column(name="credit", nullable=false)
     private int credit;
 
-    @OneToMany(mappedBy="subject")
-    private List<HistoryStudent> historyStudents;
 
-    @OneToMany(mappedBy="subject")
-    private List<HistoryTeacher> historyTeachers;
 }

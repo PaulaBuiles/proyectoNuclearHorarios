@@ -12,8 +12,8 @@ import lombok.*;
 public class Administrative {
 
     @Id
-    @OneToOne
-    @JoinColumn(name="user_id")
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name="id_user")
     private User user;
 
     @Column(name = "charge", nullable = false)

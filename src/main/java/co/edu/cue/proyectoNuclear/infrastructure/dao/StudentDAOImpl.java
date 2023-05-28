@@ -3,10 +3,12 @@ package co.edu.cue.proyectoNuclear.infrastructure.dao;
 import co.edu.cue.proyectoNuclear.domain.entities.*;
 import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.StudentMapper;
+import jakarta.persistence.Access;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,6 +21,7 @@ public class StudentDAOImpl implements GeneralDAO<StudentDto>{
     private EntityManager entityManager;
 
 
+    @Autowired
     private StudentMapper studentMapper;
 
     @Override
@@ -50,6 +53,15 @@ public class StudentDAOImpl implements GeneralDAO<StudentDto>{
         Student student = entityManager.find(Student.class, id);
         if (student != null) {
             entityManager.remove(student);
+        }
+    }
+
+    public void deleteById(Long id) {
+        List<StudentDto> students = getTableList();
+        for (StudentDto student: students) {
+            if (student.user().getId().equals(id)) {
+                delete(student.id());
+            }
         }
     }
 

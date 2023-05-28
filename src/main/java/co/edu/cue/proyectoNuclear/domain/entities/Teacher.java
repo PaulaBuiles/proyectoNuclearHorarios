@@ -17,18 +17,16 @@ import lombok.experimental.SuperBuilder;
 @Table(name="teacher")
 public class Teacher{
 
-    @ManyToOne
+    @Id
+    @Column(name = "id", nullable = false)
+    private Long id;
+
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="id_availability")
     private Availability availability;
 
-    @Id
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="id_user")
     private User user;
 
-    @OneToMany(mappedBy="teacher")
-    private List<HistoryTeacher> historyTeachers;
-
-    @OneToMany(mappedBy="teacher")
-    private List<Subject> subjects;
 }

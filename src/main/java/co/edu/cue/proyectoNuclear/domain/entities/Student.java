@@ -16,7 +16,10 @@ import lombok.*;
 public class Student {
 
     @Id
-    @OneToOne
+    @Column(name = "id", nullable = false)
+    private Long id;
+
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="id_user")
     private User user;
 
@@ -26,10 +29,4 @@ public class Student {
     @Column(name = "semester", nullable = false)
     private Semester semester;
 
-    @OneToMany(mappedBy="student")
-    private List<HistoryStudent> historyStudents;
-
-    @ManyToOne
-    @JoinColumn(name="id_course")
-    private Course course;
 }

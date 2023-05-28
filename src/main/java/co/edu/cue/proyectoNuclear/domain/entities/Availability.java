@@ -30,15 +30,5 @@ public class Availability{
     @Column(name="end", nullable=false)
     private Time end;
 
-    @OneToMany(mappedBy="availability")
-    private List<Teacher> teachers;
 
-    @OneToMany(mappedBy="availability")
-    private List<Subject> subjects;
-
-    @OneToMany(mappedBy="availability")
-    private List<Schedule> schedules;
-
-    @OneToMany(mappedBy="availability")
-    private List<Classroom> classrooms;
 }

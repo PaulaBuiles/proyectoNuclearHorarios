@@ -7,6 +7,7 @@ import co.edu.cue.proyectoNuclear.mapping.mappers.ElementMapper;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class ElementDAOImpl implements GeneralDAO<ElementDto> {
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Autowired
     private ElementMapper mapper;
 
     @Override

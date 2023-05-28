@@ -26,11 +26,6 @@ public class UserServiceImpl implements UserService {
     public UserDAOImpl userGeneralDAO;
     private final List<UserDto> userService;
 
-    @Autowired
-    private AdministrativeMapper administrativeMapper;
-
-    @Autowired
-    private UserMapper userMapper;
 
 
     @Override
@@ -39,6 +34,7 @@ public class UserServiceImpl implements UserService {
         List<UserDto> userList = userGeneralDAO.getTableList();
         Boolean band = false;
         for (UserDto user: userList) {
+            System.out.println(user.id());
             if (id.equals(user.id()) && password.equals(user.password())) {
                 band = true;
                 user1 = user;
@@ -49,8 +45,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public List<UserDto> getUsers(){
-        List<UserDto> userList = userGeneralDAO.getTableList();
-        return userList;
+        return userGeneralDAO.getTableList();
     }
 
 

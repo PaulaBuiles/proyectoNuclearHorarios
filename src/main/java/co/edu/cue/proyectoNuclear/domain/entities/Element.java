@@ -22,6 +22,4 @@ public class Element {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToMany(mappedBy="element")
-    private List<Characteristic> characteristics;
 }

@@ -21,6 +21,7 @@ public class CourseDAOImpl implements GeneralDAO<CourseDto>{
     private EntityManager entityManager;
 
 
+    @Autowired
     private CourseMapper courseMapper;
 
     @Override
@@ -52,6 +53,16 @@ public class CourseDAOImpl implements GeneralDAO<CourseDto>{
         Course course = entityManager.find(Course.class, id);
         if (course != null) {
             entityManager.remove(course);
+        }
+    }
+
+    public void deleteCourseStudent(Long id) {
+        List<CourseDto> courses = getTableList();
+        for (CourseDto course : courses) {
+            if(course.student().getUser().getId().equals(id)) {
+                System.out.println(course.student().getUser().getName()+" "+course.id());
+                delete((long) course.id());
+            }
         }
     }
 }

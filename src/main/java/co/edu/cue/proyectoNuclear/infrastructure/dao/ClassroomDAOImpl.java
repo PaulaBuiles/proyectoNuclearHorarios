@@ -9,6 +9,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class ClassroomDAOImpl implements GeneralDAO<ClassroomDto>{
     @PersistenceContext
     EntityManager entityManager;
 
+    @Autowired
     private ClassroomMapper classMap;
 
     @Override

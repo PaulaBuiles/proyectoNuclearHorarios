@@ -22,9 +22,18 @@ public class AdministrativeServiceImpl implements AdministrativeService {
 
     @Autowired
     private TeacherDAOImpl teacherDAO;
+    @Autowired
+    private HistoryTeacherDAOImpl historyTeacherDAO;
+    @Autowired
+    private HistoryStudentDAOImpl historyStudentDAO;
+    @Autowired
+    private SubjectDAOImpl subjectDAO;
 
     @Autowired
     private StudentDAOImpl studentDAO;
+
+    @Autowired
+    private ScheduleDAOImpl scheduleDAO;
 
 
     @Autowired
@@ -36,11 +45,25 @@ public class AdministrativeServiceImpl implements AdministrativeService {
 
     @Override
     public void deleteTeacherById(Long id) {
-        teacherDAO.delete(id);
+        historyTeacherDAO.deleteTeacher(id);
+        subjectDAO.deleteTeacher(id);
+        teacherDAO.deleteById(id);
+        userGeneralDAO.delete(id);
+
     }
 
     @Override
-    public void deleteStudentById(Long id) { studentDAO.delete(id); }
+    public void deleteStudentById(Long id) {
+        System.out.println(1);
+        historyStudentDAO.deleteStudent(id);
+        System.out.println(2);
+        courseDAO.deleteCourseStudent(id);
+        System.out.println(3);
+        studentDAO.deleteById(id);
+        System.out.println(4);
+        userGeneralDAO.delete(id);
+        System.out.println(5);
+    }
 
 
     @Override
@@ -76,5 +99,6 @@ public class AdministrativeServiceImpl implements AdministrativeService {
     public List<UserDto> getUsers(){
         return userGeneralDAO.getTableList();
     }
+
 
 }

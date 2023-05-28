@@ -7,8 +7,7 @@ import co.edu.cue.proyectoNuclear.domain.entities.User;
 
 import java.util.List;
 
-public record TeacherDto(Availability availability,
-                         User user,
-                         List<HistoryTeacher> historyTeachers,
-                         List<Subject> subjects) {
+public record TeacherDto(Long id,
+                         Availability availability,
+                         User user) {
 }

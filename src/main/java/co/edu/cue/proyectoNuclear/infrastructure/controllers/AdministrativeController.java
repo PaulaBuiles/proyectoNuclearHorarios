@@ -39,6 +39,11 @@ public class AdministrativeController {
         administrativeService.deleteTeacherById(id);
     }
 
+    @GetMapping("/students/{id}")
+    public void deleteStudentById(@PathVariable Long id) {
+        administrativeService.deleteStudentById(id);
+    }
+
     /*@PostMapping
     public ResponseEntity<Course> createCourse(@RequestBody Course course) {
         Course createdCourse = administrativeService.createCourse(course);

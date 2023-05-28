@@ -8,11 +8,9 @@ import co.edu.cue.proyectoNuclear.domain.enums.Semester;
 
 import java.util.List;
 
-public record StudentDto(User user,
-                         String id,
+public record StudentDto(Long id,
+                         User user,
                          String career,
-                         Semester semester,
-                         List<HistoryStudent> historyStudents,
-                         Course course
+                         Semester semester
                          ) {
 }

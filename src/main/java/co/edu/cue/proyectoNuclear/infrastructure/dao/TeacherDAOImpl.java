@@ -9,6 +9,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,7 +20,8 @@ public class TeacherDAOImpl implements GeneralDAO<TeacherDto> {
 
     @PersistenceContext
     EntityManager entityManager;
-    TeacherMapper teacherMap;
+    @Autowired
+    private TeacherMapper teacherMap;
 
     @Override
     public List<TeacherDto> getTableList(){
@@ -47,6 +49,15 @@ public class TeacherDAOImpl implements GeneralDAO<TeacherDto> {
         Teacher teacher = entityManager.find(Teacher.class, id);
         if (teacher != null) {
             entityManager.remove(teacher);
+        }
+    }
+
+    public void deleteById(Long id) {
+        List<TeacherDto> teacherDtoList = getTableList();
+        for (TeacherDto teacherDto : teacherDtoList) {
+            if (teacherDto.user().getId().equals(id)) {
+                delete(teacherDto.id());
+            }
         }
     }
 }
