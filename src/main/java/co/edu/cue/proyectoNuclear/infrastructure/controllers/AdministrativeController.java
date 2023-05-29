@@ -21,14 +21,15 @@ import java.util.List;
 @AllArgsConstructor
 @Controller
 public class AdministrativeController {
+
+    @Autowired
     private final AdministrativeService administrativeService;
 
-    private final UserService userService;
 
     @GetMapping("/users-table")
     public ModelAndView post(){
         //Esta lista se llena desde la base de datos
-        List<UserDto> userList = administrativeService.getUsers();
+       // List<UserDto> userList = administrativeService
         ModelAndView modelAndView = new ModelAndView(Pages.ADMINTABLE);
         //modelAndView.addObject("users",userList);
         return modelAndView;

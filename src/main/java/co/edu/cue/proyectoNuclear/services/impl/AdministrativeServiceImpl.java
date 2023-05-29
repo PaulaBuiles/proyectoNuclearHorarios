@@ -10,6 +10,9 @@ import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.TeacherDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
 import co.edu.cue.proyectoNuclear.services.AdministrativeService;
+import co.edu.cue.proyectoNuclear.services.StudentService;
+import co.edu.cue.proyectoNuclear.services.TeacherService;
+import co.edu.cue.proyectoNuclear.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +43,21 @@ public class AdministrativeServiceImpl implements AdministrativeService {
 
     @Autowired
     public UserDAOImpl userGeneralDAO;
+
+    private TeacherService teacherService;
+
+    private StudentService studentService;
+
+    private UserService userService;
+
+    @Autowired
+    public AdministrativeServiceImpl(TeacherService teacherService,
+                                     StudentService studentService,
+                                     UserService userService) {
+        this.teacherService = teacherService;
+        this.studentService = studentService;
+        this.userService = userService;
+    }
 
 
 
