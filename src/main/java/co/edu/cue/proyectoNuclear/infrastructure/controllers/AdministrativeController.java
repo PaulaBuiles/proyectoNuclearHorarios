@@ -30,18 +30,18 @@ public class AdministrativeController {
         //Esta lista se llena desde la base de datos
         List<UserDto> userList = administrativeService.getUsers();
         ModelAndView modelAndView = new ModelAndView(Pages.ADMINTABLE);
-        modelAndView.addObject("users",userList);
+        //modelAndView.addObject("users",userList);
         return modelAndView;
     }
 
     @GetMapping("/teachers/{id}")
     public void deleteTeacherById(@PathVariable Long id) {
-        administrativeService.deleteTeacherById(id);
+        //administrativeService.deleteTeacherById(id);
     }
 
     @GetMapping("/students/{id}")
     public void deleteStudentById(@PathVariable Long id) {
-        administrativeService.deleteStudentById(id);
+        //administrativeService.deleteStudentById(id);
     }
 
     /*@PostMapping

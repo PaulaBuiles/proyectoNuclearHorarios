@@ -35,7 +35,6 @@ public class AdministrativeServiceImpl implements AdministrativeService {
     @Autowired
     private ScheduleDAOImpl scheduleDAO;
 
-
     @Autowired
     private CourseDAOImpl courseDAO;
 
@@ -43,62 +42,16 @@ public class AdministrativeServiceImpl implements AdministrativeService {
     public UserDAOImpl userGeneralDAO;
 
 
-    @Override
-    public void deleteTeacherById(Long id) {
-        historyTeacherDAO.deleteTeacher(id);
-        subjectDAO.deleteTeacher(id);
-        teacherDAO.deleteById(id);
-        userGeneralDAO.delete(id);
 
-    }
+    //Funciones de los horarios
 
-    @Override
-    public void deleteStudentById(Long id) {
-        System.out.println(1);
-        historyStudentDAO.deleteStudent(id);
-        System.out.println(2);
-        courseDAO.deleteCourseStudent(id);
-        System.out.println(3);
-        studentDAO.deleteById(id);
-        System.out.println(4);
-        userGeneralDAO.delete(id);
-        System.out.println(5);
-    }
+    //Funciones de los cursos
 
+    //Funciones de los elementos
 
-    @Override
-    public void createStudent(UserDto user, StudentDto student) {
-        //student.setUser(user);
-        studentDAO.save(student);
-    }
+    //Funciones de la disponibilidad
 
-    @Override
-    public void editTeacher(UserDto user, TeacherDto teacher) {
-        teacherDAO.update(teacher);
-    }
-
-    @Override
-    public void createTeacher(UserDto user, TeacherDto teacher) {
-
-    }
-
-    @Override
-    public void editStudent(UserDto user, StudentDto student) {
-        studentDAO.update(student);
-    }
-
-    //Courses
-    /*@Override
-    public Course createCourse(Course course) {
-        return
-                courseDAO.save(course);
-    }*/
-
-    //User
-    @Override
-    public List<UserDto> getUsers(){
-        return userGeneralDAO.getTableList();
-    }
+    //Funciones de las caracteristicas
 
 
 }

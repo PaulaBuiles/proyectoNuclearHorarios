@@ -1,6 +1,7 @@
 package co.edu.cue.proyectoNuclear.infrastructure.controllers;
 
 import co.edu.cue.proyectoNuclear.domain.configuration.Pages;
+import co.edu.cue.proyectoNuclear.mapping.dtos.UserLoginDto;
 import co.edu.cue.proyectoNuclear.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -16,16 +17,23 @@ public class LoginController {
     private final UserService userService;
 
 
-    @GetMapping("/")
+    @PostMapping("/")
     public ModelAndView post(){
         ModelAndView modelAndView = new ModelAndView(Pages.LOGIN);
         return modelAndView;
     }
+
     @GetMapping("/start-login")
-    public ModelAndView getData(@RequestParam("identification") String id, @RequestParam("password") String password ) {
+    public String mostrarFormularioLogin(Model model) {
+        model.addAttribute("userLoginDto", new UserLoginDto());
+        return "start-login";
+    }
+
+    @PostMapping("/start-login")
+    public ModelAndView getData(@ModelAttribute("userLoginDto") UserLoginDto userLoginDto) {
         ModelAndView modelAndView = null;
         String rol = null;
-        if(userService.validateUser(Long.valueOf(id),password)) {
+        if(userService.validateUser(userLoginDto.identification(),userLoginDto.password())) {
             switch (userService.getUser().role()) {
                 case "Estudiante" -> {
                     modelAndView = new ModelAndView(Pages.STUDENTHOME);
