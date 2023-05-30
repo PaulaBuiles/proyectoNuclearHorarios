@@ -45,12 +45,32 @@ public class UserServiceImpl implements UserService {
     }
 
     public List<UserDto> getUsers(){
-        return userGeneralDAO.getTableList();
+        List<UserDto> userDtoList = new ArrayList<>();
+        for (UserDto userDto:userGeneralDAO.getTableList()) {
+            if (userDto.id() == 0){
+                System.out.println("Null");
+            }else {
+                userDtoList.add(userDto);
+            }
+        }
+        return userDtoList;
     }
 
 
     public UserDto getUser() {
         return user1;
+    }
+
+    public List<UserDto> filterUsersByRole(String role){
+        System.out.println("entre");
+        List<UserDto> userDtoList = new ArrayList<>();
+        for (UserDto userDto:userGeneralDAO.getTableList()) {
+            if (userDto.role().equals(role)){
+                userDtoList.add(userDto);
+                System.out.println("añadido");
+            }
+        }
+        return userDtoList;
     }
 
 }
