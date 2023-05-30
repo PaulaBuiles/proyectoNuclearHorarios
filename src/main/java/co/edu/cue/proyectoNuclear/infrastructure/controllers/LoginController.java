@@ -1,7 +1,9 @@
 package co.edu.cue.proyectoNuclear.infrastructure.controllers;
 
 import co.edu.cue.proyectoNuclear.domain.configuration.Pages;
+import co.edu.cue.proyectoNuclear.domain.entities.User;
 import co.edu.cue.proyectoNuclear.mapping.dtos.UserLoginDto;
+import co.edu.cue.proyectoNuclear.mapping.mappers.UserMapper;
 import co.edu.cue.proyectoNuclear.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -9,32 +11,30 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-@RestController
+//@RestController
 @RequestMapping("/login")
 @AllArgsConstructor
 @Controller
 public class LoginController {
 
     private final UserService userService;
+    private final UserMapper userMapper;
 
 
-    @PostMapping("/")
+    @GetMapping("/")
     public ModelAndView post(){
         ModelAndView modelAndView = new ModelAndView(Pages.LOGIN);
+        modelAndView.addObject("userLoginDto",new UserLoginDto(2L,"1"));
         return modelAndView;
     }
 
-    @GetMapping("/start-login")
-    public String mostrarFormularioLogin(Model model) {
-        model.addAttribute("userLoginDto", new UserLoginDto());
-        return "start-login";
-    }
-
     @PostMapping("/start-login")
-    public ModelAndView getData(@ModelAttribute("userLoginDto") UserLoginDto userLoginDto) {
+    public ModelAndView getData(@RequestParam("identification") Long identification, @RequestParam("password") String password) {
+        UserLoginDto userLoginDto = new UserLoginDto(identification,password);
+        System.out.println(userLoginDto.identification() + "    " + userLoginDto.password());
         ModelAndView modelAndView = null;
         String rol = null;
-        if(userService.validateUser(userLoginDto.identification(),userLoginDto.password())) {
+        if(userService.validateUser(identification,password)) {
             switch (userService.getUser().role()) {
                 case "Estudiante" -> {
                     modelAndView = new ModelAndView(Pages.STUDENTHOME);

@@ -57,11 +57,11 @@
             <form th:action="@{/login/start-login}" th:object="${userLoginDto}" method="post" class="border p-3 form">
                 <div class="mb-3">
                     <label for="identification" class="form-label" style="font-family: 'Nunito', sans-serif;">Identificación</label>
-                    <input th:field="*{identification}" type="text" class="form-control" id="identification" name="identification">
+                    <input type="number" class="form-control" id="identification" name="identification" th:field="*{identification}">
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label" style="font-family: 'Nunito', sans-serif;">Contraseña</label>
-                    <input th:field="*{password}" type="password" class="form-control" id="password" name="password">
+                    <input type="password" class="form-control" id="password" name="password" th:field="*{password}">
                 </div>
                 <button type="submit" value="Enviar" class="btn btn-primary">Login</button>
             </form>

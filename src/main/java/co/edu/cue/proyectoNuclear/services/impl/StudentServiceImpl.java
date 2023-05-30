@@ -1,11 +1,13 @@
 package co.edu.cue.proyectoNuclear.services.impl;
 
 import co.edu.cue.proyectoNuclear.domain.entities.Student;
-import co.edu.cue.proyectoNuclear.domain.entities.Subject;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.*;
+import co.edu.cue.proyectoNuclear.mapping.dtos.HistoryStudentDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.SubjectDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
+import co.edu.cue.proyectoNuclear.mapping.mappers.StudentMapper;
+import co.edu.cue.proyectoNuclear.mapping.mappers.SubjectMapper;
 import co.edu.cue.proyectoNuclear.services.StudentService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,9 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private final UserDAOImpl userGeneralDAO;
 
+    private StudentMapper studentMapper;
+
+    private SubjectMapper subjectMapper;
     /*@Autowired
     private List<Student> studentList= new ArrayList<>();*/
 
@@ -42,15 +47,24 @@ public class StudentServiceImpl implements StudentService {
         return students;
     }
 
+    //Asignar materia a un estudiante
     @Override
-    public Boolean addSubject(){
+    public void addSubject(Long subjectId, Long studentId){
+        // Obtener las instancias de Subject y Student correspondientes a los IDs
+        SubjectDto subjectDto = subjectDAO.findById(subjectId);
+        StudentDto studentDto = studentDAO.findById(studentId);
 
-        return null;
+        // Crear una nueva instancia de NombreEntidad y establecer los valores
+        HistoryStudentDto historyStudentDto = new HistoryStudentDto(null,
+                studentMapper.mapToEntity(studentDto),
+                subjectMapper.mapToEntity(subjectDto));
+
+        System.out.println(historyStudentDto.student().getUser().getName());
+        System.out.println(historyStudentDto.subject().getName());
+        // Guardar la nueva fila en la tabla
+        //historyStudentDAO.save(historyStudentDto);
+
     }
-
-
-
-
 
     public void studentToSubject(Long studentId, Long subjectId) {
         StudentDto student = studentDAO.findById(studentId);

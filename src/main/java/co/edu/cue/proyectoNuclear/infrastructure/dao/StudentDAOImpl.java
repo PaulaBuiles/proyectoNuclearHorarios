@@ -21,8 +21,12 @@ public class StudentDAOImpl implements GeneralDAO<StudentDto>{
     private EntityManager entityManager;
 
 
+    private final StudentMapper studentMapper;
+
     @Autowired
-    private StudentMapper studentMapper;
+    public StudentDAOImpl(StudentMapper studentMapper) {
+        this.studentMapper = studentMapper;
+    }
 
     @Override
     public List<StudentDto> getTableList() {

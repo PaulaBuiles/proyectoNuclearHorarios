@@ -8,6 +8,8 @@ import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.AdministrativeMapper;
 import co.edu.cue.proyectoNuclear.mapping.mappers.TeacherMapper;
 import co.edu.cue.proyectoNuclear.mapping.mappers.UserMapper;
+import co.edu.cue.proyectoNuclear.services.StudentService;
+import co.edu.cue.proyectoNuclear.services.impl.StudentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -51,16 +53,16 @@ public class ProyectoNuclearApplication implements CommandLineRunner {
 	}
 
 	@Autowired
-	private AdministrativeMapper administrativeMapper;
-
-	@Autowired
-	private UserMapper userMapper;
+	public StudentService studentService;
 
 	@Autowired
 	public UserDAOImpl userDAO;
 
 	@Override
 	public void run(String... args) throws Exception {
+
+		studentService.addSubject(2L,1L);
+
 		/*Administrative administrative = new Administrative(new User(56L, "Samuel", "sberrio@gmail.com", "123", "Administrativo"), "Holaaaaa");
 		AdministrativeDto adminDto = administrativeMapper.mapAdministrative(administrative);
 		System.out.println(adminDto.user().getName());
