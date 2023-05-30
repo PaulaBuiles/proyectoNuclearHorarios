@@ -59,8 +59,8 @@ public class StudentServiceImpl implements StudentService {
                 studentMapper.mapToEntity(studentDto),
                 subjectMapper.mapToEntity(subjectDto));
 
-        System.out.println(historyStudentDto.student().getUser().getName());
-        System.out.println(historyStudentDto.subject().getName());
+        //System.out.println(historyStudentDto.student().getUser().getName());
+        //System.out.println(historyStudentDto.subject().getName());
         // Guardar la nueva fila en la tabla
         //historyStudentDAO.save(historyStudentDto);
 

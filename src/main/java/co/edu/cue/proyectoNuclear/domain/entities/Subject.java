@@ -31,4 +31,5 @@ public class Subject{
     private int credit;
 
 
+
 }

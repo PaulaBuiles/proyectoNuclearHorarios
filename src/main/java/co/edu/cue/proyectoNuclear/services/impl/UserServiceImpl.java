@@ -34,7 +34,6 @@ public class UserServiceImpl implements UserService {
         List<UserDto> userList = userGeneralDAO.getTableList();
         Boolean band = false;
         for (UserDto user: userList) {
-            System.out.println(user.id());
             if (id.equals(user.id()) && password.equals(user.password())) {
                 band = true;
                 user1 = user;

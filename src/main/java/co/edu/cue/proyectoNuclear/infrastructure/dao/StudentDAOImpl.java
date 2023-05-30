@@ -20,8 +20,8 @@ public class StudentDAOImpl implements GeneralDAO<StudentDto>{
     @PersistenceContext
     private EntityManager entityManager;
 
-
-    private final StudentMapper studentMapper;
+    @Autowired
+    private StudentMapper studentMapper;
 
     @Autowired
     public StudentDAOImpl(StudentMapper studentMapper) {

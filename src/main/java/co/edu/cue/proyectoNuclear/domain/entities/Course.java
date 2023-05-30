@@ -18,10 +18,12 @@ public class Course {
     private int id;
 
     @ManyToOne
-    @JoinColumn (name ="id_subject")
+    @JoinColumn(name="id_subject")
     private Subject subject;
 
     @ManyToOne
     @JoinColumn(name="id_student")
     private Student student;
+
+
 }
