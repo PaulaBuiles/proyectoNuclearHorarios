@@ -58,9 +58,12 @@
 
 <div class="container mt-5">
   <h1>Tabla de Usuarios</h1>
+  <br>
+  <h3 th:text="${role}">Todos</h3>
   <form method="POST" action="/administrative-tools/users-table-filter">
     <label for="user-filter">Filtrar por:</label>
     <select id="user-filter" name="filter">
+      <option value="Todos">Todos</option>
       <option value="Estudiante">Estudiante</option>
       <option value="Profesor">Profesor</option>
       <option value="Administrativo">Administrativo</option>

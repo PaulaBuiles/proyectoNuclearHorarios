@@ -65,7 +65,9 @@ public class UserServiceImpl implements UserService {
         System.out.println("entre");
         List<UserDto> userDtoList = new ArrayList<>();
         for (UserDto userDto:userGeneralDAO.getTableList()) {
-            if (userDto.role().equals(role)){
+            if (role.equals("Todos") && userDto.id() != 0){
+                userDtoList.add(userDto);
+            } else if (userDto.role().equals(role)){
                 userDtoList.add(userDto);
                 System.out.println("añadido");
             }

@@ -30,6 +30,7 @@ public class AdministrativeController {
         List<UserDto> userDtoList = userService.getUsers();
         ModelAndView modelAndView = new ModelAndView(Pages.ADMINTABLEUSERS);
         modelAndView.addObject("users",userDtoList);
+        modelAndView.addObject("role","Todos");
         return modelAndView;
     }
 
@@ -39,6 +40,7 @@ public class AdministrativeController {
         List<UserDto> userDtoList = userService.filterUsersByRole(role);
         ModelAndView modelAndView = new ModelAndView(Pages.ADMINTABLEUSERS);
         modelAndView.addObject("users",userDtoList);
+        modelAndView.addObject("role",role);
         return modelAndView;
     }
     @GetMapping("/teachers/{id}")
