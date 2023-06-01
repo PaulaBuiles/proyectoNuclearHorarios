@@ -17,13 +17,9 @@ public class TeacherServiceImpl implements TeacherService {
     @Autowired
     private final SubjectDAOImpl subjectDAO;
     @Autowired
-    private final CourseDAOImpl courseDAO;
-    @Autowired
     private final UserDAOImpl userGeneralDAO;
     @Autowired
     private TeacherDAOImpl teacherDAO;
-    @Autowired
-    private HistoryTeacherDAOImpl historyTeacherDAO;
     /*@Autowired
     private final*/
 
@@ -43,7 +39,6 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     public void deleteTeacherById(Long id) {
-        historyTeacherDAO.deleteTeacher(id);
         subjectDAO.deleteTeacher(id);
         teacherDAO.deleteById(id);
         userGeneralDAO.delete(id);

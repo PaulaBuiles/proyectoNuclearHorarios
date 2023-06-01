@@ -10,6 +10,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 import org.hibernate.service.spi.InjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -18,21 +19,15 @@ import java.util.List;
 
 @Repository
 @Transactional
+@AllArgsConstructor
 public class SubjectDAOImpl implements GeneralDAO<SubjectDto>{
 
     @PersistenceContext
     private EntityManager entityManager;
 
-
-    @Autowired
     private SubjectMapper subjectMapper;
-
-    @Autowired
     private TeacherMapper teacherMapper;
-
-    @Autowired
     private TeacherDAOImpl teacherDAO;
-
 
     @Override
     public List<SubjectDto> getTableList() {
@@ -70,7 +65,7 @@ public class SubjectDAOImpl implements GeneralDAO<SubjectDto>{
     public void deleteTeacher(Long id) {
         List<SubjectDto> subjectDtoList = getTableList();
         for (SubjectDto subject : subjectDtoList) {
-            if (subject.teacher().getUser().getId().equals(id)){
+            if (subject.teacher().getId().equals(id)){
                 Subject subject1 = subjectMapper.mapToEntity(subject);
                 subject1.setTeacher(teacherMapper.mapToEntity(teacherDAO.findById(0L)));
                 update(subjectMapper.mapSubject(subject1));

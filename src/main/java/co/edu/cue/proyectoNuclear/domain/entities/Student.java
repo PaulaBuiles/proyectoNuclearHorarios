@@ -13,20 +13,16 @@ import lombok.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "student")
-public class Student {
-
-    @Id
-    @Column(name = "id", nullable = false)
-    private Long id;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="id_user")
-    private User user;
-
+//@PrimaryKeyJoinColumn(referencedColumnName = "id_user")
+public class Student extends User{
     @Column(name = "career", nullable = false)
     private String career;
 
     @Column(name = "semester", nullable = false)
     private Semester semester;
+
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinTable(name = "course", joinColumns = @JoinColumn(name = "id_student",referencedColumnName = "id"))
+    private List<Subject> cursos;
 
 }

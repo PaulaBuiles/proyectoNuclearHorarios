@@ -23,15 +23,7 @@ public class StudentServiceImpl implements StudentService {
     private final StudentDAOImpl studentDAO;
     @Autowired
     private final SubjectDAOImpl subjectDAO;
-    @Autowired
-    private final HistoryStudentDAOImpl historyStudentDAO;
-    @Autowired
-    private final CourseDAOImpl courseDAO;
-    @Autowired
-    private final UserDAOImpl userGeneralDAO;
-
     private StudentMapper studentMapper;
-
     private SubjectMapper subjectMapper;
     /*@Autowired
     private List<Student> studentList= new ArrayList<>();*/
@@ -42,8 +34,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<Student> generateStudent() {
-        List<Student> students = new ArrayList<Student>();
+    public List<StudentDto> generateStudent() {
+        List<StudentDto> students = new ArrayList<>();
         return students;
     }
 
@@ -79,21 +71,19 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void deleteStudentById(Long id) {
-        historyStudentDAO.deleteStudent(id);
-        courseDAO.deleteCourseStudent(id);
         studentDAO.deleteById(id);
-        userGeneralDAO.delete(id);
+    //    userGeneralDAO.delete(id);
     }
 
     @Override
     public void createStudent(UserDto user, StudentDto student) {
-        userGeneralDAO.save(user);
+     //   userGeneralDAO.save(user);
         studentDAO.save(student);
     }
 
     @Override
     public void editStudent(UserDto user, StudentDto student) {
-        userGeneralDAO.update(user);
+      //  userGeneralDAO.update(user);
         studentDAO.update(student);
     }
 }

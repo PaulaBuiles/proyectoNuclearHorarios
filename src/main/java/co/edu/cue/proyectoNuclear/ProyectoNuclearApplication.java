@@ -32,13 +32,7 @@ public class ProyectoNuclearApplication implements CommandLineRunner {
 	@Autowired
 	public ScheduleDAOImpl scheduleDAO;
 	@Autowired
-	public HistoryTeacherDAOImpl historyTeacherDAO;
-	@Autowired
-	public HistoryStudentDAOImpl historyStudentDAO;
-	@Autowired
 	public ElementDAOImpl elementDAO;
-	@Autowired
-	public CourseDAOImpl courseDAO;
 	@Autowired
 	public ClassroomDAOImpl classroomDAO;
 	@Autowired

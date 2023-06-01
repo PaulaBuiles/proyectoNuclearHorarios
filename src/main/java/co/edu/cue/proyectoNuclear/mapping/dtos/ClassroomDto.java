@@ -10,5 +10,5 @@ public record ClassroomDto(String id,
                            String number,
                            Integer capacity,
                            String location,
-                           Availability availability) {
+                           List<Availability> availability) {
 }

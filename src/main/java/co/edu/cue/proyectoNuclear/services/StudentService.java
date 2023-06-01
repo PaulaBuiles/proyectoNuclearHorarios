@@ -12,7 +12,7 @@ public interface StudentService {
 
     Student getStudent();
 
-    List<Student > generateStudent();
+    List<StudentDto> generateStudent();
 
     void addSubject(Long subjectId, Long studentId);
 

@@ -30,5 +30,8 @@ public class Availability{
     @Column(name="end", nullable=false)
     private Time end;
 
+    @ManyToOne
+    private Teacher teacher;
+
 
 }

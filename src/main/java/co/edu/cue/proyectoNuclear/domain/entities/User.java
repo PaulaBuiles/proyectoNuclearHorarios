@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 @Builder
 @Entity
 @Table(name = "user")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User {
     @Id
     @Column(name = "id", nullable = false)

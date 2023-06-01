@@ -30,6 +30,9 @@ public class Subject{
     @Column(name="credit", nullable=false)
     private int credit;
 
+    @ManyToMany(mappedBy = "course")
+    @JoinTable(name = "course", joinColumns = @JoinColumn(name = "id_subject",referencedColumnName = "id"))
+    private List<Student> students;
 
 
 }
