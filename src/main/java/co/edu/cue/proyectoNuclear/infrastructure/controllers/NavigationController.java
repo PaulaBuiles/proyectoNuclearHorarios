@@ -19,7 +19,7 @@ public class NavigationController {
     }
     @GetMapping("/info")
     public ModelAndView info(){
-        ModelAndView modelAndView = new ModelAndView(Pages.STUDENTHOME);
+        ModelAndView modelAndView = new ModelAndView(Pages.STUDENTINFORMATION);
         return modelAndView;
     }
     @GetMapping("/schedule")
