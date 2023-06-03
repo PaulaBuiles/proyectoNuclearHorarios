@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="../../bootstrap_theme/bootstrap.css" rel="stylesheet" type="text/css">
+    <script th:src="@{/js/jquery.js}" src="/static/js/jquery.js"></script>
+    <script th:src="@{/js/bootstrap.js}" src="/static/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <title>Login Gestión de Horarios</title>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap'); @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap'); nav { background-color: #0C0096; padding: 10px; height: 50px; } .btn-transparent { background-color: transparent; border: none; color: #ffffff;  /* Color del texto */ padding: 0;  /* Opcional: ajusta el espaciado del botón */ } .logo { position: relative; top: 30px; } .menu-container { display: flex; justify-content: center; } .menu-button { flex: 1; }</style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster+Two&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg justify-content-start ">
+    <div class="container-fluid justify-content-start">
+        <img src="/img/logoAVH.png" alt="Logo" width="111" height="111" class="logo">
+        <div class="navbar-nav ml-3" style="color: white; font-family: 'Lobster Two', cursive;"> <a class="navbar-brand"><p></p></a> <a class="navbar-brand"> <form th:action="@{/navigation/home}" class="btn btn-transparent">
+            <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">               Inicio               </button>
+        </form> <a class="navbar-brand"><p></p></a> </a> <a class="navbar-brand"> <form th:action="@{/navigation/info}" class="btn btn-transparent">
+            <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">        Información general         </button>
+        </form> </a> <a class="navbar-brand"><p></p></a> <a class="navbar-brand"> <form th:action="@{/navigation/schedule}" class="btn btn-transparent">
+            <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">               Horario               </button>
+        </form> </a>
+        </div>
+    </div>
+</nav>
+<br><br>
+<div class="container mt-5">
+    <h1 style="font-family: 'Lobster Two', cursive; text-align: center;">Crear salones</h1><br>
+    <div class="container mt-5">
+        <form th:action="@{/administrative-tools/classroom}" method="post" class="border p-3 form">
+            <div class="mb-3">
+                <label for="number" class="form-label" style="font-family: 'Lobster Two', cursive; font-size: 23px;">Número del salón</label>
+                <input type="text" class="form-control" id="number" name="number">
+            </div>
+            <div class="mb-3">
+                <label for="capacity" class="form-label" style="font-family: 'Lobster Two', cursive; font-size: 23px;">Capacidad</label>
+                <input type="text" class="form-control" id="capacity" name="capacity">
+            </div>
+            <div class="mb-3">
+                <label for="location" class="form-label" style="font-family: 'Lobster Two', cursive; font-size: 23px;">Ubicación</label>
+                <br>
+                <select class="form-select" aria-label="Default select example" id="location" name="location">
+                    <option selected>Selecciona la ubicación</option>
+                    <option value="Nogal">Nogal</option>
+                    <option value="Principal">Principal</option>
+                    <option value="Campina">Campiña</option>
+                    <option value="Alcazar">Alcazar</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="availability" class="form-label" style="font-family: 'Lobster Two', cursive; font-size: 23px;">Disponibilidad</label>
+                <input type="text" class="form-control" id="availability" name="availability">
+            </div>
+            <button type="submit" value="Enviar" class="btn btn-primary"  style="background-color: #0c0096; alignment:center;font-family: 'Lobster Two', cursive;">Guardar</button>
+        </form>
+    </div>
+</div>
+<br>
+<br>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>

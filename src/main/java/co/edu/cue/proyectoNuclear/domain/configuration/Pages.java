@@ -9,4 +9,9 @@ public class Pages {
     public static String ADMINREGISTERUSERS ="administrative/administrativeRegisterUsers";
     public static String STUDENTINFORMATION="student/personalInformation";
     public static String CHANGES="student/change";
+    public static String CLASSROOM="administrative/adminRegisterClassroom";
+
+    public static String TEACHERHOME ="teacher/homeTeacher";
+    public static String TEACHERINFORMATION="teacher/teacherTable";
+    public static String TEACHEREDIT="teacher/teacherEdit";
 }

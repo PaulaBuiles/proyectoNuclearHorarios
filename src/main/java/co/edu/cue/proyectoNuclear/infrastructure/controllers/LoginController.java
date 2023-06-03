@@ -41,7 +41,7 @@ public class LoginController {
                     rol = "Student";
                 }
                 case "Profesor" -> {
-                    modelAndView = new ModelAndView(Pages.STUDENTHOME);
+                    modelAndView = new ModelAndView(Pages.TEACHERHOME);
                     rol = "Teacher";
                 }
                 case "Administrativo" -> {

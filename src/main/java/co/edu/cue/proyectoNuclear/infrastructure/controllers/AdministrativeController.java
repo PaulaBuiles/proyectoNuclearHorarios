@@ -1,12 +1,17 @@
 package co.edu.cue.proyectoNuclear.infrastructure.controllers;
 
 import co.edu.cue.proyectoNuclear.domain.configuration.Pages;
+import co.edu.cue.proyectoNuclear.domain.entities.Classroom;
+import co.edu.cue.proyectoNuclear.infrastructure.dao.ClassroomDAOImpl;
 import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
+import co.edu.cue.proyectoNuclear.mapping.mappers.ClassroomMapper;
 import co.edu.cue.proyectoNuclear.services.AdministrativeService;
+import co.edu.cue.proyectoNuclear.services.ClassroomService;
 import co.edu.cue.proyectoNuclear.services.CourseService;
 import co.edu.cue.proyectoNuclear.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,6 +31,15 @@ public class AdministrativeController {
 
     @Autowired
     private final CourseService courseService;
+
+    @Autowired
+    private final ClassroomService classroomService;
+
+    @Autowired
+    private final ClassroomMapper classroomMapper;
+
+    @Autowired
+    private final ClassroomDAOImpl classroomDAO;
 
 
     @GetMapping("/users-table")
@@ -64,6 +78,24 @@ public class AdministrativeController {
     @GetMapping("/courses/{idStudent}/subjects/{idSubject}")
     public void addCourse(@PathVariable Long idStudent,@PathVariable Long idSubject ) {
         courseService.studentToSubject(idStudent,idSubject);
+    }
+
+    @GetMapping("/edit")
+    public ModelAndView edit(){
+        ModelAndView modelAndView = new ModelAndView(Pages.CLASSROOM);
+        return modelAndView;
+    }
+
+    @PostMapping("/classroom")
+    public ResponseEntity<String> changes(@RequestParam("number") String number, @RequestParam("capacity") String capacity, @RequestParam("location") String location, @RequestParam("availability") String availability){
+        Classroom classroom = classroomMapper.mapToEntity(classroomService.getClassroomDto());
+        classroom.setNumber(number);
+        classroom.setCapacity(capacity);
+        classroom.setLocation(location);
+        classroom.setAvailability(null);
+        classroomDAO.save(classroomMapper.mapClassroom(classroom));
+        return ResponseEntity.ok("Classroom created successfully");
+
     }
 
    /* @GetMapping("/teachers/{teacherId}/subjects/{subjectId}")
