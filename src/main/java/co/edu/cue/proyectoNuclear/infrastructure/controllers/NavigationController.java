@@ -65,4 +65,10 @@ public class NavigationController {
         userDAO.update(userMapper.mapUser(user));
         return info();
     }
+
+    @GetMapping("/register")
+    public ModelAndView registerUsers(){
+        ModelAndView modelAndView = new ModelAndView(Pages.ADMINREGISTERUSERS);
+        return modelAndView;
+    }
 }

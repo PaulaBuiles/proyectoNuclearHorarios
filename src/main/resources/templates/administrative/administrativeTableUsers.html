@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link th:href="@{/css/bootstrap.css}" rel="stylesheet" href="../static/css/bootstrap.css">
-    <script  th:src="@{/js/jquery.js}" src="../static/js/jquery.js"></script>
+    <script th:src="@{/js/jquery.js}" src="../static/js/jquery.js"></script>
     <script th:src="@{/js/bootstrap.js}" src="../static/js/bootstrap.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap');
@@ -36,25 +36,57 @@
             <a class="navbar-brand"><p></p></a>
             <a class="navbar-brand">
                 <form th:action="@{/navigation/home}" class="btn btn-transparent">
-                    <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">               Inicio               </button>
+                    <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">Inicio</button>
                 </form>
                 <a class="navbar-brand"><p></p></a>
             </a>
             <a class="navbar-brand">
                 <form th:action="@{/navigation/info}" class="btn btn-transparent">
-                    <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">        Información general         </button>
+                    <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">Información general</button>
                 </form>
             </a>
             <a class="navbar-brand"><p></p></a>
             <a class="navbar-brand">
-                <form th:action="@{/navigation/schedule}" class="btn btn-transparent">
-                    <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">               Horario               </button>
+                <form th:action="@{/navigation/management}" class="btn btn-transparent">
+                    <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">Panel de Gestión</button>
                 </form>
             </a>
         </div>
     </div>
 </nav>
 <br><br>
+
+<!-- Botones adicionales -->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col text-center">
+            <h1>Opciones de Gestión</h1>
+        </div>
+    </div>
+    <div class="row mt-3 justify-content-center">
+        <div class="col-auto">
+            <form th:action="@{/navigation/register}">
+                <button type="submit" class="btn btn-primary">Registrar usuario</button>
+            </form>
+        </div>
+        <div class="col-auto">
+            <form th:action="@{/navigation/assign-subject}">
+                <button type="submit" class="btn btn-primary">Asignar materia</button>
+            </form>
+        </div>
+        <div class="col-auto">
+            <form th:action="@{/navigation/assign-classroom}">
+                <button type="submit" class="btn btn-primary">Asignar salones</button>
+            </form>
+        </div>
+        <div class="col-auto">
+            <form th:action="@{/administrative-tools/users-table}">
+                <button type="submit" class="btn btn-primary">Información de usuarios</button>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 <div class="container mt-5">
     <h1>Tabla de Usuarios</h1>
@@ -93,6 +125,5 @@
         </tbody>
     </table>
 </div>
-
 </body>
 </html>
