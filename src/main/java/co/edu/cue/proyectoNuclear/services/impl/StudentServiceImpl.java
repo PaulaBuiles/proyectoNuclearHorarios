@@ -42,8 +42,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<Student> generateStudent() {
-        List<Student> students = new ArrayList<Student>();
+    public List<StudentDto> generateStudent() {
+        List<StudentDto> students = studentDAO.getTableList();
         return students;
     }
 
@@ -95,5 +95,16 @@ public class StudentServiceImpl implements StudentService {
     public void editStudent(UserDto user, StudentDto student) {
         userGeneralDAO.update(user);
         studentDAO.update(student);
+    }
+
+    public StudentDto findUserStudent(UserDto user) {
+        List<StudentDto> studentDtoList = generateStudent();
+        StudentDto studentDto = null;
+        for (StudentDto student: studentDtoList) {
+            if (student.user().getId().equals(user.id())) {
+                studentDto = student;
+            }
+        }
+        return studentDto;
     }
 }

@@ -2,6 +2,7 @@ package co.edu.cue.proyectoNuclear.infrastructure.controllers;
 
 import co.edu.cue.proyectoNuclear.domain.configuration.Pages;
 import co.edu.cue.proyectoNuclear.domain.entities.Student;
+import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
 import co.edu.cue.proyectoNuclear.services.StudentService;
 import co.edu.cue.proyectoNuclear.services.impl.StudentServiceImpl;
 import lombok.AllArgsConstructor;
@@ -26,9 +27,10 @@ public class StudentController {
 
     @GetMapping("/student-information")
     public ModelAndView getInformation(){
-        List<Student> studentList = studentService.generateStudent();
+        List<StudentDto> studentList = studentService.generateStudent();
         ModelAndView modelAndView = new ModelAndView(Pages.STUDENTINFORMATION);
         modelAndView.addObject("students",studentList);
         return modelAndView;
     }
+
 }

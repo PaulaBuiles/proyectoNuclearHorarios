@@ -26,7 +26,7 @@
             </div>             
         </nav>
         <br><br> 
-        <div class="container mt-5" style="background-color= blue">
+        <div class="container mt-5">
             <h1 style="font-family: 'Lobster Two', cursive; text-align: center;">Información Personal</h1> 
             <div class="container mt-5"> 
                 <table class="table table-striped table-bordered table-hover" style="font-family: 'Nunito Sans', sans-serif; text-align: center;"> 
@@ -35,13 +35,13 @@
                             <th style="text-align: center; background-color: #0c0096; color: #ffffff;">Nombre completo</th> 
                             <th style="text-align: center; background-color: #0c0096; color: #ffffff;">Número de Identificación</th> 
                             <th style="text-align: center; background-color: #0c0096; color: #ffffff;">Correo Electrónico</th> 
-                            <th style="text-align: center; background-color: #0c0096; color: #ffffff;">Celular</th>
+                            <th style="text-align: center; background-color: #0c0096; color: #ffffff;">Rol</th>
                         </tr>                         
                         <tr> 
-                            <td>John</td> 
-                            <td>123456789</td> 
-                            <td>john.doe@example.com</td> 
-                            <td>1234567890</td> 
+                            <td th:Text="${userStudent.user.name}">John</td>
+                            <td th:Text="${userStudent.user.id}">123456789</td>
+                            <td th:Text="${userStudent.user.email}">john.doe@example.com</td>
+                            <td th:Text="${userStudent.user.role}">1234567890</td>
                         </tr>
                 </table>                 
             </div>
@@ -52,19 +52,23 @@
                             <th style="text-align: center; background-color: #0c0096; color: #ffffff;">Programa academico</th> 
                             <th style="text-align: center; background-color: #0c0096; color: #ffffff;">Semestre</th>
                         </tr>                         
-                        <tr> 
-                            <td>Ingenieria de software</td> 
-                            <td>3</td> 
+                        <tr>
+                            <td th:Text="${userStudent.career}">Ingenieria de software</td>
+                            <td th:Text="${userStudent.semester}">3</td>
                         </tr>
                 </table>
             </div>             
-            <div class="container mt-5"> 
-                <button class="btn btn-primary" style="font-family: 'Lobster Two', cursive; float: right; font-size: 18px; background-color: #0c0096; border-top-color: #000000; outline: none; outline-offset: -2px;">Realizar cambios</button>
+            <div class="container mt-5">
+                <form th:action="@{/navigation/edit}">
+                <button class="btn btn-primary" style="font-family: 'Lobster Two', cursive;
+                float: right; font-size: 18px; background-color: #0c0096; border-top-color: #000000;
+                outline: none; outline-offset: -2px;" type="submit">Realizar cambios</button>
+                </form>
             </div><br> 
         </div>
         <br>
-        <div class="container mt-5" style="background-color= blue">
-            <h1 style="font-family: 'Lobster Two', cursive; text-align: center;">Asignaturas cursadas</h1> 
+        <div class="container mt-5">
+            <h1 style="font-family: 'Lobster Two', cursive; text-align: center;">Asignaturas en curso</h1>
             <div class="container mt-5"> 
                 <table class="table table-striped table-bordered table-hover" style="font-family: 'Nunito Sans', sans-serif; text-align: center;"> 
                     <thead class="thead-dark">

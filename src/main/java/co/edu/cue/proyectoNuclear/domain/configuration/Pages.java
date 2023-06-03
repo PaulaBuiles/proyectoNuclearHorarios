@@ -6,4 +6,5 @@ public class Pages {
     public static String ADMINHOME = "administrative/homeAdmin";
     public static String ADMINTABLEUSERS ="administrative/administrativeTableUsers";
     public static String STUDENTINFORMATION="student/personalInformation";
+    public static String CHANGES="student/change";
 }

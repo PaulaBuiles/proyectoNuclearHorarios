@@ -44,7 +44,8 @@ public class UserDAOImpl implements GeneralDAO<UserDto> {
 
     @Override
     public void update(UserDto entity) {
-            entityManager.merge(entity);
+        User user = userMapper.mapToEntity(entity);
+            entityManager.merge(user);
 
     }
 

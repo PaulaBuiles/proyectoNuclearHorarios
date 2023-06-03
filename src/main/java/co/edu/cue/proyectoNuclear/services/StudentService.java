@@ -12,7 +12,8 @@ public interface StudentService {
 
     Student getStudent();
 
-    List<Student > generateStudent();
+    List<StudentDto> generateStudent();
+    StudentDto findUserStudent(UserDto user);
 
     void addSubject(Long subjectId, Long studentId);
 
