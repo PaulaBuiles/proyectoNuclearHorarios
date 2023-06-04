@@ -22,12 +22,7 @@ public class StudentDAOImpl implements GeneralDAO<StudentDto>{
     @PersistenceContext
     private EntityManager entityManager;
 
-    private StudentMapper studentMapper;
-
-    @Autowired
-    public StudentDAOImpl(StudentMapper studentMapper) {
-        this.studentMapper = studentMapper;
-    }
+    private final StudentMapper studentMapper ;
 
     @Override
     public List<StudentDto> getTableList() {
@@ -64,7 +59,7 @@ public class StudentDAOImpl implements GeneralDAO<StudentDto>{
     public void deleteById(Long id) {
         List<StudentDto> students = getTableList();
         for (StudentDto student: students) {
-            if (student.user().getId().equals(id)) {
+            if (student.id().equals(id)) {
                 delete(student.id());
             }
         }

@@ -3,7 +3,6 @@ package co.edu.cue.proyectoNuclear.infrastructure.controllers;
 import co.edu.cue.proyectoNuclear.domain.configuration.Pages;
 import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
 import co.edu.cue.proyectoNuclear.services.AdministrativeService;
-import co.edu.cue.proyectoNuclear.services.CourseService;
 import co.edu.cue.proyectoNuclear.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +22,6 @@ public class AdministrativeController {
     private final AdministrativeService administrativeService;
     @Autowired
     private final UserService userService;
-
-    @Autowired
-    private final CourseService courseService;
 
 
     @GetMapping("/users-table")
@@ -53,7 +49,6 @@ public class AdministrativeController {
     }
     @GetMapping("/courses")
     public void getCourses() {
-        courseService.getCourse();
     }
 
     @GetMapping("/students/{id}")
@@ -63,7 +58,6 @@ public class AdministrativeController {
 
     @GetMapping("/courses/{idStudent}/subjects/{idSubject}")
     public void addCourse(@PathVariable Long idStudent,@PathVariable Long idSubject ) {
-        courseService.studentToSubject(idStudent,idSubject);
     }
 
    /* @GetMapping("/teachers/{teacherId}/subjects/{subjectId}")

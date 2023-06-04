@@ -17,7 +17,6 @@ import lombok.experimental.SuperBuilder;
 @Table(name="teacher")
     //@PrimaryKeyJoinColumn(referencedColumnName = "id_user")
 public class Teacher extends User{
-
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="id_availability")
     private List<Availability> availability;

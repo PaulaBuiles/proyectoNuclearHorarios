@@ -55,7 +55,7 @@ public class TeacherDAOImpl implements GeneralDAO<TeacherDto> {
     public void deleteById(Long id) {
         List<TeacherDto> teacherDtoList = getTableList();
         for (TeacherDto teacherDto : teacherDtoList) {
-            if (teacherDto.user().getId().equals(id)) {
+            if (teacherDto.id().equals(id)) {
                 delete(teacherDto.id());
             }
         }

@@ -21,7 +21,7 @@ public class Student extends User{
     @Column(name = "semester", nullable = false)
     private Semester semester;
 
-    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinTable(name = "course", joinColumns = @JoinColumn(name = "id_student",referencedColumnName = "id"))
     private List<Subject> cursos;
 

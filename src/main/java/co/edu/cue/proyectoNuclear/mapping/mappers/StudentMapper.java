@@ -3,6 +3,7 @@ package co.edu.cue.proyectoNuclear.mapping.mappers;
 import co.edu.cue.proyectoNuclear.domain.entities.Student;
 import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import java.util.List;
 

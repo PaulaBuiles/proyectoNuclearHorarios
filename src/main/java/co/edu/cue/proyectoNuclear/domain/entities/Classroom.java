@@ -31,5 +31,4 @@ public class Classroom {
     @JoinColumn (name ="id_availability")
     private List<Availability> availability;
 
-
 }

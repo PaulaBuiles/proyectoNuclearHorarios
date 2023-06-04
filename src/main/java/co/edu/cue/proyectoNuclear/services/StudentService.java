@@ -14,11 +14,9 @@ public interface StudentService {
 
     List<StudentDto> generateStudent();
 
-    void addSubject(Long subjectId, Long studentId);
-
     void deleteStudentById(Long id);
 
-    void createStudent(UserDto user, StudentDto student);
+    void createStudent(StudentDto student);
 
-    void editStudent(UserDto user, StudentDto student);
+    void editStudent(StudentDto student);
 }
