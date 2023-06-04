@@ -35,19 +35,19 @@
         <div class="navbar-nav ml-3" style="color: white; font-family: 'Lobster Two', cursive;">
             <a class="navbar-brand"><p></p></a>
             <a class="navbar-brand">
-                <form th:action="@{/navigation/home}" class="btn btn-transparent">
+                <form th:action="@{/administrative-tools/home-administrative}" class="btn btn-transparent">
                     <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">Inicio</button>
                 </form>
                 <a class="navbar-brand"><p></p></a>
             </a>
             <a class="navbar-brand">
-                <form th:action="@{/navigation/info}" class="btn btn-transparent">
+                <form th:action="@{/administrative-tools/info}" class="btn btn-transparent">
                     <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">Información general</button>
                 </form>
             </a>
             <a class="navbar-brand"><p></p></a>
             <a class="navbar-brand">
-                <form th:action="@{/navigation/management}" class="btn btn-transparent">
+                <form th:action="@{/administrative-tools/users-table}" class="btn btn-transparent">
                     <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">Panel de Gestión</button>
                 </form>
             </a>
@@ -75,7 +75,7 @@
             </form>
         </div>
         <div class="col-auto">
-            <form th:action="@{/navigation/assign-classroom}">
+            <form th:action="@{/administrative-tools/assign-classroom}">
                 <button type="submit" class="btn btn-primary">Asignar salones</button>
             </form>
         </div>

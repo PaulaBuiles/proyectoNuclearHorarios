@@ -61,7 +61,6 @@ public class ProyectoNuclearApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		studentService.addSubject(2L,1L);
 
 		/*Administrative administrative = new Administrative(new User(56L, "Samuel", "sberrio@gmail.com", "123", "Administrativo"), "Holaaaaa");
 		AdministrativeDto adminDto = administrativeMapper.mapAdministrative(administrative);

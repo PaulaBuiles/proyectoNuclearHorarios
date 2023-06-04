@@ -31,8 +31,8 @@ public class NavigationController {
     @Autowired
     private UserMapper userMapper;
 
-    @GetMapping("/home")
-    public ModelAndView home(){
+    @GetMapping("/home-student")
+    public ModelAndView homeStudent(){
         ModelAndView modelAndView = new ModelAndView(Pages.STUDENTHOME);
         return modelAndView;
     }
@@ -45,11 +45,6 @@ public class NavigationController {
     @GetMapping("/schedule")
     public ModelAndView schedule(){
         ModelAndView modelAndView = new ModelAndView(Pages.STUDENTHOME);
-        return modelAndView;
-    }
-    @GetMapping("/management")
-    public ModelAndView management(){
-        ModelAndView modelAndView = new ModelAndView(Pages.ADMINHOME);
         return modelAndView;
     }
     @GetMapping("/edit")

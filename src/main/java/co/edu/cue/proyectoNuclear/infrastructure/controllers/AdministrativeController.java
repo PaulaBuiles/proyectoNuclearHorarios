@@ -41,6 +41,18 @@ public class AdministrativeController {
     @Autowired
     private final ClassroomDAOImpl classroomDAO;
 
+    @GetMapping("/home-administrative")
+    public ModelAndView homeAdministrative(){
+        ModelAndView modelAndView = new ModelAndView(Pages.ADMINHOME);
+        return modelAndView;
+    }
+
+    @GetMapping("/assing-classroom")
+    public ModelAndView assingClassroom(){
+        ModelAndView modelAndView = new ModelAndView(Pages.CLASSROOM);
+        return modelAndView;
+    }
+
 
     @GetMapping("/users-table")
     public ModelAndView getUsersTable(){
@@ -61,6 +73,14 @@ public class AdministrativeController {
         modelAndView.addObject("role",role);
         return modelAndView;
     }
+
+    @GetMapping("/info")
+    public ModelAndView info(){
+        ModelAndView modelAndView = new ModelAndView(Pages.ADMININFORMATION);
+        //modelAndView.addObject("userStudent",studentService.findUserStudent(userService.getUser()));
+        return modelAndView;
+    }
+
     @GetMapping("/teachers/{id}")
     public void deleteTeacherById(@PathVariable Long id) {
         //administrativeService.deleteTeacherById(id);
