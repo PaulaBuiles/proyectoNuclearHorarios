@@ -61,12 +61,12 @@ public class TeacherController {
     @PostMapping("/changes")
     public ModelAndView changes(@RequestParam("name") String name, @RequestParam("email") String email, @RequestParam("day") String day, @RequestParam("start") Time start, @RequestParam("end") Time end){
         User user = userMapper.mapToEntity(userService.getUser());
-        Availability availability = new Availability(1,day,start,end);
+       // Availability availability = new Availability(1,day,start,end);
         Teacher teacher = new Teacher();
         user.setName(name);
         user.setEmail(email);
         userDAO.update(userMapper.mapUser(user));
-        teacher.setAvailability(availability);
+      //  teacher.setAvailability(availability);
         return info();
     }
 

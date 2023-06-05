@@ -7,7 +7,6 @@ import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.ClassroomMapper;
 import co.edu.cue.proyectoNuclear.services.AdministrativeService;
 import co.edu.cue.proyectoNuclear.services.ClassroomService;
-import co.edu.cue.proyectoNuclear.services.CourseService;
 import co.edu.cue.proyectoNuclear.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +27,6 @@ public class AdministrativeController {
     private final AdministrativeService administrativeService;
     @Autowired
     private final UserService userService;
-
-    @Autowired
-    private final CourseService courseService;
 
     @Autowired
     private final ClassroomService classroomService;

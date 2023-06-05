@@ -43,7 +43,7 @@ public class TeacherServiceImpl implements TeacherService {
         List<TeacherDto> teacherDtoList = generateTeacher();
         TeacherDto teacherDto = null;
         for (TeacherDto teacher: teacherDtoList) {
-            if (teacher.user().getId().equals(user.id())) {
+            if (teacher.id().equals(user.id())) {
                 teacherDto = teacher;
             }
         }
