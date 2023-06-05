@@ -47,11 +47,11 @@ public class AdministrativeController {
         return modelAndView;
     }
 
-    @GetMapping("/assing-classroom")
+    /*@GetMapping("/assing-classroom")
     public ModelAndView assingClassroom(){
         ModelAndView modelAndView = new ModelAndView(Pages.CLASSROOM);
         return modelAndView;
-    }
+    }*/
 
 
     @GetMapping("/users-table")
@@ -100,7 +100,7 @@ public class AdministrativeController {
         courseService.studentToSubject(idStudent,idSubject);
     }
 
-    @GetMapping("/edit")
+    @GetMapping("/edit-classroom")
     public ModelAndView edit(){
         ModelAndView modelAndView = new ModelAndView(Pages.CLASSROOM);
         return modelAndView;

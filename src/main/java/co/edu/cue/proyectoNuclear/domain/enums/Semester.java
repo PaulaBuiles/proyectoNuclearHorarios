@@ -1,6 +1,7 @@
 package co.edu.cue.proyectoNuclear.domain.enums;
 
 public enum Semester {
+    SEMESTER0(0),
     SEMESTER1(1),
     SEMESTER2(2),
     SEMESTER3(3),

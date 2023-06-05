@@ -13,7 +13,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 @AllArgsConstructor
 @Service
@@ -101,8 +100,10 @@ public class StudentServiceImpl implements StudentService {
         List<StudentDto> studentDtoList = generateStudent();
         StudentDto studentDto = null;
         for (StudentDto student: studentDtoList) {
+            System.out.println(student.semester());
             if (student.user().getId().equals(user.id())) {
                 studentDto = student;
+
             }
         }
         return studentDto;
