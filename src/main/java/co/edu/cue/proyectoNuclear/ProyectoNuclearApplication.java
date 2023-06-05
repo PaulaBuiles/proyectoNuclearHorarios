@@ -46,7 +46,7 @@ public class ProyectoNuclearApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Teacher teacher = mapper.mapToEntity(teacherService.getById(1L));
+        /*Teacher teacher = mapper.mapToEntity(teacherService.getById(1L));
 
         List<Subject> subjects = new ArrayList<>();
         Subject subject = Subject.builder()
@@ -59,7 +59,7 @@ public class ProyectoNuclearApplication implements CommandLineRunner {
         //Crear un estudiante
 
         studentService.createStudent(new StudentDto(1094L, "Monica", "email", "password", "role", "carrera", Semester.SEMESTER3,subjects ));
-
+*/
         //	studentService.addSubject(2L,1L);
 
 		/*Administrative administrative = new Administrative(new User(56L, "Samuel", "sberrio@gmail.com", "123", "Administrativo"), "Holaaaaa");
