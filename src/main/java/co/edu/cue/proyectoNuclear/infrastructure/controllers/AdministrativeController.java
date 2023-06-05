@@ -87,7 +87,6 @@ public class AdministrativeController {
     }
     @GetMapping("/courses")
     public void getCourses() {
-        courseService.getCourse();
     }
 
     @GetMapping("/students/{id}")
@@ -97,7 +96,6 @@ public class AdministrativeController {
 
     @GetMapping("/courses/{idStudent}/subjects/{idSubject}")
     public void addCourse(@PathVariable Long idStudent,@PathVariable Long idSubject ) {
-        courseService.studentToSubject(idStudent,idSubject);
     }
 
     @GetMapping("/edit-classroom")

@@ -19,7 +19,7 @@ public interface StudentService {
 
     void deleteStudentById(Long id);
 
-    void createStudent(UserDto user, StudentDto student);
+    void createStudent(StudentDto student);
 
-    void editStudent(UserDto user, StudentDto student);
+    void editStudent(StudentDto student);
 }

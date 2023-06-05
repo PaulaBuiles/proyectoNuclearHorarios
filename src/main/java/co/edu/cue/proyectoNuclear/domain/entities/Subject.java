@@ -30,6 +30,6 @@ public class Subject{
     @Column(name="credit", nullable=false)
     private int credit;
 
-
-
+    @ManyToMany(mappedBy = "cursos",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<Student> students;
 }

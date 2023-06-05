@@ -8,6 +8,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -15,18 +16,13 @@ import java.util.List;
 
 @Repository
 @Transactional
+@AllArgsConstructor
 public class StudentDAOImpl implements GeneralDAO<StudentDto>{
 
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Autowired
-    private StudentMapper studentMapper;
-
-    @Autowired
-    public StudentDAOImpl(StudentMapper studentMapper) {
-        this.studentMapper = studentMapper;
-    }
+    private final StudentMapper studentMapper ;
 
     @Override
     public List<StudentDto> getTableList() {
@@ -63,7 +59,7 @@ public class StudentDAOImpl implements GeneralDAO<StudentDto>{
     public void deleteById(Long id) {
         List<StudentDto> students = getTableList();
         for (StudentDto student: students) {
-            if (student.user().getId().equals(id)) {
+            if (student.id().equals(id)) {
                 delete(student.id());
             }
         }

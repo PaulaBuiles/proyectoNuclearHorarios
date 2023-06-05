@@ -1,14 +1,19 @@
 package co.edu.cue.proyectoNuclear;
 
 import co.edu.cue.proyectoNuclear.domain.entities.Administrative;
+import co.edu.cue.proyectoNuclear.domain.entities.Subject;
+import co.edu.cue.proyectoNuclear.domain.entities.Teacher;
 import co.edu.cue.proyectoNuclear.domain.entities.User;
+import co.edu.cue.proyectoNuclear.domain.enums.Semester;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.*;
 import co.edu.cue.proyectoNuclear.mapping.dtos.AdministrativeDto;
+import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.AdministrativeMapper;
 import co.edu.cue.proyectoNuclear.mapping.mappers.TeacherMapper;
 import co.edu.cue.proyectoNuclear.mapping.mappers.UserMapper;
 import co.edu.cue.proyectoNuclear.services.StudentService;
+import co.edu.cue.proyectoNuclear.services.TeacherService;
 import co.edu.cue.proyectoNuclear.services.impl.StudentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -16,51 +21,46 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+
 @SpringBootApplication
 public class ProyectoNuclearApplication implements CommandLineRunner {
 
+    public static void main(String[] args) {
+        SpringApplication.run(ProyectoNuclearApplication.class, args);
+    }
 
-	@Autowired
-	public UserDAOImpl userGeneralDAO;
-	@Autowired
-	public SubjectDAOImpl subjectDAO;
-	@Autowired
-	public TeacherDAOImpl teacherDAO;
-	@Autowired
-	public StudentDAOImpl studentDAO;
-	@Autowired
-	public ScheduleDAOImpl scheduleDAO;
-	@Autowired
-	public HistoryTeacherDAOImpl historyTeacherDAO;
-	@Autowired
-	public HistoryStudentDAOImpl historyStudentDAO;
-	@Autowired
-	public ElementDAOImpl elementDAO;
-	@Autowired
-	public CourseDAOImpl courseDAO;
-	@Autowired
-	public ClassroomDAOImpl classroomDAO;
-	@Autowired
-	public CharacteristicDAOImpl characteristicDAO;
-	@Autowired
-	public AvailabilityDAOImpl availabilityDAO;
-	@Autowired
-	public AdministrativeDAOImpl administrativeDAO;
+    @Autowired
+    public StudentService studentService;
 
-	public static void main(String[] args) {
-		SpringApplication.run(ProyectoNuclearApplication.class, args);
-	}
+    @Autowired
+    public TeacherService teacherService;
 
-	@Autowired
-	public StudentService studentService;
 
-	@Autowired
-	public UserDAOImpl userDAO;
+    @Autowired
+    public TeacherMapper mapper;
 
-	@Override
-	public void run(String... args) throws Exception {
 
+    @Override
+    public void run(String... args) throws Exception {
+
+        Teacher teacher = mapper.mapToEntity(teacherService.getById(1L));
+
+        List<Subject> subjects = new ArrayList<>();
+        Subject subject = Subject.builder()
+                .name("test")
+                .credit(3)
+                .teacher(teacher)
+                .build();
+
+        subjects.add(subject);
+        //Crear un estudiante
+
+        studentService.createStudent(new StudentDto(1094L, "Monica", "email", "password", "role", "carrera", Semester.SEMESTER3,subjects ));
+
+        //	studentService.addSubject(2L,1L);
 
 		/*Administrative administrative = new Administrative(new User(56L, "Samuel", "sberrio@gmail.com", "123", "Administrativo"), "Holaaaaa");
 		AdministrativeDto adminDto = administrativeMapper.mapAdministrative(administrative);
@@ -97,6 +97,6 @@ public class ProyectoNuclearApplication implements CommandLineRunner {
 		availabilityDAO.getTableList();
 		System.out.println("");
 		administrativeDAO.getTableList();*/
-	}
+    }
 
 }
