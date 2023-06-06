@@ -38,7 +38,7 @@
         <label for="email" class="form-label" style="font-family: 'Lobster Two', cursive; font-size: 23px;">Correo Electrónico</label>
         <input type="text" class="form-control" id="email" name="email">
       </div>
-<!--      <button type="submit" value="Enviar" class="btn btn-primary" style="background-color: #0c0096; font-family: 'Lobster Two', cursive;">Editar</button>-->
+  <button type="submit" value="Enviar" class="btn btn-primary" style="background-color: #0c0096; font-family: 'Lobster Two', cursive;">Editar</button>
     </form>
   </div>
 </div>
@@ -46,7 +46,7 @@
 <div class="container mt-5">
   <h1 style="font-family: 'Lobster Two', cursive; text-align: center;">Disponibilidad</h1><br>
   <div class="container mt-5">
-    <form th:action="@{/navigation/changes}" method="post" class="border p-3 form">
+    <form th:action="@{/navigation/newAvailability}" method="post" class="border p-3 form">
       <div class="mb-3">
         <label for="day" class="form-label" style="font-family: 'Lobster Two', cursive; font-size: 23px;">Día de la semana </label>
         <input type="text" class="form-control" id="day" name="day">

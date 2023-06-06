@@ -1,10 +1,12 @@
 package co.edu.cue.proyectoNuclear.infrastructure.dao;
 
 
+import co.edu.cue.proyectoNuclear.domain.entities.Student;
 import co.edu.cue.proyectoNuclear.domain.entities.Teacher;
 import co.edu.cue.proyectoNuclear.mapping.dtos.TeacherDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.TeacherMapper;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
@@ -40,7 +42,13 @@ public class TeacherDAOImpl implements GeneralDAO<TeacherDto> {
 
     @Override
     public void update(TeacherDto entity) {
-        entityManager.merge(entity);
+        Teacher teacher = entityManager.find(Teacher.class, entity.id());
+        if (teacher == null) {
+            throw new EntityNotFoundException("Profesor no encontrado");
+        }
+        teacher.setEmail(entity.email());
+        teacher.setName(entity.name());
+        entityManager.merge(teacher);
     }
 
     @Override

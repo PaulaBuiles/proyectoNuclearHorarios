@@ -12,7 +12,7 @@ public interface TeacherService {
 
     void createTeacher(UserDto user, TeacherDto teacher);
 
-    void editTeacher(UserDto user, TeacherDto teacher);
+    void editTeacher(String name, String email);
 
     void deleteTeacherById(Long id);
 

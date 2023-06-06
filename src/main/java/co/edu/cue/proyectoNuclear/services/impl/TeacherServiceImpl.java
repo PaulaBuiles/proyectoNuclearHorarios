@@ -1,8 +1,10 @@
 package co.edu.cue.proyectoNuclear.services.impl;
 
+import co.edu.cue.proyectoNuclear.domain.entities.Teacher;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.*;
 import co.edu.cue.proyectoNuclear.mapping.dtos.TeacherDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
+import co.edu.cue.proyectoNuclear.mapping.mappers.TeacherMapper;
 import co.edu.cue.proyectoNuclear.services.TeacherService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,10 @@ import java.util.List;
 public class TeacherServiceImpl implements TeacherService {
     @Autowired
     private TeacherDAOImpl teacherDAO;
+    @Autowired
+    private TeacherMapper teacherMapper;
+    @Autowired
+    private UserServiceImpl userService;
 
     //Funciones para profesores
     @Override
@@ -29,8 +35,11 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public void editTeacher(UserDto user, TeacherDto teacher) {
-        teacherDAO.update(teacher);
+    public void editTeacher(String name, String email) {
+        Teacher user = teacherMapper.mapToEntity(findUserTeacher(userService.getUser()));
+        user.setName(name);
+        user.setEmail(email);
+        teacherDAO.update(teacherMapper.mapTeacher(user));
     }
 
     @Override

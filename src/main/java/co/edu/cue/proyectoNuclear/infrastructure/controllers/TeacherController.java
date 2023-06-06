@@ -2,14 +2,20 @@ package co.edu.cue.proyectoNuclear.infrastructure.controllers;
 
 import co.edu.cue.proyectoNuclear.domain.configuration.Pages;
 import co.edu.cue.proyectoNuclear.domain.entities.Availability;
+import co.edu.cue.proyectoNuclear.domain.entities.Student;
 import co.edu.cue.proyectoNuclear.domain.entities.Teacher;
 import co.edu.cue.proyectoNuclear.domain.entities.User;
 import co.edu.cue.proyectoNuclear.domain.enums.DayOfWeek;
+import co.edu.cue.proyectoNuclear.infrastructure.dao.AvailabilityDAOImpl;
+import co.edu.cue.proyectoNuclear.infrastructure.dao.TeacherDAOImpl;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.UserDAOImpl;
 import co.edu.cue.proyectoNuclear.mapping.dtos.TeacherDto;
+import co.edu.cue.proyectoNuclear.mapping.mappers.TeacherMapper;
 import co.edu.cue.proyectoNuclear.mapping.mappers.UserMapper;
+import co.edu.cue.proyectoNuclear.services.AvailabilityService;
 import co.edu.cue.proyectoNuclear.services.TeacherService;
 import co.edu.cue.proyectoNuclear.services.UserService;
+import co.edu.cue.proyectoNuclear.services.impl.AvailabilityServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,9 +36,7 @@ public class TeacherController {
     @Autowired
     private final UserService userService;
     @Autowired
-    private UserMapper userMapper;
-    @Autowired
-    private UserDAOImpl userDAO;
+    private final AvailabilityService availabilityService;
 
     @GetMapping("/teacher-information")
     public ModelAndView getInformation(){
@@ -60,16 +64,15 @@ public class TeacherController {
         return modelAndView;
     }
     @PostMapping("/changes")
-    public ModelAndView changes(@RequestParam("name") String name, @RequestParam("email") String email, @RequestParam("day") String day, @RequestParam("start") Time start, @RequestParam("end") Time end){
-        User user = userMapper.mapToEntity(userService.getUser());
-       // Availability availability = new Availability(1,day,start,end);
-        Teacher teacher = new Teacher();
-        user.setName(name);
-        user.setEmail(email);
-        userDAO.update(userMapper.mapUser(user));
-      //  teacher.setAvailability(availability);
+    public ModelAndView changes(@RequestParam("name") String name, @RequestParam("email") String email){
+        teacherService.editTeacher(name,email);
         return info();
     }
 
+    @PostMapping("/newAvailability")
+    public ModelAndView changes(@RequestParam("day") DayOfWeek day, @RequestParam("start") LocalTime start, @RequestParam("end") LocalTime end){
+        availabilityService.newAvailability(day,start,end,teacherService.findUserTeacher(userService.getUser()));
+        return info();
+    }
 
 }

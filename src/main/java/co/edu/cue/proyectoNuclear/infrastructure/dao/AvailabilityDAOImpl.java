@@ -1,6 +1,7 @@
 package co.edu.cue.proyectoNuclear.infrastructure.dao;
 
 import co.edu.cue.proyectoNuclear.domain.entities.Availability;
+import co.edu.cue.proyectoNuclear.domain.entities.Student;
 import co.edu.cue.proyectoNuclear.mapping.dtos.AvailabilityDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.AvailabilityMapper;
 import jakarta.persistence.EntityManager;
@@ -19,22 +20,24 @@ public class AvailabilityDAOImpl implements GeneralDAO<AvailabilityDto> {
     @PersistenceContext
     private EntityManager entityManager;
 
-    private AvailabilityMapper mapper;
+
+    private AvailabilityMapper availabilityMapper;
 
     @Override
     public List<AvailabilityDto> getTableList() {
         String query = "SELECT a FROM Availability a";
-        return mapper.mapList(entityManager.createQuery(query, Availability.class).getResultList());
+        return availabilityMapper.mapList(entityManager.createQuery(query, Availability.class).getResultList());
     }
 
     @Override
     public AvailabilityDto findById(Long id) {
-        return mapper.mapAvailability(entityManager.find(Availability.class, id));
+        return availabilityMapper.mapAvailability(entityManager.find(Availability.class, id));
     }
 
     @Override
     public void save(AvailabilityDto entity) {
-        entityManager.persist(mapper.mapToEntity(entity));
+        Availability availability = availabilityMapper.mapToEntity(entity);
+        entityManager.persist(availability);
     }
 
     @Override
