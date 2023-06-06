@@ -1,7 +1,9 @@
 package co.edu.cue.proyectoNuclear.infrastructure.controllers;
 
 import co.edu.cue.proyectoNuclear.domain.configuration.Pages;
+import co.edu.cue.proyectoNuclear.domain.entities.Student;
 import co.edu.cue.proyectoNuclear.domain.entities.User;
+import co.edu.cue.proyectoNuclear.infrastructure.dao.StudentDAOImpl;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.UserDAOImpl;
 import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.UserMapper;
@@ -27,6 +29,8 @@ public class NavigationController {
 
     @Autowired
     private UserDAOImpl userDAO;
+    @Autowired
+    private StudentDAOImpl studentDAO;
 
     @Autowired
     private UserMapper userMapper;
@@ -55,11 +59,10 @@ public class NavigationController {
     }
     @PostMapping("/changes")
     public ModelAndView changes(@RequestParam("name") String name, @RequestParam("email") String email){
-        User user = userMapper.mapToEntity(userService.getUser());
+        Student user = studentMapper.mapToEntity(studentService.findUserStudent(userService.getUser()));
         user.setName(name);
         user.setEmail(email);
-        userDAO.update(userMapper.mapUser(user));
-        userService.validateUser(user.getId(),user.getPassword());
+        studentDAO.update(studentMapper.mapStudent(user));
         return info();
     }
 

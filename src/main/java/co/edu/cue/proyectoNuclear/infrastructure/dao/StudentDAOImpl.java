@@ -4,6 +4,7 @@ import co.edu.cue.proyectoNuclear.domain.entities.*;
 import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.StudentMapper;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
@@ -43,7 +44,14 @@ public class StudentDAOImpl implements GeneralDAO<StudentDto>{
 
     @Override
     public void update(StudentDto entity) {
-            entityManager.merge(entity);
+        // Cargar la entidad Student existente
+        Student student = entityManager.find(Student.class, entity.id());
+        if (student == null) {
+            throw new EntityNotFoundException("Estudiante no encontrado");
+        }
+        student.setEmail(entity.email());
+        student.setName(entity.name());
+        entityManager.merge(student);
     }
 
     @Override
