@@ -7,13 +7,14 @@ import java.util.List;
 import jakarta.persistence.*;
 import lombok.*;
 
+@Data
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "student")
-//@PrimaryKeyJoinColumn(referencedColumnName = "id_user")
+//@PrimaryKeyJoinColumn(referencedColumnName = "user_id")
 public class Student extends User{
     @Column(name = "career", nullable = false)
     private String career;
@@ -23,6 +24,6 @@ public class Student extends User{
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "course", joinColumns = @JoinColumn(name = "id_student",referencedColumnName = "id"))
-    private List<Subject> cursos;
+    private List<Subject> subject;
 
 }

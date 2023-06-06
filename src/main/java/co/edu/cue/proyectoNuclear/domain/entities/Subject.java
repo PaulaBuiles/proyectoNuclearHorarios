@@ -17,7 +17,7 @@ public class Subject{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id")
-    private int id;
+    private Long id;
 
     @Column(name="name", nullable=false)
     private String name;
@@ -30,6 +30,10 @@ public class Subject{
     @Column(name="credit", nullable=false)
     private int credit;
 
-    @ManyToMany(mappedBy = "cursos",fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "subject",fetch = FetchType.LAZY)
     private List<Student> students;
+
+    @ManyToOne
+    @JoinColumn(name = "classroom_id")
+    private Classroom classroom;
 }

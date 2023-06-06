@@ -2,6 +2,7 @@ package co.edu.cue.proyectoNuclear.infrastructure.controllers;
 
 import co.edu.cue.proyectoNuclear.domain.configuration.Pages;
 import co.edu.cue.proyectoNuclear.domain.entities.Classroom;
+import co.edu.cue.proyectoNuclear.domain.enums.Campus;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.ClassroomDAOImpl;
 import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.ClassroomMapper;
@@ -103,9 +104,10 @@ public class AdministrativeController {
     @PostMapping("/classroom")
     public ResponseEntity<String> changes(@RequestParam("number") String number, @RequestParam("capacity") String capacity, @RequestParam("location") String location){
         Classroom classroom = classroomMapper.mapToEntity(classroomService.getClassroomDto());
-        classroom.setNumber(number);
+        classroom.setName(number);
         classroom.setCapacity(capacity);
-        classroom.setLocation(location);
+        classroom.setLocation(Campus.valueOf(location));
+        //Cambiar
 
         classroomDAO.save(classroomMapper.mapClassroom(classroom));
         return ResponseEntity.ok("Classroom created successfully");

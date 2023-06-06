@@ -1,7 +1,6 @@
 package co.edu.cue.proyectoNuclear.infrastructure.dao;
 
 import co.edu.cue.proyectoNuclear.domain.entities.*;
-import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.UserMapper;
 import jakarta.persistence.EntityManager;
@@ -21,6 +20,8 @@ public class UserDAOImpl implements GeneralDAO<UserDto> {
 
     @PersistenceContext
     private EntityManager entityManager;
+
+    @Autowired
     private UserMapper userMapper;
 
     @Override
@@ -45,6 +46,7 @@ public class UserDAOImpl implements GeneralDAO<UserDto> {
     @Override
     public void update(UserDto entity) {
         User user = userMapper.mapToEntity(entity);
+        System.out.println(user.getId());
             entityManager.merge(user);
 
     }

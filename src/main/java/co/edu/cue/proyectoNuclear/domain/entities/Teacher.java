@@ -1,13 +1,11 @@
 package co.edu.cue.proyectoNuclear.domain.entities;
 
-import co.edu.cue.proyectoNuclear.domain.enums.Semester;
+
 
 import java.util.List;
 
-import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
@@ -15,11 +13,13 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @Entity
 @Table(name="teacher")
-    //@PrimaryKeyJoinColumn(referencedColumnName = "id_user")
+//@PrimaryKeyJoinColumn(referencedColumnName = "user_id")
 public class Teacher extends User{
 
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinTable(name = "availability_teacher", joinColumns = @JoinColumn(name = "id_teacher",referencedColumnName = "id"))
+    @OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY)
+    private List<Subject> subjects;
+
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "teacher")
     private List<Availability> availability;
 
 }

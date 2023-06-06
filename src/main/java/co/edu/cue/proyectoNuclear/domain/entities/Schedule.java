@@ -20,16 +20,13 @@ public class Schedule {
     @Id
     @GeneratedValue (strategy=GenerationType.IDENTITY)
     @Column (name ="id")
-    private int id;
-
-    @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn (name ="id_classroom")
-    private Classroom classroom;
+    private Long id;
 
     @Column (name ="durability", nullable=false)
     private Time durability;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn (name ="id_subject")
-    private Subject subject;
+    @ManyToOne
+    @JoinColumn(name = "classroom_id", nullable=false)
+    private Classroom classroom;
+
 }

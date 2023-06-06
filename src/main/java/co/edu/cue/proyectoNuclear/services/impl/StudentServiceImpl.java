@@ -3,16 +3,12 @@ package co.edu.cue.proyectoNuclear.services.impl;
 import co.edu.cue.proyectoNuclear.domain.entities.Student;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.*;
 import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
-import co.edu.cue.proyectoNuclear.mapping.dtos.SubjectDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
-import co.edu.cue.proyectoNuclear.mapping.mappers.StudentMapper;
-import co.edu.cue.proyectoNuclear.mapping.mappers.SubjectMapper;
 import co.edu.cue.proyectoNuclear.services.StudentService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+
 import java.util.List;
 @AllArgsConstructor
 @Service
@@ -29,7 +25,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<StudentDto> generateStudent() {
-        List<StudentDto> students = new ArrayList<>();
+        List<StudentDto> students = studentDAO.getTableList();
         return students;
     }
     @Override
@@ -51,10 +47,8 @@ public class StudentServiceImpl implements StudentService {
         List<StudentDto> studentDtoList = generateStudent();
         StudentDto studentDto = null;
         for (StudentDto student: studentDtoList) {
-            System.out.println(student.semester());
             if (student.id().equals(user.id())) {
                 studentDto = student;
-
             }
         }
         return studentDto;

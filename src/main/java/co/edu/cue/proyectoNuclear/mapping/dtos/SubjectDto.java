@@ -7,6 +7,8 @@ import java.util.List;
 public record SubjectDto(String id,
                          String name,
                          Teacher teacher,
-                         int credit
+                         int credit,
+                         List<Student> students,
+                         Classroom classroom
                          ) {
 }

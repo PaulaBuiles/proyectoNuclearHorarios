@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @Entity
 @Table(name = "user")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class User {
     @Id
     @Column(name = "id", nullable = false)

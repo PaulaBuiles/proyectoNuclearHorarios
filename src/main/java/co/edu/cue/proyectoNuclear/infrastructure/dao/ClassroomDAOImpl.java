@@ -22,6 +22,8 @@ public class ClassroomDAOImpl implements GeneralDAO<ClassroomDto>{
 
     @PersistenceContext
     EntityManager entityManager;
+
+    @Autowired
     private ClassroomMapper classMap;
 
     @Override

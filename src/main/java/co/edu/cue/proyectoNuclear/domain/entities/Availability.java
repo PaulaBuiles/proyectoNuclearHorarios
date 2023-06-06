@@ -3,10 +3,8 @@ package co.edu.cue.proyectoNuclear.domain.entities;
 import co.edu.cue.proyectoNuclear.domain.enums.DayOfWeek;
 import jakarta.persistence.*;
 import lombok.*;
+import java.time.LocalDate;
 
-import java.sql.Time;
-import java.time.LocalTime;
-import java.util.List;
 
 
 @Getter
@@ -19,15 +17,20 @@ public class Availability{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id")
-    private int id;
+    private Long id;
 
     @Column(name="dayOfWeek", nullable=false)
-    private String dayOfWeek;
+    private DayOfWeek dayOfWeek;
 
     @Column(name="start", nullable=false)
-    private Time start;
+    private LocalDate start;
 
     @Column(name="end", nullable=false)
-    private Time end;
+    private LocalDate end;
+
+    //El profesor tiene cada disponibilidad para él solo
+    @ManyToOne
+    @JoinColumn(name = "teacher_id")
+    private Teacher teacher;
 
 }
