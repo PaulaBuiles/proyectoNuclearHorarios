@@ -101,12 +101,12 @@ public class AdministrativeController {
     }
 
     @PostMapping("/classroom")
-    public ResponseEntity<String> changes(@RequestParam("number") String number, @RequestParam("capacity") String capacity, @RequestParam("location") String location, @RequestParam("availability") String availability){
+    public ResponseEntity<String> changes(@RequestParam("number") String number, @RequestParam("capacity") String capacity, @RequestParam("location") String location){
         Classroom classroom = classroomMapper.mapToEntity(classroomService.getClassroomDto());
         classroom.setNumber(number);
         classroom.setCapacity(capacity);
         classroom.setLocation(location);
-        classroom.setAvailability(null);
+
         classroomDAO.save(classroomMapper.mapClassroom(classroom));
         return ResponseEntity.ok("Classroom created successfully");
 
