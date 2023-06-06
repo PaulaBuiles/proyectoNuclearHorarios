@@ -11,6 +11,7 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -70,5 +71,21 @@ public class StudentDAOImpl implements GeneralDAO<StudentDto>{
             }
         }
     }
+
+    //Función de prueba
+    /*public void addSubject(){
+        Student student = entityManager.find(Student.class, 8351907624L);
+        List<Subject> subjects = new ArrayList<>();
+        subjects.add(entityManager.find(Subject.class, 1));
+        subjects.add(entityManager.find(Subject.class, 2));
+        subjects.add(entityManager.find(Subject.class, 3));
+        subjects.add(entityManager.find(Subject.class, 4));
+        subjects.add(entityManager.find(Subject.class, 5));
+        subjects.add(entityManager.find(Subject.class, 6));
+        subjects.add(entityManager.find(Subject.class, 7));
+        subjects.add(entityManager.find(Subject.class, 8));
+        student.setSubject(subjects);
+        entityManager.merge(student);
+    }*/
 
 }

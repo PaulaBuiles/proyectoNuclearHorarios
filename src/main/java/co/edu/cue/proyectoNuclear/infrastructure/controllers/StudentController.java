@@ -2,19 +2,16 @@ package co.edu.cue.proyectoNuclear.infrastructure.controllers;
 
 import co.edu.cue.proyectoNuclear.domain.configuration.Pages;
 import co.edu.cue.proyectoNuclear.domain.entities.Student;
-import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
+import co.edu.cue.proyectoNuclear.infrastructure.dao.StudentDAOImpl;
+import co.edu.cue.proyectoNuclear.mapping.mappers.StudentMapper;
 import co.edu.cue.proyectoNuclear.services.StudentService;
-import co.edu.cue.proyectoNuclear.services.impl.StudentServiceImpl;
+import co.edu.cue.proyectoNuclear.services.UserService;
 import lombok.AllArgsConstructor;
-import org.hibernate.service.spi.InjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
 
 
 @RestController
@@ -23,14 +20,44 @@ import java.util.List;
 @Controller
 public class StudentController {
 
+    @Autowired
+    private final UserService userService;
+
+    @Autowired
     private final StudentService studentService;
 
-    @GetMapping("/student-information")
-    public ModelAndView getInformation(){
-        List<StudentDto> studentList = studentService.generateStudent();
+    @Autowired
+    private StudentDAOImpl studentDAO;
+
+    @Autowired
+    private StudentMapper studentMapper;
+
+    @GetMapping("/home")
+    public ModelAndView home(){
+        return new ModelAndView(Pages.STUDENTHOME);
+    }
+
+    @GetMapping("/info")
+    public ModelAndView info(){
         ModelAndView modelAndView = new ModelAndView(Pages.STUDENTINFORMATION);
-        modelAndView.addObject("students",studentList);
+        modelAndView.addObject("userStudent",studentService.findUserStudent(userService.getUser()));
         return modelAndView;
+    }
+    @GetMapping("/edit")
+    public ModelAndView edit(){
+        return new ModelAndView(Pages.CHANGES);
+    }
+    @PostMapping("/changes")
+    public ModelAndView changes(@RequestParam("name") String name, @RequestParam("email") String email){
+        Student user = studentMapper.mapToEntity(studentService.findUserStudent(userService.getUser()));
+        user.setName(name);
+        user.setEmail(email);
+        studentDAO.update(studentMapper.mapStudent(user));
+        return info();
+    }
+    @GetMapping("/schedule")
+    public ModelAndView scheduleStudent(){
+        return new ModelAndView(Pages.SCHEDULESTUDENT);
     }
 
 }

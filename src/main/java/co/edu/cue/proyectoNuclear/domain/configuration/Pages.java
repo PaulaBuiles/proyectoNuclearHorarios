@@ -20,6 +20,7 @@ public class Pages {
     public static String STUDENTHOME = "student/home";
     public static String STUDENTINFORMATION="student/personalInformation";
     public static String CHANGES="student/change";
+    public static String SCHEDULESTUDENT="student/scheduleStudent";
 
     //TEACHER
 

@@ -33,20 +33,16 @@ public class LoginController {
         UserLoginDto userLoginDto = new UserLoginDto(identification,password);
         System.out.println(userLoginDto.identification() + "    " + userLoginDto.password());
         ModelAndView modelAndView = null;
-        String rol = null;
         if(userService.validateUser(identification,password)) {
             switch (userService.getUser().role()) {
                 case "Estudiante" -> {
                     modelAndView = new ModelAndView(Pages.STUDENTHOME);
-                    rol = "Student";
                 }
                 case "Profesor" -> {
                     modelAndView = new ModelAndView(Pages.TEACHERHOME);
-                    rol = "Teacher";
                 }
                 case "Administrativo" -> {
                     modelAndView = new ModelAndView(Pages.ADMINHOME);
-                    rol = "Administrative";
                 }
             }
             modelAndView.addObject("usuario",userService.getUser());

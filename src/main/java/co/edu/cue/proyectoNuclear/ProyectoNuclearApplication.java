@@ -1,17 +1,12 @@
 package co.edu.cue.proyectoNuclear;
 
-import co.edu.cue.proyectoNuclear.domain.entities.Administrative;
-import co.edu.cue.proyectoNuclear.domain.entities.Subject;
-import co.edu.cue.proyectoNuclear.domain.entities.Teacher;
-import co.edu.cue.proyectoNuclear.domain.entities.User;
+import co.edu.cue.proyectoNuclear.domain.entities.*;
 import co.edu.cue.proyectoNuclear.domain.enums.Semester;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.*;
 import co.edu.cue.proyectoNuclear.mapping.dtos.AdministrativeDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
-import co.edu.cue.proyectoNuclear.mapping.mappers.AdministrativeMapper;
-import co.edu.cue.proyectoNuclear.mapping.mappers.TeacherMapper;
-import co.edu.cue.proyectoNuclear.mapping.mappers.UserMapper;
+import co.edu.cue.proyectoNuclear.mapping.mappers.*;
 import co.edu.cue.proyectoNuclear.services.StudentService;
 import co.edu.cue.proyectoNuclear.services.TeacherService;
 import co.edu.cue.proyectoNuclear.services.impl.StudentServiceImpl;
@@ -31,9 +26,14 @@ public class ProyectoNuclearApplication implements CommandLineRunner {
     public static void main(String[] args) {
         SpringApplication.run(ProyectoNuclearApplication.class, args);
     }
+    @Autowired
+    public StudentDAOImpl studentDAO;
 
     @Autowired
-    public StudentService studentService;
+    public SubjectDAOImpl subjectDAO;
+    @Autowired
+    public SubjectMapper subjectMapper;
+
 
     @Autowired
     public TeacherService teacherService;
@@ -45,6 +45,9 @@ public class ProyectoNuclearApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        //studentDAO.addSubject();
+
+
 
         /*Teacher teacher = mapper.mapToEntity(teacherService.getById(1L));
 

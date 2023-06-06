@@ -19,11 +19,11 @@
         <nav class="navbar navbar-expand-lg justify-content-start "> 
             <div class="container-fluid justify-content-start"> 
                 <img src="/img/logoAVH.png" alt="Logo" width="111" height="111" class="logo">
-                <div class="navbar-nav ml-3" style="color: white; font-family: 'Lobster Two', cursive;"> <a class="navbar-brand"><p></p></a> <a class="navbar-brand"> <form th:action="@{/navigation/home}" class="btn btn-transparent"> 
+                <div class="navbar-nav ml-3" style="color: white; font-family: 'Lobster Two', cursive;"> <a class="navbar-brand"><p></p></a> <a class="navbar-brand"> <form th:action="@{/student/home}" class="btn btn-transparent">
                             <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">               Inicio               </button>                             
-                        </form> <a class="navbar-brand"><p></p></a> </a> <a class="navbar-brand"> <form th:action="@{/navigation/info}" class="btn btn-transparent"> 
+                        </form> <a class="navbar-brand"><p></p></a> </a> <a class="navbar-brand"> <form th:action="@{/student/info}" class="btn btn-transparent">
                             <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">        Información general         </button>                             
-                        </form> </a> <a class="navbar-brand"><p></p></a> <a class="navbar-brand"> <form th:action="@{/navigation/schedule}" class="btn btn-transparent"> 
+                        </form> </a> <a class="navbar-brand"><p></p></a> <a class="navbar-brand"> <form th:action="@{/student/schedule}" class="btn btn-transparent">
                             <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">               Horario               </button>                             
                         </form> </a> 
                 </div>                 
@@ -64,7 +64,7 @@
                 </table>
             </div>             
             <div class="container mt-5">
-                <form th:action="@{/navigation/edit}">
+                <form th:action="@{/student/edit}">
                     <button class="btn btn-primary" style="font-family: 'Lobster Two', cursive;
                 float: right; font-size: 18px; background-color: #0c0096; border-top-color: #000000;
                 outline: none; outline-offset: -2px;" type="submit">Realizar cambios</button>
@@ -76,15 +76,15 @@
             <div class="container mt-5"> 
                 <table class="table table-striped table-bordered table-hover" style="font-family: 'Nunito Sans', sans-serif; text-align: center;"> 
                     <thead class="thead-dark">
-                        <tr> 
-                            <th style="text-align: center; background-color: #0c0096; color: #ffffff;">Identificador</th> 
+                        <tr>
                             <th style="text-align: center; background-color: #0c0096; color: #ffffff;">Nombre</th> 
-                            <th style="text-align: center; background-color: #0c0096; color: #ffffff;">No. credito</th> 
+                            <th style="text-align: center; background-color: #0c0096; color: #ffffff;">No. crédito</th>
+                            <th style="text-align: center; background-color: #0c0096; color: #ffffff;">Profesor</th>
                         </tr>                         
-                        <tr> 
-                            <td>John</td> 
-                            <td>123456789</td> 
-                            <td>john.doe@example.com</td> 
+                        <tr th:each="subjects: ${userStudent.subject}">
+                            <td th:text="${subjects.name}">john.doe@example.com</td>
+                            <td th:text="${subjects.credit}">123456789</td>
+                            <td th:text="${subjects.teacher.name}"></td>
                         </tr>
                 </table>                 
             </div>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link th:href="@{/css/bootstrap.css}" rel="stylesheet" href="/static/css/bootstrap.css">
+  <script th:src="@{/js/jquery.js}" src="/static/js/jquery.js"></script>
+  <script th:src="@{/js/bootstrap.js}" src="/static/js/bootstrap.js"></script>
+  <title>Login Gestión de Horarios</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+    nav {
+      background-color: #0C0096;
+      padding: 10px;
+      height: 50px;
+    }
+    .btn-transparent {
+      background-color: transparent;
+      border: none;
+      color: #ffffff; /* Color del texto */
+      padding: 0; /* Opcional: ajusta el espaciado del botón */
+    }
+
+    .logo {
+      position: relative;
+      top: 30px;
+    }
+    .container{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+    }
+
+    h1 {
+      font-size: 50px; /* Tamaño del título */
+      margin: 10px 0; /* Espaciado del título */
+    }
+
+    .jumbotron {
+      width: 80%; /* Ancho del cuadro de información */
+      background-color: #F5F5F5; /* Color de fondo del cuadro de información */
+      padding: 20px; /* Espaciado interno del cuadro de información */
+
+    }
+
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg justify-content-start ">
+  <div class="container-fluid justify-content-start">
+    <img src="/img/logoAVH.png" alt="Logo" width="111" height="111" class="logo">
+    <div class="navbar-nav ml-3" style="color: white; font-family: 'Lobster Two', cursive;">
+      <a class="navbar-brand"><p></p></a>
+      <a class="navbar-brand">
+        <form th:action="@{/student/home}" class="btn btn-transparent">
+          <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">Inicio</button>
+        </form>
+        <a class="navbar-brand"><p></p></a>
+      </a>
+      <a class="navbar-brand">
+        <form th:action="@{/student/info}" class="btn btn-transparent">
+          <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">Información general</button>
+        </form>
+      </a>
+      <a class="navbar-brand"><p></p></a>
+      <a class="navbar-brand">
+        <form th:action="@{/student/schedule}" class="btn btn-transparent">
+          <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">Horario</button>
+        </form>
+      </a>
+    </div>
+  </div>
+</nav>
+<br><br>
+<div class="container mt-5" >
+<div class="container">
+  <h1 style="font-family: 'Lobster Two', cursive; text-align: center;">Horario de clases</h1>
+  <div class="container mt-5" >
+    <table class="table table-striped table-bordered table-hover" style="font-family: 'Nunito Sans', sans-serif; text-align: center;">
+      <thead class="thead-dark">
+    <tr>
+      <th>Hora</th>
+      <th>Lunes</th>
+      <th>Martes</th>
+      <th>Miércoles</th>
+      <th>Jueves</th>
+      <th>Viernes</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>7:00 AM</td>
+    </tr>
+    <tr>
+      <td>8:00 AM</td>
+    </tr>
+    <tr>
+      <td>9:00 AM</td>
+    </tr>
+    <!-- Resto de filas -->
+    <tr>
+      <td>10:00 AM</td>
+    </tr>
+    <tr>
+      <td>11:00 AM</td>
+    </tr>
+    <tr>
+      <td>12:00 PM</td>
+    </tr>
+    <tr>
+      <td>1:00 PM</td>
+    </tr>
+    <tr>
+      <td>2:00 PM</td>
+    </tr>
+    <tr>
+      <td>3:00 PM</td>
+    </tr>
+    <tr>
+      <td>4:00 PM</td>
+    </tr>
+    <tr>
+      <td>5:00 PM</td>
+    </tr>
+    <tr>
+      <td>6:00 PM</td>
+    </tr>
+    <tr>
+      <td>7:00 PM</td>
+    </tr>
+    <tr>
+      <td>8:00 PM</td>
+    </tr>
+    <tr>
+      <td>9:00 PM</td>
+    </tr>
+    <tr>
+      <td>10:00 PM</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.List;
 
 @RestController
