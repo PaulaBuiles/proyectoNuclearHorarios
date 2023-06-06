@@ -26,9 +26,4 @@ public class Classroom {
 
     @Column (name ="capacity", nullable=false)
     private String capacity;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn (name ="id_availability")
-    private List<Availability> availability;
-
 }

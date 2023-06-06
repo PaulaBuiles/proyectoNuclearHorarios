@@ -9,12 +9,7 @@ import lombok.*;
 @Builder
 @Entity
 @Table(name = "administrative")
-public class Administrative {
-
-    @Id
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name="id_user")
-    private User user;
+public class Administrative extends User{
 
     @Column(name = "charge", nullable = false)
     private String charge;
