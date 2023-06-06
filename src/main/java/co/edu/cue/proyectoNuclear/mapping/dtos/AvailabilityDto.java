@@ -9,7 +9,7 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.util.List;
 
-public record AvailabilityDto(int id,
+public record AvailabilityDto(Long id,
                               String dayOfWeek,
                               LocalDate start,
                               LocalDate end,

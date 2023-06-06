@@ -39,6 +39,7 @@ public class NavigationController {
     @GetMapping("/info")
     public ModelAndView info(){
         ModelAndView modelAndView = new ModelAndView(Pages.STUDENTINFORMATION);
+        System.out.println(userService.getUser().id());
         modelAndView.addObject("userStudent",studentService.findUserStudent(userService.getUser()));
         return modelAndView;
     }
@@ -58,6 +59,7 @@ public class NavigationController {
         user.setName(name);
         user.setEmail(email);
         userDAO.update(userMapper.mapUser(user));
+        userService.validateUser(user.getId(),user.getPassword());
         return info();
     }
 
