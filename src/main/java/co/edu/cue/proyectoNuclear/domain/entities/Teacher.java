@@ -12,6 +12,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Data
 @Table(name="teacher")
 //@PrimaryKeyJoinColumn(referencedColumnName = "user_id")
 public class Teacher extends User{

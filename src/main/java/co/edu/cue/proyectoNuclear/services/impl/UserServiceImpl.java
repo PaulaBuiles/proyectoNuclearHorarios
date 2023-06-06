@@ -1,18 +1,11 @@
 package co.edu.cue.proyectoNuclear.services.impl;
 
-import co.edu.cue.proyectoNuclear.domain.entities.Administrative;
-import co.edu.cue.proyectoNuclear.domain.entities.Teacher;
-import co.edu.cue.proyectoNuclear.domain.entities.User;
-import co.edu.cue.proyectoNuclear.infrastructure.dao.GeneralDAO;
+
 import co.edu.cue.proyectoNuclear.infrastructure.dao.UserDAOImpl;
-import co.edu.cue.proyectoNuclear.mapping.dtos.AdministrativeDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
-import co.edu.cue.proyectoNuclear.mapping.mappers.AdministrativeMapper;
-import co.edu.cue.proyectoNuclear.mapping.mappers.UserMapper;
 import co.edu.cue.proyectoNuclear.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -37,6 +30,7 @@ public class UserServiceImpl implements UserService {
             if (id.equals(user.id()) && password.equals(user.password())) {
                 band = true;
                 user1 = user;
+                System.out.println(user1.name());
                 break;
             }
         }

@@ -102,7 +102,7 @@ public class AdministrativeController {
     }
 
     @PostMapping("/classroom")
-    public ResponseEntity<String> changes(@RequestParam("number") String number, @RequestParam("capacity") String capacity, @RequestParam("location") String location){
+    public ResponseEntity<String> changes(@RequestParam("number") String number, @RequestParam("capacity") Integer capacity, @RequestParam("location") String location){
         Classroom classroom = classroomMapper.mapToEntity(classroomService.getClassroomDto());
         classroom.setName(number);
         classroom.setCapacity(capacity);

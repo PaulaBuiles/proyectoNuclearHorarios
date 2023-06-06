@@ -5,9 +5,8 @@ import co.edu.cue.proyectoNuclear.domain.entities.Subject;
 
 import java.sql.Time;
 
-public record ScheduleDto(int id,
+public record ScheduleDto(Long id,
                           Classroom classroom,
-                          Time durability,
-                          Subject subject
+                          Time durability
                           ) {
 }

@@ -1,6 +1,5 @@
 package co.edu.cue.proyectoNuclear.infrastructure.dao;
 
-import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
 
 import java.util.List;
 

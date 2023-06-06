@@ -6,11 +6,13 @@ import co.edu.cue.proyectoNuclear.domain.entities.Subject;
 import co.edu.cue.proyectoNuclear.domain.entities.Teacher;
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.List;
 
 public record AvailabilityDto(int id,
                               String dayOfWeek,
-                              Time start,
-                              Time end) {
+                              LocalDate start,
+                              LocalDate end,
+                              Teacher teacher) {
 
 }

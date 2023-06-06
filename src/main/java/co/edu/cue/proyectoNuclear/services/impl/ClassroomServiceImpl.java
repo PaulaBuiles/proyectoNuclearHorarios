@@ -1,16 +1,12 @@
 package co.edu.cue.proyectoNuclear.services.impl;
 
-import co.edu.cue.proyectoNuclear.domain.entities.Classroom;
+
 import co.edu.cue.proyectoNuclear.infrastructure.dao.ClassroomDAOImpl;
 import co.edu.cue.proyectoNuclear.mapping.dtos.ClassroomDto;
-import co.edu.cue.proyectoNuclear.mapping.dtos.TeacherDto;
-import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
 import co.edu.cue.proyectoNuclear.services.ClassroomService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

@@ -18,6 +18,7 @@ public class AvailabilityDAOImpl implements GeneralDAO<AvailabilityDto> {
 
     @PersistenceContext
     private EntityManager entityManager;
+
     private AvailabilityMapper mapper;
 
     @Override

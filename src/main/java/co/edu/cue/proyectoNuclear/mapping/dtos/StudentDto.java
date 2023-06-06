@@ -13,6 +13,6 @@ public record StudentDto(Long id,
                          String role,
                          String career,
                          Semester semester,
-                         List<Subject> cursos
+                         List<Subject> subject
                          ) {
 }
