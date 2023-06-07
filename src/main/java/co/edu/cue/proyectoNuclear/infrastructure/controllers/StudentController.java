@@ -34,18 +34,23 @@ public class StudentController {
 
     @GetMapping("/home")
     public ModelAndView home(){
-        return new ModelAndView(Pages.STUDENTHOME);
+        ModelAndView modelAndView =new ModelAndView(Pages.STUDENTHOME);
+        modelAndView.addObject("user",userService.getUser());
+        return modelAndView;
     }
 
     @GetMapping("/info")
     public ModelAndView info(){
         ModelAndView modelAndView = new ModelAndView(Pages.STUDENTINFORMATION);
         modelAndView.addObject("userStudent",studentService.findUserStudent(userService.getUser()));
+        modelAndView.addObject("user",userService.getUser());
         return modelAndView;
     }
     @GetMapping("/edit")
     public ModelAndView edit(){
-        return new ModelAndView(Pages.CHANGES);
+        ModelAndView modelAndView =new ModelAndView(Pages.CHANGES);
+        modelAndView.addObject("user",userService.getUser());
+        return modelAndView;
     }
     @PostMapping("/changes")
     public ModelAndView changes(@RequestParam("name") String name, @RequestParam("email") String email){
@@ -57,7 +62,9 @@ public class StudentController {
     }
     @GetMapping("/schedule")
     public ModelAndView scheduleStudent(){
-        return new ModelAndView(Pages.SCHEDULESTUDENT);
+        ModelAndView modelAndView =new ModelAndView(Pages.SCHEDULESTUDENT);
+        modelAndView.addObject("user",userService.getUser());
+        return modelAndView;
     }
 
 }

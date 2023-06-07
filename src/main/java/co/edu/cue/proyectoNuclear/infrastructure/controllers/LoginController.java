@@ -45,7 +45,7 @@ public class LoginController {
                     modelAndView = new ModelAndView(Pages.ADMINHOME);
                 }
             }
-            modelAndView.addObject("usuario",userService.getUser());
+            modelAndView.addObject("user",userService.getUser());
             return modelAndView;
         }
         else {

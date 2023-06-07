@@ -5,6 +5,7 @@
     <link th:href="@{/css/bootstrap.css}" rel="stylesheet" href="/static/css/bootstrap.css">
     <script th:src="@{/js/jquery.js}" src="/static/js/jquery.js"></script>
     <script th:src="@{/js/bootstrap.js}" src="/static/js/bootstrap.js"></script>
+
     <title>Login Gestión de Horarios</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap');
@@ -14,6 +15,27 @@
             padding: 10px;
             height: 50px;
         }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display:none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            padding: 12px 16px;
+            flex-direction: column;
+            right: 0;
+            text-align: right;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
         .btn-transparent {
             background-color: transparent;
             border: none;
@@ -48,30 +70,45 @@
     </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg justify-content-start ">
+<nav class="navbar navbar-expand-lg justify-content-start">
     <div class="container-fluid justify-content-start">
         <img src="/img/logoAVH.png" alt="Logo" width="111" height="111" class="logo">
-        <div class="navbar-nav ml-3" style="color: white; font-family: 'Lobster Two', cursive;">
+        <div class="navbar-nav ml-auto" style="color: white; font-family: 'Lobster Two', cursive;">
             <a class="navbar-brand"><p></p></a>
             <a class="navbar-brand">
                 <form th:action="@{/student/home}" class="btn btn-transparent">
-                    <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">               Inicio               </button>
+                    <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">Inicio</button>
                 </form>
                 <a class="navbar-brand"><p></p></a>
             </a>
             <a class="navbar-brand">
                 <form th:action="@{/student/info}" class="btn btn-transparent">
-                    <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">        Información general         </button>
+                    <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">Información general</button>
                 </form>
             </a>
-            <a class="navbar-brand"><p></p></a>
             <a class="navbar-brand">
                 <form th:action="@{/student/schedule}" class="btn btn-transparent">
-                    <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">               Horario               </button>
+                    <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">Horario</button>
                 </form>
             </a>
         </div>
     </div>
+    <a class="navbar-brand">
+        <div class="dropdown">
+            <button class="btn btn-transparent dropdown-toggle" type="button"
+                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false"style="background-color: transparent; border: none; font-size: 20px; color: white; font-family: 'Lobster Two', cursive;" th:Text="${user.name}"
+            ></button>
+            <div class="dropdown-content" style="right: 0; text-align: right; color: white; font-family: 'Lobster Two', cursive; left: calc(50% - 50px); transform: translateX(-50%);">
+                <div class="none" style="flex-direction: column; display: flex; right: 0; text-align: right;">
+                    <form th:action="@{/login/}" class="btn btn-transparent">
+                        <button type="submit" style="color: black; border: none; font-size: 15px;" class="btn btn-transparent">Cerrar sesión</button>
+                    </form>
+            </div>
+            </div>
+        </div>
+    </a>
+
 </nav>
 <br><br>
 <!--
@@ -88,5 +125,6 @@
     <br>
     <img src="/img/community.jpeg" alt="logo" width="550" height="200" >
 </div>
+<script src="/webjars/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -9,12 +9,13 @@ import org.springframework.cglib.core.Local;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 public record AvailabilityDto(Long id,
                               DayOfWeek dayOfWeek,
-                              LocalDate start,
-                              LocalDate end,
+                              LocalTime start,
+                              LocalTime end,
                               Teacher teacher) {
 
 }

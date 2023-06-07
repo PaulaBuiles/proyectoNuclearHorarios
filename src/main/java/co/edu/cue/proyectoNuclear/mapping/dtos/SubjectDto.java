@@ -9,6 +9,7 @@ public record SubjectDto(String id,
                          Teacher teacher,
                          int credit,
                          List<Student> students,
-                         Classroom classroom
+                         Classroom classroom,
+                         List<Schedule> schedules
                          ) {
 }

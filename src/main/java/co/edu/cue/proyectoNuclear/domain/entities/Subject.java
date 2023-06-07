@@ -36,4 +36,7 @@ public class Subject{
     @ManyToOne
     @JoinColumn(name = "classroom_id")
     private Classroom classroom;
+
+    @OneToMany(mappedBy = "subject", fetch = FetchType.LAZY)
+    private List<Schedule> schedules;
 }

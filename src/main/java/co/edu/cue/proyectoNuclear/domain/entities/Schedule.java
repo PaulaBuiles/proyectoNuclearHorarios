@@ -22,11 +22,20 @@ public class Schedule {
     @Column (name ="id")
     private Long id;
 
+    @Column(name="dayOfWeek", nullable=false)
+    private DayOfWeek dayOfWeek;
+
     @Column (name ="durability", nullable=false)
     private Time durability;
 
+    @Column(name="start", nullable=false)
+    private LocalTime start;
+
+    @Column(name="end", nullable=false)
+    private LocalTime end;
+
     @ManyToOne
-    @JoinColumn(name = "classroom_id", nullable=false)
-    private Classroom classroom;
+    @JoinColumn(name = "subject_id", nullable=false)
+    private Subject subject;
 
 }
