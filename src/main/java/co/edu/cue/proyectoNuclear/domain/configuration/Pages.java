@@ -21,6 +21,7 @@ public class Pages {
     public static String STUDENTINFORMATION="student/personalInformation";
     public static String CHANGES="student/change";
     public static String SCHEDULESTUDENT="student/scheduleStudent";
+    public static String PASSWORD="student/changePassword";
 
     //TEACHER
     public static String TEACHERHOME ="teacher/homeTeacher";

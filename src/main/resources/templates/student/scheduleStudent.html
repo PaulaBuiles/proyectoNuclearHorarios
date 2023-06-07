@@ -100,8 +100,11 @@
       ></button>
       <div class="dropdown-content" style="right: 0; text-align: right; color: white; font-family: 'Lobster Two', cursive; left: calc(50% - 50px); transform: translateX(-50%);">
         <div class="none" style="flex-direction: column; display: flex; right: 0; text-align: right;">
-          <form th:action="@{/login/}" class="btn btn-transparent">
+          <form th:action="@{/login/}" method="post" class="btn btn-transparent">
             <button type="submit" style="color: black; border: none; font-size: 15px;" class="btn btn-transparent">Cerrar sesión</button>
+          </form>
+          <form th:action="@{/student/changePassword}" class="btn btn-transparent">
+            <button type="submit" style="color: black; border: none; font-size: 15px;" class="btn btn-transparent">Cambiar contraseña</button>
           </form>
         </div>
       </div>

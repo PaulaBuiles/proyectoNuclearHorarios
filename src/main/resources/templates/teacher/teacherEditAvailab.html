@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="../../bootstrap_theme/bootstrap.css" rel="stylesheet" type="text/css">
+  <script th:src="@{/js/jquery.js}" src="/static/js/jquery.js"></script>
+  <script th:src="@{/js/bootstrap.js}" src="/static/js/bootstrap.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <title>Login Gestión de Horarios</title>
+  <style>@import url('https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap'); @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap'); nav { background-color: #0C0096; padding: 10px; height: 50px; } .btn-transparent { background-color: transparent; border: none; color: #ffffff;  /* Color del texto */ padding: 0;  /* Opcional: ajusta el espaciado del botón */ } .logo { position: relative; top: 30px; } .menu-container { display: flex; justify-content: center; } .menu-button { flex: 1; }</style>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster+Two&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg justify-content-start ">
+  <div class="container-fluid justify-content-start">
+    <img src="/img/logoAVH.png" alt="Logo" width="111" height="111" class="logo">
+    <div class="navbar-nav ml-3" style="color: white; font-family: 'Lobster Two', cursive;"> <a class="navbar-brand"><p></p></a> <a class="navbar-brand"> <form th:action="@{/teacher/home-teacher}" class="btn btn-transparent">
+      <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">               Inicio               </button>
+    </form> <a class="navbar-brand"><p></p></a> </a> <a class="navbar-brand"> <form th:action="@{/teacher/info-teacher}" class="btn btn-transparent">
+      <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">        Información general         </button>
+    </form> </a> <a class="navbar-brand"><p></p></a> <a class="navbar-brand"> <form th:action="@{/teacher/schedule-teacher}" class="btn btn-transparent">
+      <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">               Horario               </button>
+    </form> </a>
+    </div>
+  </div>
+</nav>
+<br><br>
+<br>
+<div class="container mt-5">
+  <h1 style="font-family: 'Lobster Two', cursive; text-align: center;">Disponibilidad</h1><br>
+  <div class="container mt-5">
+    <form th:action="@{/teacher/newAvailability}" method="post" class="border p-3 form">
+      <div class="mb-3">
+        <label for="day" class="form-label" style="font-family: 'Lobster Two', cursive; font-size: 23px;">Día de la semana </label>
+        <input type="text" class="form-control" id="day" name="day">
+      </div>
+      <div class="mb-3">
+        <label for="start" class="form-label" style="font-family: 'Lobster Two', cursive; font-size: 23px;">Desde</label>
+        <input type="text" class="form-control" id="start" name="start">
+      </div>
+      <div class="mb-3">
+        <label for="end" class="form-label" style="font-family: 'Lobster Two', cursive; font-size: 23px;">Hasta</label>
+        <input type="text" class="form-control" id="end" name="end">
+      </div>
+      <button type="submit" value="Enviar" class="btn btn-primary" style="background-color: #0c0096; font-family: 'Lobster Two', cursive;">Editar</button>
+    </form>
+  </div>
+</div>
+<br>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>

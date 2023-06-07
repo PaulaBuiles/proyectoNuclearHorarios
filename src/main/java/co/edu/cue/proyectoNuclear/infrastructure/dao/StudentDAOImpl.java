@@ -55,6 +55,16 @@ public class StudentDAOImpl implements GeneralDAO<StudentDto>{
         entityManager.merge(student);
     }
 
+    public void updatePassword(StudentDto entity) {
+        // Cargar la entidad Student existente
+        Student student = entityManager.find(Student.class, entity.id());
+        if (student == null) {
+            throw new EntityNotFoundException("Estudiante no encontrado");
+        }
+        student.setPassword(entity.password());
+        entityManager.merge(student);
+    }
+
     @Override
     public void delete(Long id) {
         Student student = entityManager.find(Student.class, id);

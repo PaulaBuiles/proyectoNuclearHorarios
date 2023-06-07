@@ -20,6 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class StudentController {
 
+    private final LoginController loginController;
+
     @Autowired
     private final UserService userService;
 
@@ -65,6 +67,19 @@ public class StudentController {
         ModelAndView modelAndView =new ModelAndView(Pages.SCHEDULESTUDENT);
         modelAndView.addObject("user",userService.getUser());
         return modelAndView;
+    }
+    @GetMapping("/changePassword")
+    public ModelAndView changePassword(){
+        ModelAndView modelAndView = new ModelAndView(Pages.PASSWORD);
+        modelAndView.addObject("user",userService.getUser());
+        return modelAndView;
+    }
+    @PostMapping("/editPassword")
+    public ModelAndView editPassword(@RequestParam("password") String password){
+        Student user = studentMapper.mapToEntity(studentService.findUserStudent(userService.getUser()));
+        user.setPassword(password);
+        studentDAO.updatePassword(studentMapper.mapStudent(user));
+        return loginController.post();
     }
 
 }
