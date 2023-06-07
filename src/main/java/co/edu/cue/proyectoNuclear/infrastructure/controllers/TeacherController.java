@@ -46,32 +46,41 @@ public class TeacherController {
         return modelAndView;
     }
 
-    @GetMapping("/home")
+    @GetMapping("/home-teacher")
     public ModelAndView home(){
         ModelAndView modelAndView = new ModelAndView(Pages.ADMINHOME);
         return modelAndView;
     }
-    @GetMapping("/info")
+    @GetMapping("/info-teacher")
     public ModelAndView info(){
         ModelAndView modelAndView = new ModelAndView(Pages.TEACHERINFORMATION);
         modelAndView.addObject("userTeacher",teacherService.findUserTeacher(userService.getUser()));
         return modelAndView;
     }
 
-    @GetMapping("/edit")
+    @GetMapping("/edit-teacher")
     public ModelAndView edit(){
         ModelAndView modelAndView = new ModelAndView(Pages.TEACHEREDIT);
+        modelAndView.addObject("user",userService.getUser());
         return modelAndView;
     }
-    @PostMapping("/changes")
+
+
+    @PostMapping("/changes-teacher")
     public ModelAndView changes(@RequestParam("name") String name, @RequestParam("email") String email){
         teacherService.editTeacher(name,email);
         return info();
     }
+    @GetMapping("/edit-availability")
+    public ModelAndView editAvailability(){
+        ModelAndView modelAndView = new ModelAndView(Pages.TEACHERAVAILABILITY);
+        modelAndView.addObject("user",userService.getUser());
+        return modelAndView;
+    }
 
     @PostMapping("/newAvailability")
-    public ModelAndView changes(@RequestParam("day") DayOfWeek day, @RequestParam("start") LocalTime start, @RequestParam("end") LocalTime end){
-        availabilityService.newAvailability(day,start,end,teacherService.findUserTeacher(userService.getUser()));
+    public ModelAndView changes(@RequestParam("day") DayOfWeek day, @RequestParam("start") LocalTime start, @RequestParam("end") LocalTime end) {
+        availabilityService.newAvailability(day, start, end, teacherService.findUserTeacher(userService.getUser()));
         return info();
     }
 

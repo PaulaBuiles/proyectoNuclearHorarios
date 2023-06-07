@@ -15,11 +15,11 @@
 <nav class="navbar navbar-expand-lg justify-content-start ">
   <div class="container-fluid justify-content-start">
     <img src="/img/logoAVH.png" alt="Logo" width="111" height="111" class="logo">
-    <div class="navbar-nav ml-3" style="color: white; font-family: 'Lobster Two', cursive;"> <a class="navbar-brand"><p></p></a> <a class="navbar-brand"> <form th:action="@{/navigation/home}" class="btn btn-transparent">
+    <div class="navbar-nav ml-3" style="color: white; font-family: 'Lobster Two', cursive;"> <a class="navbar-brand"><p></p></a> <a class="navbar-brand"> <form th:action="@{/teacher/home-teacher}" class="btn btn-transparent">
       <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">               Inicio               </button>
-    </form> <a class="navbar-brand"><p></p></a> </a> <a class="navbar-brand"> <form th:action="@{/navigation/info}" class="btn btn-transparent">
+    </form> <a class="navbar-brand"><p></p></a> </a> <a class="navbar-brand"> <form th:action="@{/teacher/info-teacher}" class="btn btn-transparent">
       <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">        Información general         </button>
-    </form> </a> <a class="navbar-brand"><p></p></a> <a class="navbar-brand"> <form th:action="@{/navigation/schedule}" class="btn btn-transparent">
+    </form> </a> <a class="navbar-brand"><p></p></a> <a class="navbar-brand"> <form th:action="@{/teacher/schedule-teacher}" class="btn btn-transparent">
       <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">               Horario               </button>
     </form> </a>
     </div>
@@ -44,6 +44,12 @@
 
       </tr>
     </table>
+    <div class="container mt-5">
+      <form th:action="@{/teacher/edit-teacher}">
+        <button class="btn btn-primary" style="font-family: 'Lobster Two', cursive;
+                float: right; font-size: 18px; background-color: #0c0096; border-top-color: #000000;
+                outline: none; outline-offset: -2px;" type="submit">Editar información personal</button>
+      </form> </div><br>
   </div>
   <div class="container mt-5">
     <h1 style="font-family: 'Lobster Two', cursive; text-align: center;">Disponibilidad</h1>
@@ -87,8 +93,11 @@
     </table>
   </div>
   <div class="container mt-5">
-    <button class="btn btn-primary" style="font-family: 'Lobster Two', cursive; float: right; font-size: 18px; background-color: #0c0096; border-top-color: #000000; outline: none; outline-offset: -2px;">Realizar cambios</button>
-  </div><br>
+    <form th:action="@{/teacher/edit-availability}">
+      <button class="btn btn-primary" style="font-family: 'Lobster Two', cursive;
+                float: right; font-size: 18px; background-color: #0c0096; border-top-color: #000000;
+                outline: none; outline-offset: -2px;" type="submit">Agregar disponibilidad</button>
+    </form> </div><br>
 </div>
 <br>
 <div class="container mt-5" >

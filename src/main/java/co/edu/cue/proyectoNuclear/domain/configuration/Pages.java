@@ -27,4 +27,5 @@ public class Pages {
     public static String TEACHERHOME ="teacher/homeTeacher";
     public static String TEACHERINFORMATION="teacher/teacherTable";
     public static String TEACHEREDIT="teacher/teacherEdit";
+    public static String TEACHERAVAILABILITY="teacher/teacherEditAvailab";
 }

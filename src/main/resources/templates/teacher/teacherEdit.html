@@ -15,11 +15,11 @@
 <nav class="navbar navbar-expand-lg justify-content-start ">
   <div class="container-fluid justify-content-start">
     <img src="/img/logoAVH.png" alt="Logo" width="111" height="111" class="logo">
-    <div class="navbar-nav ml-3" style="color: white; font-family: 'Lobster Two', cursive;"> <a class="navbar-brand"><p></p></a> <a class="navbar-brand"> <form th:action="@{/navigation/home}" class="btn btn-transparent">
+    <div class="navbar-nav ml-3" style="color: white; font-family: 'Lobster Two', cursive;"> <a class="navbar-brand"><p></p></a> <a class="navbar-brand"> <form th:action="@{/teacher/home-teacher}" class="btn btn-transparent">
       <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">               Inicio               </button>
-    </form> <a class="navbar-brand"><p></p></a> </a> <a class="navbar-brand"> <form th:action="@{/navigation/info}" class="btn btn-transparent">
+    </form> <a class="navbar-brand"><p></p></a> </a> <a class="navbar-brand"> <form th:action="@{/teacher/info-teacher}" class="btn btn-transparent">
       <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">        Información general         </button>
-    </form> </a> <a class="navbar-brand"><p></p></a> <a class="navbar-brand"> <form th:action="@{/navigation/schedule}" class="btn btn-transparent">
+    </form> </a> <a class="navbar-brand"><p></p></a> <a class="navbar-brand"> <form th:action="@{/teacher/schedule-teacher}" class="btn btn-transparent">
       <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">               Horario               </button>
     </form> </a>
     </div>
@@ -29,7 +29,7 @@
 <div class="container mt-5">
   <h1 style="font-family: 'Lobster Two', cursive; text-align: center;">Información Personal</h1><br>
   <div class="container mt-5">
-    <form th:action="@{/navigation/changes}" method="post" class="border p-3 form">
+    <form th:action="@{/teacher/changes-teacher}" method="post" class="border p-3 form">
       <div class="mb-3">
         <label for="name" class="form-label" style="font-family: 'Lobster Two', cursive; font-size: 23px;">Nombre Completo</label>
         <input type="text" class="form-control" id="name" name="name">
@@ -43,26 +43,7 @@
   </div>
 </div>
 <br>
-<div class="container mt-5">
-  <h1 style="font-family: 'Lobster Two', cursive; text-align: center;">Disponibilidad</h1><br>
-  <div class="container mt-5">
-    <form th:action="@{/navigation/newAvailability}" method="post" class="border p-3 form">
-      <div class="mb-3">
-        <label for="day" class="form-label" style="font-family: 'Lobster Two', cursive; font-size: 23px;">Día de la semana </label>
-        <input type="text" class="form-control" id="day" name="day">
-      </div>
-      <div class="mb-3">
-        <label for="start" class="form-label" style="font-family: 'Lobster Two', cursive; font-size: 23px;">Desde</label>
-        <input type="text" class="form-control" id="start" name="start">
-      </div>
-      <div class="mb-3">
-        <label for="end" class="form-label" style="font-family: 'Lobster Two', cursive; font-size: 23px;">Hasta</label>
-        <input type="text" class="form-control" id="end" name="end">
-      </div>
-      <button type="submit" value="Enviar" class="btn btn-primary" style="background-color: #0c0096; font-family: 'Lobster Two', cursive;">Editar</button>
-    </form>
-  </div>
-</div>
+
 <br>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
