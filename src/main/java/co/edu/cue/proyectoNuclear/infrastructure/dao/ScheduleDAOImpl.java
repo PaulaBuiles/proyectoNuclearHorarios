@@ -15,37 +15,31 @@ import java.util.List;
 @Repository
 @Transactional
 @AllArgsConstructor
-public class ScheduleDAOImpl implements GeneralDAO<ScheduleDto> {
+public class ScheduleDAOImpl {
 
     @PersistenceContext
     private EntityManager entityManager;
     private ScheduleMapper scheduleMapper;
 
-    @Override
     public List<ScheduleDto> getTableList() {
         TypedQuery<Schedule> query = entityManager.createQuery("SELECT s FROM Schedule s", Schedule.class);
         List<Schedule> scheduleList = query.getResultList();
         return scheduleMapper.mapList(scheduleList);
     }
 
-    @Override
     public ScheduleDto findById(Long id) {
         Schedule schedule = entityManager.find(Schedule.class, id);
         return scheduleMapper.mapSchedule(schedule);
     }
 
-    @Override
-    public void save(ScheduleDto entity) {
-        Schedule schedule = scheduleMapper.mapToEntity(entity);
-        entityManager.persist(schedule);
+    public void save(Schedule entity) {
+        entityManager.persist(entity);
     }
 
-    @Override
-    public void update(ScheduleDto entity) {
+    public void update(Schedule entity) {
             entityManager.merge(entity);
     }
 
-    @Override
     public void delete(Long id) {
         Schedule schedule = entityManager.find(Schedule.class, id);
         if (schedule != null) {

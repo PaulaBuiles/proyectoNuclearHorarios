@@ -59,7 +59,7 @@ public class StudentController {
         Student user = studentMapper.mapToEntity(studentService.findUserStudent(userService.getUser()));
         user.setName(name);
         user.setEmail(email);
-        studentDAO.update(studentMapper.mapStudent(user));
+        studentService.editStudent(name,email);
         return info();
     }
     @GetMapping("/schedule")

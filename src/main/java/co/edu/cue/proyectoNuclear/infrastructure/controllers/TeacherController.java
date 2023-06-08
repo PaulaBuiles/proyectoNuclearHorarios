@@ -42,19 +42,22 @@ public class TeacherController {
     public ModelAndView getInformation(){
         List<TeacherDto> teacherList = teacherService.generateTeacher();
         ModelAndView modelAndView = new ModelAndView(Pages.TEACHERINFORMATION);
-        modelAndView.addObject("teachers",teacherList);
+        modelAndView.addObject("teachers", teacherList);
+        modelAndView.addObject("user", userService.getUser());
         return modelAndView;
     }
 
     @GetMapping("/home-teacher")
-    public ModelAndView home(){
-        ModelAndView modelAndView = new ModelAndView(Pages.ADMINHOME);
+    public ModelAndView home() {
+        ModelAndView modelAndView = new ModelAndView(Pages.TEACHERHOME);
+        modelAndView.addObject("user", userService.getUser());
         return modelAndView;
     }
     @GetMapping("/info-teacher")
     public ModelAndView info(){
         ModelAndView modelAndView = new ModelAndView(Pages.TEACHERINFORMATION);
-        modelAndView.addObject("userTeacher",teacherService.findUserTeacher(userService.getUser()));
+        modelAndView.addObject("userTeacher", teacherService.findUserTeacher(userService.getUser()));
+        modelAndView.addObject("user", userService.getUser());
         return modelAndView;
     }
 

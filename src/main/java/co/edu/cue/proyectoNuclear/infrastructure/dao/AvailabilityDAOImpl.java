@@ -15,7 +15,7 @@ import java.util.List;
 @Repository
 @Transactional
 @AllArgsConstructor
-public class AvailabilityDAOImpl implements GeneralDAO<AvailabilityDto> {
+public class AvailabilityDAOImpl {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -23,29 +23,25 @@ public class AvailabilityDAOImpl implements GeneralDAO<AvailabilityDto> {
 
     private AvailabilityMapper availabilityMapper;
 
-    @Override
     public List<AvailabilityDto> getTableList() {
         String query = "SELECT a FROM Availability a";
         return availabilityMapper.mapList(entityManager.createQuery(query, Availability.class).getResultList());
     }
 
-    @Override
     public AvailabilityDto findById(Long id) {
         return availabilityMapper.mapAvailability(entityManager.find(Availability.class, id));
     }
 
-    @Override
-    public void save(AvailabilityDto entity) {
-        Availability availability = availabilityMapper.mapToEntity(entity);
-        entityManager.persist(availability);
+
+    public void save(Availability entity) {
+        entityManager.persist(entity);
     }
 
-    @Override
-    public void update(AvailabilityDto entity) {
+
+    public void update(Availability entity) {
         entityManager.merge(entity);
     }
 
-    @Override
     public void delete(Long id) {
         Availability availability = entityManager.find(Availability.class, id);
         if (availability != null) {

@@ -1,6 +1,7 @@
 package co.edu.cue.proyectoNuclear.services.impl;
 
 
+import co.edu.cue.proyectoNuclear.domain.entities.Classroom;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.ClassroomDAOImpl;
 import co.edu.cue.proyectoNuclear.mapping.dtos.ClassroomDto;
 import co.edu.cue.proyectoNuclear.services.ClassroomService;
@@ -26,12 +27,12 @@ public class ClassroomServiceImpl implements ClassroomService {
     }
 
     @Override
-    public void createClassroom(ClassroomDto classroomDto) {
+    public void createClassroom(Classroom classroomDto) {
         classroomDAO.save(classroomDto);
     }
 
     @Override
-    public void editClassroom(ClassroomDto classroomDto) {
+    public void editClassroom(Classroom classroomDto) {
         classroomDAO.update(classroomDto);
     }
 

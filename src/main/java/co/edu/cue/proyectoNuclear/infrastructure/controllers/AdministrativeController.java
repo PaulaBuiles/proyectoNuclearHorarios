@@ -2,6 +2,7 @@ package co.edu.cue.proyectoNuclear.infrastructure.controllers;
 
 import co.edu.cue.proyectoNuclear.domain.configuration.Pages;
 import co.edu.cue.proyectoNuclear.domain.entities.Classroom;
+import co.edu.cue.proyectoNuclear.domain.entities.User;
 import co.edu.cue.proyectoNuclear.domain.enums.Campus;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.ClassroomDAOImpl;
 import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
@@ -61,16 +62,16 @@ public class AdministrativeController {
         return modelAndView;
     }
 
-    @PostMapping("/users-table-filter")
-
-    public  ModelAndView getUsersTableFilter(@RequestParam("filter") String role){
+    /*@PostMapping("/users-table-filter")
+    public ModelAndView getUsersTableFilter(@RequestParam("filter") String role){
         List<UserDto> userDtoList = userService.filterUsersByRole(role);
         ModelAndView modelAndView = new ModelAndView(Pages.ADMINTABLEUSERS);
         modelAndView.addObject("users",userDtoList);
         modelAndView.addObject("role",role);
         return modelAndView;
-    }
-
+    }*/
+    /*public  ModelAndView getUsersTableFilter(@RequestParam("filter") String role){
+    */
     @GetMapping("/info")
     public ModelAndView info(){
         ModelAndView modelAndView = new ModelAndView(Pages.ADMININFORMATION);
@@ -109,7 +110,7 @@ public class AdministrativeController {
         classroom.setLocation(Campus.valueOf(location));
         //Cambiar
 
-        classroomDAO.save(classroomMapper.mapClassroom(classroom));
+        //classroomDAO.save(classroomMapper.mapClassroom(classroom));
         return ResponseEntity.ok("Classroom created successfully");
 
     }

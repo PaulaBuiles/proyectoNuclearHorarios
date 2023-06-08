@@ -4,8 +4,11 @@ import co.edu.cue.proyectoNuclear.domain.entities.Student;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.*;
 import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
+import co.edu.cue.proyectoNuclear.mapping.mappers.StudentMapper;
 import co.edu.cue.proyectoNuclear.services.StudentService;
+import co.edu.cue.proyectoNuclear.services.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -14,9 +17,15 @@ import java.util.List;
 @Service
 public class StudentServiceImpl implements StudentService {
 
-    private final StudentDAOImpl studentDAO;
 
-    private final SubjectDAOImpl subjectDAO;
+    @Autowired
+    private final UserService userService;
+
+    @Autowired
+    private StudentDAOImpl studentDAO;
+
+    @Autowired
+    private StudentMapper studentMapper;
 
     @Override
     public Student getStudent() {
@@ -34,13 +43,16 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void createStudent(StudentDto student) {
+    public void createStudent(Student student) {
         studentDAO.save(student);
     }
 
     @Override
-    public void editStudent(StudentDto student) {
-        studentDAO.update(student);
+    public void editStudent(String name, String email) {
+        Student user = studentMapper.mapToEntity(findUserStudent(userService.getUser()));
+        user.setName(name);
+        user.setEmail(email);
+        studentDAO.update(user);
     }
 
     public StudentDto findUserStudent(UserDto user) {
@@ -54,8 +66,4 @@ public class StudentServiceImpl implements StudentService {
         return studentDto;
     }
 
-    @Override
-    public void addSubject(Long subjectId, Long studentId) {
-
-    }
 }

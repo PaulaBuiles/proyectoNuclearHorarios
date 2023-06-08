@@ -17,34 +17,32 @@ import java.util.List;
 @Repository
 @Transactional
 @AllArgsConstructor
-public class StudentDAOImpl implements GeneralDAO<StudentDto>{
+public class StudentDAOImpl {
 
     @PersistenceContext
     private EntityManager entityManager;
 
     private final StudentMapper studentMapper ;
 
-    @Override
+
     public List<StudentDto> getTableList() {
         TypedQuery<Student> query = entityManager.createQuery("SELECT s FROM Student s", Student.class);
         List<Student> studentList = query.getResultList();
         return studentMapper.mapList(studentList);
     }
 
-    @Override
     public StudentDto findById(Long id) {
         Student student = entityManager.find(Student.class, id);
         return studentMapper.mapStudent(student);
     }
 
-    @Override
-    public void save(StudentDto entity) {
-        Student student = studentMapper.mapToEntity(entity);
-        entityManager.persist(student);
+
+    public void save(Student entity) {
+        entityManager.persist(entity);
     }
 
-    @Override
-    public void update(StudentDto entity) {
+
+    public void update(Student entity) {
         // Cargar la entidad Student existente
         Student student = entityManager.find(Student.class, entity.id());
         if (student == null) {
@@ -65,7 +63,7 @@ public class StudentDAOImpl implements GeneralDAO<StudentDto>{
         entityManager.merge(student);
     }
 
-    @Override
+
     public void delete(Long id) {
         Student student = entityManager.find(Student.class, id);
         if (student != null) {

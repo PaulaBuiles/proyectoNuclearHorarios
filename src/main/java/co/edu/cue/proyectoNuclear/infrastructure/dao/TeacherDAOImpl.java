@@ -18,31 +18,28 @@ import java.util.List;
 @Repository
 @Transactional
 @AllArgsConstructor
-public class TeacherDAOImpl implements GeneralDAO<TeacherDto> {
+public class TeacherDAOImpl {
 
     @PersistenceContext
     EntityManager entityManager;
     private TeacherMapper teacherMap;
 
-    @Override
     public List<TeacherDto> getTableList(){
         TypedQuery<Teacher> query = entityManager.createQuery("SELECT u FROM Teacher u", Teacher.class);
         return teacherMap.mapList(query.getResultList());
     }
 
-    @Override
     public TeacherDto findById(Long id) {
         return teacherMap.mapTeacher(entityManager.find(Teacher.class, id));
     }
 
-    @Override
     public void save(TeacherDto entity) {
         entityManager.persist(teacherMap.mapToEntity(entity));
     }
 
-    @Override
-    public void update(TeacherDto entity) {
-        Teacher teacher = entityManager.find(Teacher.class, entity.id());
+
+    public void update(Teacher entity) {
+        Teacher teacher = entityManager.find(Teacher.class, entity.getId());
         if (teacher == null) {
             throw new EntityNotFoundException("Profesor no encontrado");
         }
@@ -51,7 +48,6 @@ public class TeacherDAOImpl implements GeneralDAO<TeacherDto> {
         entityManager.merge(teacher);
     }
 
-    @Override
     public void delete(Long id) {
         Teacher teacher = entityManager.find(Teacher.class, id);
         if (teacher != null) {

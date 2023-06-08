@@ -17,7 +17,7 @@ import java.util.List;
 @Repository
 @Transactional
 @AllArgsConstructor
-public class ClassroomDAOImpl implements GeneralDAO<ClassroomDto>{
+public class ClassroomDAOImpl {
 
     @PersistenceContext
     EntityManager entityManager;
@@ -25,28 +25,24 @@ public class ClassroomDAOImpl implements GeneralDAO<ClassroomDto>{
     @Autowired
     private ClassroomMapper classMap;
 
-    @Override
     public List<ClassroomDto> getTableList(){
         TypedQuery<Classroom> query = entityManager.createQuery("SELECT u FROM Classroom u", Classroom.class);
         return classMap.mapList(query.getResultList());
     }
 
-    @Override
     public ClassroomDto findById(Long id) {
         return classMap.mapClassroom(entityManager.find(Classroom.class, id));
     }
 
-    @Override
-    public void save(ClassroomDto entity) {
-        entityManager.persist(classMap.mapToEntity(entity));
+
+    public void save(Classroom entity) {
+        entityManager.persist(entity);
     }
 
-    @Override
-    public void update(ClassroomDto entity) {
-        classMap.mapToEntity(entityManager.merge(entity));
+    public void update(Classroom entity) {
+        entityManager.merge(entity);
     }
 
-    @Override
     public void delete(Long id) {
         Classroom classroom = entityManager.find(Classroom.class, id);
         if (classroom != null) {
