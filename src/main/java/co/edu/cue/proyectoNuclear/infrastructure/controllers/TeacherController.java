@@ -80,8 +80,8 @@ public class TeacherController {
         return info();
     }
 
-    @GetMapping("/edit-availability")
-    public ModelAndView editAvailability() {
+    @GetMapping("/add-availability")
+    public ModelAndView addAvailability() {
         ModelAndView modelAndView = new ModelAndView(Pages.TEACHERAVAILABILITY);
         modelAndView.addObject("user", userService.getUser());
         return modelAndView;
@@ -107,6 +107,37 @@ public class TeacherController {
         teacherDAO.updatePassword(studentMapper.mapStudent(user));
         return loginController.post();
     }*/
+
+    /*@GetMapping("/editar/{id}")
+    public String mostrarFormularioEdicion(@PathVariable("id") Long id, Model model) {
+        // Obtener disponibilidad por ID y agregarla al modelo
+        Disponibilidad disponibilidad = disponibilidadService.obtenerPorId(id);
+        model.addAttribute("disponibilidad", disponibilidad);
+        return "formulario-edicion";
+    }*/
+
+
+    @GetMapping("/eliminar/{id}")
+    public String eliminarDisponibilidad(@PathVariable("id") Long id) {
+        // Eliminar disponibilidad por ID
+        availabilityService.deleteAvailabilityById(id);
+        return "redirect:/teacher/teacherTable";
+
+    }
+
+    @GetMapping("/edit-availability")
+    public ModelAndView editAvailability() {
+        ModelAndView modelAndView = new ModelAndView(Pages.EDITAVAILABILITY);
+        modelAndView.addObject("user", userService.getUser());
+        return modelAndView;
+    }
+    @PostMapping("/change-availability")
+    public ModelAndView editChangeAvailability(@RequestParam("day") int day, @RequestParam("start") String startRequest, @RequestParam("end") String endRequest){
+        LocalTime start = LocalTime.parse(startRequest);
+        LocalTime end = LocalTime.parse(endRequest);
+        availabilityService.editAvailability(day,start,end,teacherService.findUserTeacher(userService.getUser()));
+        return info();
+    }
 
 
 

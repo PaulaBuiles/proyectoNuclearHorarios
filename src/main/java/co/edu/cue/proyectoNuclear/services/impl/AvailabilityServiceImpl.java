@@ -42,8 +42,31 @@ public class AvailabilityServiceImpl implements AvailabilityService {
 
     }
 
+    @Override
+    public void deleteAvailabilityById(Long id) {
+        availabilityDAO.delete(id);
+    }
 
+    @Override
+    public void findAvailabilityById(Long id) {
+        availabilityDAO.findById(id);
+    }
+    @Override
+    public void editAvailability(int day, LocalTime start, LocalTime end, TeacherDto teacherDto) {
+        Teacher teacher = teacherMapper.mapToEntity(teacherDto);
+        //Availability availability = null;
 
+        DayOfWeek[] daysOfWeek = DayOfWeek.values();
+        DayOfWeek dayOfWeek = daysOfWeek[day];
+
+        /*availability.setId(null);
+        availability.setDayOfWeek(dayOfWeek);
+        availability.setStart(start);
+        availability.setEnd(end);
+        availability.setTeacher(teacher);*/
+        Availability availability = new Availability(null, dayOfWeek, start, end, teacher);
+        availabilityDAO.update(availability);
+    }
 
 
 }

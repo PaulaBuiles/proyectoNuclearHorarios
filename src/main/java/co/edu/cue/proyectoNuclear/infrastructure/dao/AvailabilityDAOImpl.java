@@ -5,6 +5,7 @@ import co.edu.cue.proyectoNuclear.domain.entities.Student;
 import co.edu.cue.proyectoNuclear.mapping.dtos.AvailabilityDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.AvailabilityMapper;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -39,7 +40,17 @@ public class AvailabilityDAOImpl {
 
 
     public void update(Availability entity) {
-        entityManager.merge(entity);
+        Availability availability = entityManager.find(Availability.class, entity.getId());
+        if (availability == null) {
+            throw new EntityNotFoundException("Disponibilidad no encontrada");
+        }
+        availability.setId(null);
+        availability.setDayOfWeek(entity.getDayOfWeek());
+        availability.setStart(entity.getStart());
+        availability.setEnd(entity.getEnd());
+        availability.setTeacher(entity.getTeacher());
+
+        entityManager.merge(availability);
     }
 
     public void delete(Long id) {
