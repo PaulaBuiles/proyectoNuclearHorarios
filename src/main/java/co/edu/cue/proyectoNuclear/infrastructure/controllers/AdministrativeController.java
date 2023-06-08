@@ -127,6 +127,7 @@ public class AdministrativeController {
     @GetMapping("/edit-classroom")
     public ModelAndView edit(){
         ModelAndView modelAndView = new ModelAndView(Pages.CLASSROOM);
+        modelAndView.addObject("user", userService.getUser());
         return modelAndView;
     }
 

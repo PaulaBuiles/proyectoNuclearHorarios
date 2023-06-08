@@ -1,5 +1,5 @@
-<!DOCTYPE html> 
-<html lang="en"> 
+<!DOCTYPE html>
+<html lang="en">
     <head> 
         <meta charset="UTF-8"> 
         <link href="../../bootstrap_theme/bootstrap.css" rel="stylesheet" type="text/css"> 
@@ -50,11 +50,11 @@
                 <form th:action="@{/student/changes}" method="post" class="border p-3 form">
                     <div class="mb-3">
                         <label for="name" class="form-label" style="font-family: 'Lobster Two', cursive; font-size: 23px;">Nombre Completo</label>
-                        <input type="text" class="form-control" id="name" name="name" th:if="${user != null}" th:text="${user.name}">
+                        <input type="text" class="form-control" id="name" name="name" th:if="${user != null}" th:value="${user.name}">
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label" style="font-family: 'Lobster Two', cursive; font-size: 23px;">Correo Electronico</label>
-                        <input type="text" class="form-control" id="email" name="email" th:if="${user != null}" th:text="${user.email}">
+                        <input type="text" class="form-control" id="email" name="email" th:if="${user != null}" th:value="${user.email}">
                     </div>
                     <button type="submit" value="Enviar" class="btn btn-primary" style="background-color: #0c0096; font-family: 'Lobster Two', cursive;">Editar</button>
                 </form>

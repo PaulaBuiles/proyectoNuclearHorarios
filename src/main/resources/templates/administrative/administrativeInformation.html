@@ -25,6 +25,24 @@
     </div>
   </div>
 </nav>
+<a class="navbar-brand">
+  <div class="dropdown">
+    <button class="btn btn-transparent dropdown-toggle" type="button"
+            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false"style="background-color: transparent; border: none; font-size: 20px; color: white; font-family: 'Lobster Two', cursive;" th:Text="${user.name}"
+    ></button>
+    <div class="dropdown-content" style="right: 0; text-align: right; color: white; font-family: 'Lobster Two', cursive; left: calc(50% - 50px); transform: translateX(-50%);">
+      <div class="none" style="flex-direction: column; display: flex; right: 0; text-align: right;">
+        <form th:action="@{/login/}" class="btn btn-transparent">
+          <button type="submit" style="color: black; border: none; font-size: 15px;" class="btn btn-transparent">Cerrar sesión</button>
+        </form>
+        <form th:action="@{/student/changePassword}" class="btn btn-transparent">
+          <button type="submit" style="color: black; border: none; font-size: 15px;" class="btn btn-transparent">Cambiar contraseña</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</a>
 <br><br>
 <div class="container mt-5" >
   <h1 style="font-family: 'Lobster Two', cursive; text-align: center;">Información Personal</h1>
