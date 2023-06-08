@@ -50,8 +50,15 @@
   <div class="container mt-5">
     <form th:action="@{/teacher/newAvailability}" method="post" class="border p-3 form">
       <div class="mb-3">
-        <label for="day" class="form-label" style="font-family: 'Lobster Two', cursive; font-size: 23px;">Día de la semana </label>
-        <input type="text" class="form-control" id="day" name="day">
+        <select class="form-control" id="day" name="day">
+          <option value="0">Lunes</option>
+          <option value="1">Martes</option>
+          <option value="2">Miércoles</option>
+          <option value="3">Jueves</option>
+          <option value="4">Viernes</option>
+          <option value="5">Sábado</option>
+
+        </select>
       </div>
       <div class="mb-3">
         <label for="start" class="form-label" style="font-family: 'Lobster Two', cursive; font-size: 23px;">Desde</label>

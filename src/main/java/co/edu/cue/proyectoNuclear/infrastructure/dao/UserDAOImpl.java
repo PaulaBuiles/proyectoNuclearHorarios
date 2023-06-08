@@ -16,7 +16,7 @@ import java.util.List;
 @Repository
 @Transactional
 @AllArgsConstructor
-public class UserDAOImpl implements GeneralDAO<UserDto> {
+public class UserDAOImpl {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -24,26 +24,26 @@ public class UserDAOImpl implements GeneralDAO<UserDto> {
     @Autowired
     private UserMapper userMapper;
 
-    @Override
+
     public List<UserDto> getTableList() {
         TypedQuery<User> query = entityManager.createQuery("SELECT u FROM User u", User.class);
         List<User> userList = query.getResultList();
         return userMapper.mapList(userList);
     }
 
-    @Override
+
     public UserDto findById(Long id) {
         User user = entityManager.find(User.class, id);
         return userMapper.mapUser(user);
     }
 
-    @Override
+
     public void save(UserDto entity) {
         User user = userMapper.mapToEntity(entity);
         entityManager.persist(user);
     }
 
-    @Override
+
     public void update(UserDto entity) {
         User user = userMapper.mapToEntity(entity);
         System.out.println(user.getId());
@@ -51,7 +51,7 @@ public class UserDAOImpl implements GeneralDAO<UserDto> {
 
     }
 
-    @Override
+
     public void delete(Long id) {
         User user = entityManager.find(User.class, id);
         if (user != null) {

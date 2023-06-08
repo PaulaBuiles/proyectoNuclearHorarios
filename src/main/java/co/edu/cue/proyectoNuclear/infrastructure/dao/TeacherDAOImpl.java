@@ -43,8 +43,8 @@ public class TeacherDAOImpl {
         if (teacher == null) {
             throw new EntityNotFoundException("Profesor no encontrado");
         }
-        teacher.setEmail(entity.email());
-        teacher.setName(entity.name());
+        teacher.setEmail(entity.getEmail());
+        teacher.setName(entity.getName());
         entityManager.merge(teacher);
     }
 

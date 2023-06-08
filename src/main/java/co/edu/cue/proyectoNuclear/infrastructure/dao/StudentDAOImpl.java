@@ -44,12 +44,12 @@ public class StudentDAOImpl {
 
     public void update(Student entity) {
         // Cargar la entidad Student existente
-        Student student = entityManager.find(Student.class, entity.id());
+        Student student = entityManager.find(Student.class, entity.getId());
         if (student == null) {
             throw new EntityNotFoundException("Estudiante no encontrado");
         }
-        student.setEmail(entity.email());
-        student.setName(entity.name());
+        student.setEmail(entity.getEmail());
+        student.setName(entity.getName());
         entityManager.merge(student);
     }
 

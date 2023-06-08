@@ -28,10 +28,18 @@ public class AvailabilityServiceImpl implements AvailabilityService {
 
 
 
-    public void newAvailability(DayOfWeek day, LocalTime start, LocalTime end, TeacherDto teacherDto){
+    public void newAvailability(int day, LocalTime start, LocalTime end, TeacherDto teacherDto){
         Teacher teacher = teacherMapper.mapToEntity(teacherDto);
-        Availability availability = new Availability(null,day,start,end,teacher);
-        availabilityDAO.save(availabilityMapper.mapAvailability(availability));
+        DayOfWeek[] daysOfWeek = DayOfWeek.values();
+
+        if (day < 0 || day >= daysOfWeek.length) {
+            throw new IllegalArgumentException("Valor de día inválido: " + day);
+        }
+
+        DayOfWeek dayOfWeek = daysOfWeek[day];
+        Availability availability = new Availability(null, dayOfWeek, start, end, teacher);
+        availabilityDAO.save(availability);
+
     }
 
 

@@ -5,7 +5,6 @@ import co.edu.cue.proyectoNuclear.domain.entities.Availability;
 import co.edu.cue.proyectoNuclear.domain.entities.Student;
 import co.edu.cue.proyectoNuclear.domain.entities.Teacher;
 import co.edu.cue.proyectoNuclear.domain.entities.User;
-import co.edu.cue.proyectoNuclear.domain.enums.DayOfWeek;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.AvailabilityDAOImpl;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.TeacherDAOImpl;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.UserDAOImpl;
@@ -23,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.Time;
+import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -88,7 +88,9 @@ public class TeacherController {
     }
 
     @PostMapping("/newAvailability")
-    public ModelAndView changes(@RequestParam("day") DayOfWeek day, @RequestParam("start") LocalTime start, @RequestParam("end") LocalTime end) {
+    public ModelAndView changesAvailability(@RequestParam("day") int day, @RequestParam("start") String startRequest, @RequestParam("end") String endRequest) {
+        LocalTime start = LocalTime.parse(startRequest);
+        LocalTime end = LocalTime.parse(endRequest);
         availabilityService.newAvailability(day, start, end, teacherService.findUserTeacher(userService.getUser()));
         return info();
     }

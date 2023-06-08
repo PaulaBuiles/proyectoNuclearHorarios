@@ -39,7 +39,7 @@ public class TeacherServiceImpl implements TeacherService {
         Teacher user = teacherMapper.mapToEntity(findUserTeacher(userService.getUser()));
         user.setName(name);
         user.setEmail(email);
-        teacherDAO.update(teacherMapper.mapTeacher(user));
+        teacherDAO.update(user);
     }
 
     @Override

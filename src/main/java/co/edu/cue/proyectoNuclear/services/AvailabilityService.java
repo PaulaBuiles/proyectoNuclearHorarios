@@ -7,5 +7,5 @@ import java.sql.Time;
 import java.time.LocalTime;
 
 public interface AvailabilityService {
-    void newAvailability(DayOfWeek day, LocalTime start, LocalTime end, TeacherDto teacherDto);
+    void newAvailability(int day, LocalTime start, LocalTime end, TeacherDto teacherDto);
 }
