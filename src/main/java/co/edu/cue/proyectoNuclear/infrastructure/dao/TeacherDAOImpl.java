@@ -3,6 +3,7 @@ package co.edu.cue.proyectoNuclear.infrastructure.dao;
 
 import co.edu.cue.proyectoNuclear.domain.entities.Student;
 import co.edu.cue.proyectoNuclear.domain.entities.Teacher;
+import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.TeacherDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.TeacherMapper;
 import jakarta.persistence.EntityManager;
@@ -62,5 +63,14 @@ public class TeacherDAOImpl {
                 delete(teacherDto.id());
             }
         }
+    }
+    public void updatePassword(TeacherDto entity) {
+        // Cargar la entidad Student existente
+        Teacher teacher = entityManager.find(Teacher.class, entity.id());
+        if (teacher == null) {
+            throw new EntityNotFoundException("Profesor no encontrado");
+        }
+        teacher.setPassword(entity.password());
+        entityManager.merge(teacher);
     }
 }

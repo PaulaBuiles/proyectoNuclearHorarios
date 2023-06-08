@@ -28,6 +28,6 @@ public class User {
     private String role;
 
     @Column(name = "active", nullable = false)
-    private Boolean active;
+    private boolean active;
 
 }

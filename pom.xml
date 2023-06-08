@@ -44,6 +44,7 @@
 
 
 		<!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
+
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
@@ -55,7 +56,6 @@
 			<version>1.5.5.Final</version>
 			<scope>provided</scope>
 		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf -->
 		<!--<dependency>
 			<groupId>org.springframework.boot</groupId>

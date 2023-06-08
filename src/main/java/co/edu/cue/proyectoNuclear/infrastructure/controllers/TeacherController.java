@@ -31,6 +31,7 @@ import java.util.List;
 @AllArgsConstructor
 @Controller
 public class TeacherController {
+    private final LoginController loginController;
     @Autowired
     private final TeacherService teacherService;
     @Autowired
@@ -96,32 +97,24 @@ public class TeacherController {
     }
     @GetMapping("/changePassword")
     public ModelAndView changePassword(){
-        ModelAndView modelAndView = new ModelAndView(Pages.PASSWORD);
+        ModelAndView modelAndView = new ModelAndView(Pages.CHANGEPASSSWORD);
         modelAndView.addObject("user",userService.getUser());
         return modelAndView;
     }
-    /*@PostMapping("/editPassword")
+    @PostMapping("/editPassword")
     public ModelAndView editPassword(@RequestParam("password") String password){
         Teacher user = teacherMapper.mapToEntity(teacherService.findUserTeacher(userService.getUser()));
         user.setPassword(password);
-        teacherDAO.updatePassword(studentMapper.mapStudent(user));
+        teacherDAO.updatePassword(teacherMapper.mapTeacher(user));
         return loginController.post();
-    }*/
-
-    /*@GetMapping("/editar/{id}")
-    public String mostrarFormularioEdicion(@PathVariable("id") Long id, Model model) {
-        // Obtener disponibilidad por ID y agregarla al modelo
-        Disponibilidad disponibilidad = disponibilidadService.obtenerPorId(id);
-        model.addAttribute("disponibilidad", disponibilidad);
-        return "formulario-edicion";
-    }*/
+    }
 
 
     @GetMapping("/eliminar/{id}")
-    public String eliminarDisponibilidad(@PathVariable("id") Long id) {
+    public ModelAndView eliminarDisponibilidad(@PathVariable("id") Long id) {
         // Eliminar disponibilidad por ID
         availabilityService.deleteAvailabilityById(id);
-        return "redirect:/teacher/teacherTable";
+        return info();
 
     }
 

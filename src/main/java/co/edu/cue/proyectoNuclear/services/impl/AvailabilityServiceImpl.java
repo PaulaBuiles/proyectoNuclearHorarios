@@ -66,6 +66,7 @@ public class AvailabilityServiceImpl implements AvailabilityService {
         availability.setTeacher(teacher);*/
         Availability availability = new Availability(null, dayOfWeek, start, end, teacher);
         availabilityDAO.update(availability);
+
     }
 
 

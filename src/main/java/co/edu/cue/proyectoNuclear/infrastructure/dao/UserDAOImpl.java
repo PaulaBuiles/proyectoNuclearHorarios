@@ -59,4 +59,11 @@ public class UserDAOImpl {
         }
     }
 
+    public User findUserByUsername(String name) {
+        String queryString = "SELECT u FROM User u WHERE u.name = :name";
+        TypedQuery<User> query = entityManager.createQuery(queryString, User.class);
+        query.setParameter("name", name);
+        return query.getSingleResult();
+    }
+
 }
