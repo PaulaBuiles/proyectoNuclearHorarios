@@ -1,8 +1,16 @@
 package co.edu.cue.proyectoNuclear.services.impl;
 
 
+import co.edu.cue.proyectoNuclear.domain.entities.*;
+import co.edu.cue.proyectoNuclear.infrastructure.dao.TeacherDAOImpl;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.UserDAOImpl;
+import co.edu.cue.proyectoNuclear.mapping.dtos.AdministrativeDto;
+import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
+import co.edu.cue.proyectoNuclear.mapping.dtos.TeacherDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
+import co.edu.cue.proyectoNuclear.services.AdministrativeService;
+import co.edu.cue.proyectoNuclear.services.StudentService;
+import co.edu.cue.proyectoNuclear.services.TeacherService;
 import co.edu.cue.proyectoNuclear.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +25,14 @@ public class UserServiceImpl implements UserService {
     private static UserDto user1;
     @Autowired
     public UserDAOImpl userGeneralDAO;
+    @Autowired
+    public TeacherDAOImpl teacherDAO;
+    @Autowired
+    public TeacherService teacherService;
+    @Autowired
+    public StudentService studentService;
+    @Autowired
+    public AdministrativeService administrativeService;
     private final List<UserDto> userService;
 
 

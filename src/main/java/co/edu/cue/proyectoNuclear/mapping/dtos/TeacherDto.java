@@ -9,7 +9,9 @@ import java.util.List;
 public record TeacherDto(Long id,
                          String name,
                          String email,
+                         String password,
                          String role,
+                         Boolean active,
                          List<Availability> availability,
                          List<Subject> subjects) {
 }

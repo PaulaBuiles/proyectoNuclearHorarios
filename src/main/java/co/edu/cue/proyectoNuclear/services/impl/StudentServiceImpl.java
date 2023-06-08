@@ -1,6 +1,7 @@
 package co.edu.cue.proyectoNuclear.services.impl;
 
 import co.edu.cue.proyectoNuclear.domain.entities.Student;
+import co.edu.cue.proyectoNuclear.domain.enums.Semester;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.*;
 import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.util.ArrayList;
 import java.util.List;
 @AllArgsConstructor
 @Service
@@ -43,8 +45,15 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void createStudent(Student student) {
-        studentDAO.save(student);
+    public void createStudent(Long identification, String name, String email, String password, String role, String career, int semester) {
+        Semester[] semesters = Semester.values();
+        if (semester > 0 && semester < semesters.length) {
+            Semester selectedSemester = semesters[semester];
+            StudentDto studentDto = new StudentDto(identification,name,email,password,role,true,career,selectedSemester,new ArrayList<>());
+            studentDAO.save(studentMapper.mapToEntity(studentDto));
+        } else {
+            throw new IllegalArgumentException("Semestre invalido: " + semester);
+        }
     }
 
     @Override

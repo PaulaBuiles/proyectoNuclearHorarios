@@ -10,7 +10,7 @@ public interface TeacherService {
     List<TeacherDto> generateTeacher();
     TeacherDto findUserTeacher(UserDto user);
 
-    void createTeacher(UserDto user, TeacherDto teacher);
+    void createTeacher(Long identification,String name,String email,String password,String role);
 
     void editTeacher(String name, String email);
 

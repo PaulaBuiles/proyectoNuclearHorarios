@@ -7,9 +7,7 @@ import co.edu.cue.proyectoNuclear.domain.enums.Campus;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.ClassroomDAOImpl;
 import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.ClassroomMapper;
-import co.edu.cue.proyectoNuclear.services.AdministrativeService;
-import co.edu.cue.proyectoNuclear.services.ClassroomService;
-import co.edu.cue.proyectoNuclear.services.UserService;
+import co.edu.cue.proyectoNuclear.services.*;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +27,10 @@ public class AdministrativeController {
     private final AdministrativeService administrativeService;
     @Autowired
     private final UserService userService;
+    @Autowired
+    private final StudentService studentService;
+    @Autowired
+    private final TeacherService teacherService;
 
     @Autowired
     private final ClassroomService classroomService;
@@ -45,11 +47,11 @@ public class AdministrativeController {
         return modelAndView;
     }
 
-    /*@GetMapping("/assing-classroom")
+    @GetMapping("/assing-classroom")
     public ModelAndView assingClassroom(){
         ModelAndView modelAndView = new ModelAndView(Pages.CLASSROOM);
         return modelAndView;
-    }*/
+    }
 
 
     @GetMapping("/users-table")
@@ -62,16 +64,42 @@ public class AdministrativeController {
         return modelAndView;
     }
 
-    /*@PostMapping("/users-table-filter")
+    @PostMapping("/create-student")
+    public ModelAndView createUser(@RequestParam("identificationStudent") Long identification,
+                             @RequestParam("nameStudent") String name,
+                             @RequestParam("emailStudent") String email,
+                             @RequestParam("passwordStudent") String password,
+                             @RequestParam("careerStudent") String career,
+                             @RequestParam("semesterStudent") int semester) {
+        studentService.createStudent(identification,name,email,password,"Estudiante",career,semester);
+        return new ModelAndView(Pages.ADMINTABLEUSERS);
+    }
+    @PostMapping("/create-teacher")
+    public ModelAndView createUser(@RequestParam("identificationTeacher") Long identification,
+                                   @RequestParam("nameTeacher") String name,
+                                   @RequestParam("emailTeacher") String email,
+                                   @RequestParam("passwordTeacher") String password) {
+        teacherService.createTeacher(identification,name,email,password,"Profesor");
+        return new ModelAndView(Pages.ADMINTABLEUSERS);
+    }
+    @PostMapping("/create-administrative")
+    public ModelAndView createUser(@RequestParam("identificationAdministrative") Long identification,
+                                   @RequestParam("nameAdministrative") String name,
+                                   @RequestParam("emailAdministrative") String email,
+                                   @RequestParam("passwordAdministrative") String password,
+                                   @RequestParam("chargeAdministrative") String charge) {
+        administrativeService.createAdministrative(identification,name,email,password,"Administrativo",charge);
+        return new ModelAndView(Pages.ADMINTABLEUSERS);
+    }
+    @PostMapping("/users-table-filter")
     public ModelAndView getUsersTableFilter(@RequestParam("filter") String role){
         List<UserDto> userDtoList = userService.filterUsersByRole(role);
         ModelAndView modelAndView = new ModelAndView(Pages.ADMINTABLEUSERS);
         modelAndView.addObject("users",userDtoList);
         modelAndView.addObject("role",role);
         return modelAndView;
-    }*/
-    /*public  ModelAndView getUsersTableFilter(@RequestParam("filter") String role){
-    */
+    }
+
     @GetMapping("/info")
     public ModelAndView info(){
         ModelAndView modelAndView = new ModelAndView(Pages.ADMININFORMATION);

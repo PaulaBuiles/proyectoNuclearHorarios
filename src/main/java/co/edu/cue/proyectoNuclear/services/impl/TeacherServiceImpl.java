@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,8 +31,9 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public void createTeacher(UserDto user, TeacherDto teacher) {
-        teacherDAO.save(teacher);
+    public void createTeacher(Long identification,String name,String email,String password,String role) {
+        TeacherDto teacherDto = new TeacherDto(identification,name,email,password,role,true,new ArrayList<>(),new ArrayList<>());
+        teacherDAO.save(teacherMapper.mapToEntity(teacherDto));
     }
 
     @Override

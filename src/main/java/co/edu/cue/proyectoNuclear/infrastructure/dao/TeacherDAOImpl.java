@@ -33,8 +33,8 @@ public class TeacherDAOImpl {
         return teacherMap.mapTeacher(entityManager.find(Teacher.class, id));
     }
 
-    public void save(TeacherDto entity) {
-        entityManager.persist(teacherMap.mapToEntity(entity));
+    public void save(Teacher entity) {
+        entityManager.persist(entity);
     }
 
 

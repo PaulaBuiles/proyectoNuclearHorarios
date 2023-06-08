@@ -1,6 +1,7 @@
 package co.edu.cue.proyectoNuclear.services.impl;
 
 import co.edu.cue.proyectoNuclear.infrastructure.dao.*;
+import co.edu.cue.proyectoNuclear.mapping.dtos.AdministrativeDto;
 import co.edu.cue.proyectoNuclear.services.AdministrativeService;
 import co.edu.cue.proyectoNuclear.services.StudentService;
 import co.edu.cue.proyectoNuclear.services.TeacherService;
@@ -33,13 +34,10 @@ public class AdministrativeServiceImpl implements AdministrativeService {
 
     private UserService userService;
 
-    @Autowired
-    public AdministrativeServiceImpl(TeacherService teacherService,
-                                     StudentService studentService,
-                                     UserService userService) {
-        this.teacherService = teacherService;
-        this.studentService = studentService;
-        this.userService = userService;
+    @Override
+    public void createAdministrative(Long identification,String name,String email,String password,String role,String charge){
+        AdministrativeDto administrativeDto = new AdministrativeDto(identification,name,email,password,role,true,charge);
+
     }
 
 

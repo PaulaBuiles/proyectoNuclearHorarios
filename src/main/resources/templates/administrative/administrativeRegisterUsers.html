@@ -88,11 +88,65 @@
 
 <!-- Formulario de registro -->
 <div class="container mt-5">
-  <h1>Registro de Usuario</h1>
-  <form th:action="@{/registration}" method="post">
+  <h1>Registro de Estudiante</h1>
+  <form th:action="@{/administrative-tools/create-student}" method="post">
+    <div class="form-group">
+      <label for="identificationStudent">Identificación:</label>
+      <input type="number" class="form-control" id="identificationStudent" name="identification" required>
+    </div>
+    <div class="form-group">
+      <label for="nameStudent">Nombre:</label>
+      <input type="text" class="form-control" id="nameStudent" name="name" required>
+    </div>
+    <div class="form-group">
+      <label for="emailStudent">Correo:</label>
+      <input type="email" class="form-control" id="emailStudent" name="email" required>
+    </div>
+    <div class="form-group">
+      <label for="passwordStudent">Contraseña:</label>
+      <input type="password" class="form-control" id="passwordStudent" name="password" required>
+    </div>
+    <div class="form-group">
+      <label for="careerStudent">Carrera:</label>
+      <input type="text" class="form-control" id="careerStudent" name="career" required>
+    </div>
+    <div class="form-group">
+      <label for="semesterStudent">Semestre:</label>
+      <input type="number" class="form-control" id="semesterStudent" name="semester" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Registrar</button>
+  </form>
+</div>
+<br>
+<div class="container mt-5">
+  <h1>Registro de Profesor</h1>
+  <form th:action="@{/administrative-tools/create-teacher}" method="post">
+    <div class="form-group">
+      <label for="identificationTeacher">Identificación:</label>
+      <input type="number" class="form-control" id="identificationTeacher" name="identificationTeacher" required>
+    </div>
+    <div class="form-group">
+      <label for="nameTeacher">Nombre:</label>
+      <input type="text" class="form-control" id="nameTeacher" name="nameTeacher" required>
+    </div>
+    <div class="form-group">
+      <label for="emailTeacher">Correo:</label>
+      <input type="email" class="form-control" id="emailTeacher" name="emailTeacher" required>
+    </div>
+    <div class="form-group">
+      <label for="passwordTeacher">Contraseña:</label>
+      <input type="password" class="form-control" id="passwordTeacher" name="passwordTeacher" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Registrar</button>
+  </form>
+</div>
+<br>
+<div class="container mt-5">
+  <h1>Registro de Administrativo</h1>
+  <form th:action="@{/administrative-tools/create-administrative}" method="post">
     <div class="form-group">
       <label for="identification">Identificación:</label>
-      <input type="text" class="form-control" id="identification" name="identification" required>
+      <input type="number" class="form-control" id="identification" name="identification" required>
     </div>
     <div class="form-group">
       <label for="name">Nombre:</label>
@@ -107,24 +161,11 @@
       <input type="password" class="form-control" id="password" name="password" required>
     </div>
     <div class="form-group">
-      <label for="role">Rol:</label>
-      <select class="form-control" id="role" name="role" required>
-        <option value="Estudiante">Estudiante</option>
-        <option value="Profesor">Profesor</option>
-        <option value="Administrativo">Administrativo</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="career">Carrera:</label>
-      <input type="text" class="form-control" id="career" name="career" required>
-    </div>
-    <div class="form-group">
-      <label for="semester">Semestre:</label>
-      <input type="number" class="form-control" id="semester" name="semester" required>
+      <label for="chargeAdministrative">Cargo:</label>
+      <input type="text" class="form-control" id="chargeAdministrative" name="chargeAdministrative" required>
     </div>
     <button type="submit" class="btn btn-primary">Registrar</button>
   </form>
 </div>
-
 </body>
 </html>
