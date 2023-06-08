@@ -45,11 +45,12 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void createStudent(Long identification, String name, String email, String password, String role, String career, int semester) {
+    public void createStudent(String identification, String name, String email, String password, String role, String career, int semester) {
+        Long id = Long.parseLong(identification);
         Semester[] semesters = Semester.values();
         if (semester > 0 && semester < semesters.length) {
             Semester selectedSemester = semesters[semester];
-            StudentDto studentDto = new StudentDto(identification,name,email,password,role,true,career,selectedSemester,new ArrayList<>());
+            StudentDto studentDto = new StudentDto(id,name,email,password,role,true,career,selectedSemester,new ArrayList<>());
             studentDAO.save(studentMapper.mapToEntity(studentDto));
         } else {
             throw new IllegalArgumentException("Semestre invalido: " + semester);

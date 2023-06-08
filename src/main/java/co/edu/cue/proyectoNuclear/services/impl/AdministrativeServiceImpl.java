@@ -2,6 +2,7 @@ package co.edu.cue.proyectoNuclear.services.impl;
 
 import co.edu.cue.proyectoNuclear.infrastructure.dao.*;
 import co.edu.cue.proyectoNuclear.mapping.dtos.AdministrativeDto;
+import co.edu.cue.proyectoNuclear.mapping.mappers.AdministrativeMapper;
 import co.edu.cue.proyectoNuclear.services.AdministrativeService;
 import co.edu.cue.proyectoNuclear.services.StudentService;
 import co.edu.cue.proyectoNuclear.services.TeacherService;
@@ -15,29 +16,19 @@ import org.springframework.stereotype.Service;
 public class AdministrativeServiceImpl implements AdministrativeService {
 
     @Autowired
-    private TeacherDAOImpl teacherDAO;
-    @Autowired
-    private SubjectDAOImpl subjectDAO;
+    public AdministrativeDAOImpl administrativeDAO;
 
     @Autowired
-    private StudentDAOImpl studentDAO;
-
-    @Autowired
-    private ScheduleDAOImpl scheduleDAO;
-
+    public AdministrativeMapper administrativeMapper;
     @Autowired
     public UserDAOImpl userGeneralDAO;
 
-    private TeacherService teacherService;
-
-    private StudentService studentService;
-
-    private UserService userService;
 
     @Override
-    public void createAdministrative(Long identification,String name,String email,String password,String role,String charge){
-        AdministrativeDto administrativeDto = new AdministrativeDto(identification,name,email,password,role,true,charge);
-
+    public void createAdministrative(String identification,String name,String email,String password,String role,String charge){
+        Long id = Long.parseLong(identification);
+        AdministrativeDto administrativeDto = new AdministrativeDto(id,name,email,password,role,true,charge);
+        administrativeDAO.save(administrativeMapper.mapToEntity(administrativeDto));
     }
 
 

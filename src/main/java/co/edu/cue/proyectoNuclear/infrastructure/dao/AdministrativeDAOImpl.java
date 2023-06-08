@@ -1,9 +1,13 @@
 package co.edu.cue.proyectoNuclear.infrastructure.dao;
 
 
+import co.edu.cue.proyectoNuclear.domain.entities.Administrative;
+import co.edu.cue.proyectoNuclear.domain.entities.Student;
 import co.edu.cue.proyectoNuclear.mapping.dtos.AdministrativeDto;
+import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.AdministrativeMapper;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -35,24 +39,31 @@ public class AdministrativeDAOImpl {
     }*/
 
 
-    public void save(AdministrativeDto entity) {
-        entityManager.persist(adminMapper.mapToEntity(entity));
+    public void save(Administrative entity) {
+        entityManager.persist(entity);
     }
 
-    /*@Override
     public void update(AdministrativeDto entity) {
         //find by id
         //tomar la entidad y settear todos los campos que vienen en el dto
         entityManager.merge(entity);
     }
 
-    @Override
+    public void updatePassword(AdministrativeDto entity) {
+        Student student = entityManager.find(Student.class, entity.id());
+        if (student == null) {
+            throw new EntityNotFoundException("Estudiante no encontrado");
+        }
+        student.setPassword(entity.password());
+        entityManager.merge(student);
+    }
+
     public void delete(Long id) {
         Administrative administrative = entityManager.find(Administrative.class, id);
         if (administrative != null) {
             entityManager.remove(administrative);
         }
-    }*/
+    }
 
 
 

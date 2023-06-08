@@ -22,27 +22,4 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class NavigationController {
 
-    @Autowired
-    private final UserService userService;
-
-    @Autowired
-    private final StudentService studentService;
-
-    @Autowired
-    private UserDAOImpl userDAO;
-    @Autowired
-    private StudentDAOImpl studentDAO;
-
-    @Autowired
-    private UserMapper userMapper;
-    @Autowired
-    private StudentMapper studentMapper;
-
-
-
-    @GetMapping("/register")
-    public ModelAndView registerUsers(){
-        ModelAndView modelAndView = new ModelAndView(Pages.ADMINREGISTERUSERS);
-        return modelAndView;
-    }
 }

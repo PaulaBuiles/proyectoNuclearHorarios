@@ -31,8 +31,9 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public void createTeacher(Long identification,String name,String email,String password,String role) {
-        TeacherDto teacherDto = new TeacherDto(identification,name,email,password,role,true,new ArrayList<>(),new ArrayList<>());
+    public void createTeacher(String identification,String name,String email,String password,String role) {
+        Long id = Long.parseLong(identification);
+        TeacherDto teacherDto = new TeacherDto(id,name,email,password,role,true,new ArrayList<>(),new ArrayList<>());
         teacherDAO.save(teacherMapper.mapToEntity(teacherDto));
     }
 

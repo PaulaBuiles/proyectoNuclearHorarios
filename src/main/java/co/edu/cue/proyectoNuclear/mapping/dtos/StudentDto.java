@@ -11,7 +11,7 @@ public record StudentDto(Long id,
                          String email,
                          String password,
                          String role,
-                         Boolean active,
+                         boolean active,
                          String career,
                          Semester semester,
                          List<Subject> subject

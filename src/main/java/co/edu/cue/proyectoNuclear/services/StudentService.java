@@ -16,7 +16,7 @@ public interface StudentService {
 
     void deleteStudentById(Long id);
 
-    void createStudent(Long identification,String name,String email,String password,String role,String career,int semester);
+    void createStudent(String identification,String name,String email,String password,String role,String career,int semester);
 
     void editStudent(String name, String email);
 }

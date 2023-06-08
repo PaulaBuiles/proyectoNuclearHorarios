@@ -11,7 +11,7 @@ public record TeacherDto(Long id,
                          String email,
                          String password,
                          String role,
-                         Boolean active,
+                         boolean active,
                          List<Availability> availability,
                          List<Subject> subjects) {
 }

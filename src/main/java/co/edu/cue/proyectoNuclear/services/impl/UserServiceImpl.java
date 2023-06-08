@@ -27,13 +27,6 @@ public class UserServiceImpl implements UserService {
     public UserDAOImpl userGeneralDAO;
     @Autowired
     public TeacherDAOImpl teacherDAO;
-    @Autowired
-    public TeacherService teacherService;
-    @Autowired
-    public StudentService studentService;
-    @Autowired
-    public AdministrativeService administrativeService;
-    private final List<UserDto> userService;
 
 
 

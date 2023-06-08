@@ -9,5 +9,5 @@ public record UserDto(Long id,
                       String email,
                       String password,
                       String role,
-                      Boolean active) {
+                      boolean active) {
 }

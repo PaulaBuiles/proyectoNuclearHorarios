@@ -44,12 +44,14 @@ public class AdministrativeController {
     @GetMapping("/home-administrative")
     public ModelAndView homeAdministrative(){
         ModelAndView modelAndView = new ModelAndView(Pages.ADMINHOME);
+        modelAndView.addObject("user",userService.getUser());
         return modelAndView;
     }
 
     @GetMapping("/assing-classroom")
     public ModelAndView assingClassroom(){
         ModelAndView modelAndView = new ModelAndView(Pages.CLASSROOM);
+        modelAndView.addObject("user",userService.getUser());
         return modelAndView;
     }
 
@@ -61,35 +63,30 @@ public class AdministrativeController {
         ModelAndView modelAndView = new ModelAndView(Pages.ADMINTABLEUSERS);
         modelAndView.addObject("users",userDtoList);
         modelAndView.addObject("role","Todos");
+        modelAndView.addObject("user",userService.getUser());
+        return modelAndView;
+    }
+
+    @GetMapping("/register")
+    public ModelAndView registerUsers(){
+        ModelAndView modelAndView = new ModelAndView(Pages.ADMINREGISTERUSERS);
         return modelAndView;
     }
 
     @PostMapping("/create-student")
-    public ModelAndView createUser(@RequestParam("identificationStudent") Long identification,
-                             @RequestParam("nameStudent") String name,
-                             @RequestParam("emailStudent") String email,
-                             @RequestParam("passwordStudent") String password,
-                             @RequestParam("careerStudent") String career,
-                             @RequestParam("semesterStudent") int semester) {
-        studentService.createStudent(identification,name,email,password,"Estudiante",career,semester);
-        return new ModelAndView(Pages.ADMINTABLEUSERS);
+    public ModelAndView createUser(@RequestParam("identificationStudent") String identification, @RequestParam("nameStudent") String name, @RequestParam("emailStudent") String email, @RequestParam("passwordStudent") String password, @RequestParam("semesterStudent") int semester) {
+        studentService.createStudent(identification,name,email,password,"Estudiante","Ingenieria de Software",semester);
+        return getUsersTable();
     }
     @PostMapping("/create-teacher")
-    public ModelAndView createUser(@RequestParam("identificationTeacher") Long identification,
-                                   @RequestParam("nameTeacher") String name,
-                                   @RequestParam("emailTeacher") String email,
-                                   @RequestParam("passwordTeacher") String password) {
+    public ModelAndView createUser(@RequestParam("identificationTeacher") String identification, @RequestParam("nameTeacher") String name, @RequestParam("emailTeacher") String email, @RequestParam("passwordTeacher") String password) {
         teacherService.createTeacher(identification,name,email,password,"Profesor");
-        return new ModelAndView(Pages.ADMINTABLEUSERS);
+        return getUsersTable();
     }
     @PostMapping("/create-administrative")
-    public ModelAndView createUser(@RequestParam("identificationAdministrative") Long identification,
-                                   @RequestParam("nameAdministrative") String name,
-                                   @RequestParam("emailAdministrative") String email,
-                                   @RequestParam("passwordAdministrative") String password,
-                                   @RequestParam("chargeAdministrative") String charge) {
+    public ModelAndView createUser(@RequestParam("identificationAdministrative") String identification, @RequestParam("nameAdministrative") String name, @RequestParam("emailAdministrative") String email, @RequestParam("passwordAdministrative") String password, @RequestParam("chargeAdministrative") String charge) {
         administrativeService.createAdministrative(identification,name,email,password,"Administrativo",charge);
-        return new ModelAndView(Pages.ADMINTABLEUSERS);
+        return getUsersTable();
     }
     @PostMapping("/users-table-filter")
     public ModelAndView getUsersTableFilter(@RequestParam("filter") String role){
@@ -97,6 +94,7 @@ public class AdministrativeController {
         ModelAndView modelAndView = new ModelAndView(Pages.ADMINTABLEUSERS);
         modelAndView.addObject("users",userDtoList);
         modelAndView.addObject("role",role);
+        modelAndView.addObject("user",userService.getUser());
         return modelAndView;
     }
 

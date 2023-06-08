@@ -8,5 +8,5 @@ import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
 import java.util.List;
 
 public interface AdministrativeService {
-    void createAdministrative(Long identification,String name,String email,String password,String role,String charge);
+    void createAdministrative(String identification,String name,String email,String password,String role,String charge);
 }
