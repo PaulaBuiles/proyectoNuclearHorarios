@@ -37,9 +37,13 @@ public class TeacherController {
     private final UserService userService;
     @Autowired
     private final AvailabilityService availabilityService;
+    @Autowired
+    private final TeacherMapper teacherMapper;
+    @Autowired
+    private final TeacherDAOImpl teacherDAO;
 
     @GetMapping("/teacher-information")
-    public ModelAndView getInformation(){
+    public ModelAndView getInformation() {
         List<TeacherDto> teacherList = teacherService.generateTeacher();
         ModelAndView modelAndView = new ModelAndView(Pages.TEACHERINFORMATION);
         modelAndView.addObject("teachers", teacherList);
@@ -53,8 +57,9 @@ public class TeacherController {
         modelAndView.addObject("user", userService.getUser());
         return modelAndView;
     }
+
     @GetMapping("/info-teacher")
-    public ModelAndView info(){
+    public ModelAndView info() {
         ModelAndView modelAndView = new ModelAndView(Pages.TEACHERINFORMATION);
         modelAndView.addObject("userTeacher", teacherService.findUserTeacher(userService.getUser()));
         modelAndView.addObject("user", userService.getUser());
@@ -62,22 +67,23 @@ public class TeacherController {
     }
 
     @GetMapping("/edit-teacher")
-    public ModelAndView edit(){
+    public ModelAndView edit() {
         ModelAndView modelAndView = new ModelAndView(Pages.TEACHEREDIT);
-        modelAndView.addObject("user",userService.getUser());
+        modelAndView.addObject("user", userService.getUser());
         return modelAndView;
     }
 
 
     @PostMapping("/changes-teacher")
-    public ModelAndView changes(@RequestParam("name") String name, @RequestParam("email") String email){
-        teacherService.editTeacher(name,email);
+    public ModelAndView changes(@RequestParam("name") String name, @RequestParam("email") String email) {
+        teacherService.editTeacher(name, email);
         return info();
     }
+
     @GetMapping("/edit-availability")
-    public ModelAndView editAvailability(){
+    public ModelAndView editAvailability() {
         ModelAndView modelAndView = new ModelAndView(Pages.TEACHERAVAILABILITY);
-        modelAndView.addObject("user",userService.getUser());
+        modelAndView.addObject("user", userService.getUser());
         return modelAndView;
     }
 
@@ -86,5 +92,20 @@ public class TeacherController {
         availabilityService.newAvailability(day, start, end, teacherService.findUserTeacher(userService.getUser()));
         return info();
     }
+    @GetMapping("/changePassword")
+    public ModelAndView changePassword(){
+        ModelAndView modelAndView = new ModelAndView(Pages.PASSWORD);
+        modelAndView.addObject("user",userService.getUser());
+        return modelAndView;
+    }
+    /*@PostMapping("/editPassword")
+    public ModelAndView editPassword(@RequestParam("password") String password){
+        Teacher user = teacherMapper.mapToEntity(teacherService.findUserTeacher(userService.getUser()));
+        user.setPassword(password);
+        teacherDAO.updatePassword(studentMapper.mapStudent(user));
+        return loginController.post();
+    }*/
+
+
 
 }

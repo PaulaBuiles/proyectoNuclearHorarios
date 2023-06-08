@@ -24,6 +24,24 @@
     </form> </a>
     </div>
   </div>
+  <a class="navbar-brand">
+    <div class="dropdown">
+      <button class="btn btn-transparent dropdown-toggle" type="button"
+              id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false"style="background-color: transparent; border: none; font-size: 20px; color: white; font-family: 'Lobster Two', cursive;" th:Text="${user.name}"
+      ></button>
+      <div class="dropdown-content" style="right: 0; text-align: right; color: white; font-family: 'Lobster Two', cursive; left: calc(50% - 50px); transform: translateX(-50%);">
+        <div class="none" style="flex-direction: column; display: flex; right: 0; text-align: right;">
+          <form th:action="@{/login/}" class="btn btn-transparent">
+            <button type="submit" style="color: black; border: none; font-size: 15px;" class="btn btn-transparent">Cerrar sesión</button>
+          </form>
+          <form th:action="@{/teacher/changePassword}" class="btn btn-transparent">
+            <button type="submit" style="color: black; border: none; font-size: 15px;" class="btn btn-transparent">Cambiar contraseña</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </a>
 </nav>
 <br><br>
 <div class="container mt-5">
@@ -61,10 +79,18 @@
         <th style="text-align: center; background-color: #0c0096; color: #ffffff;">Hasta</th>
         <th style="text-align: center; background-color: #0c0096; color: #ffffff;">Cambios</th>
       </tr>
-      <tr>
-        <td>Lunes</td>
-        <td>9:00 am</td>
-        <td>11:00 am</td>
+      <tr th:each="disponibilidad: ${userTeacher.availability}">
+        <td th:text="${disponibilidad.dayOfWeek}">Lunes</td>
+        <td th:text="${disponibilidad.start}">9:00 am</td>
+        <td th:text="${disponibilidad.end}">11:00 am</td>
+        <td>
+          <form style="display: inline-block; margin-right: 5px;" th:action="@{/editar/{id}(id=${disponibilidad.id})}" method="post">
+            <button style="font-family: 'Lobster Two', cursive; font-size: 18px; background-color: #0c0096; border-top-color: transparent; color: white; outline: none; outline-offset: -2px;" type="submit">Editar</button>
+          </form>
+          <form style="display: inline-block;" th:action="@{/eliminar/{id}(id=${disponibilidad.id})}" method="post">
+            <button style="font-family: 'Lobster Two', cursive; font-size: 18px; background-color: #0c0096; border-top-color: transparent; color: white; outline: none; outline-offset: -2px;" type="submit">Eliminar</button>
+          </form>
+        </td>
       </tr>
       <tr>
         <td>Martes</td>
@@ -109,7 +135,6 @@
       <tr>
         <th style="text-align: center; background-color: #0c0096; color: #ffffff;">Identificador</th>
         <th style="text-align: center; background-color: #0c0096; color: #ffffff;">Nombre</th>
-        <th style="text-align: center; background-color: #0c0096; color: #ffffff;">No. credito</th>
       </tr>
       <tr th:each="subject: ${userTeacher.subjects}">
         <td th:text="${subject.id}">john.doe@example.com</td>

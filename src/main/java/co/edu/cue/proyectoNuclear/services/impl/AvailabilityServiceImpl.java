@@ -26,9 +26,16 @@ public class AvailabilityServiceImpl implements AvailabilityService {
 
     private TeacherMapper teacherMapper;
 
+
+
     public void newAvailability(DayOfWeek day, LocalTime start, LocalTime end, TeacherDto teacherDto){
         Teacher teacher = teacherMapper.mapToEntity(teacherDto);
         Availability availability = new Availability(null,day,start,end,teacher);
         availabilityDAO.save(availabilityMapper.mapAvailability(availability));
     }
+
+
+
+
+
 }
