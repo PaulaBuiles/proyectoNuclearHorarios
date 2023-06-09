@@ -1,6 +1,5 @@
 package co.edu.cue.proyectoNuclear.security.impl;
 
-import co.edu.cue.proyectoNuclear.domain.entities.User;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.UserDAOImpl;
 import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
 import co.edu.cue.proyectoNuclear.security.UserDataSecurity;

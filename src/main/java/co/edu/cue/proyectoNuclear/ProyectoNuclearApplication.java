@@ -1,12 +1,15 @@
 package co.edu.cue.proyectoNuclear;
 
 import co.edu.cue.proyectoNuclear.domain.entities.*;
+import co.edu.cue.proyectoNuclear.domain.enums.DayOfWeek;
 import co.edu.cue.proyectoNuclear.domain.enums.Semester;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.*;
 import co.edu.cue.proyectoNuclear.mapping.dtos.AdministrativeDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
+import co.edu.cue.proyectoNuclear.mapping.dtos.SubjectDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.*;
+import co.edu.cue.proyectoNuclear.services.ScheduleService;
 import co.edu.cue.proyectoNuclear.services.StudentService;
 import co.edu.cue.proyectoNuclear.services.TeacherService;
 import co.edu.cue.proyectoNuclear.services.impl.StudentServiceImpl;
@@ -16,6 +19,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -34,6 +39,8 @@ public class ProyectoNuclearApplication implements CommandLineRunner {
     @Autowired
     public SubjectMapper subjectMapper;
 
+    @Autowired
+    public ScheduleService scheduleService;
 
     @Autowired
     public TeacherService teacherService;
@@ -45,7 +52,14 @@ public class ProyectoNuclearApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        //studentDAO.addSubject();
+
+        //Funcion para comprobar el horario
+
+        Time localTime = new Time(2,0,0);
+        SubjectDto subject = subjectDAO.findById(2L);
+
+        scheduleService.addSubject(3L, DayOfWeek.MONDAY, localTime, LocalTime.of(12,0),LocalTime.of(14,0),subjectMapper.mapToEntity(subject));
+        //studentDAO.addSubject()
 
 
 
