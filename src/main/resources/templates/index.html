@@ -1,78 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Login V1</title>
     <meta charset="UTF-8">
-    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" href="../static/css/bootstrap.css">
-    <script th:src="@{/js/jquery.js}" src="../static/js/jquery.js"></script>
-    <script th:src="@{/js/bootstrap.js}" src="../static/js/bootstrap.js"></script>
-    <title>Login Gestión de Horarios</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link th:href="@{/img/icons/favicon.ico}" rel="icon" type="image/png" href="src/main/resources/static/img/icons/favicon.ico"/>
+    <!--===============================================================================================-->
+    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link th:href="@{/vendor/animate/animate.css}" rel="stylesheet" type="text/css" href="/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link th:href="@{/vendor/css-hamburgers/hamburgers.min.css}" rel="stylesheet" type="text/css" href="/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link th:href="@{/static/vendor/select2/select2.min.css}" rel="stylesheet" type="text/css" href="/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/css/util.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!--===============================================================================================-->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
-
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            background: linear-gradient(to left top, #6F00FC 40%, #002F69 60%);
+        .input-icon1 {
+            background-image: url("https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png");
+            background-repeat: no-repeat;
+            background-position: 10px center; /* Ajusta la posición horizontal de la imagen */
+            background-size: 20px 20px; /* Ajusta el tamaño de la imagen */
+            padding-left: 40px; /* Ajusta el espacio para la imagen */
         }
-        .izq {
-            width: 240px;
-            height: 242px;
-            background: white;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            margin: 0 auto;
+        .input-icon2 {
+            background-image: url("https://cdn-icons-png.flaticon.com/512/5733/5733312.png");
+            background-repeat: no-repeat;
+            background-position: 10px center; /* Ajusta la posición horizontal de la imagen */
+            background-size: 20px 20px; /* Ajusta el tamaño de la imagen */
+            padding-left: 40px; /* Ajusta el espacio para la imagen */
         }
-        h2 {
-            font-size: 50px;
-        }
-
     </style>
+
 </head>
 <body>
-<nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#" style="color: white;  font-family: 'Lobster Two', cursive">
-            <img src="/img/logoAVH.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top" >
-            Gestión de Horarios
-        </a>
-    </div>
-</nav>
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <span class="login100-form-title">
+						<p  style="color: black;  font-family: 'Lobster Two', cursive; font-size: 50px;" >Corporación Universitaria Alexander Von Humboldt</p><br>
+					</span>
+            <div class="login100-pic js-tilt" data-tilt>
+                <img src="/img/logoAVH.png" alt="Imagen" width="350px" height="350px">
+            </div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="col order-5">
-            <br>
-            <br>
-            <h2 class="text-center" style="color: white;  font-family: 'Lobster Two', cursive" >Corporación Universitaria Alexander Von Humboldt</h2><br>
-            <p class="text-center"  style="color: white;  font-family: 'Lobster Two', cursive; font-size: 30px;" >Exigente, Práctica, Diferente</p>
-            <br>
-            <br>
-            <div class="izq" style="align-content: center">
-            <form th:action="@{/login/start-login}" th:object="${userLoginDto}" method="post" class="border p-3 form">
-                <div class="mb-3">
-                    <label for="identification" class="form-label" style="font-family: 'Nunito', sans-serif;">Identificación</label>
-                    <input type="number" class="form-control" id="identification" name="identification" th:field="*{identification}">
+            <form class="login100-form validate-form"  th:action="@{/login/start-login}" th:object="${userLoginDto}" method="post">
+                <label for="identification" class="form-label" style="font-family: 'Nunito', sans-serif;">Identificación</label>
+                <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                    <input class="input100 input-icon1" type="text"  id="identification" name="identification" th:field="*{identification}">
+                    <span class="focus-input100"></span>
+
                 </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label" style="font-family: 'Nunito', sans-serif;">Contraseña</label>
-                    <input type="password" class="form-control" id="password" name="password" th:field="*{password}">
+                <label for="password" class="form-label" style="font-family: 'Nunito', sans-serif;">Contraseña</label>
+                <div class="wrap-input100 validate-input" data-validate = "Password is required">
+                    <input class="input100 input-icon2" type="password" id="password" name="contraseña" th:field="*{password}">
+                    <span class="focus-input100"></span>
+
                 </div>
-                <button type="submit" value="Enviar" class="btn btn-primary">Login</button>
+
+                <div class="container-login100-form-btn">
+                    <button class="login100-form-btn" type="submit" value="Enviar">
+                        Login
+                    </button>
+                </div>
             </form>
-            </div>
-            </div>
-        </div>
-        <div class="col-md-6" style="align-items: center; justify-content: center; text-align: center;">
-            <br><br><br>
-            <img src="/img/logoAVH.png" alt="Imagen" width="600px" height="600px">
         </div>
     </div>
 </div>
+
+
+
+
+<!--===============================================================================================-->
+<script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="/vendor/bootstrap/js/popper.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="/vendor/select2/select2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<!--===============================================================================================-->
+<script src="/vendor/tilt/tilt.jquery.min.js"></script>
+<script >
+    $('.js-tilt').tilt({
+        scale: 1.1
+    })
+</script>
+<!--===============================================================================================-->
+<script src="/static/js/main.js"></script>
+
 </body>
 </html>

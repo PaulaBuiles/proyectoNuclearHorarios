@@ -1,6 +1,7 @@
 package co.edu.cue.proyectoNuclear.infrastructure.dao;
 
 
+import co.edu.cue.proyectoNuclear.domain.entities.Availability;
 import co.edu.cue.proyectoNuclear.domain.entities.Student;
 import co.edu.cue.proyectoNuclear.domain.entities.Teacher;
 import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
@@ -56,14 +57,8 @@ public class TeacherDAOImpl {
         }
     }
 
-    public void deleteById(Long id) {
-        List<TeacherDto> teacherDtoList = getTableList();
-        for (TeacherDto teacherDto : teacherDtoList) {
-            if (teacherDto.id().equals(id)) {
-                delete(teacherDto.id());
-            }
-        }
-    }
+
+
     public void updatePassword(TeacherDto entity) {
         // Cargar la entidad Student existente
         Teacher teacher = entityManager.find(Teacher.class, entity.id());
