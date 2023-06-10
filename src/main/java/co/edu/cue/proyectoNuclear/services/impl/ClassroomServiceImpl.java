@@ -2,12 +2,19 @@ package co.edu.cue.proyectoNuclear.services.impl;
 
 
 import co.edu.cue.proyectoNuclear.domain.entities.Classroom;
+import co.edu.cue.proyectoNuclear.domain.entities.Subject;
+import co.edu.cue.proyectoNuclear.domain.enums.Campus;
+import co.edu.cue.proyectoNuclear.domain.enums.Property;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.ClassroomDAOImpl;
 import co.edu.cue.proyectoNuclear.mapping.dtos.ClassroomDto;
+import co.edu.cue.proyectoNuclear.mapping.mappers.ClassroomMapper;
 import co.edu.cue.proyectoNuclear.services.ClassroomService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -19,6 +26,8 @@ public class ClassroomServiceImpl implements ClassroomService {
 
     public static ClassroomDto classroomDto;
 
+    private ClassroomMapper classroomMapper;
+
 
     @Override
     public List<ClassroomDto> generateClassroom() {
@@ -27,9 +36,46 @@ public class ClassroomServiceImpl implements ClassroomService {
     }
 
 
+
     @Override
-    public void createClassroom(Classroom classroomDto) {
-        classroomDAO.save(classroomDto);
+    public List<Property> createPropertyListFromString(String propertyListString){
+        List<Property> propertyList = new ArrayList<>();
+        if (propertyListString != null && !propertyListString.isEmpty()) {
+            List<String> propertyValues = Arrays.asList(propertyListString.split(","));
+            for (String value : propertyValues) {
+                try {
+                    int intValue = Integer.parseInt(value);
+                    Property property = Property.values()[intValue];
+                    propertyList.add(property);
+                } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+
+                }
+            }
+        }
+        return propertyList;
+    }
+
+    @Override
+    public Campus determineLocation(String locationValue) {
+        if (locationValue != null) {
+            switch (locationValue) {
+                case "Nogal":
+                    return Campus.NOGAL;
+                case "Campina":
+                    return Campus.CAMPINA;
+                case "Principal":
+                    return Campus.PRINCIPAL;
+                case "Alcazar":
+                    return Campus.ALCAZAR;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void createClassroom(Long id, String number, Integer capacity, Campus location, String status, List<Property> propertyList, String observation) {
+        ClassroomDto classroomDto = new ClassroomDto(id,number,capacity,location,status,new ArrayList<>(),propertyList,observation);
+        classroomDAO.save(classroomMapper.mapToEntity(classroomDto));
     }
 
 

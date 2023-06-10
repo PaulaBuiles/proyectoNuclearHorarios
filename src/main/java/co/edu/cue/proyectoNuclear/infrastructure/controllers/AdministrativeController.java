@@ -16,6 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -49,10 +51,11 @@ public class AdministrativeController {
         return modelAndView;
     }
 
-    @GetMapping("/assing-classroom")
-    public ModelAndView assingClassroom(){
+    @GetMapping("/manage-classroom")
+    public ModelAndView manageClassroom(){
         ModelAndView modelAndView = new ModelAndView(Pages.CLASSROOM);
         modelAndView.addObject("user",userService.getUser());
+        modelAndView.addObject("classrooms",classroomService.generateClassroom());
         return modelAndView;
     }
 
@@ -131,16 +134,22 @@ public class AdministrativeController {
     }
 
     @PostMapping("/classroom")
-    public ResponseEntity<String> changes(@RequestParam("number") String number, @RequestParam("capacity") Integer capacity, @RequestParam("location") String location){
-        Classroom classroom = classroomMapper.mapToEntity(classroomService.getClassroomDto());
-        classroom.setName(number);
-        classroom.setCapacity(capacity);
-        classroom.setLocation(Campus.valueOf(location));
-        //Cambiar
-
-        //classroomDAO.save(classroomMapper.mapClassroom(classroom));
-        return ResponseEntity.ok("Classroom created successfully");
-
+    public ModelAndView createClassroom(
+            @RequestParam("name") String name,
+            @RequestParam("capacity") Integer capacity,
+            @RequestParam("location") String location,
+            @RequestParam("status") String status,
+            @RequestParam("propertyList") String propertyListString,
+            @RequestParam("observation") String observation
+    ) {
+        classroomService.createClassroom(null,
+                name,
+                capacity,
+                classroomService.determineLocation(location),
+                status,
+                classroomService.createPropertyListFromString(propertyListString),
+                observation);
+        return manageClassroom();
     }
 
    /* @GetMapping("/teachers/{teacherId}/subjects/{subjectId}")
