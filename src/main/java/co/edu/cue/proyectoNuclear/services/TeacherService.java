@@ -3,6 +3,7 @@ package co.edu.cue.proyectoNuclear.services;
 import co.edu.cue.proyectoNuclear.mapping.dtos.TeacherDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
 
+import java.time.LocalTime;
 import java.util.List;
 
 public interface TeacherService {
@@ -17,4 +18,6 @@ public interface TeacherService {
     void deleteTeacherById(Long id);
 
     TeacherDto getById(Long id);
+    void editAvailability(int day, LocalTime start, LocalTime end, TeacherDto teacherDto);
+    void deleteById(Long idTeacher, Long id);
 }

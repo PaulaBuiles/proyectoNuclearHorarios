@@ -3,6 +3,8 @@ package co.edu.cue.proyectoNuclear.infrastructure.dao;
 import co.edu.cue.proyectoNuclear.domain.entities.Availability;
 import co.edu.cue.proyectoNuclear.domain.entities.Student;
 import co.edu.cue.proyectoNuclear.mapping.dtos.AvailabilityDto;
+import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
+import co.edu.cue.proyectoNuclear.mapping.dtos.TeacherDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.AvailabilityMapper;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
@@ -59,4 +61,6 @@ public class AvailabilityDAOImpl {
             entityManager.remove(availability);
         }
     }
+
+
 }

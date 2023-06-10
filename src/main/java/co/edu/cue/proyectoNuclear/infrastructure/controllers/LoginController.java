@@ -24,7 +24,7 @@ public class LoginController {
     @GetMapping("/")
     public ModelAndView post(){
         ModelAndView modelAndView = new ModelAndView(Pages.LOGIN);
-        modelAndView.addObject("userLoginDto",new UserLoginDto(2L,"1"));
+        modelAndView.addObject("userLoginDto",new UserLoginDto(null,"1"));
         return modelAndView;
     }
 

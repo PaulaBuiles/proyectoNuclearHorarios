@@ -13,6 +13,7 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -47,6 +48,7 @@ public class TeacherDAOImpl {
         }
         teacher.setEmail(entity.getEmail());
         teacher.setName(entity.getName());
+        teacher.setAvailability(entity.getAvailability());
         entityManager.merge(teacher);
     }
 

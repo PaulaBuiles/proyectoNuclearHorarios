@@ -113,7 +113,9 @@ public class TeacherController {
     @GetMapping("/eliminar/{id}")
     public ModelAndView eliminarDisponibilidad(@PathVariable("id") Long id) {
         // Eliminar disponibilidad por ID
-        availabilityService.deleteAvailabilityById(id);
+        teacherService.deleteById(userService.getUser().id(), id);
+
+        System.out.println("controller teacher");
         return info();
 
     }
