@@ -7,7 +7,7 @@ import co.edu.cue.proyectoNuclear.domain.enums.Property;
 import java.util.List;
 
 public record ClassroomDto(Long id,
-                           String number,
+                           String name,
                            Integer capacity,
                            Campus location,
                            String status,

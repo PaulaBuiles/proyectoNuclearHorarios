@@ -54,7 +54,6 @@ public class ProyectoNuclearApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         //Funcion para comprobar el horario
-
         Time localTime = new Time(2,0,0);
         SubjectDto subject = subjectDAO.findById(2L);
 

@@ -1,12 +1,14 @@
 package co.edu.cue.proyectoNuclear.services.impl;
 
 
+import co.edu.cue.proyectoNuclear.domain.entities.Availability;
 import co.edu.cue.proyectoNuclear.domain.entities.Classroom;
 import co.edu.cue.proyectoNuclear.domain.entities.Subject;
 import co.edu.cue.proyectoNuclear.domain.enums.Campus;
 import co.edu.cue.proyectoNuclear.domain.enums.Property;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.ClassroomDAOImpl;
 import co.edu.cue.proyectoNuclear.mapping.dtos.ClassroomDto;
+import co.edu.cue.proyectoNuclear.mapping.dtos.TeacherDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.ClassroomMapper;
 import co.edu.cue.proyectoNuclear.services.ClassroomService;
 import lombok.AllArgsConstructor;
@@ -24,8 +26,10 @@ public class ClassroomServiceImpl implements ClassroomService {
     @Autowired
     ClassroomDAOImpl classroomDAO;
 
+    @Autowired
     public static ClassroomDto classroomDto;
 
+    @Autowired
     private ClassroomMapper classroomMapper;
 
 
@@ -73,8 +77,15 @@ public class ClassroomServiceImpl implements ClassroomService {
     }
 
     @Override
-    public void createClassroom(Long id, String number, Integer capacity, Campus location, String status, List<Property> propertyList, String observation) {
-        ClassroomDto classroomDto = new ClassroomDto(id,number,capacity,location,status,new ArrayList<>(),propertyList,observation);
+    public void createClassroom(String number, Integer capacity, Campus location, String status, List<Property> propertyList, String observation) {
+        System.out.println("number: " + number);
+        System.out.println("capacity: " + capacity);
+        System.out.println("location: " + location);
+        System.out.println("status: " + status);
+        System.out.println("propertyList: " + propertyList);
+        System.out.println("observation: " + observation);
+
+        ClassroomDto classroomDto = new ClassroomDto(null, number, capacity, location, status, new ArrayList<>(), propertyList, observation);
         classroomDAO.save(classroomMapper.mapToEntity(classroomDto));
     }
 
@@ -87,7 +98,6 @@ public class ClassroomServiceImpl implements ClassroomService {
     @Override
     public void deleteClassroomById(Long id) {
         classroomDAO.delete(id);
-
     }
     public ClassroomDto getClassroomDto() {
         return classroomDto;

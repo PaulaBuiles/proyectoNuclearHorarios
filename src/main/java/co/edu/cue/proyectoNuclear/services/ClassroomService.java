@@ -11,8 +11,7 @@ import java.util.List;
 public interface ClassroomService {
     List<ClassroomDto> generateClassroom();
     List<Property> createPropertyListFromString(String propertyListString);
-    void createClassroom(Long id,
-                         String number,
+    void createClassroom(String number,
                          Integer capacity,
                          Campus location,
                          String status,

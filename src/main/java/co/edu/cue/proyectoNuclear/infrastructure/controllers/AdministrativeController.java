@@ -60,6 +60,21 @@ public class AdministrativeController {
         return modelAndView;
     }
 
+    @GetMapping("/eliminar/{id}")
+    public ModelAndView deleteClassroom(@PathVariable("id") Long id) {
+        classroomService.deleteClassroomById(id);
+        return edit();
+
+    }
+
+    @GetMapping("/editar/{id}")
+    public ModelAndView editClassroom(@PathVariable("id") Long id) {
+        ModelAndView modelAndView = new ModelAndView(Pages.EDITAVAILABILITY);
+        modelAndView.addObject("idAvailability",id);
+        modelAndView.addObject("user", userService.getUser());
+        return modelAndView;
+    }
+
 
     @GetMapping("/users-table")
     public ModelAndView getUsersTable(){
@@ -158,16 +173,4 @@ public class AdministrativeController {
 
 
 
-   /* @GetMapping("/teachers/{teacherId}/subjects/{subjectId}")
-    public ResponseEntity<?> getTeacherSubject(@PathVariable Long teacherId, @PathVariable Long subjectId) {
-        // Lógica para obtener información sobre el profesor y la materia usando los IDs recibidos
-        // ...
-        return ResponseEntity.ok().build();
-    }*/
-
-    /*@PostMapping
-    public ResponseEntity<Course> createCourse(@RequestBody Course course) {
-        Course createdCourse = administrativeService.createCourse(course);
-        return ResponseEntity.ok(createdCourse);
-    }*/
 }
