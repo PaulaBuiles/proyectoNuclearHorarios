@@ -66,7 +66,7 @@ public class ClassroomServiceImpl implements ClassroomService {
                 case "Nogal":
                     return Campus.NOGAL;
                 case "Campina":
-                    return Campus.CAMPIÑA;
+                    return Campus.CAMPINA;
                 case "Principal":
                     return Campus.PRINCIPAL;
                 case "Alcazar":
@@ -102,5 +102,11 @@ public class ClassroomServiceImpl implements ClassroomService {
     public ClassroomDto getClassroomDto() {
         return classroomDto;
     }
+
+    @Override
+    public ClassroomDto getById(Long id) {
+        return classroomDAO.findById(id);
+    }
+
 
 }

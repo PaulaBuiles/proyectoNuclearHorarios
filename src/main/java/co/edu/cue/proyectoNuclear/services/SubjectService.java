@@ -8,5 +8,5 @@ import co.edu.cue.proyectoNuclear.domain.entities.Teacher;
 import java.util.List;
 
 public interface SubjectService {
-    void addSubject(String name, Teacher teacher, int credit, List<Student> students, Classroom classroom, List<Schedule> schedule);
+    void addSubject( String name, Long teacher, int credit,  Long classroom);
 }

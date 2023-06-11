@@ -4,7 +4,7 @@ import co.edu.cue.proyectoNuclear.domain.entities.*;
 
 import java.util.List;
 
-public record SubjectDto(String id,
+public record SubjectDto(Long id,
                          String name,
                          Teacher teacher,
                          int credit,

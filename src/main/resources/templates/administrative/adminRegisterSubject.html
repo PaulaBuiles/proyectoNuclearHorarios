@@ -130,20 +130,14 @@
           <!-- Iterar sobre la lista de aulas y generar opciones -->
           <option th:each="classroom : ${classrooms}" th:value="${classroom.id}" th:text="${classroom.name}"></option>
         </select>
-       <!-- <label for="classroom" class="form-label" style="font-family: 'Lobster Two', cursive; font-size: 23px;">Salón</label>
-        <select class="form-control" id="classroom" name="day">
-        <option value="0">305</option>
-        <option value="1">Martes</option>
-        <option value="2">Miércoles</option>
-        <option value="3">Jueves</option>
-        <option value="4">Viernes</option>
-        <option value="5">Sábado</option>
-
-      </select>-->
       </div>
       <div class="mb-3">
-        <label for="teacher" class="form-label" style="font-family: 'Lobster Two', cursive; font-size: 23px;">Nombre del profesor</label>
-        <input type="text" class="form-control" id="teacher" name="teacher">
+        <label for="teacher">Nombre del profesor:</label>
+        <select id="teacher" name="teacher">
+          <option value="">Seleccione un profesor</option>
+          <!-- Iterar sobre la lista de aulas y generar opciones -->
+          <option th:each="teacher : ${teachers}" th:value="${teacher.id}" th:text="${teacher.name}"></option>
+        </select>
       </div>
 
       <button type="submit" value="Enviar" class="btn btn-primary" style="background-color: #0c0096; alignment:center;font-family: 'Lobster Two', cursive;">Guardar</button>
@@ -162,11 +156,14 @@
       <th style="text-align: center; background-color: #0c0096; color: #ffffff;">Profesor</th>
       <th style="text-align: center; background-color: #0c0096; color: #ffffff;">Estudiante</th>
     </tr>
-    <tr th:each="subjects: ${user.subject}">
+
+    <tr th:each="subjects: ${userTeacher.subjects}">
       <td th:text="${subjects.name}"></td>
       <td th:text="${subjects.credit}"></td>
-      <td th:text="${subjects.userTeacher.name}"></td>
-      <td th:text="${subjects.userStudent.name}"></td>
+    </tr>
+    <tr th:each="subject: ${userStudent.subject}">
+      <td th:text="${subject.name}"></td>
+      <td th:text="${subject.credit}"></td>
     </tr>
     </thead>
     <!--<tbody>

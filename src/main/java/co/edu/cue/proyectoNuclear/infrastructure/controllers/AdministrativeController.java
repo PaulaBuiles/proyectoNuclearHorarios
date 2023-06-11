@@ -1,9 +1,7 @@
 package co.edu.cue.proyectoNuclear.infrastructure.controllers;
 
 import co.edu.cue.proyectoNuclear.domain.configuration.Pages;
-import co.edu.cue.proyectoNuclear.domain.entities.Classroom;
-import co.edu.cue.proyectoNuclear.domain.entities.Teacher;
-import co.edu.cue.proyectoNuclear.domain.entities.User;
+import co.edu.cue.proyectoNuclear.domain.entities.*;
 import co.edu.cue.proyectoNuclear.domain.enums.Campus;
 import co.edu.cue.proyectoNuclear.domain.enums.Property;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.ClassroomDAOImpl;
@@ -36,9 +34,14 @@ public class AdministrativeController {
     private final StudentService studentService;
     @Autowired
     private final TeacherService teacherService;
-
+    @Autowired
+    private final SubjectService subjectService;
     @Autowired
     private final ClassroomService classroomService;
+    @Autowired
+    private final ClassroomMapper classroomMapper;
+    @Autowired
+    private final TeacherMapper teacherMapper;
 
     @Autowired
     private final ClassroomMapper classroomMapper;
@@ -168,8 +171,8 @@ public class AdministrativeController {
     }
 
     @PostMapping("/add-subject")
-    public ModelAndView addSubject(@RequestParam("credit") int credit, @RequestParam("name") String name, @RequestParam("classroom") Classroom classroom, @RequestParam("teacher")Teacher teacher){
-
+    public ModelAndView addSubject(@RequestParam("credit") int credit, @RequestParam("name") String name, @RequestParam("classroom") Long classroomId, @RequestParam("teacher")Long teacherId){
+        subjectService.addSubject(name,teacherId,credit,classroomId);
         return infoSubject();
     }
 
