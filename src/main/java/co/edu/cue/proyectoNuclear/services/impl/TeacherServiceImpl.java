@@ -71,37 +71,38 @@ public class TeacherServiceImpl implements TeacherService {
         return teacherDAO.findById(id);
     }
     @Override
-    public void editAvailability(int day, LocalTime start, LocalTime end, TeacherDto teacherDto) {
+    public void editAvailability(Long id,int day, LocalTime start, LocalTime end, TeacherDto teacherDto) {
+        
+        //Función
         Teacher teacher = teacherMapper.mapToEntity(teacherDto);
-        //Availability availability = null;
+        List<TeacherDto> teacherDtoList = teacherDAO.getTableList();
         DayOfWeek[] daysOfWeek = DayOfWeek.values();
         DayOfWeek dayOfWeek = daysOfWeek[day];
 
-        /*availability.setId(null);
-        availability.setDayOfWeek(dayOfWeek);
-        availability.setStart(start);
-        availability.setEnd(end);
-        availability.setTeacher(teacher);*/
-        Availability availability = new Availability(null, dayOfWeek, start, end, teacher);
-        availabilityDAO.update(availability);
+        for (TeacherDto teacherDto1 : teacherDtoList) {
+            if (teacherDto1.id().equals(teacherDto.id())) {
+                for(Availability availabilityList: teacherDto1.availability())
+                    if(availabilityList.getId().equals(id)) {
+                        availabilityList.setDayOfWeek(dayOfWeek);
+                        availabilityList.setStart(start);
+                        availabilityList.setEnd(end);
+                        availabilityDAO.update(availabilityList); // Actualiza la disponibilidad en la tabla Availability
+                        teacherDAO.update(teacher); // Actualiza el profesor en la tabla Teacher
+                    }
+            }
+        }
 
 
     }
     @Override
     public void deleteById(Long idTeacher, Long id) {
         List<TeacherDto> teacherDtoList = teacherDAO.getTableList();
-        System.out.println("fUNCION");
         for (TeacherDto teacherDto : teacherDtoList) {
             if (teacherDto.id().equals(idTeacher)) {
-                System.out.println("hola2");
-                for (Availability availability: teacherDto.availability()){
-                    System.out.println(availability.getId());
-                    if (availability.getId().equals(id)){
-                        teacherDto.availability().remove(availability);
-                        availabilityDAO.delete(availability.getId());
-                        teacherDAO.update(teacherMapper.mapToEntity(teacherDto));
-                    }
-                }
+                List<Availability> availabilities = teacherDto.availability();
+                availabilities.removeIf(availability -> availability.getId().equals(id));
+                availabilityDAO.delete(id);
+                teacherDAO.update(teacherMapper.mapToEntity(teacherDto));
             }
         }
 

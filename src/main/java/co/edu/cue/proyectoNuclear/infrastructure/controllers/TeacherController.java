@@ -126,11 +126,11 @@ public class TeacherController {
         modelAndView.addObject("user", userService.getUser());
         return modelAndView;
     }
-    @PostMapping("/change-availability")
-    public ModelAndView editChangeAvailability(@RequestParam("day") int day, @RequestParam("start") String startRequest, @RequestParam("end") String endRequest){
+    @PostMapping("/change-availability/{id}")
+    public ModelAndView editChangeAvailability(@PathVariable("id") Long id,@RequestParam("day") int day, @RequestParam("start") String startRequest, @RequestParam("end") String endRequest){
         LocalTime start = LocalTime.parse(startRequest);
         LocalTime end = LocalTime.parse(endRequest);
-        availabilityService.editAvailability(day,start,end,teacherService.findUserTeacher(userService.getUser()));
+        teacherService.editAvailability(id,day,start,end,teacherService.findUserTeacher(userService.getUser()));
         return info();
     }
 

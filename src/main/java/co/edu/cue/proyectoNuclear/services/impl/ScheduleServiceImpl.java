@@ -25,7 +25,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 
 
     @Override
-    public void addSubject(Long id, DayOfWeek dayOfWeek, Time durability, LocalTime start, LocalTime end, Subject subject) {
+    public void asingSubject(Long id, DayOfWeek dayOfWeek, Time durability, LocalTime start, LocalTime end, Subject subject) {
         //Crear horario
         boolean band = true;
         List<ScheduleDto> sc = scheduleDAO.getTableList();

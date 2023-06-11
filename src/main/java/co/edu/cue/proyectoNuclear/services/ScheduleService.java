@@ -7,5 +7,5 @@ import java.sql.Time;
 import java.time.LocalTime;
 
 public interface ScheduleService {
-     void addSubject(Long id, DayOfWeek dayOfWeek, Time durability, LocalTime start, LocalTime end, Subject subject);
+     void asingSubject(Long id, DayOfWeek dayOfWeek, Time durability, LocalTime start, LocalTime end, Subject subject);
 }

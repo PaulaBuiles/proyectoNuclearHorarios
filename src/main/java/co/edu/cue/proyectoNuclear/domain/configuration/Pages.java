@@ -15,6 +15,8 @@ public class Pages {
 
     public static String CLASSROOM="administrative/adminRegisterClassroom";
 
+    public static String SUBJECT="administrative/adminiRegisterSubject";
+
     //STUDENT
 
     public static String STUDENTHOME = "student/home";

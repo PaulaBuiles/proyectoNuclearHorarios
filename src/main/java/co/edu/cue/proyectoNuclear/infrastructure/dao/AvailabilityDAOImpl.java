@@ -9,6 +9,7 @@ import co.edu.cue.proyectoNuclear.mapping.mappers.AvailabilityMapper;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -56,10 +57,9 @@ public class AvailabilityDAOImpl {
     }
 
     public void delete(Long id) {
-        Availability availability = entityManager.find(Availability.class, id);
-        if (availability != null) {
-            entityManager.remove(availability);
-        }
+        Query query = entityManager.createQuery("DELETE FROM Availability a WHERE a.id = :id");
+        query.setParameter("id", id);
+        query.executeUpdate();
     }
 
 

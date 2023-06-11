@@ -2,6 +2,7 @@ package co.edu.cue.proyectoNuclear.infrastructure.controllers;
 
 import co.edu.cue.proyectoNuclear.domain.configuration.Pages;
 import co.edu.cue.proyectoNuclear.domain.entities.Classroom;
+import co.edu.cue.proyectoNuclear.domain.entities.Teacher;
 import co.edu.cue.proyectoNuclear.domain.entities.User;
 import co.edu.cue.proyectoNuclear.domain.enums.Campus;
 import co.edu.cue.proyectoNuclear.domain.enums.Property;
@@ -105,7 +106,8 @@ public class AdministrativeController {
     @GetMapping("/info")
     public ModelAndView info(){
         ModelAndView modelAndView = new ModelAndView(Pages.ADMININFORMATION);
-        //modelAndView.addObject("userStudent",studentService.findUserStudent(userService.getUser()));
+        modelAndView.addObject("userStudent",studentService.findUserStudent(userService.getUser()));
+        modelAndView.addObject("userTeacher", teacherService.findUserTeacher(userService.getUser()));
         return modelAndView;
     }
 
@@ -134,23 +136,27 @@ public class AdministrativeController {
     }
 
     @PostMapping("/classroom")
-    public ModelAndView createClassroom(
-            @RequestParam("name") String name,
-            @RequestParam("capacity") Integer capacity,
-            @RequestParam("location") String location,
-            @RequestParam("status") String status,
-            @RequestParam("propertyList") String propertyListString,
-            @RequestParam("observation") String observation
-    ) {
-        classroomService.createClassroom(null,
-                name,
-                capacity,
-                classroomService.determineLocation(location),
-                status,
-                classroomService.createPropertyListFromString(propertyListString),
-                observation);
+    public ModelAndView createClassroom(@RequestParam("name") String name, @RequestParam("capacity") Integer capacity, @RequestParam("location") String location, @RequestParam("status") String status, @RequestParam("propertyList") String propertyListString, @RequestParam("observation") String observation) {
+        classroomService.createClassroom(name, capacity, classroomService.determineLocation(location), status, classroomService.createPropertyListFromString(propertyListString), observation);
         return manageClassroom();
     }
+
+    @GetMapping("/info-subject")
+    public ModelAndView infoSubject(){
+        ModelAndView modelAndView = new ModelAndView(Pages.SUBJECT);
+        modelAndView.addObject("userStudent",studentService.findUserStudent(userService.getUser()));
+        modelAndView.addObject("userTeacher", teacherService.findUserTeacher(userService.getUser()));
+        return modelAndView;
+    }
+
+    @PostMapping("/add-subject")
+    public ModelAndView addSubject(@RequestParam("credit") int credit, @RequestParam("name") String name, @RequestParam("classroom") Classroom classroom, @RequestParam("teacher")Teacher teacher){
+
+        return infoSubject();
+    }
+
+
+
 
    /* @GetMapping("/teachers/{teacherId}/subjects/{subjectId}")
     public ResponseEntity<?> getTeacherSubject(@PathVariable Long teacherId, @PathVariable Long subjectId) {

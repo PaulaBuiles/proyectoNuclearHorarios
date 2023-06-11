@@ -18,6 +18,6 @@ public interface TeacherService {
     void deleteTeacherById(Long id);
 
     TeacherDto getById(Long id);
-    void editAvailability(int day, LocalTime start, LocalTime end, TeacherDto teacherDto);
+    void editAvailability(Long id, int day, LocalTime start, LocalTime end, TeacherDto teacherDto);
     void deleteById(Long idTeacher, Long id);
 }

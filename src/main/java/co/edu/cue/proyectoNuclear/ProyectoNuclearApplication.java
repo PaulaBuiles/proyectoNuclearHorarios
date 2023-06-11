@@ -58,7 +58,7 @@ public class ProyectoNuclearApplication implements CommandLineRunner {
         Time localTime = new Time(2,0,0);
         SubjectDto subject = subjectDAO.findById(2L);
 
-        scheduleService.addSubject(3L, DayOfWeek.MONDAY, localTime, LocalTime.of(12,0),LocalTime.of(14,0),subjectMapper.mapToEntity(subject));
+        scheduleService.asingSubject(3L, DayOfWeek.MONDAY, localTime, LocalTime.of(12,0),LocalTime.of(14,0),subjectMapper.mapToEntity(subject));
         //studentDAO.addSubject()
 
 
