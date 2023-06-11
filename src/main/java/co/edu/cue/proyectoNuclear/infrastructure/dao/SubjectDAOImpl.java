@@ -38,9 +38,8 @@ public class SubjectDAOImpl {
         return subjectMapper.mapSubject(subject);
     }
 
-    public void save(SubjectDto entity) {
-        Subject subject = subjectMapper.mapToEntity(entity);
-        entityManager.persist(subject);
+    public void save(Subject entity) {
+        entityManager.persist(entity);
     }
 
     public void update(Subject subject) {

@@ -5,9 +5,15 @@ import co.edu.cue.proyectoNuclear.domain.entities.*;
 import co.edu.cue.proyectoNuclear.domain.enums.Campus;
 import co.edu.cue.proyectoNuclear.domain.enums.Property;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.ClassroomDAOImpl;
+import co.edu.cue.proyectoNuclear.infrastructure.dao.StudentDAOImpl;
+import co.edu.cue.proyectoNuclear.infrastructure.dao.TeacherDAOImpl;
+import co.edu.cue.proyectoNuclear.infrastructure.dao.UserDAOImpl;
 import co.edu.cue.proyectoNuclear.mapping.dtos.ClassroomDto;
+import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
+import co.edu.cue.proyectoNuclear.mapping.dtos.SubjectDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.ClassroomMapper;
+import co.edu.cue.proyectoNuclear.mapping.mappers.TeacherMapper;
 import co.edu.cue.proyectoNuclear.services.*;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,8 +50,9 @@ public class AdministrativeController {
     private final TeacherMapper teacherMapper;
 
     @Autowired
-    private final ClassroomMapper classroomMapper;
-
+    private final UserDAOImpl userDAO;
+    @Autowired
+    private final TeacherDAOImpl teacherDAO;
     @Autowired
     private final ClassroomDAOImpl classroomDAO;
 
@@ -88,6 +95,34 @@ public class AdministrativeController {
         modelAndView.addObject("users",userDtoList);
         modelAndView.addObject("role","Todos");
         modelAndView.addObject("user",userService.getUser());
+        return modelAndView;
+    }
+
+    @GetMapping("/schedule-users/{id}")
+    public ModelAndView viewUser(@PathVariable("id") Long userId) {
+        UserDto userDto = userDAO.findById(userId);
+        ModelAndView modelAndView = null;
+        switch (userDto.role()){
+            case "Estudiante":
+                modelAndView = new ModelAndView(Pages.ADMINSCHEDULEUSERS);
+                modelAndView.addObject("user", userService.getUser());
+                modelAndView.addObject("hours", userService.getHoursList());
+                modelAndView.addObject("days", userService.getDaysList());
+                modelAndView.addObject("userViewSubjects",studentService.findUserStudent(userDAO.findById(userId)).subject());
+                modelAndView.addObject("userSchedules", userService.getUserSchedule(studentService.findUserStudent(userDAO.findById(userId)).subject()));
+                break;
+            case "Profesor":
+                modelAndView = new ModelAndView(Pages.ADMINSCHEDULEUSERS);
+                modelAndView.addObject("user", userService.getUser());
+                modelAndView.addObject("hours", userService.getHoursList());
+                modelAndView.addObject("days", userService.getDaysList());
+                modelAndView.addObject("userViewSubjects",teacherService.findUserTeacher(userDAO.findById(userId)).subjects());
+                modelAndView.addObject("userSchedules",userService.getUserSchedule(teacherService.findUserTeacher(userDAO.findById(userId)).subjects()));
+                break;
+            case "Administrativo":
+                modelAndView = homeAdministrative();
+                break;
+        }
         return modelAndView;
     }
 
@@ -166,7 +201,8 @@ public class AdministrativeController {
         modelAndView.addObject("user", userService.getUser());
         modelAndView.addObject("userStudent",studentService.findUserStudent(userService.getUser()));
         modelAndView.addObject("userTeacher", teacherService.findUserTeacher(userService.getUser()));
-        modelAndView.addObject("listClassroom",classroomService.generateClassroom());
+        modelAndView.addObject("teachers",teacherDAO.getTableList());
+        modelAndView.addObject("classrooms",classroomService.generateClassroom());
         return modelAndView;
     }
 

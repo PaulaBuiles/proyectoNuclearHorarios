@@ -158,15 +158,13 @@
         <thead class="thead-dark">
         <tr style="background-color: #0b5ed7; color: white">
           <th>Nombre</th>
-          <th>Profesor</th>
           <th>Sede</th>
           <th>Salon</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="subject : ${student.subject()}">
+        <tr th:each="subject : ${userStudent.subject()}">
           <td th:text="${subject.getName()}"></td>
-          <td th:text="${subject.getTeacher().getName()}"></td>
           <td th:text="${subject.getClassroom().getLocation()}"></td>
           <td th:text="${subject.getClassroom().getName()}"></td>
         </tr>

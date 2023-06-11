@@ -2,12 +2,10 @@ package co.edu.cue.proyectoNuclear.services.impl;
 
 
 import co.edu.cue.proyectoNuclear.domain.entities.*;
+import co.edu.cue.proyectoNuclear.infrastructure.dao.ScheduleDAOImpl;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.TeacherDAOImpl;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.UserDAOImpl;
-import co.edu.cue.proyectoNuclear.mapping.dtos.AdministrativeDto;
-import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
-import co.edu.cue.proyectoNuclear.mapping.dtos.TeacherDto;
-import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
+import co.edu.cue.proyectoNuclear.mapping.dtos.*;
 import co.edu.cue.proyectoNuclear.services.AdministrativeService;
 import co.edu.cue.proyectoNuclear.services.StudentService;
 import co.edu.cue.proyectoNuclear.services.TeacherService;
@@ -16,7 +14,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 @AllArgsConstructor
 @Service
@@ -27,7 +27,24 @@ public class UserServiceImpl implements UserService {
     public UserDAOImpl userGeneralDAO;
     @Autowired
     public TeacherDAOImpl teacherDAO;
+    @Autowired
+    public ScheduleDAOImpl scheduleDAO;
 
+
+    @Override
+    public List<ScheduleDto> getUserSchedule(List<Subject> subjects){
+        List<ScheduleDto> allSchedules = scheduleDAO.getTableList();
+        List<ScheduleDto> userSchedules = new ArrayList<>();
+
+        for (ScheduleDto schedule : allSchedules) {
+            for (Subject subject : subjects) {
+                if (schedule.subject().getId().equals(subject.getId())) {
+                    userSchedules.add(schedule);
+                }
+            }
+        }
+        return userSchedules;
+    }
 
 
     @Override
