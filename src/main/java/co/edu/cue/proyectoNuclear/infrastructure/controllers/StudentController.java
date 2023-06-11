@@ -132,7 +132,7 @@ public class StudentController {
         modelAndView.addObject("hours", hours);
         modelAndView.addObject("days", days);
         modelAndView.addObject("studentSchedules", studentSchedules);
-        modelAndView.addObject("controller", this);
+        modelAndView.addObject("student",studentService.findUserStudent(userService.getUser()));
         return modelAndView;
 
     }

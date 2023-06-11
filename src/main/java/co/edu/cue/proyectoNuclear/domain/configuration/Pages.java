@@ -8,7 +8,7 @@ public class Pages {
     //ADMIN
     public static String ADMINHOME = "administrative/homeAdmin";
     public static String ADMINTABLEUSERS ="administrative/administrativeTableUsers";
-
+    public static String ADMINSCHEDULEUSERS = "administrative/administrativeScheduleUsers";
     public static String ADMININFORMATION ="administrative/administrativeInformation";
 
     public static String ADMINREGISTERUSERS ="administrative/administrativeRegisterUsers";

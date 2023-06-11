@@ -151,6 +151,7 @@
             <th>Identificación</th>
             <th>Email</th>
             <th>Rol</th>
+            <th>Horario</th>
         </tr>
         </thead>
         <tbody>
@@ -159,6 +160,11 @@
             <td th:text="${user.id}">123456789</td>
             <td th:text="${user.email}">usuario1@example.com</td>
             <td th:text="${user.role}">Administrador</td>
+            <td>
+                <form style="display: inline-block; margin-right: 5px;" th:action="@{/administrative-tools/schedule-users/{id}(id=${user.id})}" method="get">
+                    <button style="font-family: 'Lobster Two', cursive; font-size: 18px; background-color: #0c0096; border-top-color: transparent; color: white; outline: none; outline-offset: -2px;" type="submit">Ver</button>
+                </form>
+            </td>
         </tr>
         </tbody>
     </table>
