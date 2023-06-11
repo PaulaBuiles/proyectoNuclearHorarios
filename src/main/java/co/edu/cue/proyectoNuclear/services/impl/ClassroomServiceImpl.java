@@ -29,7 +29,7 @@ public class ClassroomServiceImpl implements ClassroomService {
     @Autowired
     public static ClassroomDto classroomDto;
 
-    @Autowired
+
     private ClassroomMapper classroomMapper;
 
 

@@ -71,7 +71,7 @@
           <form th:action="@{/login/}" class="btn btn-transparent">
             <button type="submit" style="color: black; border: none; font-size: 15px;" class="btn btn-transparent">Cerrar sesión</button>
           </form>
-          <form th:action="@{/student/changePassword}" class="btn btn-transparent">
+          <form th:action="@{/administrative-tools/changePassword}" class="btn btn-transparent">
             <button type="submit" style="color: black; border: none; font-size: 15px;" class="btn btn-transparent">Cambiar contraseña</button>
           </form>
         </div>
@@ -151,44 +151,19 @@
   <table class="table table-striped table-bordered table-hover">
     <thead class="thead-dark">
     <tr>
-      <th style="text-align: center; background-color: #0c0096; color: #ffffff;">Nombre</th>
+      <th style="text-align: center; background-color: #0c0096; color: #ffffff;">Nombre Materia</th>
       <th style="text-align: center; background-color: #0c0096; color: #ffffff;">No. crédito</th>
-      <th style="text-align: center; background-color: #0c0096; color: #ffffff;">Profesor</th>
-      <th style="text-align: center; background-color: #0c0096; color: #ffffff;">Estudiante</th>
-    </tr>
+      <th style="text-align: center; background-color: #0c0096; color: #ffffff;">Salon</th>
 
-    <tr th:each="subjects: ${userTeacher.subjects}">
-      <td th:text="${subjects.name}"></td>
-      <td th:text="${subjects.credit}"></td>
-    </tr>
-    <tr th:each="subject: ${userStudent.subject}">
-      <td th:text="${subject.name}"></td>
-      <td th:text="${subject.credit}"></td>
     </tr>
     </thead>
-    <!--<tbody>
-    <tr th:each="classroom : ${classrooms}">
-      <td th:text="${classroom.id}"></td>
-      <td th:text="${classroom.name}"></td>
-      <td th:text="${classroom.capacity}"></td>
-      <td th:text="${classroom.location}"></td>
-      <td th:text="${classroom.status}"></td>
-      <td>
-        <ul>
-          <li th:each="property : ${classroom.propertyList}" th:text="${property.spanishName}"></li>
-        </ul>
-      </td>
-      <td th:text="${classroom.observation}"></td>
-      <td>
-        <form style="display: inline-block; margin-right: 5px;" th:action="@{/administrative-tools/editar/{id}(id=${classroom.id})}" method="get">
-          <button style="font-family: 'Lobster Two', cursive; font-size: 18px; background-color: #0c0096; border-top-color: transparent; color: white; outline: none; outline-offset: -2px;" type="submit">Editar</button>
-        </form>
-        <form style="display: inline-block;" th:action="@{/administrative-tools/eliminar/{id}(id=${classroom.id})}" method="get">
-          <button style="font-family: 'Lobster Two', cursive; font-size: 18px; background-color: #0c0096; border-top-color: transparent; color: white; outline: none; outline-offset: -2px;" type="submit">Eliminar</button>
-        </form>
-      </td>
+    <tbody>
+    <tr th:each="subject: ${subjects}">
+      <td th:text="${subject.name}"></td>
+      <td th:text="${subject.credit}"></td>
+      <td th:text="${subject.classroom.getName()}"></td>
     </tr>
-    </tbody>-->
+    </tbody>
   </table>
 </div>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>

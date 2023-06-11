@@ -30,7 +30,7 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private StudentDAOImpl studentDAO;
 
-    @Autowired
+
     private StudentMapper studentMapper;
 
     @Autowired

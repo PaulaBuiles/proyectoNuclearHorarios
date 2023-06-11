@@ -47,10 +47,9 @@ public class LoginController {
             }
             modelAndView.addObject("user",userService.getUser());
             return modelAndView;
-        }
-        else {
-            modelAndView = new ModelAndView("index");
-            System.out.print("Usuario no encontrado");
+        } else {
+            modelAndView = new ModelAndView(Pages.LOGIN);
+            modelAndView.addObject("message",true);
             return modelAndView;
         }
     }

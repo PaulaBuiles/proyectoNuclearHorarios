@@ -3,9 +3,7 @@ package co.edu.cue.proyectoNuclear.services.impl;
 import co.edu.cue.proyectoNuclear.domain.entities.*;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.SubjectDAOImpl;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.TeacherDAOImpl;
-import co.edu.cue.proyectoNuclear.mapping.dtos.ClassroomDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.SubjectDto;
-import co.edu.cue.proyectoNuclear.mapping.dtos.TeacherDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.ClassroomMapper;
 import co.edu.cue.proyectoNuclear.mapping.mappers.SubjectMapper;
 import co.edu.cue.proyectoNuclear.mapping.mappers.TeacherMapper;
@@ -17,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 @Service
@@ -26,27 +23,58 @@ public class SubjectServiceImpl implements SubjectService {
 
     @Autowired
     private SubjectDAOImpl subjectDAO;
-    @Autowired
-    private SubjectMapper subjectMapper;
+
     @Autowired
     private TeacherDAOImpl teacherDAO;
-    @Autowired
+
+    private SubjectMapper subjectMapper;
+
     private TeacherMapper teacherMapper;
-    @Autowired
+
     private  ClassroomMapper classroomMapper;
     @Autowired
     private  TeacherService teacherService;
     @Autowired
     private  ClassroomService classroomService;
 
+    @Override
+    public void addSubject(String name, Long teacherId, int credit, Long classroomId) {
+            Classroom classroom = classroomMapper.mapToEntity(classroomService.getById(classroomId));
+            Teacher teacher = teacherMapper.mapToEntity(teacherDAO.findById(teacherId));
+
+                SubjectDto subjectDto = new SubjectDto(null, name, null, credit, new ArrayList<>(), classroom, new ArrayList<>());
+                Subject subject = subjectMapper.mapToEntity(subjectDto);
+
+                subjectDAO.save(subject);
+                addTeacher(teacher,subjectDAO.findByName(name));
+
+    }
 
     @Override
+    public void addTeacher(Teacher teacher, Subject subject){
+        subject.setTeacher(teacher);
+        subjectDAO.update(subject);
+    }
+
+   /* @Override
     public void addSubject(String name, Long teacherId, int credit, Long classroomId) {
         Teacher teacher = teacherMapper.mapToEntity(teacherService.getById(teacherId));
         Classroom classroom = classroomMapper.mapToEntity(classroomService.getById(classroomId));
-        SubjectDto subject = new SubjectDto(null, name, teacher, credit, new ArrayList<>(), classroom, new ArrayList<>());
+
+        System.out.println("Name: " + name);
+        System.out.println("Teacher ID: " + teacherId);
+        System.out.println("Credit: " + credit);
+        System.out.println("Classroom ID: " + classroomId);
+
+        System.out.println("Teacher: " + teacher.getName());
+        System.out.println("Classroom: " + classroom.getName());
+
+        SubjectDto subject = new SubjectDto(null, name, , credit, new ArrayList<>(), classroom, new ArrayList<>());
+
+        System.out.println("Subject: " + subject);
+
         subjectDAO.save(subjectMapper.mapToEntity(subject));
-    }
+    }*/
 
 
 }

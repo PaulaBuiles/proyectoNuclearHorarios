@@ -21,7 +21,7 @@ import java.util.List;
 public class TeacherServiceImpl implements TeacherService {
     @Autowired
     private TeacherDAOImpl teacherDAO;
-    @Autowired
+
     private TeacherMapper teacherMapper;
     @Autowired
     private UserServiceImpl userService;

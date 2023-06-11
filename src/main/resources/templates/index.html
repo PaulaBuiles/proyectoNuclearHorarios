@@ -42,6 +42,14 @@
 
 </head>
 <body>
+<div th:if="${message}">
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        alert("Inicio de sesion invalido");
+        /*]]>*/
+    </script>
+</div>
+
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">

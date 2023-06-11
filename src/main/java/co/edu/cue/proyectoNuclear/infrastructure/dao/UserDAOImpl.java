@@ -38,9 +38,8 @@ public class UserDAOImpl {
     }
 
 
-    public void save(UserDto entity) {
-        User user = userMapper.mapToEntity(entity);
-        entityManager.persist(user);
+    public void save(User entity) {
+        entityManager.persist(entity);
     }
 
 

@@ -27,6 +27,16 @@ public class SubjectDAOImpl {
     private TeacherMapper teacherMapper;
     private TeacherDAOImpl teacherDAO;
 
+    public Subject findByName(String name) {
+        TypedQuery<Subject> query = entityManager.createQuery("SELECT s FROM Subject s WHERE s.name = :name", Subject.class);
+        query.setParameter("name", name);
+        List<Subject> subjectList = query.getResultList();
+        if (subjectList.isEmpty()) {
+            return null;
+        }
+        return subjectList.get(0);
+    }
+
     public List<SubjectDto> getTableList() {
         TypedQuery<Subject> query = entityManager.createQuery("SELECT s FROM Subject s", Subject.class);
         List<Subject> subjectList = query.getResultList();
@@ -39,6 +49,7 @@ public class SubjectDAOImpl {
     }
 
     public void save(Subject entity) {
+
         entityManager.persist(entity);
     }
 
