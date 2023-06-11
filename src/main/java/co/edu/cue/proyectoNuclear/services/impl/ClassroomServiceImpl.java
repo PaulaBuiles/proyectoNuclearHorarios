@@ -66,7 +66,7 @@ public class ClassroomServiceImpl implements ClassroomService {
                 case "Nogal":
                     return Campus.NOGAL;
                 case "Campina":
-                    return Campus.CAMPINA;
+                    return Campus.CAMPIÑA;
                 case "Principal":
                     return Campus.PRINCIPAL;
                 case "Alcazar":

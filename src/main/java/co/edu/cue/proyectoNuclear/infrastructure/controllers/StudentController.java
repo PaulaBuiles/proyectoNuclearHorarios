@@ -8,7 +8,6 @@ import co.edu.cue.proyectoNuclear.infrastructure.dao.ScheduleDAOImpl;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.StudentDAOImpl;
 import co.edu.cue.proyectoNuclear.mapping.dtos.ScheduleDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
-import co.edu.cue.proyectoNuclear.mapping.mappers.ScheduleMapper;
 import co.edu.cue.proyectoNuclear.mapping.mappers.StudentMapper;
 import co.edu.cue.proyectoNuclear.services.StudentService;
 import co.edu.cue.proyectoNuclear.services.UserService;

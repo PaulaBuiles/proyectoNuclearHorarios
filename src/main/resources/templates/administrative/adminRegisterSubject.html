@@ -94,7 +94,7 @@
       </form>
     </div>
     <div class="col-auto">
-      <form th:action="@{/administrative-tools/assign-subject}">
+      <form th:action="@{/administrative-tools/info-subject}">
         <button type="submit" class="btn btn-primary">Gestionar materia</button>
       </form>
     </div>
@@ -124,8 +124,22 @@
         <input type="text" class="form-control" id="name" name="name">
       </div>
       <div class="mb-3">
-        <label for="classroom" class="form-label" style="font-family: 'Lobster Two', cursive; font-size: 23px;">Salón</label>
-        <input type="text" class="form-control" id="classroom" name="classroom">
+        <label for="classroom">Salón:</label>
+        <select id="classroom" name="classroom">
+          <option value="">Seleccione un salón</option>
+          <!-- Iterar sobre la lista de aulas y generar opciones -->
+          <option th:each="classroom : ${classrooms}" th:value="${classroom.id}" th:text="${classroom.name}"></option>
+        </select>
+       <!-- <label for="classroom" class="form-label" style="font-family: 'Lobster Two', cursive; font-size: 23px;">Salón</label>
+        <select class="form-control" id="classroom" name="day">
+        <option value="0">305</option>
+        <option value="1">Martes</option>
+        <option value="2">Miércoles</option>
+        <option value="3">Jueves</option>
+        <option value="4">Viernes</option>
+        <option value="5">Sábado</option>
+
+      </select>-->
       </div>
       <div class="mb-3">
         <label for="teacher" class="form-label" style="font-family: 'Lobster Two', cursive; font-size: 23px;">Nombre del profesor</label>

@@ -7,6 +7,7 @@ import co.edu.cue.proyectoNuclear.domain.entities.User;
 import co.edu.cue.proyectoNuclear.domain.enums.Campus;
 import co.edu.cue.proyectoNuclear.domain.enums.Property;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.ClassroomDAOImpl;
+import co.edu.cue.proyectoNuclear.mapping.dtos.ClassroomDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.ClassroomMapper;
 import co.edu.cue.proyectoNuclear.services.*;
@@ -159,8 +160,10 @@ public class AdministrativeController {
     @GetMapping("/info-subject")
     public ModelAndView infoSubject(){
         ModelAndView modelAndView = new ModelAndView(Pages.SUBJECT);
+        modelAndView.addObject("user", userService.getUser());
         modelAndView.addObject("userStudent",studentService.findUserStudent(userService.getUser()));
         modelAndView.addObject("userTeacher", teacherService.findUserTeacher(userService.getUser()));
+        modelAndView.addObject("listClassroom",classroomService.generateClassroom());
         return modelAndView;
     }
 
