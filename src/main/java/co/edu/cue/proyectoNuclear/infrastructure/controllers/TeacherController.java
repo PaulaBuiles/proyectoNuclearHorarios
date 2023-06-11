@@ -120,9 +120,10 @@ public class TeacherController {
 
     }
 
-    @GetMapping("/edit-availability")
-    public ModelAndView editAvailability() {
+    @GetMapping("/editar/{id}")
+    public ModelAndView editAvailability(@PathVariable("id") Long id) {
         ModelAndView modelAndView = new ModelAndView(Pages.EDITAVAILABILITY);
+        modelAndView.addObject("idAvailability",id);
         modelAndView.addObject("user", userService.getUser());
         return modelAndView;
     }

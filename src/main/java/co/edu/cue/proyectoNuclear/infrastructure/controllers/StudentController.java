@@ -1,13 +1,20 @@
 package co.edu.cue.proyectoNuclear.infrastructure.controllers;
 
 import co.edu.cue.proyectoNuclear.domain.configuration.Pages;
+import co.edu.cue.proyectoNuclear.domain.entities.Schedule;
 import co.edu.cue.proyectoNuclear.domain.entities.Student;
+import co.edu.cue.proyectoNuclear.domain.entities.Subject;
+import co.edu.cue.proyectoNuclear.infrastructure.dao.ScheduleDAOImpl;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.StudentDAOImpl;
+import co.edu.cue.proyectoNuclear.mapping.dtos.ScheduleDto;
+import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
+import co.edu.cue.proyectoNuclear.mapping.mappers.ScheduleMapper;
 import co.edu.cue.proyectoNuclear.mapping.mappers.StudentMapper;
 import co.edu.cue.proyectoNuclear.services.StudentService;
 import co.edu.cue.proyectoNuclear.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -36,7 +43,13 @@ public class StudentController {
     private StudentDAOImpl studentDAO;
 
     @Autowired
+    private ScheduleDAOImpl scheduleDAO;
+
+    @Autowired
     private StudentMapper studentMapper;
+
+    @Autowired
+    private ScheduleMapper scheduleMapper;
 
     @GetMapping("/home")
     public ModelAndView home(){
@@ -67,11 +80,44 @@ public class StudentController {
         return info();
     }
     @GetMapping("/schedule")
-    public ModelAndView scheduleStudent(){
-        ModelAndView modelAndView =new ModelAndView(Pages.SCHEDULESTUDENT);
-        modelAndView.addObject("user",userService.getUser());
+    public ModelAndView scheduleStudent() {
+        ModelAndView modelAndView = new ModelAndView(Pages.SCHEDULESTUDENT);
+        modelAndView.addObject("user", userService.getUser());
+        StudentDto student = studentService.findUserStudent(userService.getUser());
+        modelAndView.addObject("userStudent", studentMapper.mapToEntity(student));
+
+        List<LocalTime> hours = Arrays.asList(
+                LocalTime.parse("07:00"), LocalTime.parse("08:00"), LocalTime.parse("09:00"), LocalTime.parse("10:00"), LocalTime.parse("11:00"), LocalTime.parse("12:00"),
+                LocalTime.parse("13:00"), LocalTime.parse("14:00"), LocalTime.parse("15:00"), LocalTime.parse("16:00"), LocalTime.parse("17:00"), LocalTime.parse("18:00"),
+                LocalTime.parse("19:00"), LocalTime.parse("20:00"), LocalTime.parse("21:00"), LocalTime.parse("22:00")
+        );
+
+
+        List<String> days = Arrays.asList(
+                "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"
+        );
+
+        List<ScheduleDto> allSchedules = scheduleDAO.getTableList();
+        List<ScheduleDto> studentSchedules = new ArrayList<>();
+
+        for (ScheduleDto schedule : allSchedules) {
+            for (Subject subject : student.subject()) {
+                if (schedule.subject().getId().equals(subject.getId())) {
+                    System.out.println(schedule.start().toString());
+                    System.out.println(schedule.start());
+                    studentSchedules.add(schedule);
+                }
+            }
+        }
+
+        modelAndView.addObject("hours", hours);
+        modelAndView.addObject("days", days);
+        modelAndView.addObject("studentSchedules", studentSchedules);
+        modelAndView.addObject("controller", this);
         return modelAndView;
+
     }
+
     @GetMapping("/changePassword")
     public ModelAndView changePassword(){
         ModelAndView modelAndView = new ModelAndView(Pages.PASSWORD);
@@ -85,5 +131,6 @@ public class StudentController {
         studentDAO.updatePassword(studentMapper.mapStudent(user));
         return loginController.post();
     }
+
 
 }

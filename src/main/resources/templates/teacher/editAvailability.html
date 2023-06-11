@@ -48,7 +48,7 @@
 <div class="container mt-5">
   <h1 style="font-family: 'Lobster Two', cursive; text-align: center;">Disponibilidad</h1><br>
   <div class="container mt-5">
-    <form th:action="@{/teacher/change-availability}" method="post" class="border p-3 form">
+    <form th:action="@{/teacher/change-availability/{id}(id=${idAvailability})}" method="post" class="border p-3 form">
       <div class="mb-3">
         <select class="form-control" id="day" name="day">
           <option value="0">Lunes</option>

@@ -47,11 +47,9 @@ public class AvailabilityDAOImpl {
         if (availability == null) {
             throw new EntityNotFoundException("Disponibilidad no encontrada");
         }
-        availability.setId(null);
         availability.setDayOfWeek(entity.getDayOfWeek());
         availability.setStart(entity.getStart());
         availability.setEnd(entity.getEnd());
-        availability.setTeacher(entity.getTeacher());
 
         entityManager.merge(availability);
     }

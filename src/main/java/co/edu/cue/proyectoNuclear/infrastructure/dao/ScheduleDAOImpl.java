@@ -20,7 +20,7 @@ public class ScheduleDAOImpl {
 
     @PersistenceContext
     private EntityManager entityManager;
-    @Autowired
+
     private ScheduleMapper scheduleMapper;
 
     public List<ScheduleDto> getTableList() {

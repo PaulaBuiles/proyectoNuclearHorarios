@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <link th:href="@{/css/bootstrap.css}" rel="stylesheet" href="/static/css/bootstrap.css">
   <script th:src="@{/js/jquery.js}" src="/static/js/jquery.js"></script>
   <script th:src="@{/js/bootstrap.js}" src="/static/js/bootstrap.js"></script>
+
   <title>Login Gestión de Horarios</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap');
@@ -128,60 +130,25 @@
       <th>Sábado</th>
     </tr>
     </thead>
-    <tbody>
-    <tr>
-      <td>7:00 AM</td>
-    </tr>
-    <tr>
-      <td>8:00 AM</td>
-    </tr>
-    <tr>
-      <td>9:00 AM</td>
-    </tr>
-    <!-- Resto de filas -->
-    <tr>
-      <td>10:00 AM</td>
-    </tr>
-    <tr>
-      <td>11:00 AM</td>
-    </tr>
-    <tr>
-      <td>12:00 PM</td>
-    </tr>
-    <tr>
-      <td>1:00 PM</td>
-    </tr>
-    <tr>
-      <td>2:00 PM</td>
-    </tr>
-    <tr>
-      <td>3:00 PM</td>
-    </tr>
-    <tr>
-      <td>4:00 PM</td>
-    </tr>
-    <tr>
-      <td>5:00 PM</td>
-    </tr>
-    <tr>
-      <td>6:00 PM</td>
-    </tr>
-    <tr>
-      <td>7:00 PM</td>
-    </tr>
-    <tr>
-      <td>8:00 PM</td>
-    </tr>
-    <tr>
-      <td>9:00 PM</td>
-    </tr>
-    <tr>
-      <td>10:00 PM</td>
-    </tr>
-    </tbody>
-  </table>
+      <tbody>
+      <tr th:each="hour : ${hours}">
+        <td th:text="${hour}"></td>
+        <td th:each="day : ${days}">
+                <span th:each="schedule : ${studentSchedules}" >
+                    <span th:if="${schedule.dayOfWeek.name == day}">
+          <span th:if="${hour >= schedule.start && hour < schedule.end}" th:text="${schedule.subject.name}"></span>
+
+                      </span>
+
+                    </span>
+                </span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
 </div>
 </div>
 </div>
+
 </body>
 </html>
