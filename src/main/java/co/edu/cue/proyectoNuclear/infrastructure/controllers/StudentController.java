@@ -39,9 +39,6 @@ public class StudentController {
     private StudentDAOImpl studentDAO;
 
     @Autowired
-    private ScheduleDAOImpl scheduleDAO;
-
-    @Autowired
     private StudentMapper studentMapper;
 
 
@@ -92,57 +89,36 @@ public class StudentController {
         studentService.editStudent(name,email);
         return info();
     }
-
-
     /*
     Esta función es la más importante, está permite visualizar el horario a un estudiante
-     solo muestra las materias en especifíco de cada estudiante
+     solo muestra las materias en específico de cada estudiante
     */
     @GetMapping("/schedule")
     public ModelAndView scheduleStudent() {
         ModelAndView modelAndView = new ModelAndView(Pages.SCHEDULESTUDENT);
         modelAndView.addObject("user", userService.getUser());
-        StudentDto student = studentService.findUserStudent(userService.getUser());
-        modelAndView.addObject("userStudent", studentMapper.mapToEntity(student));
-
-        List<LocalTime> hours = Arrays.asList(
-                LocalTime.parse("07:00"), LocalTime.parse("08:00"), LocalTime.parse("09:00"), LocalTime.parse("10:00"), LocalTime.parse("11:00"), LocalTime.parse("12:00"),
-                LocalTime.parse("13:00"), LocalTime.parse("14:00"), LocalTime.parse("15:00"), LocalTime.parse("16:00"), LocalTime.parse("17:00"), LocalTime.parse("18:00"),
-                LocalTime.parse("19:00"), LocalTime.parse("20:00"), LocalTime.parse("21:00"), LocalTime.parse("22:00")
-        );
-
-
-        List<String> days = Arrays.asList(
-                "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"
-        );
-
-        List<ScheduleDto> allSchedules = scheduleDAO.getTableList();
-        List<ScheduleDto> studentSchedules = new ArrayList<>();
-
-        for (ScheduleDto schedule : allSchedules) {
-            for (Subject subject : student.subject()) {
-                if (schedule.subject().getId().equals(subject.getId())) {
-                    System.out.println(schedule.start().toString());
-                    System.out.println(schedule.start());
-                    studentSchedules.add(schedule);
-                }
-            }
-        }
-
-        modelAndView.addObject("hours", hours);
-        modelAndView.addObject("days", days);
-        modelAndView.addObject("studentSchedules", studentSchedules);
-        modelAndView.addObject("student",studentService.findUserStudent(userService.getUser()));
+        modelAndView.addObject("userStudent",studentService.findUserStudent(userService.getUser()));
+        modelAndView.addObject("hours", userService.getHoursList());
+        modelAndView.addObject("days", userService.getDaysList());
+        modelAndView.addObject("studentSchedules", userService.getUserSchedule(studentService.findUserStudent(userService.getUser()).subject()));
         return modelAndView;
 
     }
-
+    /*
+    Esta función es muy sencilla, permite al usuario ver el formulario para
+     cambiar la contraseña
+    */
     @GetMapping("/changePassword")
     public ModelAndView changePassword(){
         ModelAndView modelAndView = new ModelAndView(Pages.PASSWORD);
         modelAndView.addObject("user",userService.getUser());
         return modelAndView;
     }
+
+    /*
+    Esta función es muy sencilla, permite al usuario cambiar la contraseña que tiene
+    por una nueva y está información se actualiza en la base de datos
+    */
     @PostMapping("/editPassword")
     public ModelAndView editPassword(@RequestParam("password") String password){
         Student user = studentMapper.mapToEntity(studentService.findUserStudent(userService.getUser()));

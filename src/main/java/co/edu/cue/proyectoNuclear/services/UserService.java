@@ -12,5 +12,7 @@ public interface UserService {
     Boolean validateUser(Long id, String password);
     UserDto getUser();
     List<UserDto> getUsers();
-    public List<UserDto> filterUsersByRole(String role);
+    List<UserDto> filterUsersByRole(String role);
+    List<String> getDaysList();
+    List<LocalTime> getHoursList();
 }
