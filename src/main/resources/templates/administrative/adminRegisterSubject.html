@@ -5,6 +5,13 @@
   <link th:href="@{/css/bootstrap.css}" rel="stylesheet" href="../static/css/bootstrap.css">
   <script th:src="@{/js/jquery.js}" src="../static/js/jquery.js"></script>
   <script th:src="@{/js/bootstrap.js}" src="../static/js/bootstrap.js"></script>
+  <link th:href="@{/css/styleSelects.css}" rel="stylesheet" href="/css/styleSelects.css">
+  <link th:href="@{/css/all.css}" rel="stylesheet" href="/css/all.css">
+  <link th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.css}" rel="stylesheet" href="/fonts/font-awesome-4.7.0/css/font-awesome.css">
+  <link th:href="@{/css/solid.css}" href="/css/solid.css" rel="stylesheet">
+  <script th:src="@{/js/jquery.js}" src="/js/jquery.js"></script>
+  <script th:src="@{/js/bootstrap.js}" src="/js/bootstrap.js"></script>
+  <script defer src="/js/all.js" th:src="@{/js/all.js}"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
@@ -84,28 +91,28 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col text-center">
-      <h1>Opciones de Gestión</h1>
+      <h1 style="color: black; font-family: 'Lobster Two', cursive; font-size: 80px">Opciones de Gestión</h1>
     </div>
   </div>
   <div class="row mt-3 justify-content-center">
     <div class="col-auto">
-      <form th:action="@{/dministrative-tools/register}">
-        <button type="submit" class="btn btn-primary">Registrar usuario</button>
+      <form th:action="@{/administrative-tools/register}">
+        <button type="submit" style="font-family: 'Lobster Two', cursive; font-size: 18px; background-color: #0c0096; border-top-color: transparent; color: white; outline: none; outline-offset: -2px;" class="btn btn-primary">Registrar usuario</button>
       </form>
     </div>
     <div class="col-auto">
       <form th:action="@{/administrative-tools/info-subject}">
-        <button type="submit" class="btn btn-primary">Gestionar materia</button>
+        <button type="submit" style="font-family: 'Lobster Two', cursive; font-size: 18px; background-color: #0c0096; border-top-color: transparent; color: white; outline: none; outline-offset: -2px;" class="btn btn-primary">Gestionar materia</button>
       </form>
     </div>
     <div class="col-auto">
       <form th:action="@{/administrative-tools/manage-classroom}">
-        <button type="submit" class="btn btn-primary">Gestionar salones</button>
+        <button type="submit" style="font-family: 'Lobster Two', cursive; font-size: 18px; background-color: #0c0096; border-top-color: transparent; color: white; outline: none; outline-offset: -2px;" class="btn btn-primary">Gestionar salones</button>
       </form>
     </div>
     <div class="col-auto">
       <form th:action="@{/administrative-tools/users-table}">
-        <button type="submit" class="btn btn-primary">Información de usuarios</button>
+        <button type="submit" style="font-family: 'Lobster Two', cursive; font-size: 18px; background-color: #0c0096; border-top-color: transparent; color: white; outline: none; outline-offset: -2px;" class="btn btn-primary">Información de usuarios</button>
       </form>
     </div>
   </div>
@@ -124,20 +131,30 @@
         <input type="text" class="form-control" id="name" name="name">
       </div>
       <div class="mb-3">
-        <label for="classroom">Salón:</label>
-        <select id="classroom" name="classroom">
+        <label for="classroom" style="font-family: 'Lobster Two', cursive; font-size: 23px;">Salón:</label><br>
+        <div class="select-container">
+        <select id="classroom" name="classroom" class="form-select select-box">
           <option value="">Seleccione un salón</option>
           <!-- Iterar sobre la lista de aulas y generar opciones -->
           <option th:each="classroom : ${classrooms}" th:value="${classroom.id}" th:text="${classroom.name}"></option>
         </select>
+          <div class="icon-container1">
+            <i class="fas fa-chalkboard-teacher i"></i>
+          </div>
+        </div>
       </div>
       <div class="mb-3">
-        <label for="teacher">Nombre del profesor:</label>
-        <select id="teacher" name="teacher">
+        <label for="teacher" style="font-family: 'Lobster Two', cursive; font-size: 23px;">Nombre del profesor:</label><br>
+        <div class="select-container">
+        <select id="teacher" name="teacher" class="form-select select-box">
           <option value="">Seleccione un profesor</option>
           <!-- Iterar sobre la lista de aulas y generar opciones -->
           <option th:each="teacher : ${teachers}" th:value="${teacher.id}" th:text="${teacher.name}"></option>
         </select>
+        <div class="icon-container1">
+          <i class="fas fa-users i"></i>
+          </div>
+        </div>
       </div>
 
       <button type="submit" value="Enviar" class="btn btn-primary" style="background-color: #0c0096; alignment:center;font-family: 'Lobster Two', cursive;">Guardar</button>
@@ -147,10 +164,11 @@
 <br>
 <br>
 <div class="container mt-5">
-  <h1>Listado de Materias</h1>
-  <table class="table table-striped table-bordered table-hover">
-    <thead class="thead-dark">
-    <tr>
+  <h1 style="font-family: 'Lobster Two', cursive;">Listado de Materias</h1>
+  <br><br>
+  <table class="table table-striped" style="font-family: 'Nunito Sans', sans-serif;">
+    <thead >
+    <tr style="text-align: center; background-color: #0c0096; color: #ffffff;">
       <th style="text-align: center; background-color: #0c0096; color: #ffffff;">Nombre Materia</th>
       <th style="text-align: center; background-color: #0c0096; color: #ffffff;">No. crédito</th>
       <th style="text-align: center; background-color: #0c0096; color: #ffffff;">Salon</th>
@@ -159,12 +177,13 @@
     </thead>
     <tbody>
     <tr th:each="subject: ${subjects}">
-      <td th:text="${subject.name}"></td>
+      <td th:text="${subject.name}" style="text-align: left;"></td>
       <td th:text="${subject.credit}"></td>
       <td th:text="${subject.classroom.getName()}"></td>
     </tr>
     </tbody>
   </table>
 </div>
+<br><br>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>

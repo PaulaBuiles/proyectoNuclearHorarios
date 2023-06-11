@@ -1,0 +1,74 @@
+
+/*Formato para poner los iconos en los select*/
+.select-container{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    min-width: 60px;
+    height: 35px;
+}
+.select-box{
+    border: none;
+    border-radius: 10px;
+    appearance:none;
+    padding: 0 30px 0 15px;
+    width: 100%;
+    color: white;
+    background-color: #202d86;
+}
+.select-container .icon-container1{
+    width: 50px;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 5px;
+}
+.i {
+    font-size: 30px;
+    color: white;
+}
+
+
+/*Formato general de toda las tablas*/
+table{
+    font-size: 15px;
+    color: white;
+    border-collapse: collapse;
+    background-color: #f8f9ff;
+    box-shadow: 3px 3px 3px rgba(129, 129, 129, 0);
+    border-radius: 20px;
+}
+td, th{
+
+    padding: 12px 27px;
+    text-align: center;
+}
+thead{
+    box-shadow: 0 3px 6px #000003;
+    background-color: royalblue;
+    border-radius: 20px;
+}
+th:first-child{
+    border-radius: 20px 0 0 0;
+}
+th:last-child{
+    border-radius: 0 20px 0 0;
+}
+tr:nth-child(even){
+    background-color: #ffffff;
+}
+td{
+    border: 1px solid #000000;
+}
+
+/*Formato tabla de horario*/
+.table-container {
+    width: 100%;
+    table-layout: fixed; /* Establece un ancho fijo para todas las celdas */
+    border-collapse: collapse;
+}
+
