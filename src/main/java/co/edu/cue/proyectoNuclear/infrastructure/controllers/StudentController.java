@@ -1,7 +1,6 @@
 package co.edu.cue.proyectoNuclear.infrastructure.controllers;
 
 import co.edu.cue.proyectoNuclear.domain.configuration.Pages;
-import co.edu.cue.proyectoNuclear.domain.entities.Schedule;
 import co.edu.cue.proyectoNuclear.domain.entities.Student;
 import co.edu.cue.proyectoNuclear.domain.entities.Subject;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.ScheduleDAOImpl;
@@ -13,12 +12,10 @@ import co.edu.cue.proyectoNuclear.services.StudentService;
 import co.edu.cue.proyectoNuclear.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -47,9 +44,11 @@ public class StudentController {
     @Autowired
     private StudentMapper studentMapper;
 
-    @Autowired
-    private ScheduleMapper scheduleMapper;
 
+    /*
+    Esta función permite retornar al usuario
+    a la interfaz donde está alguna información de la universidad donde no mucha funcionalidad
+    */
     @GetMapping("/home")
     public ModelAndView home(){
         ModelAndView modelAndView =new ModelAndView(Pages.STUDENTHOME);
@@ -57,6 +56,11 @@ public class StudentController {
         return modelAndView;
     }
 
+    /*
+    Esta función permite llevar al usuario al apartado de la información general
+    allí puede ver su información básica con el respectivo semestre y carrera, también
+    con la información de las materias donde está inscrito con información general de la misma
+    */
     @GetMapping("/info")
     public ModelAndView info(){
         ModelAndView modelAndView = new ModelAndView(Pages.STUDENTINFORMATION);
@@ -64,12 +68,22 @@ public class StudentController {
         modelAndView.addObject("user",userService.getUser());
         return modelAndView;
     }
+
+    /*
+    Esta función permite llevar al usuario a un formulario donde puede editar algunos campos, ya que
+    un estudiante no puede editar todos sus campos
+    */
     @GetMapping("/edit")
     public ModelAndView edit(){
         ModelAndView modelAndView =new ModelAndView(Pages.CHANGES);
         modelAndView.addObject("user",userService.getUser());
         return modelAndView;
     }
+
+    /*
+    Esta función permite obtener los datos del formulario y los lleva al apartado del servicio de estudiante
+    para trasformar la información y poderla editar en la base de datos
+    */
     @PostMapping("/changes")
     public ModelAndView changes(@RequestParam("name") String name, @RequestParam("email") String email){
         Student user = studentMapper.mapToEntity(studentService.findUserStudent(userService.getUser()));
@@ -78,6 +92,12 @@ public class StudentController {
         studentService.editStudent(name,email);
         return info();
     }
+
+
+    /*
+    Esta función es la más importante, está permite visualizar el horario a un estudiante
+     solo muestra las materias en especifíco de cada estudiante
+    */
     @GetMapping("/schedule")
     public ModelAndView scheduleStudent() {
         ModelAndView modelAndView = new ModelAndView(Pages.SCHEDULESTUDENT);

@@ -163,8 +163,8 @@
       <th style="text-align: center; background-color: #0c0096; color: #ffffff;">Estudiante</th>
     </tr>
     <tr th:each="subjects: ${user.subject}">
-      <td th:text="${subjects.name}">john.doe@example.com</td>
-      <td th:text="${subjects.credit}">123456789</td>
+      <td th:text="${subjects.name}"></td>
+      <td th:text="${subjects.credit}"></td>
       <td th:text="${subjects.userTeacher.name}"></td>
       <td th:text="${subjects.userStudent.name}"></td>
     </tr>
