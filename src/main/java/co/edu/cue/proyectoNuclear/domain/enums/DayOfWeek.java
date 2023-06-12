@@ -23,5 +23,14 @@ public enum DayOfWeek {
     public String getName() {
         return name;
     }
+
+    public static DayOfWeek getByValue(int value) {
+        for (DayOfWeek dayOfWeek : DayOfWeek.values()) {
+            if (dayOfWeek.getValue() == value) {
+                return dayOfWeek;
+            }
+        }
+        throw new IllegalArgumentException("Invalid value for DayOfWeek: " + value);
+    }
 }
 

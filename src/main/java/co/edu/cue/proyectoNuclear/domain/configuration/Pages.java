@@ -33,4 +33,6 @@ public class Pages {
     public static String TEACHERAVAILABILITY="teacher/addAvailability";
     public static String CHANGEPASSSWORD="teacher/changePasswordTeacher";
     public static String EDITAVAILABILITY="teacher/editAvailability";
+    public static String ADD_RESERVATION="teacher/teacherReservation";
+    public static String SCHEDULE_TEACHER="teacher/scheduleTeacher";
 }

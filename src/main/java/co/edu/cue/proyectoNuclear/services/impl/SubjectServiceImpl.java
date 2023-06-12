@@ -75,5 +75,17 @@ public class SubjectServiceImpl implements SubjectService {
         subjectDAO.save(subjectMapper.mapToEntity(subject));
     }*/
 
+    public SubjectDto getSubjectByTeacher(String name, TeacherDto teacherDto){
+        List<SubjectDto> subjectDtoList = subjectDAO.getTableList();
+        SubjectDto subject = null;
+        for (SubjectDto subjectDto: subjectDtoList){
+            if(subjectDto.name().equals(name) && subjectDto.teacher().getName().equals(teacherDto.name()))
+                subject = subjectDto;
+            break;
+        }
+        System.out.println(subject);
+        return subject;
+    }
+
 
 }

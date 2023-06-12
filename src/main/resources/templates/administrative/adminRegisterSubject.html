@@ -65,6 +65,12 @@
     </form> </a> <a class="navbar-brand"><p></p></a> <a class="navbar-brand"> <form th:action="@{/administrative-tools/users-table}" class="btn btn-transparent">
       <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">               Panel de Gestión               </button>
     </form> </a>
+      <a class="navbar-brand"><p></p></a>
+      <a class="navbar-brand">
+        <form th:action="@{/administrative-tools/reservation}" class="btn btn-transparent">
+          <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">               Reservar               </button>
+        </form>
+      </a>
     </div>
   </div>
   <a class="navbar-brand">
@@ -171,7 +177,8 @@
     <tr style="text-align: center; background-color: #0c0096; color: #ffffff;">
       <th style="text-align: center; background-color: #0c0096; color: #ffffff;">Nombre Materia</th>
       <th style="text-align: center; background-color: #0c0096; color: #ffffff;">No. crédito</th>
-      <th style="text-align: center; background-color: #0c0096; color: #ffffff;">Salon</th>
+      <th style="text-align: center; background-color: #0c0096; color: #ffffff;">Salón</th>
+      <th style="text-align: center; background-color: #0c0096; color: #ffffff;">Cambios</th>
 
     </tr>
     </thead>

@@ -1,5 +1,6 @@
 package co.edu.cue.proyectoNuclear.services.impl;
 
+import co.edu.cue.proyectoNuclear.domain.entities.Schedule;
 import co.edu.cue.proyectoNuclear.domain.entities.Subject;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.ClassroomDAOImpl;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.ScheduleDAOImpl;
@@ -32,23 +33,24 @@ public class ScheduleServiceImpl implements ScheduleService {
        for(ScheduleDto scheduleDto : sc){
            if(dayOfWeek.equals(scheduleDto.dayOfWeek())){
                if(subject.getClassroom().getName().equals(scheduleDto.subject().getClassroom().getName())){
-                   System.out.println(2);
                    if ((start.isAfter(scheduleDto.start()) || start.equals(scheduleDto.start()))
                            && (start.isBefore(scheduleDto.end()))
                            || (end.isAfter(scheduleDto.start()))
                            && (end.isBefore(scheduleDto.end()) || end.equals(scheduleDto.end()))){
                        band = false;
-                       System.out.println("Materia crusada");
                    break;
                    }
                }
            }
            if (band){
-               System.out.println("Materia creada");
-               System.out.println(subject.getName());
+               Schedule schedule = new Schedule(null,dayOfWeek,durability,start,end,subject);
+               scheduleDAO.save(schedule);
            }
            }
        }
+
+
+
 
 
     }

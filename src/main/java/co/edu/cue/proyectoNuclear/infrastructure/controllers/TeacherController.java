@@ -5,15 +5,16 @@ import co.edu.cue.proyectoNuclear.domain.entities.Availability;
 import co.edu.cue.proyectoNuclear.domain.entities.Student;
 import co.edu.cue.proyectoNuclear.domain.entities.Teacher;
 import co.edu.cue.proyectoNuclear.domain.entities.User;
+import co.edu.cue.proyectoNuclear.domain.enums.DayOfWeek;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.AvailabilityDAOImpl;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.TeacherDAOImpl;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.UserDAOImpl;
+import co.edu.cue.proyectoNuclear.mapping.dtos.SubjectDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.TeacherDto;
+import co.edu.cue.proyectoNuclear.mapping.mappers.SubjectMapper;
 import co.edu.cue.proyectoNuclear.mapping.mappers.TeacherMapper;
 import co.edu.cue.proyectoNuclear.mapping.mappers.UserMapper;
-import co.edu.cue.proyectoNuclear.services.AvailabilityService;
-import co.edu.cue.proyectoNuclear.services.TeacherService;
-import co.edu.cue.proyectoNuclear.services.UserService;
+import co.edu.cue.proyectoNuclear.services.*;
 import co.edu.cue.proyectoNuclear.services.impl.AvailabilityServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.Time;
-import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -39,7 +39,11 @@ public class TeacherController {
     @Autowired
     private final AvailabilityService availabilityService;
     @Autowired
+    private final SubjectService subjectService;
+    @Autowired
     private final TeacherMapper teacherMapper;
+    @Autowired
+    private final SubjectMapper subjectMapper;
     @Autowired
     private final TeacherDAOImpl teacherDAO;
 
@@ -83,6 +87,15 @@ public class TeacherController {
         return info();
     }
 
+    @GetMapping("/reservation")
+    public ModelAndView reservationTeacher() {
+    ModelAndView modelAndView = new ModelAndView(Pages.ADD_RESERVATION);
+        modelAndView.addObject("classrooms",classroomService.generateClassroom());
+        modelAndView.addObject("user", userService.getUser());
+        return modelAndView;
+    }
+
+
     @GetMapping("/add-availability")
     public ModelAndView addAvailability() {
         ModelAndView modelAndView = new ModelAndView(Pages.TEACHERAVAILABILITY);
@@ -101,6 +114,16 @@ public class TeacherController {
     public ModelAndView changePassword(){
         ModelAndView modelAndView = new ModelAndView(Pages.CHANGEPASSSWORD);
         modelAndView.addObject("user",userService.getUser());
+        return modelAndView;
+    }
+
+    @GetMapping("/schedule-teacher")
+    public ModelAndView teacherSchedule(){
+        ModelAndView modelAndView = new ModelAndView(Pages.SCHEDULE_TEACHER);
+        modelAndView.addObject("user", userService.getUser());
+        modelAndView.addObject("hours", userService.getHoursList());
+        modelAndView.addObject("days", userService.getDaysList());
+        modelAndView.addObject("teacherSchedules", userService.getUserSchedule(teacherService.findUserTeacher(userService.getUser()).subjects()));
         return modelAndView;
     }
     @PostMapping("/editPassword")
@@ -135,6 +158,20 @@ public class TeacherController {
         LocalTime end = LocalTime.parse(endRequest);
         teacherService.editAvailability(id,day,start,end,teacherService.findUserTeacher(userService.getUser()));
         return info();
+    }
+
+    @PostMapping("/new-reservation")
+    public ModelAndView addReservation(@RequestParam("credit") int credit, @RequestParam("name") String name, @RequestParam("classroom") Long classroom, @RequestParam("teacher") String teacher, @RequestParam("day") int day, @RequestParam("durability") String durability, @RequestParam("start") String startRequest, @RequestParam("end") String endRequest) {
+        subjectService.addSubject(name,teacherService.findUserTeacher(userService.getUser()).id(),credit,classroom);
+        SubjectDto subjectDto = subjectService.getSubjectByTeacher(name,teacherService.findUserTeacher(userService.getUser()));
+        System.out.println(subjectDto.name()+"--------"+subjectDto.id());
+        LocalTime start = LocalTime.parse(startRequest);
+        LocalTime end = LocalTime.parse(endRequest);
+        Time duration = new Time(Integer.parseInt(durability),00,00);
+        DayOfWeek dayOfWeek = DayOfWeek.getByValue(day);
+        scheduleService.asingSubject(null,dayOfWeek,duration,start,end,subjectMapper.mapToEntity(subjectDto));
+        //availabilityService.newAvailability(day, start, end, teacherService.findUserTeacher(userService.getUser()));
+        return teacherSchedule();
     }
 
 

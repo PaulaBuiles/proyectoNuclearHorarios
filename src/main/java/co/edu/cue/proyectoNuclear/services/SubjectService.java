@@ -1,6 +1,8 @@
 package co.edu.cue.proyectoNuclear.services;
 
 import co.edu.cue.proyectoNuclear.domain.entities.*;
+import co.edu.cue.proyectoNuclear.mapping.dtos.SubjectDto;
+import co.edu.cue.proyectoNuclear.mapping.dtos.TeacherDto;
 
 import java.util.List;
 
