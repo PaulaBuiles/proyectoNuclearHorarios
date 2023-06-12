@@ -87,4 +87,20 @@ public class StudentServiceImpl implements StudentService {
         }
         return studentDto;
     }
+
+    public void deleteSubject(Student student, Long idSubject){
+        int index = -1;
+        List<Subject> subjects = student.getSubject();
+        for (int i = 0; i < subjects.size(); i++) {
+            if (subjects.get(i).getId().equals(idSubject)) {
+                index = i;
+                break;
+            }
+        }
+        if (index != -1) {
+            student.getSubject().remove(index);
+        }
+        studentDAO.update(student);
+    }
+
 }

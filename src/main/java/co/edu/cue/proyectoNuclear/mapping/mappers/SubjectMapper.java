@@ -10,4 +10,5 @@ public interface SubjectMapper {
     SubjectDto mapSubject(Subject source);
     Subject mapToEntity(SubjectDto source);
     List<SubjectDto> mapList(List<Subject> source);
+    List<Subject> mapListDto(List<SubjectDto> source);
 }

@@ -21,4 +21,5 @@ public interface StudentService {
     void createStudent(String identification,String name,String email,String password,String role,String career,int semester);
 
     void editStudent(String name, String email);
+    void deleteSubject(Student student, Long idSubject);
 }

@@ -43,6 +43,7 @@ public class TeacherController {
     @Autowired
     private final TeacherDAOImpl teacherDAO; // Implementación del DAO de maestros (dependencia)
 
+
     // Obtiene la información de todos los maestros
     @GetMapping("/teacher-information")
     public ModelAndView getInformation() {

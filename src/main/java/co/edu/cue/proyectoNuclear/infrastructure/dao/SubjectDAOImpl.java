@@ -60,6 +60,11 @@ public class SubjectDAOImpl {
         if (subjectFind == null) {
             throw new EntityNotFoundException("Materia no encontrada");
         }
+        subjectFind.getStudents().clear();
+        subjectFind.setTeacher(subject.getTeacher());
+        subjectFind.setCredit(subject.getCredit());
+        subjectFind.setClassroom(subject.getClassroom());
+        subjectFind.setStudents(subject.getStudents());
         entityManager.merge(subjectFind);
     }
 

@@ -11,11 +11,16 @@ import co.edu.cue.proyectoNuclear.mapping.mappers.StudentMapper;
 import co.edu.cue.proyectoNuclear.mapping.mappers.SubjectMapper;
 import co.edu.cue.proyectoNuclear.services.StudentService;
 import co.edu.cue.proyectoNuclear.services.UserService;
+import co.edu.cue.proyectoNuclear.services.impl.SubjectServiceImpl;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @RestController
@@ -66,6 +71,7 @@ public class StudentController {
         ModelAndView modelAndView = new ModelAndView(Pages.STUDENT_INFORMATION);
         modelAndView.addObject("userStudent",studentService.findUserStudent(userService.getUser()));
         modelAndView.addObject("user",userService.getUser());
+        modelAndView.addObject("subjects",subjectService.getNewSubjects(studentService.findUserStudent(userService.getUser()).subject()));
         return modelAndView;
     }
 
@@ -131,4 +137,17 @@ public class StudentController {
     }
 
 
+    @PostMapping("/add-subject/{subject}")
+    public ModelAndView addSubjectStudent(@PathVariable("subject") Long idSubject) {
+        Student student = studentMapper.mapToEntity(studentService.findUserStudent(userService.getUser()));
+        Subject subject = subjectMapper.mapToEntity(subjectDAO.findById(idSubject));
+        student.getSubject().add(subject);
+        studentDAO.update(student);
+        return info();
+    }
+    @PostMapping("/delete-subject/{subject}")
+    public ModelAndView deleteSubjectStudent(@PathVariable("subject") Long idSubject) {
+            studentService.deleteSubject(studentMapper.mapToEntity(studentService.findUserStudent(userService.getUser())),idSubject);
+        return info();
+    }
 }
