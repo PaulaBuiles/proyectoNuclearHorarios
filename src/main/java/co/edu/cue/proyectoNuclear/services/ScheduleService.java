@@ -8,4 +8,5 @@ import java.time.LocalTime;
 
 public interface ScheduleService {
      void asingSubject(Long id, DayOfWeek dayOfWeek, Time durability, LocalTime start, LocalTime end, Subject subject);
+     Boolean verifyAvailability(DayOfWeek dayOfWeek, LocalTime start, LocalTime end, String classroom);
 }

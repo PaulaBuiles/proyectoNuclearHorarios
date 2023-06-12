@@ -76,13 +76,6 @@ public class ClassroomServiceImpl implements ClassroomService {
     // Método para crear un nuevo salón
     @Override
     public void createClassroom(String number, Integer capacity, Campus location, String status, List<Property> propertyList, String observation) {
-        System.out.println("number: " + number);
-        System.out.println("capacity: " + capacity);
-        System.out.println("location: " + location);
-        System.out.println("status: " + status);
-        System.out.println("propertyList: " + propertyList);
-        System.out.println("observation: " + observation);
-
         ClassroomDto classroomDto = new ClassroomDto(null, number, capacity, location, status, new ArrayList<>(), propertyList, observation);
         // Guardar el nuevo salón en la base de datos mediante classroomDAO.save()
         classroomDAO.save(classroomMapper.mapToEntity(classroomDto));

@@ -42,14 +42,6 @@
 
 </head>
 <body>
-<div th:if="${message}">
-    <script th:inline="javascript">
-        /*<![CDATA[*/
-        alert("Inicio de sesion invalido");
-        /*]]>*/
-    </script>
-</div>
-
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
@@ -61,6 +53,10 @@
             </div>
 
             <form class="login100-form validate-form"  th:action="@{/login/start-login}" th:object="${userLoginDto}" method="post">
+                <div th:if="${message != null}" class="alert alert-info" role="alert">
+                    <span th:text="${message}"></span>
+                    <br>
+                </div>
                 <label for="identification" class="form-label" style="font-family: 'Nunito', sans-serif;">Identificación</label>
                 <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
                     <input class="input100 input-icon1" type="text"  id="identification" name="identification" th:field="*{identification}">

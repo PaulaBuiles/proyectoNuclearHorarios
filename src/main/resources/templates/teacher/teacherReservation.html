@@ -57,6 +57,10 @@
 <br><br>
 <br>
 <div class="container mt-5">
+    <div th:if="${message != null}" class="alert alert-info" role="alert">
+        <span th:text="${message}"></span>
+        <br>
+    </div>
     <h1 style="font-family: 'Lobster Two', cursive; text-align: center;">Realizar Reserva</h1><br>
     <div class="container mt-5">
         <form th:action="@{/teacher/new-reservation}" method="post" class="border p-3 form">
@@ -66,7 +70,7 @@
             </div>
             <div>
                 <label for="name" class="form-label" style="font-family: 'Lobster Two', cursive; font-size: 23px;"></label>
-                <input class="form-control" id="name" name="name" value="reserva" type="hidden">
+                <input class="form-control" id="name" name="name" value="Reservado" type="hidden">
             </div>
             <div class="mb-3">
                 <label for="classroom" style="font-family: 'Lobster Two', cursive; font-size: 23px;">Salón:</label><br>

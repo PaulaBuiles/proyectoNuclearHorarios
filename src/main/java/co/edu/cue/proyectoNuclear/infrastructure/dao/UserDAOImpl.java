@@ -44,7 +44,7 @@ public class UserDAOImpl {
 
     public void update(UserDto entity) {
         User user = userMapper.mapToEntity(entity);
-        System.out.println(user.getId());
+
             entityManager.merge(user);
 
     }

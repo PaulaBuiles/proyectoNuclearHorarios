@@ -85,7 +85,7 @@ public class UserServiceImpl implements UserService {
                 userDtoList.add(userDto);
             } else if (userDto.role().equals(role)) {
                 userDtoList.add(userDto);
-                System.out.println("añadido");
+
             }
         }
         return userDtoList; // Filtrar usuarios por rol
