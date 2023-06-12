@@ -6,10 +6,6 @@ import co.edu.cue.proyectoNuclear.infrastructure.dao.ScheduleDAOImpl;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.TeacherDAOImpl;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.UserDAOImpl;
 import co.edu.cue.proyectoNuclear.mapping.dtos.*;
-import co.edu.cue.proyectoNuclear.mapping.mappers.UserMapper;
-import co.edu.cue.proyectoNuclear.services.AdministrativeService;
-import co.edu.cue.proyectoNuclear.services.StudentService;
-import co.edu.cue.proyectoNuclear.services.TeacherService;
 import co.edu.cue.proyectoNuclear.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,23 +15,23 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-@AllArgsConstructor
-@Service
+@AllArgsConstructor // Anotación de Lombok para generar automáticamente un constructor que acepta todos los campos
+@Service // Anotación de Spring para marcar esta clase como un componente de servicio
 public class UserServiceImpl implements UserService {
 
-    private static UserDto user1;
-    @Autowired
+    private static UserDto user1; // Variable estática para almacenar el usuario
+
+    @Autowired // Inyección de dependencias de UserDAOImpl
     public UserDAOImpl userGeneralDAO;
-    @Autowired
+
+    @Autowired // Inyección de dependencias de TeacherDAOImpl
     public TeacherDAOImpl teacherDAO;
-    @Autowired
+
+    @Autowired // Inyección de dependencias de ScheduleDAOImpl
     public ScheduleDAOImpl scheduleDAO;
 
-    @Autowired
-    private UserMapper userMapper;
-
     @Override
-    public List<ScheduleDto> getUserSchedule(List<Subject> subjects){
+    public List<ScheduleDto> getUserSchedule(List<Subject> subjects) {
         List<ScheduleDto> allSchedules = scheduleDAO.getTableList();
         List<ScheduleDto> userSchedules = new ArrayList<>();
 
@@ -46,16 +42,15 @@ public class UserServiceImpl implements UserService {
                 }
             }
         }
-        return userSchedules;
+        return userSchedules; // Obtener los horarios del usuario para las asignaturas dadas
     }
-
 
     @Override
     public Boolean validateUser(Long id, String password) {
-
         List<UserDto> userList = userGeneralDAO.getTableList();
         Boolean band = false;
-        for (UserDto user: userList) {
+
+        for (UserDto user : userList) {
             if (id.equals(user.id()) && password.equals(user.password())) {
                 band = true;
                 user1 = user;
@@ -63,70 +58,58 @@ public class UserServiceImpl implements UserService {
                 break;
             }
         }
-        return band;
+        return band; // Validar si el ID y la contraseña coinciden con un usuario existente
     }
 
-    public List<UserDto> getUsers(){
+    public List<UserDto> getUsers() {
         List<UserDto> userDtoList = new ArrayList<>();
-        for (UserDto userDto:userGeneralDAO.getTableList()) {
-            if (userDto.id() == 0){
+        for (UserDto userDto : userGeneralDAO.getTableList()) {
+            if (userDto.id() == 0) {
                 System.out.println("Null");
-            }else {
+            } else {
                 userDtoList.add(userDto);
             }
         }
-        return userDtoList;
+        return userDtoList; // Obtener la lista de usuarios
     }
-
 
     public UserDto getUser() {
-        return user1;
+        return user1; // Obtener el usuario actual
     }
 
-    public List<UserDto> filterUsersByRole(String role){
+    public List<UserDto> filterUsersByRole(String role) {
         System.out.println("entre");
         List<UserDto> userDtoList = new ArrayList<>();
-        for (UserDto userDto:userGeneralDAO.getTableList()) {
-            if (role.equals("Todos") && userDto.id() != 0){
+        for (UserDto userDto : userGeneralDAO.getTableList()) {
+            if (role.equals("Todos") && userDto.id() != 0) {
                 userDtoList.add(userDto);
-            } else if (userDto.role().equals(role)){
+            } else if (userDto.role().equals(role)) {
                 userDtoList.add(userDto);
                 System.out.println("añadido");
             }
         }
-        return userDtoList;
+        return userDtoList; // Filtrar usuarios por rol
     }
 
     @Override
-    public List<LocalTime> getHoursList(){
+    public List<LocalTime> getHoursList() {
         List<LocalTime> hours = Arrays.asList(
                 LocalTime.parse("07:00"), LocalTime.parse("08:00"), LocalTime.parse("09:00"), LocalTime.parse("10:00"), LocalTime.parse("11:00"), LocalTime.parse("12:00"),
                 LocalTime.parse("13:00"), LocalTime.parse("14:00"), LocalTime.parse("15:00"), LocalTime.parse("16:00"), LocalTime.parse("17:00"), LocalTime.parse("18:00"),
                 LocalTime.parse("19:00"), LocalTime.parse("20:00"), LocalTime.parse("21:00"), LocalTime.parse("22:00")
         );
-        return hours;
+        return hours; // Obtener una lista de horas
     }
 
-    public List<String> getDaysList(){
+    public List<String> getDaysList() {
         List<String> days = Arrays.asList(
                 "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"
         );
-        return days;
+        return days; // Obtener una lista de días
     }
 
-    @Override
-    public void editUser(Long id, String name, String email) {
-        //User user = userMapper.mapToEntity(getUser());
-        User user = userMapper.mapToEntity(userGeneralDAO.findById(id));
-        if (user != null) {
-            user.setName(name);
-            user.setEmail(email);
-            userGeneralDAO.update(userMapper.mapUser(user));
-        }
-    }
     @Override
     public void deleteById(Long idUser) {
-        userGeneralDAO.delete(idUser);
+        userGeneralDAO.delete(idUser); // Eliminar un usuario por su ID
     }
-
 }

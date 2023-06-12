@@ -1,21 +1,14 @@
 package co.edu.cue.proyectoNuclear.infrastructure.controllers;
 
 import co.edu.cue.proyectoNuclear.domain.configuration.Pages;
-import co.edu.cue.proyectoNuclear.domain.entities.Availability;
-import co.edu.cue.proyectoNuclear.domain.entities.Student;
 import co.edu.cue.proyectoNuclear.domain.entities.Teacher;
-import co.edu.cue.proyectoNuclear.domain.entities.User;
 import co.edu.cue.proyectoNuclear.domain.enums.DayOfWeek;
-import co.edu.cue.proyectoNuclear.infrastructure.dao.AvailabilityDAOImpl;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.TeacherDAOImpl;
-import co.edu.cue.proyectoNuclear.infrastructure.dao.UserDAOImpl;
 import co.edu.cue.proyectoNuclear.mapping.dtos.SubjectDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.TeacherDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.SubjectMapper;
 import co.edu.cue.proyectoNuclear.mapping.mappers.TeacherMapper;
-import co.edu.cue.proyectoNuclear.mapping.mappers.UserMapper;
 import co.edu.cue.proyectoNuclear.services.*;
-import co.edu.cue.proyectoNuclear.services.impl.AvailabilityServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

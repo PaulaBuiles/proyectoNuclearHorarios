@@ -1,6 +1,6 @@
 package co.edu.cue.proyectoNuclear.infrastructure.dao;
 
-import co.edu.cue.proyectoNuclear.domain.entities.Student;
+
 import co.edu.cue.proyectoNuclear.domain.entities.Subject;
 import co.edu.cue.proyectoNuclear.mapping.dtos.SubjectDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.SubjectMapper;

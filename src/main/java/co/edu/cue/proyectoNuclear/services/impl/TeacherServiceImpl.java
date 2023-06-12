@@ -16,30 +16,34 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
-@AllArgsConstructor
+@Service // Anotación de Spring para marcar esta clase como un componente de servicio
+@AllArgsConstructor // Anotación de Lombok para generar automáticamente un constructor que acepta todos los campos
 public class TeacherServiceImpl implements TeacherService {
-    @Autowired
+
+    @Autowired // Inyección de dependencias de TeacherDAOImpl
     private TeacherDAOImpl teacherDAO;
 
+    @Autowired // Inyección de dependencias de TeacherMapper
     private TeacherMapper teacherMapper;
-    @Autowired
+
+    @Autowired // Inyección de dependencias de UserServiceImpl
     private UserServiceImpl userService;
-    @Autowired
+
+    @Autowired // Inyección de dependencias de AvailabilityDAOImpl
     private AvailabilityDAOImpl availabilityDAO;
 
     //Funciones para profesores
+
     @Override
     public List<TeacherDto> generateTeacher() {
-        List<TeacherDto> teachers = teacherDAO.getTableList();
-        return teachers;
+        return teacherDAO.getTableList(); // Obtener la lista de profesores
     }
 
     @Override
-    public void createTeacher(String identification,String name,String email,String password,String role) {
+    public void createTeacher(String identification, String name, String email, String password, String role) {
         Long id = Long.parseLong(identification);
-        TeacherDto teacherDto = new TeacherDto(id,name,email,password,role,true,new ArrayList<>(),new ArrayList<>());
-        teacherDAO.save(teacherMapper.mapToEntity(teacherDto));
+        TeacherDto teacherDto = new TeacherDto(id, name, email, password, role, true, new ArrayList<>(), new ArrayList<>());
+        teacherDAO.save(teacherMapper.mapToEntity(teacherDto)); // Crear un nuevo profesor en la base de datos
     }
 
     @Override
@@ -47,18 +51,14 @@ public class TeacherServiceImpl implements TeacherService {
         Teacher user = teacherMapper.mapToEntity(findUserTeacher(userService.getUser()));
         user.setName(name);
         user.setEmail(email);
-        teacherDAO.update(user);
+        teacherDAO.update(user); // Actualizar los datos del profesor en la base de datos
     }
 
-    @Override
-    public void deleteTeacherById(Long id) {
-        //teacherDAO.deleteById(id);
-
-    }
     public TeacherDto findUserTeacher(UserDto user) {
         List<TeacherDto> teacherDtoList = generateTeacher();
         TeacherDto teacherDto = null;
-        for (TeacherDto teacher: teacherDtoList) {
+        // Buscar el profesor por el ID del usuario
+        for (TeacherDto teacher : teacherDtoList) {
             if (teacher.id().equals(user.id())) {
                 teacherDto = teacher;
             }
@@ -68,12 +68,11 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     public TeacherDto getById(Long id) {
-        return teacherDAO.findById(id);
+        return teacherDAO.findById(id); // Obtener un profesor por su ID
     }
+
     @Override
-    public void editAvailability(Long id,int day, LocalTime start, LocalTime end, TeacherDto teacherDto) {
-        
-        //Función
+    public void editAvailability(Long id, int day, LocalTime start, LocalTime end, TeacherDto teacherDto) {
         Teacher teacher = teacherMapper.mapToEntity(teacherDto);
         List<TeacherDto> teacherDtoList = teacherDAO.getTableList();
         DayOfWeek[] daysOfWeek = DayOfWeek.values();
@@ -81,19 +80,19 @@ public class TeacherServiceImpl implements TeacherService {
 
         for (TeacherDto teacherDto1 : teacherDtoList) {
             if (teacherDto1.id().equals(teacherDto.id())) {
-                for(Availability availabilityList: teacherDto1.availability())
-                    if(availabilityList.getId().equals(id)) {
+                for (Availability availabilityList : teacherDto1.availability()) {
+                    if (availabilityList.getId().equals(id)) {
                         availabilityList.setDayOfWeek(dayOfWeek);
                         availabilityList.setStart(start);
                         availabilityList.setEnd(end);
                         availabilityDAO.update(availabilityList); // Actualiza la disponibilidad en la tabla Availability
                         teacherDAO.update(teacher); // Actualiza el profesor en la tabla Teacher
                     }
+                }
             }
         }
-
-
     }
+
     @Override
     public void deleteById(Long idTeacher, Long id) {
         List<TeacherDto> teacherDtoList = teacherDAO.getTableList();
@@ -101,10 +100,10 @@ public class TeacherServiceImpl implements TeacherService {
             if (teacherDto.id().equals(idTeacher)) {
                 List<Availability> availabilities = teacherDto.availability();
                 availabilities.removeIf(availability -> availability.getId().equals(id));
-                availabilityDAO.delete(id);
-                teacherDAO.update(teacherMapper.mapToEntity(teacherDto));
+                availabilityDAO.delete(id); // Eliminar una disponibilidad por su ID
+                teacherDAO.update(teacherMapper.mapToEntity(teacherDto)); // Actualizar el profesor en la base de datos
             }
         }
-
     }
 }
+

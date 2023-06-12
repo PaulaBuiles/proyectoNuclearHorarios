@@ -1,11 +1,10 @@
 package co.edu.cue.proyectoNuclear.services;
 
 import co.edu.cue.proyectoNuclear.domain.entities.Classroom;
-import co.edu.cue.proyectoNuclear.domain.entities.Subject;
 import co.edu.cue.proyectoNuclear.domain.enums.Campus;
 import co.edu.cue.proyectoNuclear.domain.enums.Property;
 import co.edu.cue.proyectoNuclear.mapping.dtos.ClassroomDto;
-import co.edu.cue.proyectoNuclear.mapping.dtos.TeacherDto;
+
 
 import java.util.List;
 

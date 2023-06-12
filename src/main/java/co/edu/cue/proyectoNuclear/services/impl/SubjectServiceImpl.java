@@ -3,7 +3,6 @@ package co.edu.cue.proyectoNuclear.services.impl;
 import co.edu.cue.proyectoNuclear.domain.entities.*;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.SubjectDAOImpl;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.TeacherDAOImpl;
-import co.edu.cue.proyectoNuclear.mapping.dtos.ScheduleDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.SubjectDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.TeacherDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.ClassroomMapper;
@@ -20,55 +19,64 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Service
-@AllArgsConstructor
+@Service // Anotación de Spring para marcar esta clase como un componente de servicio
+@AllArgsConstructor // Anotación de Lombok para generar automáticamente un constructor que acepta todos los campos
 public class SubjectServiceImpl implements SubjectService {
 
-    @Autowired
+    @Autowired // Inyección de dependencias de SubjectDAOImpl
     private SubjectDAOImpl subjectDAO;
 
-    @Autowired
+    @Autowired // Inyección de dependencias de TeacherDAOImpl
     private TeacherDAOImpl teacherDAO;
 
+    @Autowired // Inyección de dependencias de SubjectMapper
     private SubjectMapper subjectMapper;
 
+    @Autowired // Inyección de dependencias de TeacherMapper
     private TeacherMapper teacherMapper;
 
-    private  ClassroomMapper classroomMapper;
-    @Autowired
-    private  TeacherService teacherService;
-    @Autowired
-    private  ClassroomService classroomService;
+    @Autowired // Inyección de dependencias de ClassroomMapper
+    private ClassroomMapper classroomMapper;
+
+    @Autowired // Inyección de dependencias de TeacherService
+    private TeacherService teacherService;
+
+    @Autowired // Inyección de dependencias de ClassroomService
+    private ClassroomService classroomService;
 
     @Override
     public void addSubject(String name, Long teacherId, int credit, Long classroomId) {
-            Classroom classroom = classroomMapper.mapToEntity(classroomService.getById(classroomId));
-            Teacher teacher = teacherMapper.mapToEntity(teacherDAO.findById(teacherId));
+        Classroom classroom = classroomMapper.mapToEntity(classroomService.getById(classroomId));
+        Teacher teacher = teacherMapper.mapToEntity(teacherDAO.findById(teacherId));
 
-                SubjectDto subjectDto = new SubjectDto(null, name, null, credit, new ArrayList<>(), classroom, new ArrayList<>());
-                Subject subject = subjectMapper.mapToEntity(subjectDto);
+        // Crear un nuevo objeto SubjectDto
+        SubjectDto subjectDto = new SubjectDto(null, name, null, credit, new ArrayList<>(), classroom, new ArrayList<>());
+        Subject subject = subjectMapper.mapToEntity(subjectDto);
 
-                subjectDAO.save(subject);
-                addTeacher(teacher,subjectDAO.findByName(name));
+        // Guardar el objeto Subject en la base de datos
+        subjectDAO.save(subject);
+
+        // Asignar el profesor al objeto Subject
+        addTeacher(teacher, subjectDAO.findByName(name));
     }
 
     @Override
-    public void addTeacher(Teacher teacher, Subject subject){
+    public void addTeacher(Teacher teacher, Subject subject) {
         subject.setTeacher(teacher);
         subjectDAO.update(subject);
     }
 
     @Override
     public void deleteById(Long idSubject) {
-        subjectDAO.delete(idSubject);
+        subjectDAO.delete(idSubject); // Eliminar una asignatura por su ID
     }
 
     @Override
-    public void updateSubject(Long subjectId,  Long newTeacherId, int newCredit, Long newClassroomId) {
+    public void updateSubject(Long subjectId, Long newTeacherId, int newCredit, Long newClassroomId) {
         SubjectDto subjectDto = subjectDAO.findById(subjectId);
         Subject subject = subjectMapper.mapToEntity(subjectDto);
         if (subject != null) {
-
+            // Actualizar los campos de la asignatura
             subject.setCredit(newCredit);
             Classroom newClassroom = classroomMapper.mapToEntity(classroomService.getById(newClassroomId));
             subject.setClassroom(newClassroom);
@@ -76,55 +84,22 @@ public class SubjectServiceImpl implements SubjectService {
             Teacher newTeacher = teacherMapper.mapToEntity(teacherDAO.findById(newTeacherId));
             subject.setTeacher(newTeacher);
 
+            // Actualizar la asignatura en la base de datos
             subjectDAO.update(subject);
         }
     }
 
-
-    /*@Override
-    public void deleteById(Long idSubject) {
-        List<SubjectDto> subjectDtoList = subjectDAO.getTableList();
-        for (SubjectDto subjectDto : subjectDtoList) {
-            if (subjectDto.id().equals(idSubject)) {
-                availabilities.removeIf(availability -> availability.getId().equals(id));
-                availabilityDAO.delete(id);
-                teacherDAO.update(teacherMapper.mapToEntity(teacherDto));
-            }
-        }*/
-
-
-
-   /* @Override
-    public void addSubject(String name, Long teacherId, int credit, Long classroomId) {
-        Teacher teacher = teacherMapper.mapToEntity(teacherService.getById(teacherId));
-        Classroom classroom = classroomMapper.mapToEntity(classroomService.getById(classroomId));
-
-        System.out.println("Name: " + name);
-        System.out.println("Teacher ID: " + teacherId);
-        System.out.println("Credit: " + credit);
-        System.out.println("Classroom ID: " + classroomId);
-
-        System.out.println("Teacher: " + teacher.getName());
-        System.out.println("Classroom: " + classroom.getName());
-
-        SubjectDto subject = new SubjectDto(null, name, , credit, new ArrayList<>(), classroom, new ArrayList<>());
-
-        System.out.println("Subject: " + subject);
-
-        subjectDAO.save(subjectMapper.mapToEntity(subject));
-    }*/
-
-    public SubjectDto getSubjectByTeacher(String name, TeacherDto teacherDto){
+    public SubjectDto getSubjectByTeacher(String name, TeacherDto teacherDto) {
+        // Obtener la lista de asignaturas
         List<SubjectDto> subjectDtoList = subjectDAO.getTableList();
         SubjectDto subject = null;
-        for (SubjectDto subjectDto: subjectDtoList){
-            if(subjectDto.name().equals(name) && subjectDto.teacher().getName().equals(teacherDto.name()))
+        // Buscar la asignatura por el nombre y el profesor
+        for (SubjectDto subjectDto : subjectDtoList) {
+            if (subjectDto.name().equals(name) && subjectDto.teacher().getName().equals(teacherDto.name())) {
                 subject = subjectDto;
-            break;
+                break;
+            }
         }
-        System.out.println(subject);
         return subject;
     }
-
-
 }

@@ -15,7 +15,6 @@ public interface TeacherService {
 
     void editTeacher(String name, String email);
 
-    void deleteTeacherById(Long id);
 
     TeacherDto getById(Long id);
     void editAvailability(Long id, int day, LocalTime start, LocalTime end, TeacherDto teacherDto);

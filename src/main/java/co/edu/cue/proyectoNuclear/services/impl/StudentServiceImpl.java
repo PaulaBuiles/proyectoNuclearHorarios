@@ -15,40 +15,38 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import java.time.LocalTime;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-@AllArgsConstructor
-@Service
+@AllArgsConstructor // Anotación de Lombok para generar automáticamente un constructor que acepta todos los campos
+@Service // Anotación de Spring para marcar esta clase como un componente de servicio
 public class StudentServiceImpl implements StudentService {
 
-
-    @Autowired
+    @Autowired // Inyección de dependencias de UserService
     private final UserService userService;
 
-    @Autowired
+    @Autowired // Inyección de dependencias de StudentDAOImpl
     private StudentDAOImpl studentDAO;
 
-
+    @Autowired // Inyección de dependencias de StudentMapper
     private StudentMapper studentMapper;
 
-    @Autowired
-    private ScheduleDAOImpl scheduleDAO;
 
     @Override
     public Student getStudent() {
-        return null;
+        return null; // Devuelve null, no se implementa la funcionalidad
     }
 
     @Override
     public List<StudentDto> generateStudent() {
+        // Obtener la lista de estudiantes existentes
         List<StudentDto> students = studentDAO.getTableList();
         return students;
     }
+
     @Override
     public void deleteStudentById(Long id) {
-        studentDAO.deleteById(id);
+        studentDAO.deleteById(id); // Eliminar un estudiante por su ID
     }
 
     @Override
@@ -57,30 +55,34 @@ public class StudentServiceImpl implements StudentService {
         Semester[] semesters = Semester.values();
         if (semester > 0 && semester < semesters.length) {
             Semester selectedSemester = semesters[semester];
-            StudentDto studentDto = new StudentDto(id,name,email,password,role,true,career,selectedSemester,new ArrayList<>());
+            // Crear un nuevo estudiante
+            StudentDto studentDto = new StudentDto(id, name, email, password, role, true, career, selectedSemester, new ArrayList<>());
             studentDAO.save(studentMapper.mapToEntity(studentDto));
         } else {
-            throw new IllegalArgumentException("Semestre invalido: " + semester);
+            throw new IllegalArgumentException("Semestre inválido: " + semester);
         }
     }
 
     @Override
     public void editStudent(String name, String email) {
+        // Obtener el estudiante actual del usuario
         Student user = studentMapper.mapToEntity(findUserStudent(userService.getUser()));
+        // Actualizar el nombre y el correo electrónico del estudiante
         user.setName(name);
         user.setEmail(email);
         studentDAO.update(user);
     }
 
     public StudentDto findUserStudent(UserDto user) {
+        // Obtener la lista de estudiantes
         List<StudentDto> studentDtoList = generateStudent();
         StudentDto studentDto = null;
-        for (StudentDto student: studentDtoList) {
+        // Buscar al estudiante por el ID del usuario
+        for (StudentDto student : studentDtoList) {
             if (student.id().equals(user.id())) {
                 studentDto = student;
             }
         }
         return studentDto;
     }
-
 }

@@ -4,8 +4,7 @@ import co.edu.cue.proyectoNuclear.domain.enums.DayOfWeek;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.sql.Time;
-import java.time.LocalDate;
+
 import java.time.LocalTime;
 
 

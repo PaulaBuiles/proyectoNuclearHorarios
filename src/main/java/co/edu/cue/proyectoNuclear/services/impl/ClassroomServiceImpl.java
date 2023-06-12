@@ -1,14 +1,12 @@
 package co.edu.cue.proyectoNuclear.services.impl;
 
 
-import co.edu.cue.proyectoNuclear.domain.entities.Availability;
+
 import co.edu.cue.proyectoNuclear.domain.entities.Classroom;
-import co.edu.cue.proyectoNuclear.domain.entities.Subject;
 import co.edu.cue.proyectoNuclear.domain.enums.Campus;
 import co.edu.cue.proyectoNuclear.domain.enums.Property;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.ClassroomDAOImpl;
 import co.edu.cue.proyectoNuclear.mapping.dtos.ClassroomDto;
-import co.edu.cue.proyectoNuclear.mapping.dtos.TeacherDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.ClassroomMapper;
 import co.edu.cue.proyectoNuclear.services.ClassroomService;
 import lombok.AllArgsConstructor;
@@ -19,30 +17,28 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@Service
-@AllArgsConstructor
+@Service // Anotación de Spring para marcar esta clase como un componente de servicio
+@AllArgsConstructor // Anotación de Lombok para generar automáticamente un constructor que acepta todos los campos
 public class ClassroomServiceImpl implements ClassroomService {
 
-    @Autowired
+    @Autowired // Inyección de dependencias de ClassroomDAOImpl
     ClassroomDAOImpl classroomDAO;
 
-    @Autowired
+    @Autowired // Inyección de dependencias de ClassroomDto
     public static ClassroomDto classroomDto;
 
-
+    @Autowired // Inyección de dependencias de ClassroomMapper
     private ClassroomMapper classroomMapper;
 
-
+    // Método para generar la lista de salones
     @Override
     public List<ClassroomDto> generateClassroom() {
-        List<ClassroomDto> classroomDtos = classroomDAO.getTableList();
-        return classroomDtos;
+        return classroomDAO.getTableList();
     }
 
-
-
+    // Método para crear una lista de propiedades a partir de una cadena de texto
     @Override
-    public List<Property> createPropertyListFromString(String propertyListString){
+    public List<Property> createPropertyListFromString(String propertyListString) {
         List<Property> propertyList = new ArrayList<>();
         if (propertyListString != null && !propertyListString.isEmpty()) {
             List<String> propertyValues = Arrays.asList(propertyListString.split(","));
@@ -52,13 +48,14 @@ public class ClassroomServiceImpl implements ClassroomService {
                     Property property = Property.values()[intValue];
                     propertyList.add(property);
                 } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-
+                    // Ignorar valores no numéricos o fuera de rango
                 }
             }
         }
         return propertyList;
     }
 
+    // Método para determinar la ubicación del salón a partir de un valor de ubicación
     @Override
     public Campus determineLocation(String locationValue) {
         if (locationValue != null) {
@@ -76,6 +73,7 @@ public class ClassroomServiceImpl implements ClassroomService {
         return null;
     }
 
+    // Método para crear un nuevo salón
     @Override
     public void createClassroom(String number, Integer capacity, Campus location, String status, List<Property> propertyList, String observation) {
         System.out.println("number: " + number);
@@ -86,27 +84,32 @@ public class ClassroomServiceImpl implements ClassroomService {
         System.out.println("observation: " + observation);
 
         ClassroomDto classroomDto = new ClassroomDto(null, number, capacity, location, status, new ArrayList<>(), propertyList, observation);
+        // Guardar el nuevo salón en la base de datos mediante classroomDAO.save()
         classroomDAO.save(classroomMapper.mapToEntity(classroomDto));
     }
 
-
+    // Método para editar un salón
     @Override
     public void editClassroom(Classroom classroomDto) {
+        // Actualizar el salón en la base de datos mediante classroomDAO.update()
         classroomDAO.update(classroomDto);
     }
 
+    // Método para eliminar un salón por su identificador
     @Override
     public void deleteClassroomById(Long id) {
+        // Eliminar el salón de la base de datos mediante classroomDAO.delete()
         classroomDAO.delete(id);
     }
+
+    // Método para obtener un ClassroomDto por su identificador
     public ClassroomDto getClassroomDto() {
         return classroomDto;
     }
 
+    // Método para obtener un ClassroomDto por su identificador
     @Override
     public ClassroomDto getById(Long id) {
         return classroomDAO.findById(id);
     }
-
-
 }

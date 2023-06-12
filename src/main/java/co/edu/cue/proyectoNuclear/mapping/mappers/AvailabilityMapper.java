@@ -1,8 +1,7 @@
 package co.edu.cue.proyectoNuclear.mapping.mappers;
 
-import co.edu.cue.proyectoNuclear.domain.entities.Administrative;
+
 import co.edu.cue.proyectoNuclear.domain.entities.Availability;
-import co.edu.cue.proyectoNuclear.mapping.dtos.AdministrativeDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.AvailabilityDto;
 import org.mapstruct.Mapper;
 

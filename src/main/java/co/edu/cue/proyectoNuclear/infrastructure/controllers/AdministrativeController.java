@@ -2,10 +2,15 @@ package co.edu.cue.proyectoNuclear.infrastructure.controllers;
 
 import co.edu.cue.proyectoNuclear.domain.configuration.Pages;
 import co.edu.cue.proyectoNuclear.domain.entities.Administrative;
+import co.edu.cue.proyectoNuclear.domain.entities.Student;
 import co.edu.cue.proyectoNuclear.domain.entities.Teacher;
+import co.edu.cue.proyectoNuclear.domain.entities.User;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.*;
 import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.AdministrativeMapper;
+import co.edu.cue.proyectoNuclear.mapping.mappers.StudentMapper;
+import co.edu.cue.proyectoNuclear.mapping.mappers.TeacherMapper;
+import co.edu.cue.proyectoNuclear.mapping.mappers.UserMapper;
 import co.edu.cue.proyectoNuclear.services.*;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +25,14 @@ import java.util.List;
 @AllArgsConstructor
 @Controller
 public class AdministrativeController {
+    @Autowired
+    public StudentDAOImpl studentDAO;
+
+    @Autowired
+    private TeacherMapper teacherMapper;
+
+    @Autowired
+    private StudentMapper studentMapper;
 
     @Autowired
     private final AdministrativeService administrativeService;
@@ -39,9 +52,15 @@ public class AdministrativeController {
     private final TeacherDAOImpl teacherDAO;
     @Autowired
     private final SubjectService subjectService;
+
+    @Autowired
     private final AdministrativeMapper administrativeMapper;
+    @Autowired
     private final AdministrativeDAOImpl administrativeDAO;
+    @Autowired
     private final LoginController loginController;
+    @Autowired
+    private UserMapper userMapper;
 
 
     @GetMapping("/home-administrative")
@@ -256,15 +275,41 @@ public class AdministrativeController {
 
     @GetMapping("/editar-user/{id}")
     public ModelAndView editUser(@PathVariable("id") Long id) {
+        UserDto userDto = userDAO.findById(id);
+
         ModelAndView modelAndView = new ModelAndView(Pages.ADMIN_EDIT_USER);
         modelAndView.addObject("idUser",id);
         modelAndView.addObject("user", userService.getUser());
 
         return modelAndView;
     }
-    @PostMapping("/changes-user/{id}")
-    public ModelAndView changesUser(@PathVariable("id") Long id, @RequestParam("name") String name, @RequestParam("email") String email) {
-        userService.editUser(id,name, email);
+
+    @PostMapping("/changes-user")
+    public ModelAndView changesUser(@RequestParam("id") String idParam, @RequestParam("name") String name, @RequestParam("email") String email) {
+        Long id = Long.parseLong(idParam);
+        UserDto user = userDAO.findById(id);
+        if (user != null) {
+            switch (user.role()) {
+                case "Administrativo":
+                    User userEntity = userMapper.mapToEntity(user);
+                    userEntity.setName(name);
+                    userEntity.setEmail(email);
+                    userDAO.update(userMapper.mapUser(userEntity));
+                    break;
+                case "Estudiante":
+                    Student student = studentMapper.mapToEntity(studentService.findUserStudent(user));
+                    student.setName(name);
+                    student.setEmail(email);
+                    studentDAO.update(student);
+                    break;
+                case "Profesor":
+                    Teacher teacher = teacherMapper.mapToEntity(teacherService.findUserTeacher(user));
+                    teacher.setEmail(email);
+                    teacher.setName(name);
+                    teacherDAO.update(teacher);
+                    break;
+            }
+        }
         return getUsersTable();
     }
 

@@ -1,10 +1,8 @@
 package co.edu.cue.proyectoNuclear.infrastructure.dao;
 
 
-import co.edu.cue.proyectoNuclear.domain.entities.Availability;
-import co.edu.cue.proyectoNuclear.domain.entities.Student;
+
 import co.edu.cue.proyectoNuclear.domain.entities.Teacher;
-import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.TeacherDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.TeacherMapper;
 import jakarta.persistence.EntityManager;
@@ -13,7 +11,6 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

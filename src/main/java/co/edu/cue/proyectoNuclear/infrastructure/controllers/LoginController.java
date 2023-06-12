@@ -2,7 +2,6 @@ package co.edu.cue.proyectoNuclear.infrastructure.controllers;
 
 import co.edu.cue.proyectoNuclear.domain.configuration.Pages;
 import co.edu.cue.proyectoNuclear.mapping.dtos.UserLoginDto;
-import co.edu.cue.proyectoNuclear.mapping.mappers.UserMapper;
 import co.edu.cue.proyectoNuclear.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -16,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class LoginController {
 
     private final UserService userService;
-    private final UserMapper userMapper;
+
 
 
     @GetMapping("/")
