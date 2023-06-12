@@ -203,16 +203,6 @@ public class AdministrativeController {
     public void deleteTeacherById(@PathVariable Long id) {
         //administrativeService.deleteTeacherById(id);
     }
-
-    @GetMapping("/courses")
-    public void getCourses() {
-    }
-
-    @GetMapping("/students/{id}")
-    public void deleteStudentById(@PathVariable Long id) {
-        //administrativeService.deleteStudentById(id);
-    }
-
     @GetMapping("/courses/{idStudent}/subjects/{idSubject}")
     public void addCourse(@PathVariable Long idStudent, @PathVariable Long idSubject) {
     }
@@ -263,6 +253,8 @@ public class AdministrativeController {
         modelAndView.addObject("subjects", subjectDAO.getTableList());
         modelAndView.addObject("teachers", teacherDAO.getTableList());
         modelAndView.addObject("classrooms", classroomService.generateClassroom());
+        modelAndView.addObject("studentsSubject",subjectDAO.findById(id).students());
+        modelAndView.addObject("studentsNoSubject",studentDAO.getTableList());
         return modelAndView;
     }
 

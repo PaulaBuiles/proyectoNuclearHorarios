@@ -6,6 +6,7 @@ import co.edu.cue.proyectoNuclear.domain.enums.Semester;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.*;
 import co.edu.cue.proyectoNuclear.mapping.dtos.ScheduleDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
+import co.edu.cue.proyectoNuclear.mapping.dtos.SubjectDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.UserDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.StudentMapper;
 import co.edu.cue.proyectoNuclear.services.StudentService;
@@ -48,6 +49,7 @@ public class StudentServiceImpl implements StudentService {
     public void deleteStudentById(Long id) {
         studentDAO.deleteById(id); // Eliminar un estudiante por su ID
     }
+
 
     @Override
     public void createStudent(String identification, String name, String email, String password, String role, String career, int semester) {

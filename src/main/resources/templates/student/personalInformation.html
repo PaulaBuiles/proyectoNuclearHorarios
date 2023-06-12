@@ -114,5 +114,32 @@
             </div>
         </div><br>
         <br>
+        <div class="container mt-5" >
+            <h1 style="font-family: 'Lobster Two', cursive; text-align: center;">Añadir Asignatura</h1>
+            <div class="container mt-5">
+                <table class="table table-striped table-container" style="font-family: 'Nunito Sans', sans-serif;">
+                    <thead>
+                    <tr style="text-align: center; background-color: #0c0096; color: #ffffff;">
+                        <th style="text-align: center; background-color: #0c0096; color: #ffffff;">Nombre</th>
+                        <th style="text-align: center; background-color: #0c0096; color: #ffffff;">No. crédito</th>
+                        <th style="text-align: center; background-color: #0c0096; color: #ffffff;">Profesor</th>
+                        <th style="text-align: center; background-color: #0c0096; color: #ffffff;">Añadir</th>
+                    </tr>
+                    </thead>
+                    <tr th:each="subject: ${subjects}">
+                            <span th:if="${subject.name != 'Reservado'}">
+                                <td th:text="${subject.name}">john.doe@example.com</td>
+                                <td th:text="${subject.credit}">123456789</td>
+                                <td th:text="${subject.teacher.name}"></td>
+                                <td>
+                                    <form style="display: inline-block;" th:action="@{/student/add-subject/{subject}(subject=${subject.id})}" method="post">
+                                        <button style="font-family: 'Lobster Two', cursive; font-size: 18px; background-color: #0c0096; border-top-color: transparent; color: white; outline: none; outline-offset: -2px;" type="submit">Añadir</button>
+                                    </form>
+                                </td>
+                            </span>
+                    </tr>
+                </table>
+            </div>
+        </div><br>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     </body>

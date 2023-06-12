@@ -2,8 +2,13 @@ package co.edu.cue.proyectoNuclear.infrastructure.controllers;
 
 import co.edu.cue.proyectoNuclear.domain.configuration.Pages;
 import co.edu.cue.proyectoNuclear.domain.entities.Student;
+import co.edu.cue.proyectoNuclear.domain.entities.Subject;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.StudentDAOImpl;
+import co.edu.cue.proyectoNuclear.infrastructure.dao.SubjectDAOImpl;
+import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
+import co.edu.cue.proyectoNuclear.mapping.dtos.SubjectDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.StudentMapper;
+import co.edu.cue.proyectoNuclear.mapping.mappers.SubjectMapper;
 import co.edu.cue.proyectoNuclear.services.StudentService;
 import co.edu.cue.proyectoNuclear.services.UserService;
 import lombok.AllArgsConstructor;
@@ -29,9 +34,15 @@ public class StudentController {
 
     @Autowired
     private StudentDAOImpl studentDAO;
+    @Autowired
+    private SubjectDAOImpl subjectDAO;
 
     @Autowired
     private StudentMapper studentMapper;
+    @Autowired
+    private SubjectMapper subjectMapper;
+    @Autowired
+    private SubjectServiceImpl subjectService;
 
 
     /*

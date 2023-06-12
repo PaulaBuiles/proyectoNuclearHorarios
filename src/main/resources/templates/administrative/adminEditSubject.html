@@ -164,5 +164,57 @@
     </div>
 </div>
 
+<div class="container mt-5">
+    <h1 style="font-family: 'Lobster Two', cursive; text-align: center;">Estudiantes de la materia</h1><br>
+    <table class="table table-striped" style="font-family: 'Nunito Sans', sans-serif;">
+        <thead>
+        <tr style="text-align: center; background-color: #0c0096; color: #ffffff;">
+            <th>Nombre</th>
+            <th>Identificación</th>
+            <th>Semestre</th>
+            <th>Cambios</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student : ${studentsSubject}">
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.id}"></td>
+            <td th:text="${student.semester}"></td>
+            <td>
+                <form style="display: inline-block;" th:action="@{/administrative-tools/eliminar-student-subject/{idSubject}/{idStudent}(isSubject=${subject.id},idStudent=${student.id})}" method="get">
+                    <button style="font-family: 'Lobster Two', cursive; font-size: 18px; background-color: #0c0096; border-top-color: transparent; color: white; outline: none; outline-offset: -2px;" type="submit">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="container mt-5">
+    <h1 style="font-family: 'Lobster Two', cursive; text-align: center;">Estudiantes </h1><br>
+    <table class="table table-striped" style="font-family: 'Nunito Sans', sans-serif;">
+        <thead>
+        <tr style="text-align: center; background-color: #0c0096; color: #ffffff;">
+            <th>Nombre</th>
+            <th>Identificación</th>
+            <th>Semestre</th>
+            <th>Cambios</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student : ${studentsNoSubject}">
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.id}"></td>
+            <td th:text="${student.semester}"></td>
+            <td>
+                <form style="display: inline-block;" th:action="@{/administrative-tools/añadir-student-subject/{id}(id=${student.id})}" method="get">
+                    <button style="font-family: 'Lobster Two', cursive; font-size: 18px; background-color: #0c0096; border-top-color: transparent; color: white; outline: none; outline-offset: -2px;" type="submit">Añadir</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
 </body>
 </html>
