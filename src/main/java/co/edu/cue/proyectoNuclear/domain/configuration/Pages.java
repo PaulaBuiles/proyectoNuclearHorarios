@@ -17,6 +17,7 @@ public class Pages {
     public static String ADMIN_EDIT_SUBJECT="administrative/adminEditSubject";
     public static String ADMIN_PASSWORD="administrative/changePasswordAdministrative";
     public static String ADMIN_EDIT_USER="administrative/adminEditUser";
+    public static String ADMIN_EDIT_SCHEDULE ="administrative/adminEditSchedule";
 
     //STUDENT
 

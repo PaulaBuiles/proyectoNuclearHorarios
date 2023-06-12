@@ -115,13 +115,18 @@
         <button type="submit" style="font-family: 'Lobster Two', cursive; font-size: 18px; background-color: #0c0096; border-top-color: transparent; color: white; outline: none; outline-offset: -2px;" class="btn btn-primary">Información de usuarios</button>
       </form>
     </div>
+    <div class="col-auto">
+      <form th:action="@{/administrative-tools/new-schedule}">
+        <button type="submit" style="font-family: 'Lobster Two', cursive; font-size: 18px; background-color: #0c0096; border-top-color: transparent; color: white; outline: none; outline-offset: -2px;" class="btn btn-primary">Crear horario</button>
+      </form>
+    </div>
   </div>
 </div>
 <br><br>
 <div class="container mt-5">
   <h1 style="font-family: 'Lobster Two', cursive; text-align: center;">Editar información personal de los usuarios</h1><br>
   <div class="container mt-5">
-    <form th:action="@{/administrative-tools/changes-user/{id}(id=${idUser})}" method="post" class="border p-3 form">
+    <form th:action="@{/administrative-tools/changes-user}" method="post" class="border p-3 form">
       <div class="mb-3">
         <label for="name" class="form-label" style="font-family: 'Lobster Two', cursive; font-size: 23px;">Nombre Completo</label>
         <input type="text" class="form-control" id="name" name="name">
@@ -129,6 +134,10 @@
       <div class="mb-3">
         <label for="email" class="form-label" style="font-family: 'Lobster Two', cursive; font-size: 23px;">Correo Electrónico</label>
         <input type="text" class="form-control" id="email" name="email">
+      </div>
+      <div>
+        <label for="id" class="form-label" style="font-family: 'Lobster Two', cursive; font-size: 23px;"></label>
+        <input type="hidden" class="form-control" id="id" name="id" th:value="${idUser}">
       </div>
       <button type="submit" value="Enviar" class="btn btn-primary" style="background-color: #0c0096; font-family: 'Lobster Two', cursive;">Editar</button>
     </form>
