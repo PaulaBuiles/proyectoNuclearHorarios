@@ -1,11 +1,14 @@
 package co.edu.cue.proyectoNuclear.services.impl;
 
 import co.edu.cue.proyectoNuclear.domain.entities.*;
+import co.edu.cue.proyectoNuclear.infrastructure.dao.StudentDAOImpl;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.SubjectDAOImpl;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.TeacherDAOImpl;
+import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.SubjectDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.TeacherDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.ClassroomMapper;
+import co.edu.cue.proyectoNuclear.mapping.mappers.StudentMapper;
 import co.edu.cue.proyectoNuclear.mapping.mappers.SubjectMapper;
 import co.edu.cue.proyectoNuclear.mapping.mappers.TeacherMapper;
 import co.edu.cue.proyectoNuclear.services.ClassroomService;
@@ -43,6 +46,13 @@ public class SubjectServiceImpl implements SubjectService {
 
     @Autowired // Inyección de dependencias de ClassroomService
     private ClassroomService classroomService;
+
+    @Autowired // Inyección de dependencias de StudentDAOImpl
+    private StudentDAOImpl studentDAO;
+
+    @Autowired // Inyección de dependencias de StudentMapper
+    private StudentMapper studentMapper;
+
 
     @Override
     public void addSubject(String name, Long teacherId, int credit, Long classroomId) {
@@ -102,4 +112,38 @@ public class SubjectServiceImpl implements SubjectService {
         }
         return subject;
     }
+
+    @Override
+    public void deleteStudentOfSubject(Long idSubject, Long idStudent){
+        SubjectDto subjectDto = subjectDAO.findById(idSubject);
+        StudentDto studentDto = studentDAO.findById(idStudent);
+
+        if(subjectDto != null && studentDto != null){
+            subjectDAO.deleteStudent(studentMapper.mapToEntity(studentDto));
+            subjectDAO.save(subjectMapper.mapToEntity(subjectDto));
+        }
+
+    }
+
+    public List<SubjectDto> getNewSubjects(List<Subject> subjectsStudents) {
+        List<Subject> subjects = subjectMapper.mapListDto(subjectDAO.getTableList());
+
+        List<Subject> newSubjects = new ArrayList<>();
+
+        for (Subject subject : subjects) {
+            boolean found = false;
+            for (Subject studentSubject : subjectsStudents) {
+                if (subject.getName().equals(studentSubject.getName())) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                newSubjects.add(subject);
+            }
+        }
+        return subjectMapper.mapList(newSubjects);
+    }
+
+
 }

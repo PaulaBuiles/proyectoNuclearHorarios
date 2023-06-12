@@ -12,4 +12,6 @@ public interface SubjectService {
     void deleteById(Long idSubject);
     void updateSubject(Long subjectId,  Long newTeacherId, int newCredit, Long newClassroomId);
     SubjectDto getSubjectByTeacher(String name, TeacherDto teacherDto);
+    void deleteStudentOfSubject(Long idSubject, Long idStudent);
+    List<SubjectDto> getNewSubjects(List<Subject> subjectsStudents);
 }

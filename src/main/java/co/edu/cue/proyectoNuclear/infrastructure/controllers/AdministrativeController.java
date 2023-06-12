@@ -334,6 +334,14 @@ public class AdministrativeController {
         return getUsersTable();
     }
 
+    @GetMapping("/eliminar-student-subject/{idSubject}/{idStudent}")
+    public ModelAndView deleteStudentSubject(@PathVariable("idSubject") Long idSubject, @PathVariable("idSubject") Long idStudent) {
+        // Eliminar estudiante de materia por ID
+        subjectService.deleteStudentOfSubject(idSubject,idStudent);
+        return infoSubject();
+
+    }
+
 
 }
 

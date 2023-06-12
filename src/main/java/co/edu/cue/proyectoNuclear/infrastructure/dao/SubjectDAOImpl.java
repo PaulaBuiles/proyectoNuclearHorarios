@@ -1,7 +1,9 @@
 package co.edu.cue.proyectoNuclear.infrastructure.dao;
 
 
+import co.edu.cue.proyectoNuclear.domain.entities.Student;
 import co.edu.cue.proyectoNuclear.domain.entities.Subject;
+import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.SubjectDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.SubjectMapper;
 import co.edu.cue.proyectoNuclear.mapping.mappers.TeacherMapper;
@@ -77,6 +79,16 @@ public class SubjectDAOImpl {
                 subject1.setTeacher(teacherMapper.mapToEntity(teacherDAO.findById(0L)));
 
             }
+        }
+    }
+
+    private List<Student> students;
+
+    // Otros métodos de la materia...
+
+    public void deleteStudent(Student student) {
+        if (students != null) {
+            students.remove(student);
         }
     }
 
