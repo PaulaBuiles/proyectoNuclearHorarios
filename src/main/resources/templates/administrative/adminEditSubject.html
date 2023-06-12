@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" href="../static/css/bootstrap.css">
+    <script th:src="@{/js/jquery.js}" src="../static/js/jquery.js"></script>
+    <script th:src="@{/js/bootstrap.js}" src="../static/js/bootstrap.js"></script>
+    <link th:href="@{/css/styleSelects.css}" rel="stylesheet" href="/css/styleSelects.css">
+    <link th:href="@{/css/all.css}" rel="stylesheet" href="/css/all.css">
+    <link th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.css}" rel="stylesheet" href="/fonts/font-awesome-4.7.0/css/font-awesome.css">
+    <link th:href="@{/css/solid.css}" href="/css/solid.css" rel="stylesheet">
+    <script th:src="@{/js/jquery.js}" src="/js/jquery.js"></script>
+    <script th:src="@{/js/bootstrap.js}" src="/js/bootstrap.js"></script>
+    <script defer src="/js/all.js" th:src="@{/js/all.js}"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+        nav {
+            background-color: #0C0096;
+            padding: 10px;
+            height: 50px;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display:none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            padding: 12px 16px;
+            flex-direction: column;
+            right: 0;
+            text-align: right;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .btn-transparent {
+            background-color: transparent;
+            border: none;
+            color: #ffffff; /* Color del texto */
+            padding: 0; /* Opcional: ajusta el espaciado del botón */
+        }
+
+        .logo {
+            position: relative;
+            top: 30px;
+        }
+    </style>
+    <title>Title</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg justify-content-start ">
+    <div class="container-fluid justify-content-start">
+        <img src="/img/logoAVH.png" alt="Logo" width="111" height="111" class="logo">
+        <div class="navbar-nav ml-3" style="color: white; font-family: 'Lobster Two', cursive;"> <a class="navbar-brand"><p></p></a> <a class="navbar-brand"> <form th:action="@{/administrative-tools/home-administrative}" class="btn btn-transparent">
+            <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">               Inicio               </button>
+        </form> <a class="navbar-brand"><p></p></a> </a> <a class="navbar-brand"> <form th:action="@{/administrative-tools/info}" class="btn btn-transparent">
+            <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">        Información general         </button>
+        </form> </a> <a class="navbar-brand"><p></p></a> <a class="navbar-brand"> <form th:action="@{/administrative-tools/users-table}" class="btn btn-transparent">
+            <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">               Panel de Gestión               </button>
+        </form> </a>
+            <a class="navbar-brand"><p></p></a>
+            <a class="navbar-brand">
+                <form th:action="@{/administrative-tools/reservation}" class="btn btn-transparent">
+                    <button type="submit" style="background-color: transparent; border: none; font-size: 20px;" class="btn btn-transparent">               Reservar               </button>
+                </form>
+            </a>
+        </div>
+    </div>
+    <a class="navbar-brand">
+        <div class="dropdown">
+            <button class="btn btn-transparent dropdown-toggle" type="button"
+                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false"style="background-color: transparent; border: none; font-size: 20px; color: white; font-family: 'Lobster Two', cursive;" th:Text="${user.name}"
+            ></button>
+            <div class="dropdown-content" style="right: 0; text-align: right; color: white; font-family: 'Lobster Two', cursive; left: calc(50% - 50px); transform: translateX(-50%);">
+                <div class="none" style="flex-direction: column; display: flex; right: 0; text-align: right;">
+                    <form th:action="@{/login/}" class="btn btn-transparent">
+                        <button type="submit" style="color: black; border: none; font-size: 15px;" class="btn btn-transparent">Cerrar sesión</button>
+                    </form>
+                    <form th:action="@{/administrative-tools/changePassword}" class="btn btn-transparent">
+                        <button type="submit" style="color: black; border: none; font-size: 15px;" class="btn btn-transparent">Cambiar contraseña</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </a>
+</nav>
+
+<!-- Botones adicionales -->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col text-center">
+            <h1 style="color: black; font-family: 'Lobster Two', cursive; font-size: 80px">Opciones de Gestión</h1>
+        </div>
+    </div>
+    <div class="row mt-3 justify-content-center">
+        <div class="col-auto">
+            <form th:action="@{/administrative-tools/register}">
+                <button type="submit" style="font-family: 'Lobster Two', cursive; font-size: 18px; background-color: #0c0096; border-top-color: transparent; color: white; outline: none; outline-offset: -2px;" class="btn btn-primary">Registrar usuario</button>
+            </form>
+        </div>
+        <div class="col-auto">
+            <form th:action="@{/administrative-tools/info-subject}">
+                <button type="submit" style="font-family: 'Lobster Two', cursive; font-size: 18px; background-color: #0c0096; border-top-color: transparent; color: white; outline: none; outline-offset: -2px;" class="btn btn-primary">Gestionar materia</button>
+            </form>
+        </div>
+        <div class="col-auto">
+            <form th:action="@{/administrative-tools/manage-classroom}">
+                <button type="submit" style="font-family: 'Lobster Two', cursive; font-size: 18px; background-color: #0c0096; border-top-color: transparent; color: white; outline: none; outline-offset: -2px;" class="btn btn-primary">Gestionar salones</button>
+            </form>
+        </div>
+        <div class="col-auto">
+            <form th:action="@{/administrative-tools/users-table}">
+                <button type="submit" style="font-family: 'Lobster Two', cursive; font-size: 18px; background-color: #0c0096; border-top-color: transparent; color: white; outline: none; outline-offset: -2px;" class="btn btn-primary">Información de usuarios</button>
+            </form>
+        </div>
+    </div>
+</div>
+<br><br>
+<div class="container mt-5">
+    <h1 style="font-family: 'Lobster Two', cursive; text-align: center;">Editar materias</h1><br>
+    <div class="container mt-5">
+        <form th:action="@{/administrative-tools/change-subject/{id}(id=${idSubject})}" method="post" class="border p-3 form">
+            <div class="mb-3">
+                <label for="credit" class="form-label" style="font-family: 'Lobster Two', cursive; font-size: 23px;">Editar número de créditos</label>
+                <input type="text" class="form-control" id="credit" name="credit">
+            </div>
+            <div class="mb-3">
+                <label for="classroom" style="font-family: 'Lobster Two', cursive; font-size: 23px;">Editar salón:</label><br>
+                <div class="select-container">
+                    <select id="classroom" name="classroom" class="form-select select-box">
+                        <option value="">Seleccione un salón</option>
+                        <!-- Iterar sobre la lista de aulas y generar opciones -->
+                        <option th:each="classroom : ${classrooms}" th:value="${classroom.id}" th:text="${classroom.name}"></option>
+                    </select>
+                    <div class="icon-container1">
+                        <i class="fas fa-chalkboard-teacher i"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="teacher" style="font-family: 'Lobster Two', cursive; font-size: 23px;">Editar el profesor:</label><br>
+                <div class="select-container">
+                    <select id="teacher" name="teacher" class="form-select select-box">
+                        <option value="">Seleccione un profesor</option>
+                        <!-- Iterar sobre la lista de aulas y generar opciones -->
+                        <option th:each="teacher : ${teachers}" th:value="${teacher.id}" th:text="${teacher.name}"></option>
+                    </select>
+                    <div class="icon-container1">
+                        <i class="fas fa-users i"></i>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" value="Enviar" class="btn btn-primary" style="background-color: #0c0096; alignment:center;font-family: 'Lobster Two', cursive;">Editar</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

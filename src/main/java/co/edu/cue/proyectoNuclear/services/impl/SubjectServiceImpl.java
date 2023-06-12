@@ -47,7 +47,6 @@ public class SubjectServiceImpl implements SubjectService {
 
                 subjectDAO.save(subject);
                 addTeacher(teacher,subjectDAO.findByName(name));
-
     }
 
     @Override

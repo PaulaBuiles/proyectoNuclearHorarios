@@ -43,6 +43,8 @@ public class TeacherController {
     @Autowired
     private final TeacherDAOImpl teacherDAO;
 
+
+
     @GetMapping("/teacher-information")
     public ModelAndView getInformation() {
         List<TeacherDto> teacherList = teacherService.generateTeacher();

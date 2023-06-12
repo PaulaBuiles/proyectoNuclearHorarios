@@ -1,13 +1,11 @@
 package co.edu.cue.proyectoNuclear.infrastructure.controllers;
 
 import co.edu.cue.proyectoNuclear.domain.configuration.Pages;
-import co.edu.cue.proyectoNuclear.domain.entities.User;
 import co.edu.cue.proyectoNuclear.mapping.dtos.UserLoginDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.UserMapper;
 import co.edu.cue.proyectoNuclear.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -36,13 +34,13 @@ public class LoginController {
         if(userService.validateUser(identification,password)) {
             switch (userService.getUser().role()) {
                 case "Estudiante" -> {
-                    modelAndView = new ModelAndView(Pages.STUDENTHOME);
+                    modelAndView = new ModelAndView(Pages.STUDENT_HOME);
                 }
                 case "Profesor" -> {
                     modelAndView = new ModelAndView(Pages.TEACHERHOME);
                 }
                 case "Administrativo" -> {
-                    modelAndView = new ModelAndView(Pages.ADMINHOME);
+                    modelAndView = new ModelAndView(Pages.ADMIN_HOME);
                 }
             }
             modelAndView.addObject("user",userService.getUser());

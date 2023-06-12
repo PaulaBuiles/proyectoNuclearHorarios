@@ -2,11 +2,7 @@ package co.edu.cue.proyectoNuclear.infrastructure.controllers;
 
 import co.edu.cue.proyectoNuclear.domain.configuration.Pages;
 import co.edu.cue.proyectoNuclear.domain.entities.Student;
-import co.edu.cue.proyectoNuclear.domain.entities.Subject;
-import co.edu.cue.proyectoNuclear.infrastructure.dao.ScheduleDAOImpl;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.StudentDAOImpl;
-import co.edu.cue.proyectoNuclear.mapping.dtos.ScheduleDto;
-import co.edu.cue.proyectoNuclear.mapping.dtos.StudentDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.StudentMapper;
 import co.edu.cue.proyectoNuclear.services.StudentService;
 import co.edu.cue.proyectoNuclear.services.UserService;
@@ -15,10 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 
 @RestController
@@ -48,7 +40,7 @@ public class StudentController {
     */
     @GetMapping("/home")
     public ModelAndView home(){
-        ModelAndView modelAndView =new ModelAndView(Pages.STUDENTHOME);
+        ModelAndView modelAndView =new ModelAndView(Pages.STUDENT_HOME);
         modelAndView.addObject("user",userService.getUser());
         return modelAndView;
     }
@@ -60,7 +52,7 @@ public class StudentController {
     */
     @GetMapping("/info")
     public ModelAndView info(){
-        ModelAndView modelAndView = new ModelAndView(Pages.STUDENTINFORMATION);
+        ModelAndView modelAndView = new ModelAndView(Pages.STUDENT_INFORMATION);
         modelAndView.addObject("userStudent",studentService.findUserStudent(userService.getUser()));
         modelAndView.addObject("user",userService.getUser());
         return modelAndView;
@@ -72,7 +64,7 @@ public class StudentController {
     */
     @GetMapping("/edit")
     public ModelAndView edit(){
-        ModelAndView modelAndView =new ModelAndView(Pages.CHANGES);
+        ModelAndView modelAndView =new ModelAndView(Pages.STUDENT_CHANGES);
         modelAndView.addObject("user",userService.getUser());
         return modelAndView;
     }
@@ -95,7 +87,7 @@ public class StudentController {
     */
     @GetMapping("/schedule")
     public ModelAndView scheduleStudent() {
-        ModelAndView modelAndView = new ModelAndView(Pages.SCHEDULESTUDENT);
+        ModelAndView modelAndView = new ModelAndView(Pages.STUDENT_SCHEDULE);
         modelAndView.addObject("user", userService.getUser());
         modelAndView.addObject("userStudent",studentService.findUserStudent(userService.getUser()));
         modelAndView.addObject("hours", userService.getHoursList());
@@ -110,7 +102,7 @@ public class StudentController {
     */
     @GetMapping("/changePassword")
     public ModelAndView changePassword(){
-        ModelAndView modelAndView = new ModelAndView(Pages.PASSWORD);
+        ModelAndView modelAndView = new ModelAndView(Pages.STUDENT_PASSWORD);
         modelAndView.addObject("user",userService.getUser());
         return modelAndView;
     }
