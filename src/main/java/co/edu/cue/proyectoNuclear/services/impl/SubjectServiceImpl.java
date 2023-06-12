@@ -3,7 +3,9 @@ package co.edu.cue.proyectoNuclear.services.impl;
 import co.edu.cue.proyectoNuclear.domain.entities.*;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.SubjectDAOImpl;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.TeacherDAOImpl;
+import co.edu.cue.proyectoNuclear.mapping.dtos.ScheduleDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.SubjectDto;
+import co.edu.cue.proyectoNuclear.mapping.dtos.TeacherDto;
 import co.edu.cue.proyectoNuclear.mapping.mappers.ClassroomMapper;
 import co.edu.cue.proyectoNuclear.mapping.mappers.SubjectMapper;
 import co.edu.cue.proyectoNuclear.mapping.mappers.TeacherMapper;
@@ -15,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 @Service
@@ -54,6 +57,42 @@ public class SubjectServiceImpl implements SubjectService {
         subject.setTeacher(teacher);
         subjectDAO.update(subject);
     }
+
+    @Override
+    public void deleteById(Long idSubject) {
+        subjectDAO.delete(idSubject);
+    }
+
+    @Override
+    public void updateSubject(Long subjectId,  Long newTeacherId, int newCredit, Long newClassroomId) {
+        SubjectDto subjectDto = subjectDAO.findById(subjectId);
+        Subject subject = subjectMapper.mapToEntity(subjectDto);
+        if (subject != null) {
+
+            subject.setCredit(newCredit);
+            Classroom newClassroom = classroomMapper.mapToEntity(classroomService.getById(newClassroomId));
+            subject.setClassroom(newClassroom);
+
+            Teacher newTeacher = teacherMapper.mapToEntity(teacherDAO.findById(newTeacherId));
+            subject.setTeacher(newTeacher);
+
+            subjectDAO.update(subject);
+        }
+    }
+
+
+    /*@Override
+    public void deleteById(Long idSubject) {
+        List<SubjectDto> subjectDtoList = subjectDAO.getTableList();
+        for (SubjectDto subjectDto : subjectDtoList) {
+            if (subjectDto.id().equals(idSubject)) {
+                availabilities.removeIf(availability -> availability.getId().equals(id));
+                availabilityDAO.delete(id);
+                teacherDAO.update(teacherMapper.mapToEntity(teacherDto));
+            }
+        }*/
+
+
 
    /* @Override
     public void addSubject(String name, Long teacherId, int credit, Long classroomId) {

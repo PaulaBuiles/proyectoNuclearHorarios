@@ -22,7 +22,7 @@ public class Subject{
     @Column(name="name", nullable=false)
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="id_teacher")
     private Teacher teacher;
 
@@ -30,13 +30,13 @@ public class Subject{
     @Column(name="credit", nullable=false)
     private int credit;
 
-    @ManyToMany(mappedBy = "subject",fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "subject",fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Student> students;
 
     @ManyToOne
     @JoinColumn(name = "classroom_id")
     private Classroom classroom;
 
-    @OneToMany(mappedBy = "subject", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "subject", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Schedule> schedules;
 }

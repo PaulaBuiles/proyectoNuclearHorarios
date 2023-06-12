@@ -39,6 +39,10 @@ public class AdministrativeController {
     private final TeacherDAOImpl teacherDAO;
     @Autowired
     private final SubjectService subjectService;
+    private final AdministrativeMapper administrativeMapper;
+    private final AdministrativeDAOImpl administrativeDAO;
+    private final LoginController loginController;
+
 
     @GetMapping("/home-administrative")
     public ModelAndView homeAdministrative(){
@@ -88,7 +92,7 @@ public class AdministrativeController {
         ModelAndView modelAndView = null;
         switch (userDto.role()){
             case "Estudiante":
-                modelAndView = new ModelAndView(Pages.ADMINSCHEDULEUSERS);
+                modelAndView = new ModelAndView(Pages.ADMIN_SCHEDULE_USERS);
                 modelAndView.addObject("user", userService.getUser());
                 modelAndView.addObject("hours", userService.getHoursList());
                 modelAndView.addObject("days", userService.getDaysList());
@@ -97,7 +101,7 @@ public class AdministrativeController {
                 modelAndView.addObject("userSchedules", userService.getUserSchedule(studentService.findUserStudent(userDAO.findById(userId)).subject()));
                 break;
             case "Profesor":
-                modelAndView = new ModelAndView(Pages.ADMINSCHEDULEUSERS);
+                modelAndView = new ModelAndView(Pages.ADMIN_SCHEDULE_USERS);
                 modelAndView.addObject("user", userService.getUser());
                 modelAndView.addObject("hours", userService.getHoursList());
                 modelAndView.addObject("days", userService.getDaysList());
@@ -200,6 +204,68 @@ public class AdministrativeController {
     public ModelAndView addSubject(@RequestParam("credit") int credit, @RequestParam("name") String name, @RequestParam("classroom") Long classroomId, @RequestParam("teacher")Long teacherId){
         subjectService.addSubject(name,teacherId,credit,classroomId);
         return infoSubject();
+    }
+
+    @GetMapping("/eliminar-subject/{id}")
+    public ModelAndView deleteSubject(@PathVariable("id") Long id) {
+        // Eliminar materia por ID
+        subjectService.deleteById( id);
+
+        return infoSubject();
+
+    }
+
+    @GetMapping("/editar-subject/{id}")
+    public ModelAndView editSubject(@PathVariable("id") Long id) {
+        ModelAndView modelAndView = new ModelAndView(Pages.ADMIN_EDIT_SUBJECT);
+        modelAndView.addObject("idSubject",id);
+        modelAndView.addObject("user", userService.getUser());
+        modelAndView.addObject("subjects",subjectDAO.getTableList());
+        modelAndView.addObject("teachers",teacherDAO.getTableList());
+        modelAndView.addObject("classrooms",classroomService.generateClassroom());
+        return modelAndView;
+    }
+
+    @PostMapping("/change-subject/{id}")
+    public ModelAndView editChangeSubject(@PathVariable("id") Long id, @RequestParam("credit") int credit,  @RequestParam("classroom") Long classroomId, @RequestParam("teacher")Long teacherId){
+        subjectService.updateSubject(id,teacherId,credit,classroomId);
+        return infoSubject();
+    }
+
+    @GetMapping("/changePassword")
+    public ModelAndView changePassword(){
+        ModelAndView modelAndView = new ModelAndView(Pages.ADMIN_PASSWORD);
+        modelAndView.addObject("user",userService.getUser());
+        return modelAndView;
+    }
+
+    @PostMapping("/editPassword")
+    public ModelAndView editPassword(@RequestParam("password") String password){
+      Administrative user = administrativeMapper.mapToEntity(administrativeService.findUserAdmin(userService.getUser()));
+        user.setPassword(password);
+        administrativeDAO.updatePassword(administrativeMapper.mapAdministrative(user));
+        return loginController.post();
+    }
+    @GetMapping("/eliminar-user/{id}")
+    public ModelAndView deleteUser(@PathVariable("id") Long id) {
+        // Eliminar usuario por ID
+        userService.deleteById(id);
+        return getUsersTable();
+
+    }
+
+    @GetMapping("/editar-user/{id}")
+    public ModelAndView editUser(@PathVariable("id") Long id) {
+        ModelAndView modelAndView = new ModelAndView(Pages.ADMIN_EDIT_USER);
+        modelAndView.addObject("idUser",id);
+        modelAndView.addObject("user", userService.getUser());
+
+        return modelAndView;
+    }
+    @PostMapping("/changes-user/{id}")
+    public ModelAndView changesUser(@PathVariable("id") Long id, @RequestParam("name") String name, @RequestParam("email") String email) {
+        userService.editUser(id,name, email);
+        return getUsersTable();
     }
 
 }

@@ -1,6 +1,8 @@
 package co.edu.cue.proyectoNuclear.services.impl;
 
-import co.edu.cue.proyectoNuclear.domain.entities.Administrative;
+import co.edu.cue.proyectoNuclear.domain.entities.Classroom;
+import co.edu.cue.proyectoNuclear.domain.entities.Subject;
+import co.edu.cue.proyectoNuclear.domain.entities.Teacher;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.*;
 import co.edu.cue.proyectoNuclear.mapping.dtos.AdministrativeDto;
 import co.edu.cue.proyectoNuclear.mapping.dtos.SubjectDto;
@@ -11,6 +13,11 @@ import co.edu.cue.proyectoNuclear.services.AdministrativeService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.sql.Time;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @Service
@@ -23,7 +30,14 @@ public class AdministrativeServiceImpl implements AdministrativeService {
     public AdministrativeMapper administrativeMapper;
     @Autowired
     public UserDAOImpl userGeneralDAO;
+
     @Autowired
+    public SubjectDAOImpl subjectDAO;
+
+    public AvailabilityServiceImpl availabilityService;
+    public ClassroomServiceImpl classroomService;
+    public SubjectServiceImpl subjectService;
+
     private final UserMapper userMapper;
 
     @Override
@@ -42,6 +56,24 @@ public class AdministrativeServiceImpl implements AdministrativeService {
         userGeneralDAO.save(userMapper.mapToEntity(administrativeDto));
     }
 
+    @Override
+    public List<AdministrativeDto> generateAdmin() {
+        List<AdministrativeDto> administrativeDtoList = administrativeDAO.getTableList();
+        return administrativeDtoList;
+    }
+
+    @Override
+    public AdministrativeDto findUserAdmin(UserDto user) {
+        List<AdministrativeDto> administrativeDtoList = generateAdmin();
+        AdministrativeDto administrativeDto = null;
+        for (AdministrativeDto admin: administrativeDtoList) {
+            if (admin.id().equals(user.id())) {
+                administrativeDto = admin;
+            }
+        }
+        return administrativeDto;
+    }
+
 
 
     //Funciones de los horarios
@@ -50,7 +82,8 @@ public class AdministrativeServiceImpl implements AdministrativeService {
 
 
 
-    //Funciones de los elementos
+    //Funciones de las materias
+
 
     //Funciones de la disponibilidad
 

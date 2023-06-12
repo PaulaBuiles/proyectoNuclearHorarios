@@ -15,6 +15,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 
 @Repository
 @Transactional
@@ -24,20 +26,20 @@ public class AdministrativeDAOImpl {
     @PersistenceContext
     EntityManager entityManager;
 
-    @Autowired
+
     private AdministrativeMapper adminMapper;
-/*
-    @Override
+
+
     public List<AdministrativeDto> getTableList() {
         TypedQuery<Administrative> query = entityManager.createQuery("SELECT u FROM Administrative u", Administrative.class);
 
         return adminMapper.maplist(query.getResultList());
     }
 
-    @Override
+
     public AdministrativeDto findById(Long id) {
         return adminMapper.mapAdministrative(entityManager.find(Administrative.class, id));
-    }*/
+    }
 
 
     public void save(Administrative entity) {

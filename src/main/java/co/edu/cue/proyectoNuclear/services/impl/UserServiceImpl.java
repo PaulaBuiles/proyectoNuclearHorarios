@@ -6,6 +6,7 @@ import co.edu.cue.proyectoNuclear.infrastructure.dao.ScheduleDAOImpl;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.TeacherDAOImpl;
 import co.edu.cue.proyectoNuclear.infrastructure.dao.UserDAOImpl;
 import co.edu.cue.proyectoNuclear.mapping.dtos.*;
+import co.edu.cue.proyectoNuclear.mapping.mappers.UserMapper;
 import co.edu.cue.proyectoNuclear.services.AdministrativeService;
 import co.edu.cue.proyectoNuclear.services.StudentService;
 import co.edu.cue.proyectoNuclear.services.TeacherService;
@@ -30,6 +31,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     public ScheduleDAOImpl scheduleDAO;
 
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
     public List<ScheduleDto> getUserSchedule(List<Subject> subjects){
@@ -109,6 +112,21 @@ public class UserServiceImpl implements UserService {
                 "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"
         );
         return days;
+    }
+
+    @Override
+    public void editUser(Long id, String name, String email) {
+        //User user = userMapper.mapToEntity(getUser());
+        User user = userMapper.mapToEntity(userGeneralDAO.findById(id));
+        if (user != null) {
+            user.setName(name);
+            user.setEmail(email);
+            userGeneralDAO.update(userMapper.mapUser(user));
+        }
+    }
+    @Override
+    public void deleteById(Long idUser) {
+        userGeneralDAO.delete(idUser);
     }
 
 }

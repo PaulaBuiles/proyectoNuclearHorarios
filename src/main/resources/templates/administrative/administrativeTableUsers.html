@@ -64,7 +64,7 @@
                     <form th:action="@{/login/}" class="btn btn-transparent">
                         <button type="submit" style="color: black; border: none; font-size: 15px;" class="btn btn-transparent">Cerrar sesión</button>
                     </form>
-                    <form th:action="@{/student/changePassword}" class="btn btn-transparent">
+                    <form th:action="@{/administrative-tools/changePassword}" class="btn btn-transparent">
                         <button type="submit" style="color: black; border: none; font-size: 15px;" class="btn btn-transparent">Cambiar contraseña</button>
                     </form>
                 </div>
@@ -131,6 +131,7 @@
             <th>Email</th>
             <th>Rol</th>
             <th>Horario</th>
+            <th>Cambios</th>
         </tr>
         </thead>
         <tbody>
@@ -142,6 +143,14 @@
             <td>
                 <form style="display: inline-block; margin-right: 5px;" th:action="@{/administrative-tools/schedule-users/{id}(id=${user.id})}" method="get">
                     <button style="font-family: 'Lobster Two', cursive; font-size: 18px; background-color: #0c0096; border-top-color: transparent; color: white; outline: none; outline-offset: -2px;" type="submit">Ver</button>
+                </form>
+            </td>
+            <td>
+                <form style="display: inline-block; margin-right: 5px;" th:action="@{/administrative-tools/editar-user/{id}(id=${user.id})}" method="get">
+                    <button style="font-family: 'Lobster Two', cursive; font-size: 18px; background-color: #0c0096; border-top-color: transparent; color: white; outline: none; outline-offset: -2px;" type="submit">Editar</button>
+                </form>
+                <form style="display: inline-block;" th:action="@{/administrative-tools/eliminar-user/{id}(id=${user.id})}" method="get">
+                    <button style="font-family: 'Lobster Two', cursive; font-size: 18px; background-color: #0c0096; border-top-color: transparent; color: white; outline: none; outline-offset: -2px;" type="submit">Eliminar</button>
                 </form>
             </td>
         </tr>

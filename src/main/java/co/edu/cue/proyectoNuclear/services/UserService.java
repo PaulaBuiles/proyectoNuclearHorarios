@@ -19,4 +19,6 @@ public interface UserService {
     List<UserDto> filterUsersByRole(String role);
     List<String> getDaysList();
     List<LocalTime> getHoursList();
+    void editUser(Long id, String name, String email);
+    void deleteById(Long idUser);
 }

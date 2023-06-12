@@ -21,7 +21,7 @@ public class UserDAOImpl {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Autowired
+
     private UserMapper userMapper;
 
 

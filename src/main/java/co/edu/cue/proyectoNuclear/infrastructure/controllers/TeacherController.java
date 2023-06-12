@@ -41,6 +41,10 @@ public class TeacherController {
     @Autowired
     private final SubjectService subjectService;
     @Autowired
+    private final ClassroomService classroomService;
+    @Autowired
+    private final ScheduleService scheduleService;
+    @Autowired
     private final TeacherMapper teacherMapper;
     @Autowired
     private final SubjectMapper subjectMapper;

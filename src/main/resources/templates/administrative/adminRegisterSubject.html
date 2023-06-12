@@ -187,6 +187,14 @@
       <td th:text="${subject.name}" style="text-align: left;"></td>
       <td th:text="${subject.credit}"></td>
       <td th:text="${subject.classroom.getName()}"></td>
+      <td>
+        <form style="display: inline-block; margin-right: 5px;" th:action="@{/administrative-tools/editar-subject/{id}(id=${subject.id})}" method="get">
+          <button style="font-family: 'Lobster Two', cursive; font-size: 18px; background-color: #0c0096; border-top-color: transparent; color: white; outline: none; outline-offset: -2px;" type="submit">Editar</button>
+        </form>
+        <form style="display: inline-block;" th:action="@{/administrative-tools/eliminar-subject/{id}(id=${subject.id})}" method="get">
+          <button style="font-family: 'Lobster Two', cursive; font-size: 18px; background-color: #0c0096; border-top-color: transparent; color: white; outline: none; outline-offset: -2px;" type="submit">Eliminar</button>
+        </form>
+      </td>
     </tr>
     </tbody>
   </table>
