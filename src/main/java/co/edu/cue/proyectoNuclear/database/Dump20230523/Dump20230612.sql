@@ -144,7 +144,7 @@ CREATE TABLE `course` (
 
 LOCK TABLES `course` WRITE;
 /*!40000 ALTER TABLE `course` DISABLE KEYS */;
-INSERT INTO `course` VALUES (7849325710,1),(7849325710,2),(7849325710,3),(7849325710,4),(7849325710,5),(7849325710,6),(9137452086,1),(9137452086,2),(9137452086,3),(9137452086,4),(9137452086,5),(9137452086,6),(9137452086,7),(6927304581,1),(6927304581,2),(6927304581,3),(6927304581,4),(6927304581,5),(6927304581,6),(6927304581,7),(8351907624,1),(8351907624,2),(8351907624,3),(8351907624,4),(8351907624,5),(8351907624,6),(8351907624,7),(8351907624,8);
+INSERT INTO `course` VALUES (7849325710,1),(7849325710,2),(7849325710,3),(7849325710,4),(7849325710,5),(7849325710,6),(9137452086,1),(9137452086,2),(9137452086,3),(9137452086,4),(9137452086,5),(9137452086,6),(9137452086,7),(6927304581,1),(6927304581,2),(6927304581,3),(6927304581,4),(6927304581,5),(6927304581,6),(6927304581,7),(8351907624,1),(8351907624,2),(8351907624,3),(8351907624,4),(8351907624,5),(8351907624,6),(8351907624,7),(8351907624,8),(9853578,7),(9853578,6),(9853578,5),(9853578,4),(9853578,3),(9853578,2),(9853578,1),(225469770,7),(225469770,6),(225469770,5),(225469770,4),(225469770,3),(225469770,2),(225469770,1),(556611357,1),(556611357,7),(590023355,7),(590023355,6),(590023355,5),(590023355,4),(590023355,3),(590023355,2),(590023355,1),(657843298,1),(657843298,2),(657843298,3),(657843298,4),(657843298,5),(657843298,6),(657843298,7),(889911647,1),(889911647,2),(889911647,3),(889911647,4),(889911647,5),(889911647,6),(889911647,7),(986537098,8),(986537098,7),(986537098,6),(986537098,5),(986537098,4),(986537098,3),(986537098,2),(986537098,1);
 /*!40000 ALTER TABLE `course` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -174,7 +174,7 @@ CREATE TABLE `schedule` (
 
 LOCK TABLES `schedule` WRITE;
 /*!40000 ALTER TABLE `schedule` DISABLE KEYS */;
-INSERT INTO `schedule` VALUES (1,0,'03:00:00','13:00:00','10:00:00',2),(2,1,'03:00:00','21:00:00','18:00:00',7),(3,3,'02:00:00','09:00:00','07:00:00',1),(4,3,'03:00:00','12:00:00','09:00:00',4),(5,1,'02:00:00','18:00:00','16:00:00',5),(6,2,'03:00:00','10:00:00','07:00:00',4),(7,2,'02:00:00','18:00:00','16:00:00',3),(8,0,'02:00:00','20:00:00','18:00:00',3),(9,0,'02:00:00','09:00:00','07:00:00',1),(10,4,'03:00:00','10:00:00','07:00:00',4),(11,4,'02:00:00','13:00:00','11:00:00',3),(12,4,'02:00:00','19:00:00','17:00:00',5),(13,5,'04:00:00','12:00:00','08:00:00',6),(45,1,'02:00:00','09:00:00','07:00:00',23),(47,1,'02:00:00','16:00:00','14:00:00',8);
+INSERT INTO `schedule` VALUES (1,0,'03:00:00','13:00:00','10:00:00',2),(2,1,'03:00:00','21:00:00','18:00:00',7),(3,3,'02:00:00','09:00:00','07:00:00',1),(4,3,'03:00:00','12:00:00','09:00:00',4),(5,1,'02:00:00','18:00:00','16:00:00',5),(6,2,'03:00:00','10:00:00','07:00:00',4),(7,2,'02:00:00','18:00:00','16:00:00',3),(8,0,'02:00:00','20:00:00','18:00:00',3),(9,0,'02:00:00','09:00:00','07:00:00',1),(10,4,'03:00:00','10:00:00','07:00:00',4),(11,4,'02:00:00','13:00:00','11:00:00',3),(12,4,'02:00:00','19:00:00','17:00:00',5),(13,5,'04:00:00','12:00:00','08:00:00',6);
 /*!40000 ALTER TABLE `schedule` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -200,7 +200,7 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES ('Ingeniería de software',3,12345678),('Ingenieria de Software',2,87965321),('Ingeniería de software',3,6927304581),('Ingeniería de software',3,7849325710),('Ingeniería de software',3,8351907624),('Ingeniería de software',3,9137452086);
+INSERT INTO `student` VALUES ('Ingenieria de Software',3,9853578),('Ingenieria de Software',1,225469770),('Ingenieria de Software',3,556611357),('Ingenieria de Software',3,590023355),('Ingenieria de Software',3,657843298),('Ingenieria de Software',3,889911647),('Ingenieria de Software',3,986537098),('Ingeniería de software',3,6927304581),('Ingeniería de software',3,7849325710),('Ingeniería de software',3,8351907624),('Ingeniería de software',3,9137452086);
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -231,7 +231,7 @@ CREATE TABLE `subject` (
 
 LOCK TABLES `subject` WRITE;
 /*!40000 ALTER TABLE `subject` DISABLE KEYS */;
-INSERT INTO `subject` VALUES (1,3,'Programación II',4,7069415283),(2,2,'Análisis numerico',1,4172853069),(3,2,'Metodología de Desarrollo I',2,7019586432),(4,3,'Ingeniería de Software I',6,8439170625),(5,2,'Formulación de Proyectos de Ingeniería de Software',3,5294310867),(6,2,'Bases de Datos I',5,3962580417),(7,2,'Ingles III',1,4826091573),(8,2,'TICS',7,123456789),(23,0,'Reservado',1,123456789);
+INSERT INTO `subject` VALUES (1,3,'Programación II',4,7069415283),(2,2,'Análisis numerico',1,4172853069),(3,2,'Metodología de Desarrollo I',2,7019586432),(4,3,'Ingeniería de Software I',6,8439170625),(5,2,'Formulación de Proyectos de Ingeniería de Software',3,5294310867),(6,2,'Bases de Datos I',5,3962580417),(7,2,'Ingles III',1,4826091573),(8,2,'TICS',7,123456789);
 /*!40000 ALTER TABLE `subject` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -283,7 +283,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (0,'none','none','none','none',_binary '\0'),(12345678,'carolina1230@gmail.com','Carolina Arango Suarez','123456','Estudiante',_binary ''),(87965321,'felipe98764@gmail.com','Felipe andres','123456','Estudiante',_binary ''),(123456789,'jbustamante18@cue.edu.co','	Juan Sebastian Bustamante Montoya','789123456','Profesor',_binary ''),(3962580417,'mcardenas16@cue.edu.co','Maycol Cardenas Acevedo','1234567890','Profesor',_binary ''),(4172853069,'mmesa4@cue.edu.co','Monica Jhoana Mesa Mazo','789123456','Profesor',_binary ''),(4826091573,'lfelipeb806@cue.edu.co','Luis Felipe Botero Lopez','789123456','Profesor',_binary ''),(5294310867,'cgranada173@cue.edu.co','Cesar Augusto Granada Muñoz','789123456','Profesor',_binary ''),(5678901234,'carolina201@gmail.com','carolina suarez','password789','Administrativo',_binary ''),(6927304581,'dquejada10281@cue.edu.co','Derly Elena Quejada Pera','123456789','Estudiante',_binary ''),(7019586432,'arodriguez18@cue.edu.co','Andres Mauricio Rodriguez Suarez','789123456','Profesor',_binary ''),(7069415283,'mtobon86@cue.edu.co','Monica Lorena Tobon Clavijo','789123456','Profesor',_binary ''),(7849325710,'ccorrea1068@cue.edu.co','Cristhian Camilo Correa Ceballos','123456789','Estudiante',_binary ''),(8351907624,'sberrio1021@cue.edu.co','Samuel Berrio Rojas','123456789','Estudiante',_binary ''),(8439170625,'lzamora734@cue.edu.co','Lida Zamora Marin','789123456','Profesor',_binary ''),(9137452086,'pbuiles1026@cue.edu.co','Paula Andrea Builes Loaiza','123456789','Estudiante',_binary '');
+INSERT INTO `user` VALUES (0,'none','none','none','none',_binary '\0'),(9853578,'corjuela34@cue.edu.co','Christian Felipe Orjuela','123456789','Estudiante',_binary ''),(123456789,'jbustamante18@cue.edu.co','	Juan Sebastian Bustamante Montoya','789123456','Profesor',_binary ''),(225469770,'dgomez24@cue.edu.co','David Gómez Arce','123456789','Estudiante',_binary ''),(422837461,'cooracademicaingenieria@cue.edu.co','Estefanía Muñoz Martínez','password789','Administrativo',_binary ''),(556611357,'ssalcedo198@cue.edu.co','Samuel Salcedo','123456789','Estudiante',_binary ''),(590023355,'jgerardo98@cue.edu.co','Juan Gerardo Méndez ','123456789','Estudiante',_binary ''),(657843298,'jposada67@cue.edu.co','Juan Andrés Posada','123456789','Estudiante',_binary ''),(784635263,'laboratoriosing@cue.edu.co','Sarha Melissa Chica Otálvaro','password789','Administrativo',_binary ''),(889911647,'atoro73@cue.edu.co','Andrés Felipe Toro','123456789','Estudiante',_binary ''),(986537098,'scardona90@cue.edu.co','Santiago Cardona Sanchez','123456789','Estudiante',_binary ''),(3962580417,'mcardenas16@cue.edu.co','Maycol Cardenas Acevedo','1234567890','Profesor',_binary ''),(4172853069,'mmesa4@cue.edu.co','Monica Jhoana Mesa Mazo','789123456','Profesor',_binary ''),(4826091573,'lfelipeb806@cue.edu.co','Luis Felipe Botero Lopez','789123456','Profesor',_binary ''),(5294310867,'cgranada173@cue.edu.co','Cesar Augusto Granada Muñoz','789123456','Profesor',_binary ''),(5678901234,'carolina201@gmail.com','carolina suarez','password789','Administrativo',_binary ''),(6927304581,'dquejada10281@cue.edu.co','Derly Elena Quejada Pera','123456789','Estudiante',_binary ''),(7019586432,'arodriguez18@cue.edu.co','Andres Mauricio Rodriguez Suarez','789123456','Profesor',_binary ''),(7069415283,'mtobon86@cue.edu.co','Monica Lorena Tobon Clavijo','789123456','Profesor',_binary ''),(7849325710,'ccorrea1068@cue.edu.co','Cristhian Camilo Correa Ceballos','123456789','Estudiante',_binary ''),(8351907624,'sberrio1021@cue.edu.co','Samuel Berrio Rojas','123456789','Estudiante',_binary ''),(8439170625,'lzamora734@cue.edu.co','Lida Zamora Marin','789123456','Profesor',_binary ''),(9137452086,'pbuiles1026@cue.edu.co','Paula Andrea Builes Loaiza','123456789','Estudiante',_binary '');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -296,4 +296,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-12  0:07:04
+-- Dump completed on 2023-06-12 21:41:05

@@ -188,7 +188,7 @@
             <th>Estado</th>
             <th>Propiedades</th>
             <th>Observación</th>
-            <th>Cambios</th>
+            <!--<th>Cambios</th>-->
         </tr>
         </thead>
         <tbody>
@@ -204,15 +204,15 @@
                     <li th:each="property : ${classroom.propertyList}" th:text="${property.spanishName}"></li>
                 </ul>
             </td>
-            <td>
+           <!-- <td>
 
-                <form style="display: inline-block; margin-right: 5px;" th:action="@{/administrative-tools/editar/{id}(id=${classroom.id})}" method="get">
+                <form style="display: inline-block; margin-right: 5px;" th:action="@{/administrative-tools/edit-classroom/{id}(id=${classroom.id})}" method="get">
                     <button style="font-family: 'Lobster Two', cursive; font-size: 18px; background-color: #0c0096; border-top-color: transparent; color: white; outline: none; outline-offset: -2px;" type="submit">Editar</button>
                 </form>
                 <form style="display: inline-block;" th:action="@{/administrative-tools/eliminar/{id}(id=${classroom.id})}" method="get">
                     <button style="font-family: 'Lobster Two', cursive; font-size: 18px; background-color: #0c0096; border-top-color: transparent; color: white; outline: none; outline-offset: -2px;" type="submit">Eliminar</button>
                 </form>
-            </td>
+            </td>-->
         </tr>
         </tbody>
     </table>
